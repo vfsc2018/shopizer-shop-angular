@@ -1,0 +1,16 @@
+.search-input {
+    display:none;
+}
+
+.search-input.open {
+    display:block;
+}
+
+.search-button, .search-closed {
+    background-color:transparent;
+    border:none;
+
+    &:focus {
+        outline:none;
+    }
+}
