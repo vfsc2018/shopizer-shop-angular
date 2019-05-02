@@ -1,9 +1,11 @@
 .search-input {
-    display:none;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    transform: translateY(-100%);
 }
 
 .search-input.open {
-    display:block;
+    transform: translateY(0);
 }
 
 .search-button, .search-closed {
