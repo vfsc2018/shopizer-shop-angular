@@ -8,3 +8,12 @@
 .navbar-menu > li:hover .sub-menu {
     transform: translateY(0);
 }
+
+.header-mobile__button {
+    background-color:transparent;
+    border:none;
+
+    &:focus {
+        outline:none;
+    }
+}

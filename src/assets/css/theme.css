@@ -29158,8 +29158,8 @@ header .header-wrapper-mobile .header-mobile__bar {
 
 header .header-wrapper-mobile .header-mobile__bar .header-mobile__button {
   position: relative;
-  width: 36px;
-  height: 36px;
+  width: 20px;
+  height: 16px;
 }
 
 header .header-wrapper-mobile .header-mobile__bar .header-mobile__button .humburger-box {
@@ -29167,13 +29167,6 @@ header .header-wrapper-mobile .header-mobile__bar .header-mobile__button .humbur
   position: relative;
   width: 20px;
   height: 15px;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
 }
 
 header .header-wrapper-mobile .header-mobile__bar .header-mobile__button .humburger-box .hamburger__inner {
@@ -29183,6 +29176,7 @@ header .header-wrapper-mobile .header-mobile__bar .header-mobile__button .humbur
   background-color: #333;
   position: absolute;
   top: 6px;
+  left:0;
   -webkit-transition: -webkit-transform 0.15s ease;
   transition: -webkit-transform 0.15s ease;
   -o-transition: -o-transform 0.15s ease;
@@ -29198,12 +29192,14 @@ header .header-wrapper-mobile .header-mobile__bar .header-mobile__button .humbur
   width: 20px;
   height: 2px;
   background-color: #333;
+  left:0;
   -webkit-transition: -webkit-transform 0.15s ease;
   transition: -webkit-transform 0.15s ease;
   -o-transition: -o-transform 0.15s ease;
   -moz-transition: transform 0.15s ease, -moz-transform 0.15s ease;
   transition: transform 0.15s ease;
   transition: transform 0.15s ease, -webkit-transform 0.15s ease, -moz-transform 0.15s ease, -o-transform 0.15s ease;
+
 }
 
 header .header-wrapper-mobile .header-mobile__bar .header-mobile__button .humburger-box .hamburger__inner:before {
