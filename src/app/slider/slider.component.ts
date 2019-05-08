@@ -11,14 +11,14 @@ export class SliderComponent implements OnInit {
 
   ngOnInit() {}
 
-  // siema = Siema;
+  siema = Siema;
 
-  // changeSlide() {
-  //   this.siema.next();
-  // }
+  changeSlide() {
+    this.siema.next();
+  }
 
   ngAfterViewInit(): void {
-    new Siema({
+    this.siema = new Siema({
       loop: true
     });
   }
