@@ -1,0 +1,25 @@
+.siema-container {
+  position: relative;
+}
+.siema-bullets {
+  position: absolute;
+  bottom: 60px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.siema-bullet {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: none;
+  display: inline-block;
+  border: 1px solid #fff;
+  margin: 0 7px;
+  padding: 0;
+
+  &.selected {
+    background-color: white;
+  }
+}
