@@ -1,15 +1,17 @@
 <div class="siema-container">
   <div class="siema">
-    <div><img src="http://placekitten.com/1920/820" alt="" /></div>
-    <div><img src="http://placekitten.com/1920/820" alt="" /></div>
-    <div><img src="http://placekitten.com/1920/820" alt="" /></div>
-    <div><img src="http://placekitten.com/1920/820" alt="" /></div>
+    <div *ngFor="let sliderItem of sliderItems">
+      <img src="{{ sliderItem.img }}" alt="" />
+    </div>
   </div>
   <div class="siema-bullets">
     <div class="siema-bullets-inner">
-      <button class="siema-bullet" (click)="changeSlide()"></button>
-      <button class="siema-bullet" (click)="changeSlide()"></button>
-      <button class="siema-bullet selected" (click)="changeSlide()"></button>
+      <button
+        *ngFor="let sliderItem of sliderItems; let i = index"
+        class="siema-bullet"
+        [ngClass]="{ selected: i == selectedIndex }"
+        (click)="changeSlide(i)"
+      ></button>
     </div>
   </div>
 </div>
