@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+//import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class ConfigurationService {
 
   configurations: object = null;
+  merchant: object = null;
 
   constructor(private http: HttpClient) {}
 
@@ -26,9 +28,31 @@ export class ConfigurationService {
       )
       .toPromise();
   }
+
+
+  getMerchant(): Promise<Object> {
+    // this is where you would run a http service to fetch the merchant
+    // convert the response into a promise
+    console.log('loading Merchant');
+
+
+    return of(merchantConfigs) // this could be a http request
+      .pipe(
+        tap(merchant => {
+          this.merchant = merchant;
+        })
+      )
+      .toPromise();
+  }
 }
 
 const serverConfigs: Object = {
   APIEndpoint: 'url_here',
-  apiKey: 'abcdee'
+  token: 'abcdee'
+};
+
+//TODO where do we store variables / configuration
+const merchantConfigs: Object = {
+  APIEndpoint: 'http://localhost:8080/api/v1/store/DEFAULT',
+  token: 'NONE'
 };

@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SiteheaderComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
   }
