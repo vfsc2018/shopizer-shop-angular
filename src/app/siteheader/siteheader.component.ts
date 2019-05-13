@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Merchant } from '../configuration/merchant'
+import { ConfigurationService } from '../configuration/configuration.service'
 
 @Component({
   selector: 'siteheader',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SiteheaderComponent implements OnInit {
 
-  constructor() {
+  private merchant : Merchant = null;
+
+  constructor(configurationService : ConfigurationService) {
+
+    this.merchant = configurationService.getMerchant();
+    console.log(this.merchant);
 
   }
 

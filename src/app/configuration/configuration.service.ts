@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-//import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment';
+
+import { Merchant } from './merchant';
 
 @Injectable({
   providedIn: 'root'
@@ -10,39 +13,31 @@ import { HttpClient } from '@angular/common/http';
 export class ConfigurationService {
 
   configurations: object = null;
-  merchant: object = null;
+  private merchant:Merchant = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
-  getConfigs(): Promise<Object> {
+  getConfigs() {
     // this is where you would run a http service to fetch the congfiguratations
     // convert the response into a promise
     console.log('loading initial configurations');
 
-
-    return of(serverConfigs) // this could be a http request
-      .pipe(
-        tap(config => {
-          this.configurations = config;
-        })
-      )
-      .toPromise();
-  }
-
-
-  getMerchant(): Promise<Object> {
-    // this is where you would run a http service to fetch the merchant
-    // convert the response into a promise
     console.log('loading Merchant');
 
+    this.loadMerchant();
 
-    return of(merchantConfigs) // this could be a http request
-      .pipe(
-        tap(merchant => {
-          this.merchant = merchant;
-        })
-      )
-      .toPromise();
+  }
+
+  loadMerchant() {
+    this.httpClient.get(environment.baseUrl + '/api/v1/store/DEFAULT')
+      .subscribe((data:Merchant) => {
+      console.log(data);
+      this.merchant = data;
+    }, error => console.log('Could not load merchant'));
+  }
+
+  getMerchant() {
+    return this.merchant;
   }
 }
 
@@ -53,6 +48,6 @@ const serverConfigs: Object = {
 
 //TODO where do we store variables / configuration
 const merchantConfigs: Object = {
-  APIEndpoint: 'http://localhost:8080/api/v1/store/DEFAULT',
+  APIEndpoint: environment.baseUrl + 'http://localhost:8080/api/v1/store/DEFAULT',
   token: 'NONE'
 };
