@@ -1,9 +1,15 @@
 .siema-slide {
   position: relative;
+  height: calc(100vh - 20px);
 }
 
 .siema-container {
   position: relative;
+  margin-top: 80px;
+
+  @media (min-width: 992px) {
+    margin-top: 112px;
+  }
 }
 .siema-bullets {
   position: absolute;
@@ -37,4 +43,39 @@
   align-items: center;
   align-content: center;
   flex-direction: column;
+}
+
+.siema-img {
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: calc(100vh - 20px);
+  opacity: 1;
+  visibility: inherit;
+  z-index: 20;
+}
+
+.slider-heading-1 {
+  @media (max-width: 600px) {
+    font-size: 23px;
+    text-shadow: 2px 2px 13px #ffffff;
+  }
+
+  line-height: 0.3428571429;
+  color: #fff;
+  font-weight: 300;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.slider-heading-2 {
+  white-space: inherit;
+  color: black;
+  width: 100%;
+  text-align: center;
+
+  @media (max-width: 600px) {
+    font-size: 15px;
+    text-shadow: -4px -1px 7px #ffffff;
+  }
 }
