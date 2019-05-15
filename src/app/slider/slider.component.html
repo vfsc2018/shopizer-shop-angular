@@ -14,7 +14,10 @@
         </p>
         <a href="#" class="btn btn-color text-uppercase">Shop now</a>
       </div>
-      <img src="{{ sliderItem.img }}" alt="" />
+      <div
+        class="siema-img"
+        [style.backgroundImage]="'url(' + sliderItem.img + ')'"
+      ></div>
     </div>
   </div>
   <div class="siema-bullets">
