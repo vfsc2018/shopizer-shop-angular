@@ -13,8 +13,9 @@ import { SearchComponent } from "./search/search.component";
 import { CartComponent } from "./cart/cart.component";
 import { SliderComponent } from "./slider/slider.component";
 
+/** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
-  return () => configurationService.getConfigs();
+  return () => configurationService.loadConfigurations();
 }
 
 /**
@@ -32,6 +33,7 @@ export function loadConfigurations(configurationService: ConfigurationService) {
   ],
   imports: [NgbModule, BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
+    /** load merchant and configurations */
     ConfigurationService,
     {
       provide: APP_INITIALIZER,

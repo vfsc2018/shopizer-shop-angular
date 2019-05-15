@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Merchant } from '../configuration/merchant'
+import { ConfigurationService } from '../configuration/configuration.service'
 
 @Component({
   selector: 'cart',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  private merchant = null;
+  constructor(private configurationService : ConfigurationService) { }
 
   isOpen: boolean = false;
 
@@ -17,6 +20,12 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
+    //this.configurationService.getMerchant()
+    //.subscribe((data:Merchant) => {
+    //  this.merchant = data;
+    //  console.log('Merchant name ' + this.merchant.name);
+    //);
+
   }
 
 }
