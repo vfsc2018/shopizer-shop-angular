@@ -9,16 +9,16 @@ import { ConfigurationService } from '../configuration/configuration.service'
 })
 export class SiteheaderComponent implements OnInit {
 
-  private merchant : Merchant = null;
+  private merchant = null;
 
-  constructor(configurationService : ConfigurationService) {
-
-    this.merchant = configurationService.getMerchant();
-    console.log(this.merchant);
-
-  }
+  constructor(private configurationService : ConfigurationService) {}
 
   ngOnInit() {
+    //this.configurationService.getMerchant()
+    //  .subscribe((data:Merchant) => {
+    //    this.merchant = data;
+    //    console.log('Merchant name ' + this.merchant.name);
+    //});
   }
 
 }

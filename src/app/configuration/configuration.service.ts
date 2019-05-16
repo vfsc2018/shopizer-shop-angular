@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import {map, publishReplay, refCount } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
@@ -12,42 +11,36 @@ import { Merchant } from './merchant';
 })
 export class ConfigurationService {
 
-  configurations: object = null;
-  private merchant:Merchant = null;
+  //configurations: object = null; //TODO
+  private merchant : Observable<Merchant> = null;
 
   constructor(private httpClient: HttpClient) {}
 
-  getConfigs() {
-    // this is where you would run a http service to fetch the congfiguratations
-    // convert the response into a promise
-    console.log('loading initial configurations');
-
-    console.log('loading Merchant');
-
-    this.loadMerchant();
-
+  loadConfigurations() {
+    console.log('load configs');
   }
 
-  loadMerchant() {
-    this.httpClient.get(environment.baseUrl + '/api/v1/store/DEFAULT')
-      .subscribe((data:Merchant) => {
-      console.log(data);
-      this.merchant = data;
-    }, error => console.log('Could not load merchant'));
-  }
+  /** cached Merchant */
+  getMerchant() : Observable<Merchant> {
+    let apiURL = environment.baseUrl + '/api/v1/store/DEFAULT';
+    if (!this.merchant) {
+      console.log('loading merchant');
+      this.merchant = this.httpClient.get(apiURL).pipe(
+          map((data:Merchant) => {return data as Merchant}),
+          publishReplay(1), // this tells Rx to cache the latest emitted
+          refCount() // and this tells Rx to keep the Observable alive as long as there are any Subscribers
+      );
+    }
 
-  getMerchant() {
+    
+    //this.merchant = this.httpClient.get(apiURL).pipe(
+    //map((data: Merchant)  => {
+    //  return data as Merchant
+    //})
+    //)
+
     return this.merchant;
+
   }
+
 }
-
-const serverConfigs: Object = {
-  APIEndpoint: 'url_here',
-  token: 'abcdee'
-};
-
-//TODO where do we store variables / configuration
-const merchantConfigs: Object = {
-  APIEndpoint: environment.baseUrl + 'http://localhost:8080/api/v1/store/DEFAULT',
-  token: 'NONE'
-};
