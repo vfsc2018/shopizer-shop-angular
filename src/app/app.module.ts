@@ -12,6 +12,7 @@ import { SiteheaderComponent } from "./siteheader/siteheader.component";
 import { SearchComponent } from "./search/search.component";
 import { CartComponent } from "./cart/cart.component";
 import { SliderComponent } from "./slider/slider.component";
+import { FeaturedComponent } from './featured/featured.component';
 
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.getConfigs();
@@ -28,7 +29,8 @@ export function loadConfigurations(configurationService: ConfigurationService) {
     SiteheaderComponent,
     SearchComponent,
     CartComponent,
-    SliderComponent
+    SliderComponent,
+    FeaturedComponent
   ],
   imports: [NgbModule, BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [

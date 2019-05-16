@@ -1,6 +1,10 @@
 .siema-slide {
   position: relative;
-  height: calc(100vh - 20px);
+  @media (max-width: 600px) {
+    height: calc(100vh - 20px);
+  }
+
+  height: calc(100vh - 112px);
 }
 
 .siema-container {
@@ -49,10 +53,15 @@
   background-size: cover;
   background-position: center center;
   width: 100%;
-  height: calc(100vh - 20px);
   opacity: 1;
   visibility: inherit;
   z-index: 20;
+
+  @media (max-width: 600px) {
+    height: calc(100vh - 20px);
+  }
+
+  height: calc(100vh - 112px);
 }
 
 .slider-heading-1 {
