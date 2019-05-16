@@ -13,6 +13,7 @@ import { SearchComponent } from "./search/search.component";
 import { CartComponent } from "./cart/cart.component";
 import { SliderComponent } from "./slider/slider.component";
 import { FeaturedComponent } from './featured/featured.component';
+import { ProductGridComponent } from './product-grid/product-grid.component';
 
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
@@ -31,7 +32,8 @@ export function loadConfigurations(configurationService: ConfigurationService) {
     SearchComponent,
     CartComponent,
     SliderComponent,
-    FeaturedComponent
+    FeaturedComponent,
+    ProductGridComponent
   ],
   imports: [NgbModule, BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
