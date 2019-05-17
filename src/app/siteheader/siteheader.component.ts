@@ -14,11 +14,11 @@ export class SiteheaderComponent implements OnInit {
   constructor(private configurationService : ConfigurationService) {}
 
   ngOnInit() {
-    //this.configurationService.getMerchant()
-    //  .subscribe((data:Merchant) => {
-    //    this.merchant = data;
-    //    console.log('Merchant name ' + this.merchant.name);
-    //});
+    this.configurationService.getMerchant()
+      .subscribe((data:Merchant) => {
+        this.merchant = data;
+        console.log('Merchant name ' + this.merchant.name);
+    });
   }
 
 }
