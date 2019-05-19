@@ -7,7 +7,7 @@ import { AppComponent } from "./app.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
-import { ConfigurationService } from "./configuration/configuration.service";
+import { ConfigurationService } from "./services/configuration/configuration.service";
 import { SiteheaderComponent } from "./siteheader/siteheader.component";
 import { SearchComponent } from "./search/search.component";
 import { CartComponent } from "./cart/cart.component";
