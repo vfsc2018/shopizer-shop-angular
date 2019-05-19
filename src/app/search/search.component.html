@@ -1,0 +1,7 @@
+<button class="search-button" (click)="toggleSearch()">
+  <img src="assets/images/icon/header-search.png" alt="Search">
+</button>
+<div [ngClass]="isOpen ? 'search-input open' : 'search-input'">
+  <input type="text" placeholder="Start typing here...">
+  <a href="#" (click)="toggleSearch()"></a>
+</div>

@@ -1,0 +1,18 @@
+.search-input {
+    transition-duration: 0.3s;
+    transition-property: transform;
+    transform: translateY(-100%);
+}
+
+.search-input.open {
+    transform: translateY(0);
+}
+
+.search-button, .search-closed {
+    background-color:transparent;
+    border:none;
+
+    &:focus {
+        outline:none;
+    }
+}
