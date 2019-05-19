@@ -9,7 +9,7 @@ import { ConfigurationService } from '../services/configuration/configuration.se
 })
 export class SiteheaderComponent implements OnInit {
 
-  private merchant = null;
+  merchant = null;
 
   constructor(private configurationService : ConfigurationService) {}
 

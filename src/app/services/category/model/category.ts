@@ -1,5 +1,7 @@
+import { CategoryDescription } from './category-description';
+
 export class Category {
 
-    name:string;
-    seoName:string;
+    code:string;
+    description:CategoryDescription;
 }
