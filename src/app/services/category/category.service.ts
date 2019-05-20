@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import {map, publishReplay, refCount } from 'rxjs/operators';
+import { Observable, Subject, throwError } from 'rxjs';
+import { map, publishReplay, refCount, catchError  } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Category } from './model/category';
@@ -12,23 +12,24 @@ export class CategoryService {
 
   constructor(private httpClient: HttpClient) { }
 
-  //getRootMenu() : Observable<Category[]> {
-      //let apiURL = environment.baseUrl + '/api/v1/category/?store=' + environment.merchant;
-      //console.log('loading menu');
-      //return this.httpClient.get(apiURL)
-      //.map(res => {
-      //  return res.json().results.map(item => {
-      //    return new SearchItem(
-      //        item.trackName,
-      //       item.artistName,
-      //        item.trackViewUrl,
-      //        item.artworkUrl30,
-      //        item.artistId
-      //    );
-      //  });
-      //});
-    //}
-    //}
+  getCategoryHierarchy() : Observable<Category[]> {
+      let apiURL = environment.baseUrl + '/api/v1/category/?store=' + environment.merchant;
+       console.log('loading category hierarchy');
+      return this.httpClient.get(apiURL)
+        .pipe(
+          map((data:Category[]) => {return data as Category[]}),
+          catchError(err => {
+            //find a geberic error management page
+            console.error(err.message);
+            console.log("Error is handled");
+            return throwError("Error thrown from catchError");
+          })
+      )
+  }
+
+  handleError() {
+
+  }
 
 
 }

@@ -8,6 +8,7 @@ import { AppComponent } from "./app.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { ConfigurationService } from "./services/configuration/configuration.service";
+import { CategoryService } from "./services/category/category.service";
 import { SiteheaderComponent } from "./siteheader/siteheader.component";
 import { SearchComponent } from "./search/search.component";
 import { CartComponent } from "./cart/cart.component";
@@ -44,7 +45,8 @@ export function loadConfigurations(configurationService: ConfigurationService) {
       useFactory: loadConfigurations,
       deps: [ConfigurationService],
       multi: true
-    }
+    },
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
