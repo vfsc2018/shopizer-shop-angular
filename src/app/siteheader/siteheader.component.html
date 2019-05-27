@@ -7,39 +7,22 @@
                   <div class="header-main">
                       <div class="header__logo">
                           <a href="index.html">
-                              {{merchant?.name}}
+                              <img src="{{merchant?.logo?.path}}"/>
                           </a>
                       </div>
                       <nav class="header__navbar">
                           <ul class="navbar-menu">
                               <li class="active">
-                                  <a href="#">Home</a>
-                                  <ul class="sub-menu">
-                                      <li>
-                                          <a href="index.html">HomePage_v1</a>
-                                      </li>
-                                      <li>
-                                          <a href="index2.html">HomePage_v2</a>
-                                      </li>
-                                      <li>
-                                          <a href="index3.html">HomePage_v3</a>
-                                      </li>
-                                      <li>
-                                          <a href="index4.html">HomePage_v4</a>
-                                      </li>
-                                      <li>
-                                          <a href="index5.html">HomePage_v5</a>
-                                      </li>
-                                      <li>
-                                          <a href="index6.html">HomePage_v6</a>
-                                      </li>
+                                  <a href="/">Home</a>
+                              </li>
+                               <li *ngFor="let category of category">
+                                  <a href="/category/{{ category.description.friendlyUrl }}.html">{{ category.description.name.toUpperCase() }}</a>
+                                  <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
+                                     <menu-item #menu [items]="category.children"></menu-item>
                                   </ul>
-                              </li>
+                               </li>
                               <li>
-                                  <a href="about.html">About</a>
-                              </li>
-                              <li>
-                                  <a href="#">page</a>
+                                  <a href="#">about</a>
                                   <ul class="sub-menu">
                                       <li>
                                           <a href="my-account.html">My Account</a>
@@ -52,49 +35,6 @@
                                       </li>
                                       <li>
                                           <a href="404.html">404 Error</a>
-                                      </li>
-                                  </ul>
-                              </li>
-                              <li>
-                                  <a href="#">Shop</a>
-                                  <ul class="sub-menu">
-                                      <li>
-                                          <a href="shop-list.html">Shop 1</a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-list-nosidebar.html">Shop 2</a>
-                                      </li>
-                                      <li>
-                                          <a href="product-detail.html">Product Detail 1</a>
-                                      </li>
-                                      <li>
-                                          <a href="product-detail-nosidebar.html">Product Detail 2</a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-cart.html">Shop Cart</a>
-                                      </li>
-                                      <li>
-                                          <a href="wishlist.html">Wish List</a>
-                                      </li>
-                                      <li>
-                                          <a href="checkout.html">Check Out</a>
-                                      </li>
-                                  </ul>
-                              </li>
-                              <li>
-                                  <a href="#">Blog</a>
-                                  <ul class="sub-menu">
-                                      <li>
-                                          <a href="blog-grid-1.html">Blog Grid 1</a>
-                                      </li>
-                                      <li>
-                                          <a href="blog-grid-2.html">Blog Grid 2</a>
-                                      </li>
-                                      <li>
-                                          <a href="blog-list.html">Blog List</a>
-                                      </li>
-                                      <li>
-                                          <a href="blog-detail.html">Blog Single</a>
                                       </li>
                                   </ul>
                               </li>
@@ -119,9 +59,11 @@
           <!-- Mobile Menu -->
           <div class="header-wrapper-mobile d-block d-lg-none">
               <div class="header-mobile__bar">
-                  <div class="header-mobile__logo">
-                      <img src="assets/images/icon/logo_01.png" alt="Lyrae">
-                  </div>
+                <div class="header__logo">
+                    <a href="index.html">
+                        <img src="{{merchant?.logo?.path}}"/>
+                    </a>
+                </div>
                   <button class="header-mobile__button">
                       <span class="humburger-box">
                           <span class="hamburger__inner"></span>
@@ -132,6 +74,7 @@
                   <ul>
                       <li>
                           <a href="#">Home</a>
+                          <!--
                           <ul class="sub-menu">
                               <li>
                                   <a href="index.html">Homepage_v1</a>
@@ -152,6 +95,7 @@
                                   <a href="index6.html">Homepage_v6</a>
                               </li>
                           </ul>
+                          -->
                       </li>
                       <li>
                           <a href="about.html">About Us</a>

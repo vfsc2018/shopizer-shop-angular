@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Merchant } from '../configuration/merchant'
-import { ConfigurationService } from '../configuration/configuration.service'
+import { Merchant } from '../services/configuration/merchant'
+import { ConfigurationService } from '../services/configuration/configuration.service'
 
 @Component({
   selector: 'cart',

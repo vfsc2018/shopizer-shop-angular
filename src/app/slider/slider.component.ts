@@ -18,7 +18,7 @@ export class SliderComponent implements OnInit {
     {
       title: "title1",
       description: "lorem ipsum",
-      img: "http://placekitten.com/1920/817"
+      img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/banner.jpg"
     },
     {
       title: "title2",

@@ -1,0 +1,31 @@
+.menu-item > a {
+    font-size: 15px;
+    line-height: 2.7333333333;
+    color: #666;
+    line-height: 40px;
+    position: relative;
+    -webkit-transition: all .35s;
+    -o-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+  }
+
+
+  .menu-item > a:before {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: #e4c7a2;
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    -webkit-transform: scaleX(0);
+    -moz-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    -o-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all .35s;
+    -o-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+  }

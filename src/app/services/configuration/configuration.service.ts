@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import {map, publishReplay, refCount } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 import { Merchant } from './merchant';
 
@@ -22,7 +22,7 @@ export class ConfigurationService {
 
   /** cached Merchant */
   getMerchant() : Observable<Merchant> {
-    let apiURL = environment.baseUrl + '/api/v1/store/DEFAULT';
+    let apiURL = environment.baseUrl + '/api/v1/store/' + environment.merchant;
     if (!this.merchant) {
       console.log('loading merchant');
       this.merchant = this.httpClient.get(apiURL).pipe(

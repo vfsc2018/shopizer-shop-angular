@@ -7,14 +7,16 @@ import { AppComponent } from "./app.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
-import { ConfigurationService } from "./configuration/configuration.service";
+import { ConfigurationService } from "./services/configuration/configuration.service";
+import { CategoryService } from "./services/category/category.service";
 import { SiteheaderComponent } from "./siteheader/siteheader.component";
 import { SearchComponent } from "./search/search.component";
 import { CartComponent } from "./cart/cart.component";
 import { SliderComponent } from "./slider/slider.component";
-import { FeaturedComponent } from './featured/featured.component';
-import { ProductGridComponent } from './product-grid/product-grid.component';
-import { LatestNewsComponent } from './latest-news/latest-news.component';
+import { FeaturedComponent } from "./featured/featured.component";
+import { ProductGridComponent } from "./product-grid/product-grid.component";
+import { LatestNewsComponent } from "./latest-news/latest-news.component";
+import { MenuItemComponent } from "./siteheader/menu-item/menu-item.component";
 
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
@@ -35,7 +37,8 @@ export function loadConfigurations(configurationService: ConfigurationService) {
     SliderComponent,
     FeaturedComponent,
     ProductGridComponent,
-    LatestNewsComponent
+    LatestNewsComponent,
+    MenuItemComponent
   ],
   imports: [NgbModule, BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
@@ -46,7 +49,8 @@ export function loadConfigurations(configurationService: ConfigurationService) {
       useFactory: loadConfigurations,
       deps: [ConfigurationService],
       multi: true
-    }
+    },
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
