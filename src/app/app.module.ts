@@ -15,6 +15,7 @@ import { CartComponent } from "./cart/cart.component";
 import { SliderComponent } from "./slider/slider.component";
 import { FeaturedComponent } from './featured/featured.component';
 import { ProductGridComponent } from './product-grid/product-grid.component';
+import { MenuItemComponent } from './siteheader/menu-item/menu-item.component';
 
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
@@ -34,7 +35,8 @@ export function loadConfigurations(configurationService: ConfigurationService) {
     CartComponent,
     SliderComponent,
     FeaturedComponent,
-    ProductGridComponent
+    ProductGridComponent,
+    MenuItemComponent
   ],
   imports: [NgbModule, BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [

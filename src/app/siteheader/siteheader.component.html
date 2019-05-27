@@ -13,10 +13,13 @@
                       <nav class="header__navbar">
                           <ul class="navbar-menu">
                               <li class="active">
-                                  <a href="#">Home</a>
+                                  <a href="/">Home</a>
                               </li>
                                <li *ngFor="let category of category">
-                                  <a href="contact.html">{{ category.description.name.toUpperCase() }}</a>
+                                  <a href="/category/{{ category.description.friendlyUrl }}.html">{{ category.description.name.toUpperCase() }}</a>
+                                  <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
+                                     <menu-item #menu [items]="category.children"></menu-item>
+                                  </ul>
                                </li>
                               <li>
                                   <a href="#">about</a>
@@ -56,9 +59,11 @@
           <!-- Mobile Menu -->
           <div class="header-wrapper-mobile d-block d-lg-none">
               <div class="header-mobile__bar">
-                  <div class="header-mobile__logo">
-                      <img src="assets/images/icon/logo_01.png" alt="Lyrae">
-                  </div>
+                <div class="header__logo">
+                    <a href="index.html">
+                        <img src="{{merchant?.logo?.path}}"/>
+                    </a>
+                </div>
                   <button class="header-mobile__button">
                       <span class="humburger-box">
                           <span class="hamburger__inner"></span>
@@ -69,6 +74,7 @@
                   <ul>
                       <li>
                           <a href="#">Home</a>
+                          <!--
                           <ul class="sub-menu">
                               <li>
                                   <a href="index.html">Homepage_v1</a>
@@ -89,6 +95,7 @@
                                   <a href="index6.html">Homepage_v6</a>
                               </li>
                           </ul>
+                          -->
                       </li>
                       <li>
                           <a href="about.html">About Us</a>

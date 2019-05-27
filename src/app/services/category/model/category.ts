@@ -4,4 +4,5 @@ export class Category {
 
     code:string;
     description:CategoryDescription;
+    children:Category[];
 }
