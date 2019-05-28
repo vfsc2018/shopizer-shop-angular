@@ -18,6 +18,7 @@ import { ProductGridComponent } from "./product-grid/product-grid.component";
 import { LatestNewsComponent } from "./latest-news/latest-news.component";
 import { MenuItemComponent } from "./siteheader/menu-item/menu-item.component";
 import { NewsletterComponent } from './newsletter/newsletter.component';
+import { SitefooterComponent } from './sitefooter/sitefooter.component';
 
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
@@ -40,7 +41,8 @@ export function loadConfigurations(configurationService: ConfigurationService) {
     ProductGridComponent,
     LatestNewsComponent,
     MenuItemComponent,
-    NewsletterComponent
+    NewsletterComponent,
+    SitefooterComponent
   ],
   imports: [NgbModule, BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
