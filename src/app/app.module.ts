@@ -7,6 +7,8 @@ import { AppComponent } from "./app.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
+import { RouterModule } from "@angular/router";
+
 import { ConfigurationService } from "./services/configuration/configuration.service";
 import { CategoryService } from "./services/category/category.service";
 import { SiteheaderComponent } from "./siteheader/siteheader.component";
@@ -17,8 +19,10 @@ import { FeaturedComponent } from "./featured/featured.component";
 import { ProductGridComponent } from "./product-grid/product-grid.component";
 import { LatestNewsComponent } from "./latest-news/latest-news.component";
 import { MenuItemComponent } from "./siteheader/menu-item/menu-item.component";
-import { NewsletterComponent } from './newsletter/newsletter.component';
-import { SitefooterComponent } from './sitefooter/sitefooter.component';
+import { NewsletterComponent } from "./newsletter/newsletter.component";
+import { SitefooterComponent } from "./sitefooter/sitefooter.component";
+import { CheckoutComponent } from "./checkout/checkout.component";
+import { HomeComponent } from "./home/home.component";
 
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
@@ -42,9 +46,26 @@ export function loadConfigurations(configurationService: ConfigurationService) {
     LatestNewsComponent,
     MenuItemComponent,
     NewsletterComponent,
-    SitefooterComponent
+    SitefooterComponent,
+    CheckoutComponent,
+    HomeComponent
   ],
-  imports: [NgbModule, BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    NgbModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    RouterModule.forRoot([
+      {
+        path: "",
+        component: HomeComponent
+      },
+      {
+        path: "checkout",
+        component: CheckoutComponent
+      }
+    ])
+  ],
   providers: [
     /** load merchant and configurations */
     ConfigurationService,
