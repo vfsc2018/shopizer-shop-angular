@@ -13,4 +13,44 @@
             }
         }
     }
+    .shop-total{
+        height: 100%;
+        border-top: 5px solid #e4c7a2;
+        background-color: #eef1f8;
+        padding: 36px 30px 50px;
+    .sub-total
+    { 
+
+        custom-label{
+            display: inline-block;
+            &:first-child{
+                width: 50% !important;
+            }
+        &:last-child{
+            // width: 50% !important;
+            float: right;
+        }
+    }
+    }
+
+    }
+    .grand-total
+    {
+        custom-label{
+            display: inline-block;
+            &:first-child{
+                width: 50% !important;
+            }
+        }
+        span{
+            
+            float: right;
+                    color: #ff6666 !important;
+                    font-size: 25px;
+                    font-weight: 500;
+               
+        }
+    }
+    
+    
 }
