@@ -13,7 +13,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let result of cartData">
+            <tr *ngFor="let result of data; let i = index">
               <td>
                 <div class="table-shop-product">
                   <div class="image">
@@ -28,11 +28,13 @@
               <td>
                 <div class="quantity">
                   <span class="sub">
-                    <i class="fa fa-angle-down"></i>
+                    <!-- <i class="fa fa-angle-down"></i> -->
+                    <i class="fa fa-angle-down" (click)="decreaseQuntity(i)"></i>
                   </span>
                   <input type="number" value="{{result.quantity}}">
                   <span class="add">
-                    <i class="fa fa-angle-up"></i>
+                    <!-- <i class="fa fa-angle-up"></i> -->
+                    <i class="fa fa-angle-up" (click)="increaseQuntity(i)"></i>
                   </span>
                 </div>
               </td>
@@ -40,7 +42,7 @@
                 ${{result.total}}
               </td>
               <td>
-                <a href="#">
+                <a (click)="removecartData(i)">
                   <img src="../../../assets/images/icon/close.png" alt="Close">
                 </a>
               </td>

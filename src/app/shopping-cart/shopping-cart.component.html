@@ -1,7 +1,9 @@
 <div class="shopping-cart">
 
     <banner [name]="'shop cart'"></banner>
-    <cart-list></cart-list>
+    <div>
+        <cart-list [data]="cartData" (onCrossButtonClick)="removeCartData(result)"></cart-list>
+    </div>
     <div class="container p-b-30 py-tn-30">
         <div class="row m-t-20">
             <div class="main-button">

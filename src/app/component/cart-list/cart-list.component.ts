@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'cart-list',
@@ -7,15 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartListComponent implements OnInit {
 
-  cartData: Array<any> = [
-    { 'name': 'Crackle Plates', 'price': '22.00', 'total': '44.00', 'quantity': 2 },
-    { 'name': 'Crackle Plates', 'price': '36.00', 'total': '180.00', 'quantity': 9 },
-    { 'name': 'Crackle Plates', 'price': '17.00', 'total': '144.00', 'quantity': 8 },
-    { 'name': 'Crackle Plates', 'price': '22.00', 'total': '44.00', 'quantity': 2 }
-  ]
+  @Input() data: any[];
+  @Output() onCrossButtonClick = new EventEmitter<any>()
+  @Output() onDownButtonClick = new EventEmitter<any>()
+  @Output() onUpButtonClick = new EventEmitter<any>()
   constructor() { }
 
   ngOnInit() {
   }
+  removecartData(index) {
+    console.log(this.data[index])
 
+    this.onCrossButtonClick.emit(index);
+  }
+  decreaseQuntity(value) {
+    this.data[value].quantity = this.data[value].quantity - 1
+    this.onDownButtonClick.emit(value);
+  }
+  increaseQuntity(value) {
+    this.data[value].quantity = this.data[value].quantity + 1
+    this.onUpButtonClick.emit(value);
+  }
 }
