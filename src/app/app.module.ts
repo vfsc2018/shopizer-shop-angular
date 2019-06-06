@@ -79,4 +79,4 @@ export function loadConfigurations(configurationService: ConfigurationService) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

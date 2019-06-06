@@ -10,13 +10,13 @@ import { ConfigurationService } from '../services/configuration/configuration.se
 export class CartComponent implements OnInit {
 
   private merchant = null;
-  constructor(private configurationService : ConfigurationService) { }
+  constructor(private configurationService: ConfigurationService) { }
 
   isOpen: boolean = false;
 
-  
+
   toggleSearch() {
-    this.isOpen = !this.isOpen ;
+    this.isOpen = !this.isOpen;
   }
 
   ngOnInit() {
