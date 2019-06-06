@@ -1,0 +1,16 @@
+.shopping-cart{
+    .main-button{
+        display: inline-block;
+        width: 100%;
+        padding: 0px 15px;
+        btn{
+            display: inline-block;
+            &:first-child{
+                margin-right: 30px;
+            }
+            &:last-child{
+                float: right;
+            }
+        }
+    }
+}
