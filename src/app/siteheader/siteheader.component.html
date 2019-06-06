@@ -16,12 +16,15 @@
                                   <a href="/">Home</a>
                               </li>
                                <li *ngFor="let category of category">
-                                  <a href="/category/{{ category.description.friendlyUrl }}.html">{{ category.description.name.toUpperCase() }}</a>
+                                  <a href="/category/{{ category.description.friendlyUrl }}">{{ category.description.name.toUpperCase() }}</a>
                                   <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
                                      <menu-item #menu [items]="category.children"></menu-item>
                                   </ul>
                                </li>
-                              <li>
+                              <li *ngFor="let content of content">
+                                   <a href="/page/{{ content.slug }}">{{content.description.name}}</a>
+                              </li>
+                                  <!--
                                   <a href="#">about</a>
                                   <ul class="sub-menu">
                                       <li>
@@ -37,9 +40,9 @@
                                           <a href="404.html">404 Error</a>
                                       </li>
                                   </ul>
-                              </li>
+                                -->
                               <li>
-                                  <a href="contact.html">Contact</a>
+                                  <a href="/contact">Contact</a>
                               </li>
                           </ul>
                       </nav>
