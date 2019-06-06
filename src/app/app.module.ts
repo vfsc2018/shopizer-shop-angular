@@ -23,6 +23,7 @@ import { NewsletterComponent } from "./newsletter/newsletter.component";
 import { SitefooterComponent } from "./sitefooter/sitefooter.component";
 import { CheckoutComponent } from "./checkout/checkout.component";
 import { HomeComponent } from "./home/home.component";
+import { BannerComponent } from './component/banner/banner.component';
 
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
@@ -48,7 +49,8 @@ export function loadConfigurations(configurationService: ConfigurationService) {
     NewsletterComponent,
     SitefooterComponent,
     CheckoutComponent,
-    HomeComponent
+    HomeComponent,
+    BannerComponent
   ],
   imports: [
     NgbModule,
