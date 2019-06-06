@@ -1,5 +1,4 @@
 <div class="shopping-cart">
-
     <banner [name]="'shop cart'"></banner>
     <div>
         <cart-list [data]="cartData" (onCrossButtonClick)="removeCartData(result)"></cart-list>
@@ -13,5 +12,29 @@
             </div>
         </div>
     </div>
-
+    <div class="container p-b-100">
+        <div class="row">
+            <div class="col-md-6 p-r-lg--30 p-r-xl-30 m-t-30 m-b-30">
+                <div class="shop-total">
+                    <custom-label [name]="'coupon code'" [className]="'cart-border'"></custom-label>
+                    <input-field></input-field>
+                    <btn [label]="'Apply Coupon'" [className]="''"></btn>
+                </div>
+            </div>
+            <div class="col-md-6 p-r-lg--30 p-r-xl-30 m-t-30 m-b-30">
+                <div class="shop-total">
+                    <custom-label [name]="'cart total'" [className]="'cart-border'"></custom-label>
+                    <div class="sub-total">
+                        <custom-label [name]="'subtotal'" [className]="''"></custom-label>
+                        <custom-label [name]="'$515.00'" [className]="''"></custom-label>
+                    </div>
+                    <div class="grand-total">
+                        <custom-label [name]="'grandtotal'" [className]="''"></custom-label>
+                        <span>$515.00</span>
+                    </div>
+                    <btn [label]="'Apply Coupon'" [className]="''"></btn>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'shopping-cart',
@@ -13,7 +13,7 @@ export class ShoppingCartComponent implements OnInit {
     { 'name': 'Crackle Plates', 'price': '22.00', 'total': '44.00', 'quantity': 2 }
   ]
   constructor() { }
-
+  @Input() name: string
   ngOnInit() {
   }
   removeCartData(index) {
