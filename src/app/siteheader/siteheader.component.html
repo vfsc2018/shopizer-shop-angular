@@ -1,30 +1,32 @@
-    <!-- Header -->
-    <header>
-      <div class="header-wrapper">
-          <!-- Desktop Menu -->
-          <div class="header-wrapper-desktop d-none d-lg-block">
-              <div class="header header-style-1">
-                  <div class="header-main">
-                      <div class="header__logo">
-                          <a href="index.html">
-                              <img src="{{merchant?.logo?.path}}"/>
-                          </a>
-                      </div>
-                      <nav class="header__navbar">
-                          <ul class="navbar-menu">
-                              <li class="active">
-                                  <a href="/">Home</a>
-                              </li>
-                               <li *ngFor="let category of category">
-                                  <a href="/category/{{ category.description.friendlyUrl }}">{{ category.description.name.toUpperCase() }}</a>
-                                  <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
-                                     <menu-item #menu [items]="category.children"></menu-item>
-                                  </ul>
-                               </li>
-                              <li *ngFor="let content of content">
-                                   <a href="/page/{{ content.slug }}">{{content.description.name}}</a>
-                              </li>
-                                  <!--
+<!-- Header -->
+<header>
+    <div class="header-wrapper">
+        <!-- Desktop Menu -->
+        <div class="header-wrapper-desktop d-none d-lg-block">
+            <div class="header header-style-1">
+                <div class="header-main">
+                    <div class="header__logo">
+                        <a href="index.html">
+                            <img src="{{merchant?.logo?.path}}" />
+                        </a>
+                    </div>
+                    <nav class="header__navbar">
+                        <ul class="navbar-menu">
+                            <li class="active">
+                                <a href="/">Home</a>
+                            </li>
+                            <li *ngFor="let category of category">
+                                <a href="/category/{{ category.description.friendlyUrl }}">{{
+                                    category.description.name.toUpperCase() }}</a>
+                                <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
+                                    <menu-item #menu [items]="category.children"></menu-item>
+                                </ul>
+                            </li>
+                            <li *ngFor="let content of content">
+                                <a href="/page/{{ content.slug }}">{{content.description ?
+                                    content.description.name:''}}</a>
+                            </li>
+                            <!--
                                   <a href="#">about</a>
                                   <ul class="sub-menu">
                                       <li>
@@ -41,43 +43,43 @@
                                       </li>
                                   </ul>
                                 -->
-                              <li>
-                                  <a href="/contact">Contact</a>
-                              </li>
-                          </ul>
-                      </nav>
-                      <div class="header__button">
-                          <ul>
-                              <li class="header-search">
+                            <li>
+                                <a href="/contact">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="header__button">
+                        <ul>
+                            <li class="header-search">
                                 <search></search>
-                              </li>
-                              <cart></cart>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <!-- End Desktop Menu -->
+                            </li>
+                            <cart></cart>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Desktop Menu -->
 
-          <!-- Mobile Menu -->
-          <div class="header-wrapper-mobile d-block d-lg-none">
-              <div class="header-mobile__bar">
+        <!-- Mobile Menu -->
+        <div class="header-wrapper-mobile d-block d-lg-none">
+            <div class="header-mobile__bar">
                 <div class="header__logo">
                     <a href="index.html">
-                        <img src="{{merchant?.logo?.path}}"/>
+                        <img src="{{merchant?.logo?.path}}" />
                     </a>
                 </div>
-                  <button class="header-mobile__button">
-                      <span class="humburger-box">
-                          <span class="hamburger__inner"></span>
-                      </span>
-                  </button>
-              </div>
-              <nav class="header-mobile__navbar">
-                  <ul>
-                      <li>
-                          <a href="#">Home</a>
-                          <!--
+                <button class="header-mobile__button">
+                    <span class="humburger-box">
+                        <span class="hamburger__inner"></span>
+                    </span>
+                </button>
+            </div>
+            <nav class="header-mobile__navbar">
+                <ul>
+                    <li>
+                        <a href="#">Home</a>
+                        <!--
                           <ul class="sub-menu">
                               <li>
                                   <a href="index.html">Homepage_v1</a>
@@ -99,77 +101,77 @@
                               </li>
                           </ul>
                           -->
-                      </li>
-                      <li>
-                          <a href="about.html">About Us</a>
-                      </li>
-                      <li>
-                          <a href="#">Page</a>
-                          <ul class="sub-menu">
-                              <li>
-                                  <a href="my-account.html">My Account</a>
-                              </li>
-                              <li>
-                                  <a href="forget-password.html">Forget Password</a>
-                              </li>
-                              <li>
-                                  <a href="coming-soon.html">Cooming Soon</a>
-                              </li>
-                              <li>
-                                  <a href="404.html">404 Error</a>
-                              </li>
-                          </ul>
-                      </li>
-                      <li>
-                          <a href="#">Shop</a>
-                          <ul class="sub-menu">
-                              <li>
-                                  <a href="shop-list.html">Shop 1</a>
-                              </li>
-                              <li>
-                                  <a href="shop-list-nosidebar.html">Shop 2</a>
-                              </li>
-                              <li>
-                                  <a href="product-detail.html">Product Detail 1</a>
-                              </li>
-                              <li>
-                                  <a href="product-detail-nosidebar.html">Product Detail 2</a>
-                              </li>
-                              <li>
-                                  <a href="shop-cart.html">Shop Cart</a>
-                              </li>
-                              <li>
-                                  <a href="wishlist.html">Wish List</a>
-                              </li>
-                              <li>
-                                  <a href="checkout.html">Check Out</a>
-                              </li>
-                          </ul>
-                      </li>
-                      <li>
-                          <a href="#">blog</a>
-                          <ul class="sub-menu">
-                              <li>
-                                  <a href="blog-grid-1.html">Blog Grid 1</a>
-                              </li>
-                              <li>
-                                  <a href="blog-grid-2.html">Blog Grid 2</a>
-                              </li>
-                              <li>
-                                  <a href="blog-list.html">Blog List</a>
-                              </li>
-                              <li>
-                                  <a href="blog-detail.html">Blog Single</a>
-                              </li>
-                          </ul>
-                      </li>
-                      <li>
-                          <a href="contact.html">Contact</a>
-                      </li>
-                  </ul>
-              </nav>
-          </div>
-          <!-- End Mobile Menu -->
-      </div>
-  </header>
-  <!-- End Heder -->
+                    </li>
+                    <li>
+                        <a href="about.html">About Us</a>
+                    </li>
+                    <li>
+                        <a href="#">Page</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="my-account.html">My Account</a>
+                            </li>
+                            <li>
+                                <a href="forget-password.html">Forget Password</a>
+                            </li>
+                            <li>
+                                <a href="coming-soon.html">Cooming Soon</a>
+                            </li>
+                            <li>
+                                <a href="404.html">404 Error</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Shop</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="shop-list.html">Shop 1</a>
+                            </li>
+                            <li>
+                                <a href="shop-list-nosidebar.html">Shop 2</a>
+                            </li>
+                            <li>
+                                <a href="product-detail.html">Product Detail 1</a>
+                            </li>
+                            <li>
+                                <a href="product-detail-nosidebar.html">Product Detail 2</a>
+                            </li>
+                            <li>
+                                <a href="shop-cart.html">Shop Cart</a>
+                            </li>
+                            <li>
+                                <a href="wishlist.html">Wish List</a>
+                            </li>
+                            <li>
+                                <a href="checkout.html">Check Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">blog</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="blog-grid-1.html">Blog Grid 1</a>
+                            </li>
+                            <li>
+                                <a href="blog-grid-2.html">Blog Grid 2</a>
+                            </li>
+                            <li>
+                                <a href="blog-list.html">Blog List</a>
+                            </li>
+                            <li>
+                                <a href="blog-detail.html">Blog Single</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- End Mobile Menu -->
+    </div>
+</header>
+<!-- End Heder -->

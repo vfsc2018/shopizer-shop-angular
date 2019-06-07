@@ -31430,11 +31430,11 @@ header .header-wrapper-mobile.mobile-style-2 .header-mobile__navbar > ul li a sp
   left: 0;
 }
 
-.au-form-body fieldset {
-  padding: 34px 30px 6px;
-  border: 1px dashed #e5e5e5;
-  width: 100%;
-}
+/* .au-form-body fieldset {
+    padding: 34px 30px 6px;
+    border: 1px dashed #e5e5e5;
+    width: 100%;
+} */
 
 form {
   width: 100%;

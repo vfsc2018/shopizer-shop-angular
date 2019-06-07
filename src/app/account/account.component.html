@@ -1,0 +1,43 @@
+<div class="account">
+  <banner [title]="'My Account'"></banner>
+  <div class="container py-70 py-tn-40">
+    <div class="row">
+      <div class="col-lg-6 ">
+        <div class="au-form-body p-r-lg-15 p-r-xl-15">
+          <custom-label [label]="'Login'" [className]="'cart-border'"></custom-label>
+          <fieldset class="m-t-40" class="account-box">
+            <form>
+              <input-field [type]="'email'" [label]="'Username or email address'" [labelAfter]="true"></input-field>
+              <input-field [type]="'password'" [label]="'Password'" [labelAfter]="true" [bottom]="'25'"></input-field>
+              <div class="form-group au-form">
+                <btn [text]="'Login'"></btn>
+                <div class="m-l-18 m-t-7">
+                  <custom-checkbox [label]="'Remember me'"></custom-checkbox>
+                </div>
+
+                <div class="form-forgot w-100 m-t-10">
+                  <a href="#">Lost your password?</a>
+                </div>
+              </div>
+
+            </form>
+          </fieldset>
+        </div>
+
+      </div>
+      <div class="col-lg-6">
+        <div class="au-form-body p-r-lg-15 p-r-xl-15">
+          <custom-label [label]="'register'" [className]="'cart-border'"></custom-label>
+          <fieldset class="m-t-40" class="account-box">
+            <form>
+              <input-field [type]="'email'" [label]="'Email address'" [labelAfter]="true"></input-field>
+              <input-field [type]="'password'" [label]="'Password'" [labelAfter]="true" [bottom]="'25'"></input-field>
+              <btn [text]="'Register'"></btn>
+            </form>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

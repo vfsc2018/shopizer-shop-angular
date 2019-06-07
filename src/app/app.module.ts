@@ -26,9 +26,11 @@ import { HomeComponent } from "./home/home.component";
 import { BannerComponent } from './component/banner/banner.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ButtonComponent } from './component/button/button.component';
-import { CartListComponent } from './component/cart-list/cart-list.component';
+import { CartListComponent, ListComponent } from './component/cart-list/cart-list.component';
 import { CustomLabelComponent } from './component/custom-label/custom-label.component';
 import { InputFieldComponent } from './component/input-field/input-field.component';
+import { AccountComponent } from './account/account.component';
+import { CustomCheckboxComponent } from './component/custom-checkbox/custom-checkbox.component';
 
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
@@ -60,7 +62,10 @@ export function loadConfigurations(configurationService: ConfigurationService) {
     ButtonComponent,
     CartListComponent,
     CustomLabelComponent,
-    InputFieldComponent
+    InputFieldComponent,
+    ListComponent,
+    AccountComponent,
+    CustomCheckboxComponent
   ],
   imports: [
     NgbModule,
@@ -79,6 +84,10 @@ export function loadConfigurations(configurationService: ConfigurationService) {
       {
         path: "shoppingCart",
         component: ShoppingCartComponent
+      },
+      {
+        path: "account",
+        component: AccountComponent
       }
     ])
   ],

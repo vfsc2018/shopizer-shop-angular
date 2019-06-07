@@ -6,29 +6,44 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./Shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
+
   cartData: Array<any> = [
-    { 'name': 'Crackle Plates', 'price': '22.00', 'total': '44.00', 'quantity': 2 },
-    { 'name': 'Crackle Plates', 'price': '36.00', 'total': '180.00', 'quantity': 9 },
-    { 'name': 'Crackle Plates', 'price': '17.00', 'total': '144.00', 'quantity': 8 },
-    { 'name': 'Crackle Plates', 'price': '22.00', 'total': '44.00', 'quantity': 2 }
-  ]
+    { 'name': 'Crackle Plates', 'price': 22.99, 'total': 45.98, 'quantity': 2 },
+    { 'name': 'Crackle Plates', 'price': 36.99, 'total': 332.91, 'quantity': 9 },
+    { 'name': 'Crackle Plates', 'price': 17.99, 'total': 143.92, 'quantity': 8 },
+    { 'name': 'Crackle Plates', 'price': 20.99, 'total': 41.98, 'quantity': 2 }
+  ];
+  grandTotal: any = '$564.79';
+
   constructor() { }
-  @Input() name: string
   ngOnInit() {
   }
-  removeCartData(index) {
-    console.log(index)
+  public updateQuantity(index: any, flag: any): void {
+    if (flag == 1) {
+      this.cartData[index].quantity = this.cartData[index].quantity + 1;
+      this.cartData[index].total = this.cartData[index].price * this.cartData[index].quantity;
+
+    } else if (flag == 0) {
+      this.cartData[index].quantity = this.cartData[index].quantity - 1
+      this.cartData[index].total = this.cartData[index].price * this.cartData[index].quantity;
+    } else {
+      let value = this.cartData[index.index].price * index.value;
+      this.cartData[index.index].total = value;
+    }
+    let sum = this.cartData.map(item => item.total)
+      .reduce((prev, next) => { return prev + next }, 0);
+    this.grandTotal = '$' + sum.toFixed(2);
+
+  }
+  removeCartData(index: number) {
     this.cartData.splice(index, 1);
   }
-  // updateQuntity(value) {
-  //   console.log(this.cartData[value])
-  //   // console.log(value)
-  //   // console.log(this.cartData)
-  //   // if (value == 1) {
-  //   this.cartData[value].quantity = this.cartData[value].quantity - 1
-  //   // } else {
-  //   //   this.cartData[index].quantity = this.cartData[index].quantity + 1
-  //   // }
+  amount(item) {
+    return item.Amount;
+  }
 
-  // }
+  sum(prev, next) {
+    return prev + next;
+  }
+
 }

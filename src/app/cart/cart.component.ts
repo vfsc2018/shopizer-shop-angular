@@ -16,7 +16,8 @@ export class CartComponent implements OnInit {
 
 
   toggleSearch() {
-    this.isOpen = !this.isOpen;
+    console.log('toggleSearch')
+    this.isOpen = true;
   }
 
   ngOnInit() {

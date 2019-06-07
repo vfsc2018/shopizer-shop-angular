@@ -1,5 +1,5 @@
 <section>
-  <div class="container p-t-100 p-b-30 py-tn-30">
+  <div class="container p-t-100 py-tn-30">
     <div class="row m-t-20">
       <div class="col-md-12">
         <table class="table-shop">
@@ -12,43 +12,7 @@
               <th></th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let result of data; let i = index">
-              <td>
-                <div class="table-shop-product">
-                  <div class="image">
-                    <img src="../../../assets/images/wishlist_product_01.png" alt="Product 1">
-                  </div>
-                  <div class="name">{{result.name}}</div>
-                </div>
-              </td>
-              <td>
-                ${{result.price}}
-              </td>
-              <td>
-                <div class="quantity">
-                  <span class="sub">
-                    <!-- <i class="fa fa-angle-down"></i> -->
-                    <i class="fa fa-angle-down" (click)="decreaseQuntity(i)"></i>
-                  </span>
-                  <input type="number" value="{{result.quantity}}">
-                  <span class="add">
-                    <!-- <i class="fa fa-angle-up"></i> -->
-                    <i class="fa fa-angle-up" (click)="increaseQuntity(i)"></i>
-                  </span>
-                </div>
-              </td>
-              <td>
-                ${{result.total}}
-              </td>
-              <td>
-                <a (click)="removecartData(i)">
-                  <img src="../../../assets/images/icon/close.png" alt="Close">
-                </a>
-              </td>
-            </tr>
 
-          </tbody>
         </table>
 
       </div>

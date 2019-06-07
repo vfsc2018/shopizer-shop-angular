@@ -8,8 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CustomLabelComponent implements OnInit {
 
   constructor() { }
-  @Input() name: string
+  @Input() label: string
   @Input() className: string
+  @Input() color: string
   ngOnInit() {
   }
 

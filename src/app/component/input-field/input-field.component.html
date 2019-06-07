@@ -1,8 +1,4 @@
-<div class="shop-total-body">
-  <p>Enter your coupon code if you have one.</p>
-  <form>
-    <div class="form-group custom-input m-b-40">
-      <input type="text" placeholder="Coupon code">
-    </div>
-  </form>
+<div class="form-group custom-input m-b-{{bottom}}">
+  <label [ngClass]="labelAfter ? 'label-after' : ''">{{label}}</label>
+  <input type="{{type}}" placeholder="{{placeHolder}}" value="{{value}}" (keyup)="onValueChange($event.target.value)">
 </div>

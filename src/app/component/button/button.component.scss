@@ -10,24 +10,74 @@
         -moz-transition: all 0.35s;
         transition: all 0.35s;
         margin-left: auto;
-            color: #fff;
-            background-color: #333;
-            border: none;
+        color: #fff;
+        background-color: #333;
+        border: none;
+
+        &:hover {
+            background-color: #e4c7a2;
+        }
+
+        &.white {
+
+            border: 1px solid #ccc;
+            background-color: #fff;
+            color: #333;
+            margin-right: 20px;
+
             &:hover {
-                background-color: #e4c7a2;
-              }
-              &.white{
-       
-                border: 1px solid #ccc;
-                background-color: #fff;
-                color: #333;
-               
-                &:hover {
-                  color: #e4c7a2;
-                  background-color: #333;
-                }
-              }
-         
-      }
-    
+                color: #e4c7a2;
+                background-color: #333;
+            }
+        }
+
+    }
+}
+
+@media (min-width: 576px) {}
+
+@media only screen and (max-width: 575px) {
+
+    .btn-component {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+
+        .button-class {
+            -webkit-box-flex: 0;
+            -webkit-flex: 0 0 70%;
+            -moz-box-flex: 0;
+            -ms-flex: 0 0 70%;
+            flex: 0 0 70%;
+            padding: 0 5px;
+            font-size: 12px;
+            margin-right: unset;
+            width: 100%;
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 767px) and (min-width: 576px) {
+    .button-class {
+        padding: 0 14px !important;
+        font-size: 11px !important;
+        margin-right: unset;
+    }
+}
+
+@media screen and (max-width: 991px) and (min-width: 768px) {
+    .button-class {
+        padding: 0 20px !important;
+        font-size: 13px !important;
+        margin-right: unset;
+
+    }
+}
+
+@media screen and (max-width: 991px) and (min-width: 768px) {
+    .button-class {
+        padding: 0 5px;
+    }
 }
