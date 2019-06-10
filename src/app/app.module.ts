@@ -7,8 +7,9 @@ import { AppComponent } from "./app.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
-import { RouterModule } from "@angular/router";
-
+import { RouterModule, Routes } from "@angular/router";
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { ConfigurationService } from "./services/configuration/configuration.service";
 import { CategoryService } from "./services/category/category.service";
 import { SiteheaderComponent } from "./siteheader/siteheader.component";
@@ -31,6 +32,8 @@ import { CustomLabelComponent } from './component/custom-label/custom-label.comp
 import { InputFieldComponent } from './component/input-field/input-field.component';
 import { AccountComponent } from './account/account.component';
 import { CustomCheckboxComponent } from './component/custom-checkbox/custom-checkbox.component';
+import { ImgComponent } from './component/img/img.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
@@ -42,6 +45,32 @@ export function loadConfigurations(configurationService: ConfigurationService) {
  * could barely undestand what i have done ... carl
  */
 
+
+
+const routes: Routes = [
+  {
+    path: "",
+    component: HomeComponent
+  },
+  {
+    path: "checkout",
+    component: CheckoutComponent
+  },
+  {
+    path: "shoppingCart",
+    component: ShoppingCartComponent
+  },
+  {
+    path: "account",
+    component: AccountComponent
+  }
+];
+
+
+export function createTranslateLoader(http: HttpClient) {
+
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,31 +94,24 @@ export function loadConfigurations(configurationService: ConfigurationService) {
     InputFieldComponent,
     ListComponent,
     AccountComponent,
-    CustomCheckboxComponent
+    CustomCheckboxComponent,
+    ImgComponent,
+    ProductListComponent
+
   ],
   imports: [
     NgbModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot([
-      {
-        path: "",
-        component: HomeComponent
-      },
-      {
-        path: "checkout",
-        component: CheckoutComponent
-      },
-      {
-        path: "shoppingCart",
-        component: ShoppingCartComponent
-      },
-      {
-        path: "account",
-        component: AccountComponent
+    RouterModule.forRoot(routes),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
       }
-    ])
+    }),
   ],
   providers: [
     /** load merchant and configurations */
@@ -100,7 +122,8 @@ export function loadConfigurations(configurationService: ConfigurationService) {
       deps: [ConfigurationService],
       multi: true
     },
-    CategoryService
+    CategoryService,
+    TranslateModule
   ],
   bootstrap: [AppComponent]
 })

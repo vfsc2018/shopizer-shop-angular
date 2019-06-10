@@ -1,52 +1,30 @@
 <li class="header-shop-cart">
     <button class="shop-cart-button" (click)="toggleSearch()">
-        <img src="assets/images/icon/header-cart.png" alt="Cart">
+        <custom-img [src]="'assets/images/icon/header-cart.png'" [alt]="'Cart'"></custom-img>
         <span class="amount">3</span>
     </button>
     <div [ngClass]="isOpen ? 'shop-cart open' : 'shop-cart'">
         <ul class="shop-cart__list">
-            <li class="item">
+            <li class="item" *ngFor="let result of cartData; let i = index">
                 <div class="item-image">
-                    <img src="assets/images/product_01.png" alt="Item 1">
+                    <custom-img [src]="'assets/images/product_01.png'" [alt]="'Item 1'"></custom-img>
                 </div>
                 <div class="item-detail">
-                    <p class="name">Crackle Plates</p>
-                    <p class="price">$22.00</p>
-                    <p class="amount">x2</p>
+                    <p class="name">{{result.name}}</p>
+                    <p class="price">${{result.price}}</p>
+                    <p class="amount">x{{result.quantity}}</p>
                 </div>
-                <span class="remove"></span>
-            </li>
-            <li class="item">
-                <div class="item-image">
-                    <img src="assets/images/product_02.png" alt="Item 1">
-                </div>
-                <div class="item-detail">
-                    <p class="name">Teako Teapot</p>
-                    <p class="price">$21.00</p>
-                    <p class="amount">x7</p>
-                </div>
-                <span class="remove"></span>
-            </li>
-            <li class="item">
-                <div class="item-image">
-                    <img src="assets/images/product_03.png" alt="Item 1">
-                </div>
-                <div class="item-detail">
-                    <p class="name">Floor Lamp</p>
-                    <p class="price">$36.00</p>
-                    <p class="amount">x5</p>
-                </div>
-                <span class="remove"></span>
+                <span class="icon-close" (click)="removecartData(i)"></span>
             </li>
         </ul>
         <div class="checkout m-t-26">
             <p>Subtotal
-                <span class="sub-total">$481.000</span>
+                <span class="sub-total">$378.99</span>
             </p>
             <p>Total
-                <span class="total">$481.000</span>
+                <span class="total">$378.99</span>
             </p>
-            <a href="/shoppingCart">Checkout</a>
+            <btn [text]="'Checkout'" (onClick)="removecartData(i)"></btn>
         </div>
     </div>
 </li>

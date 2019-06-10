@@ -27,18 +27,26 @@
             border-bottom: 1px solid #e5e5e5;
 
             td {
-                :nth-child(3) {
+                &:nth-child(3) {
                     span {
                         display: inline-block;
                         margin-right: 10px;
                     }
                 }
 
-                :last-child {
+                &:last-child {
                     text-align: right;
                 }
 
             }
+        }
+    }
+
+    .icon-close {
+        font-size: 14px;
+
+        &:hover {
+            color: black;
         }
     }
 

@@ -9,12 +9,15 @@ export class ButtonComponent implements OnInit {
 
   @Input() text: string;
   @Input() className: string;
-  // @Output() onClick = new EventEmitter<any>();
+  @Output() onClick: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onButtonClick() {
+    this.onClick.emit();
+  }
 
 }

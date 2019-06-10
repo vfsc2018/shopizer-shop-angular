@@ -1,2 +1,349 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./app/search/search.component"
+@import "./app/search/search.component";
+
+:root {
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Montserrat', 'Lato', sans-serif;
+        font-size: 15px;
+        line-height: 1.6;
+        overflow-x: hidden;
+        color: #666;
+    }
+
+    --primary-color: #fff; // white
+    // background Color
+    --bgGrey: #e5e5e5; // light grey
+
+    // Text Color
+    --txtGrey: #2d2d2d; // dark grey
+    --bodyColor: #666;
+    --strong: #333;
+    --txtWhite: #fff;
+    --txtBlack: #333;
+    --titleColor: #333;
+
+    //width
+    --fullWidth:100%;
+    --halfWidth:50%;
+    --autoWidth:auto;
+
+    //height
+    --fullHeight:100%;
+    --halfHeight:50%;
+
+    //display
+    --displayFlex: flex;
+    --displayInblock: inline-block;
+    --displayNone: none;
+    --displayBlock: block;
+    --displayInflex: inline-flex;
+
+    //Font size
+    --fontSize_34:34px;
+    --fontSize_32:32px;
+    --fontSize_30:30px;
+    --fontSize_28:28px;
+    --fontSize_26:26px;
+    --fontSize_24:24px;
+    --fontSize_22:22px;
+    --fontSize_20:20px;
+    --fontSize_18:18px;
+    --fontSize_17:17px;
+    --fontSize_16:16px;
+    --fontSize_15:15px;
+    --fontSize_14:14px;
+
+    //fonts family
+    --LatoHairline: Lato Hairline;
+    --Lato: Lato;
+    --Montserrat: Montserrat;
+
+    //margin
+    --marginTop5:5px;
+    --marginTop10:10px;
+    --marginTop15:15px;
+    --marginTop20:20px;
+    --marginTop25:25px;
+    --marginTop30:30px;
+    --marginTop35:35px;
+    --marginTop40:40px;
+    --marginTop45:45px;
+    --marginTop50:50px;
+
+    --marginBottom5:5px;
+    --marginBottom10:10px;
+    --marginBottom15:15px;
+    --marginBottom20:20px;
+    --marginBottom25:25px;
+    --marginBottom30:30px;
+    --marginBottom35:35px;
+    --marginBottom40:40px;
+    --marginBottom45:45px;
+    --marginBottom50:50px;
+
+    --marginLeft5:5px;
+    --marginLeft10:10px;
+    --marginLeft15:15px;
+    --marginLeft20:20px;
+    --marginLeft25:25px;
+    --marginLeft30:30px;
+    --marginLeft35:35px;
+    --marginLeft40:40px;
+    --marginLeft45:45px;
+    --marginLeft50:50px;
+
+    --marginRight5:5px;
+    --marginRight10:10px;
+    --marginRight15:15px;
+    --marginRight20:20px;
+    --marginRight25:25px;
+    --marginRight30:30px;
+    --marginRight35:35px;
+    --marginRight40:40px;
+    --marginRight45:45px;
+    --marginRight50:50px;
+
+    //padding
+    --paddingTop5:5px;
+    --paddingTop10:10px;
+    --paddingTop15:15px;
+    --paddingTop20:20px;
+    --paddingTop25:25px;
+    --paddingTop30:30px;
+    --paddingTop35:35px;
+    --paddingTop40:40px;
+    --paddingTop45:45px;
+    --paddingTop50:50px;
+
+    --paddingBottom5:5px;
+    --paddingBottom10:10px;
+    --paddingBottom15:15px;
+    --paddingBottom20:20px;
+    --paddingBottom25:25px;
+    --paddingBottom30:30px;
+    --paddingBottom35:35px;
+    --paddingBottom40:40px;
+    --paddingBottom45:45px;
+    --paddingBottom50:50px;
+
+    --paddingLeft5:5px;
+    --paddingLeft10:10px;
+    --paddingLeft15:15px;
+    --paddingLeft20:20px;
+    --paddingLeft25:25px;
+    --paddingLeft30:30px;
+    --paddingLeft35:35px;
+    --paddingLeft40:40px;
+    --paddingLeft45:45px;
+    --paddingLeft50:50px;
+
+    --paddingRight5:5px;
+    --paddingRight10:10px;
+    --paddingRight15:15px;
+    --paddingRight20:20px;
+    --paddingRight25:25px;
+    --paddingRight30:30px;
+    --paddingRight35:35px;
+    --paddingRight40:40px;
+    --paddingRight45:45px;
+    --paddingRight50:50px;
+
+    //border
+    --border:1px solid #e5e5e5;
+    --borderTop1:1px solid #e5e5e5;
+    --borderBottom1:1px solid #e5e5e5;
+}
+
+
+@font-face {
+    font-family: --LatoHairline;
+    src: url(assets/fonts/Lato-Hairline.woff) format('woff2'), url(assets/fonts/Lato-Hairline.woff) format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Lato;
+    src: url(assets/fonts/Lato-Medium.woff2) format('woff2'), url(assets/fonts/Lato-Medium.woff) format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Lato;
+    src: url(assets/fonts/Lato-Black.woff2) format('woff2'), url(assets/fonts/Lato-Black.woff) format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Montserrat;
+    src: url(assets/fonts/Montserrat-Medium.woff2) format('woff2'), url(assets/fonts/Montserrat-Medium.woff) format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Lato;
+    src: url(assets/fonts/Lato-Heavy.woff2) format('woff2'), url(assets/fonts/Lato-Heavy.woff) format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Montserrat;
+    src: url(assets/fonts/Montserrat-SemiBold.woff2) format('woff2'), url(assets/fonts/Montserrat-SemiBold.woff) format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Lato;
+    src: url(assets/fonts/Lato-Thin.woff2) format('woff2'), url(assets/fonts/Lato-Thin.woff) format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Montserrat;
+    src: url(assets/fonts/Montserrat-Thin.woff2) format('woff2'), url(assets/fonts/Montserrat-Thin.woff) format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Montserrat;
+    src: url(assets/fonts/Montserrat-Black.woff2) format('woff2'), url(assets/fonts/Montserrat-Black.woff) format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Montserrat;
+    src: url(assets/fonts/Montserrat-ExtraLight.woff2) format('woff2'), url(assets/fonts/Montserrat-ExtraLight.woff) format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Lato;
+    src: url(assets/fonts/Lato-Regular.woff2) format('woff2'), url(assets/fonts/Lato-Regular.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Montserrat;
+    src: url(assets/fonts/Montserrat-Light.woff2) format('woff2'), url(assets/fonts/Montserrat-Light.woff) format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Lato;
+    src: url(assets/fonts/Lato-Bold.woff2) format('woff2'), url(assets/fonts/Lato-Bold.woff) format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Montserrat;
+    src: url(assets/fonts/Montserrat-Regular.woff2) format('woff2'), url(assets/fonts/Montserrat-Regular.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Lato;
+    src: url(assets/fonts/Lato-Light.woff2) format('woff2'), url(assets/fonts/Lato-Light.woff) format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Lato;
+    src: url(assets/fonts/Lato-Semibold.woff2) format('woff2'), url(assets/fonts/Lato-Semibold.woff) format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Montserrat;
+    src: url(assets/fonts/Montserrat-Bold.woff2) format('woff2'), url(assets/fonts/Montserrat-Bold.woff) format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: --Montserrat;
+    src: url(assets/fonts/Montserrat-ExtraBold.woff2) format('woff2'), url(assets/fonts/Montserrat-ExtraBold.woff) format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+//icon
+@font-face {
+    font-family: 'shopizer';
+    src: url('assets/icon/shopizer.eot?y2p9at');
+    src: url('assets/icon/shopizer.eot?y2p9at#iefix') format('embedded-opentype'),
+        url('assets/icon/shopizer.ttf?y2p9at') format('truetype'),
+        url('assets/icon/shopizer.woff?y2p9at') format('woff'),
+        url('assets/icon/shopizer.svg?y2p9at#shopizer') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'shopizer' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-up:before {
+    content: "\e900";
+}
+
+.icon-close:before {
+    content: "\e901";
+}
+
+.icon-down:before {
+    content: "\e902";
+}
+
+.icon-facebook:before {
+    content: "\e903";
+}
+
+.icon-googleplus:before {
+    content: "\e904";
+}
+
+.icon-linkdin:before {
+    content: "\e905";
+}
+
+.icon-search:before {
+    content: "\e906";
+}
+
+.icon-twitter:before {
+    content: "\e907";
+}
+
+.icon-up:before {
+    content: "\e908";
+}

@@ -1,4 +1,4 @@
 <div class="form-group custom-input m-b-{{bottom}}">
-  <label [ngClass]="labelAfter ? 'label-after' : ''">{{label}}</label>
-  <input type="{{type}}" placeholder="{{placeHolder}}" value="{{value}}" (keyup)="onValueChange($event.target.value)">
+  <label [ngClass]="labelAfter ? 'label-after' : ''">{{label | translate}}</label>
+  <input type="{{type}}" placeholder="{{placeHolder | translate}}" value="{{value}}" (keyup)="onValueChange($event.target.value)">
 </div>
