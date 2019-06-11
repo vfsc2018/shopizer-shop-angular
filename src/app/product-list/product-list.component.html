@@ -1,3 +1,28 @@
-<p>
-  product-list works!
-</p>
+<div class="shop-list">
+  <div class="shop-list-body">
+    <div class="shop-product" *ngFor="let result of productData; let i = index">
+      <div class="product-image">
+        <a href="#">
+          <custom-img [src]="'assets/images/product_31.png'" [alt]="'About Us'">
+          </custom-img>
+        </a>
+      </div>
+      <div class="product-body">
+        <a href="#" class="name">{{result.itemName}}</a>
+        <p class="price">${{result.price}}</p>
+        <p class="product-color">
+          <!-- <custom-checkbox class="color beige"></custom-checkbox> -->
+          <span class="color beige"></span>
+          <span class="color gray"></span>
+        </p>
+        <p class="description">{{result.description }}</p>
+        <div class="product-button">
+          <btn [text]="'Add to cart'"></btn>
+          <a href="#" class="add-to-wishlist"></a>
+        </div>
+        <div class="product-rating" data-star="4"></div>
+      </div>
+    </div>
+  </div>
+
+</div>

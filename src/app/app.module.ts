@@ -2,6 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
@@ -34,6 +35,7 @@ import { AccountComponent } from './account/account.component';
 import { CustomCheckboxComponent } from './component/custom-checkbox/custom-checkbox.component';
 import { ImgComponent } from './component/img/img.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { ShopComponent } from './shop/shop.component';
 
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
@@ -57,12 +59,16 @@ const routes: Routes = [
     component: CheckoutComponent
   },
   {
-    path: "shoppingCart",
+    path: "shoppingcart",
     component: ShoppingCartComponent
   },
   {
     path: "account",
     component: AccountComponent
+  },
+  {
+    path: "shop",
+    component: ShopComponent
   }
 ];
 
@@ -96,12 +102,14 @@ export function createTranslateLoader(http: HttpClient) {
     AccountComponent,
     CustomCheckboxComponent,
     ImgComponent,
-    ProductListComponent
+    ProductListComponent,
+    ShopComponent
 
   ],
   imports: [
     NgbModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(routes),

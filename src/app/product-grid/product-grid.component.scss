@@ -1,0 +1,164 @@
+.grid-body {
+    margin: -5px;
+
+    .row {
+        margin: 0 -15px;
+    }
+
+    .grid-size-1 {
+        width: 48.6979166667%;
+        height: 380px;
+        padding: 5px;
+    }
+
+    .grid-size-2 {
+        width: 25.6510416667%;
+        height: 380px;
+        padding: 5px;
+    }
+
+    .grid-size-3 {
+        width: 25.6510416667%;
+        height: 760px;
+        padding: 5px;
+    }
+
+    .grid {
+        .grid-filter {
+            margin-bottom: 35px;
+
+            li {
+                padding: 10px 0;
+                display: inline-block;
+
+                span {
+                    color: #333;
+                    font-size: 15px;
+                    padding: 0 18px;
+                    text-transform: uppercase;
+                    -webkit-transition: color 0.35s;
+                    -o-transition: color 0.35s;
+                    -moz-transition: color 0.35s;
+                    transition: color 0.35s;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: #e4c7a2;
+                    }
+                }
+
+                &:active {
+                    span {
+                        color: #e4c7a2;
+                    }
+                }
+            }
+        }
+    }
+
+    .grid-product {
+        text-align: center;
+        padding-bottom: 25px;
+        background-color: #fff;
+
+        .image {
+            width: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -moz-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -moz-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            height: 340px;
+            margin-bottom: 18px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+
+
+
+            img {
+                width: auto;
+            }
+
+            .addcart {
+                position: absolute;
+                -webkit-transform: translateY(100%);
+                -moz-transform: translateY(100%);
+                -ms-transform: translateY(100%);
+                -o-transform: translateY(100%);
+                transform: translateY(100%);
+                -webkit-transition: all 0.35s ease;
+                -o-transition: all 0.35s ease;
+                -moz-transition: all 0.35s ease;
+                transition: all 0.35s ease;
+                width: 100%;
+                bottom: 0;
+                left: 0;
+                height: 40px;
+                background-color: #e4c7a2;
+                line-height: 40px;
+                cursor: pointer;
+
+                a {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    font-size: 14px;
+                    color: #333;
+                    text-transform: uppercase;
+                    font-weight: 500;
+                    -webkit-transition: all 0.35s linear;
+                    -o-transition: all 0.35s linear;
+                    -moz-transition: all 0.35s linear;
+                    transition: all 0.35s linear;
+
+                    &:hover {
+                        color: #e4c7a2;
+                        background-color: #333;
+                    }
+
+                }
+            }
+
+            &:hover {
+                .addcart {
+                    -webkit-transform: translateY(0);
+                    -moz-transform: translateY(0);
+                    -ms-transform: translateY(0);
+                    -o-transform: translateY(0);
+                    transform: translateY(0);
+                }
+            }
+
+        }
+
+        .name {
+            text-transform: uppercase;
+            color: #666;
+            -webkit-transition: all 0.35s;
+            -o-transition: all 0.35s;
+            -moz-transition: all 0.35s;
+            transition: all 0.35s;
+
+            &:hover {
+                color: #e4c7a2;
+            }
+        }
+
+        .price {
+            color: #333;
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}

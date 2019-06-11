@@ -43,14 +43,17 @@
     //     margin-bottom: 20px;
 
     .button-class {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
         -webkit-box-flex: 0;
-        -webkit-flex: 0 0 70%;
+        // -webkit-flex: 0 0 70%;
         -moz-box-flex: 0;
         -ms-flex: 0 0 70%;
         flex: 0 0 70%;
         padding: 0 5px;
         font-size: 12px;
-        margin-right: unset;
+        margin-right: 18px;
         width: 100%;
     }
 

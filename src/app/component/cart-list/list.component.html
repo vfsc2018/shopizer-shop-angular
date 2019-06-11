@@ -1,6 +1,6 @@
 <table class="table-shop">
   <tbody>
-    <tr *ngFor="let result of data; let i = index">
+    <tr @items *ngFor="let result of data; let i = index">
       <td>
         <div class="table-shop-product">
           <div class="image">
@@ -17,8 +17,9 @@
           <span class="sub">
             <i class="icon-down" (click)="decreaseQuntity(i)"></i>
           </span>
-          <input-field [type]="'number'" value="{{result.quantity}}" (keyup)="onQuantityChange(i,$event.target.value)"></input-field>
-
+          <div class="quantity-input">
+            <input-field [type]="'number'" value="{{result.quantity}}" (keyup)="onQuantityChange(i,$event.target.value)"></input-field>
+          </div>
           <span class="add">
             <i class="icon-up" (click)="increaseQuntity(i)"></i>
           </span>
@@ -28,7 +29,7 @@
         ${{result.total}}
       </td>
       <td>
-        <span class="icon-close"></span>
+        <span class="icon-close" (click)="removecartData(i)"></span>
         <!-- <a (click)="removecartData(i)">
             <custom-img [src]="'../../../assets/images/icon/close.png'" [alt]="'Close'"></custom-img>
           </a> -->

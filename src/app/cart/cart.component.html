@@ -5,7 +5,7 @@
     </button>
     <div [ngClass]="isOpen ? 'shop-cart open' : 'shop-cart'">
         <ul class="shop-cart__list">
-            <li class="item" *ngFor="let result of cartData; let i = index">
+            <li @item class="item" *ngFor="let result of cartData; let i = index">
                 <div class="item-image">
                     <custom-img [src]="'assets/images/product_01.png'" [alt]="'Item 1'"></custom-img>
                 </div>

@@ -24,11 +24,124 @@
     --txtWhite: #fff;
     --txtBlack: #333;
     --titleColor: #333;
+    --backBlackButton: #333;
+    --colorBlackButton: #fff;
+    --hoverBlackButton: #e4c7a2;
+    --backWhiteButton: #fff;
+    --colorWhiteButton: #333;
+    --hoverBackWhiteButton: #333;
+    --hoverWhiteButton: #e4c7a2;
+    --backColorThead: #e4c7a2;
+
+
+    .width10 {
+        width: width10;
+    }
+
+    .width20 {
+        width: width20;
+    }
+
+    .width30 {
+        width: width30;
+    }
+
+    .width40 {
+        width: width40;
+    }
+
+    .width50 {
+        width: width50;
+    }
+
+    .width60 {
+        width: width60;
+    }
+
+    .width70 {
+        width: width70;
+    }
+
+    .width80 {
+        width: width80;
+    }
+
+    .width90 {
+        width: width90;
+    }
+
+    .width44 {
+        width: width44;
+    }
+
+    .width15 {
+        width: width15;
+    }
+
+    .width25 {
+        width: width25;
+    }
+
+    .width16 {
+        width: width16;
+    }
+
+    .width52 {
+        width: width52;
+    }
+
+    .width12 {
+        width: width12;
+    }
+
+    .width22 {
+        width: width22;
+    }
+
+    .width48 {
+        width: width48;
+    }
+
+    .width51 {
+        width: width51;
+    }
+
+    .width29 {
+        width: width29;
+    }
+
+    .width35 {
+        width: width35;
+    }
+
+
+
 
     //width
     --fullWidth:100%;
     --halfWidth:50%;
     --autoWidth:auto;
+    --width10: 10%;
+    --width20: 20%;
+    --width30: 30%;
+    --width40: 40%;
+    --width50: 50%;
+    --width60: 60%;
+    --width70: 70%;
+    --width80: 80%;
+    --width90: 90%;
+    --width44: 44%;
+    --width15: 15%;
+    --width25: 25%;
+    --width16: 16%;
+    --width52: 52%;
+    --width12: 12%;
+    --width22: 22%;
+    --width48: 48%;
+    --width51: 51%;
+    --width29: 29%;
+    --width35: 35%;
+
 
     //height
     --fullHeight:100%;
@@ -84,27 +197,27 @@
     --marginBottom45:45px;
     --marginBottom50:50px;
 
-    --marginLeft5:5px;
-    --marginLeft10:10px;
-    --marginLeft15:15px;
-    --marginLeft20:20px;
-    --marginLeft25:25px;
-    --marginLeft30:30px;
-    --marginLeft35:35px;
-    --marginLeft40:40px;
-    --marginLeft45:45px;
-    --marginLeft50:50px;
+    // --marginLeft5:5px;
+    // --marginLeft10:10px;
+    // --marginLeft15:15px;
+    // --marginLeft20:20px;
+    // --marginLeft25:25px;
+    // --marginLeft30:30px;
+    // --marginLeft35:35px;
+    // --marginLeft40:40px;
+    // --marginLeft45:45px;
+    // --marginLeft50:50px;
 
-    --marginRight5:5px;
-    --marginRight10:10px;
-    --marginRight15:15px;
-    --marginRight20:20px;
-    --marginRight25:25px;
-    --marginRight30:30px;
-    --marginRight35:35px;
-    --marginRight40:40px;
-    --marginRight45:45px;
-    --marginRight50:50px;
+    // --marginRight5:5px;
+    // --marginRight10:10px;
+    // --marginRight15:15px;
+    // --marginRight20:20px;
+    // --marginRight25:25px;
+    // --marginRight30:30px;
+    // --marginRight35:35px;
+    // --marginRight40:40px;
+    // --marginRight45:45px;
+    // --marginRight50:50px;
 
     //padding
     --paddingTop5:5px;
