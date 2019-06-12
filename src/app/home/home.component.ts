@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AppService } from '../directive/app.service';
+import { Action } from '../directive/app.constants';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
-  itemData = [
+  constructor(private appService: AppService) { }
+  productData = [
     { itemName: 'Ignacio Chairs', price: '39.00' },
     { itemName: 'Diamond Lamp', price: '23.00' },
     { itemName: 'High Table', price: '15.00' },
@@ -19,6 +20,14 @@ export class HomeComponent implements OnInit {
     { itemName: 'Portable Speaker', price: '42.00' }
   ]
   ngOnInit() {
+    this.getProductList()
   }
-
+  getProductList() {
+    let action = Action.PRODUCT_GROUP;
+    this.appService.getMethod(action + 'FEATURED_ITEM')
+      .subscribe(data => {
+        this.productData = data.products;
+      }, error => {
+      });
+  }
 }

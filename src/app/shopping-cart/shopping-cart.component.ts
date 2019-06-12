@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { CookieService } from 'ngx-cookie-service';
+import { AppService } from '../directive/app.service';
+import { Action } from '../directive/app.constants';
 @Component({
   selector: 'shopping-cart',
   templateUrl: './Shopping-cart.component.html',
@@ -7,32 +10,50 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  cartData: Array<any> = [
-    { 'name': 'Crackle Plates', 'price': 22.99, 'total': 45.98, 'quantity': 2 },
-    { 'name': 'Crackle Plates', 'price': 36.99, 'total': 332.91, 'quantity': 9 },
-    { 'name': 'Crackle Plates', 'price': 17.99, 'total': 143.92, 'quantity': 8 },
-    { 'name': 'Crackle Plates', 'price': 20.99, 'total': 41.98, 'quantity': 2 }
-  ];
-  grandTotal: any = '$564.79';
+  cartData: Array<any> = [];
+  subtotal: any;
+  total: any;
 
-  constructor() { }
+  constructor(
+    private cookieService: CookieService,
+    private appService: AppService
+  ) { }
   ngOnInit() {
+    this.getCart()
   }
-  public updateQuantity(index: any, flag: any): void {
+  getCart() {
+    let action = Action.CART;
+    this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
+      .subscribe(data => {
+        this.cartData = data.products;
+        this.subtotal = data.subtotal;
+        this.total = data.displayTotal;
+      }, error => {
+      });
+  }
+  public updateQuantity(result, flag: any): void {
+    let product;
+    let quantity;
     if (flag == 1) {
-      this.cartData[index].quantity = this.cartData[index].quantity + 1;
-      this.cartData[index].total = this.cartData[index].price * this.cartData[index].quantity;
-
+      product = result.id
+      quantity = result.quantity + 1
     } else if (flag == 0) {
-      this.cartData[index].quantity = this.cartData[index].quantity - 1
-      this.cartData[index].total = this.cartData[index].price * this.cartData[index].quantity;
+      product = result.id
+      quantity = result.quantity - 1
     } else {
-      let value = this.cartData[index.index].price * index.value;
-      this.cartData[index.index].total = value;
+      product = result.data.id
+      quantity = result.value
     }
-    let sum = this.cartData.map(item => item.total)
-      .reduce((prev, next) => { return prev + next }, 0);
-    this.grandTotal = '$' + sum.toFixed(2);
+    let action = Action.CART;
+    let param = { "product": product, "quantity": quantity }
+    this.appService.putMethod(action, this.cookieService.get('shopizer-cart-id'), param)
+      .subscribe(data => {
+        console.log(data)
+        this.cartData = data.products;
+        this.subtotal = data.subtotal;
+        this.total = data.displayTotal;
+      }, error => {
+      });
 
   }
   removeCartData(index: number) {

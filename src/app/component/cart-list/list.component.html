@@ -4,9 +4,9 @@
       <td>
         <div class="table-shop-product">
           <div class="image">
-            <custom-img [src]="'../../../assets/images/wishlist_product_01.png'" [alt]="'Product 1'"></custom-img>
+            <custom-img [src]="result.images[0].imageUrl" [alt]="'Product 1'"></custom-img>
           </div>
-          <div class="name">{{result.name}}</div>
+          <div class="name">{{result.description.name}}</div>
         </div>
       </td>
       <td>
@@ -15,18 +15,18 @@
       <td>
         <div class="quantity">
           <span class="sub">
-            <i class="icon-down" (click)="decreaseQuntity(i)"></i>
+            <i class="icon-down" (click)="decreaseQuntity(result)"></i>
           </span>
           <div class="quantity-input">
-            <input-field [type]="'number'" value="{{result.quantity}}" (keyup)="onQuantityChange(i,$event.target.value)"></input-field>
+            <input-field [type]="'number'" value="{{result.quantity}}" (keyup)="onQuantityChange(result,$event.target.value)"></input-field>
           </div>
           <span class="add">
-            <i class="icon-up" (click)="increaseQuntity(i)"></i>
+            <i class="icon-up" (click)="increaseQuntity(result)"></i>
           </span>
         </div>
       </td>
       <td>
-        ${{result.total}}
+        ${{result.price * result.quantity}}
       </td>
       <td>
         <span class="icon-close" (click)="removecartData(i)"></span>

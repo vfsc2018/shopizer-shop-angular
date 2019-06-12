@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+
+
+import { CookieService } from 'ngx-cookie-service';
 import { Merchant } from '../services/configuration/merchant'
 import { ConfigurationService } from '../services/configuration/configuration.service'
 import { IfStmt } from '@angular/compiler';
 import { trigger, style, animate, transition, } from '@angular/animations';
+
+import { Router } from '@angular/router';
+import { AppService } from '../directive/app.service';
+import { Action } from '../directive/app.constants';
+
 @Component({
   selector: 'cart',
   templateUrl: './cart.component.html',
@@ -23,29 +31,52 @@ import { trigger, style, animate, transition, } from '@angular/animations';
 export class CartComponent implements OnInit {
 
   private merchant = null;
-  constructor(private configurationService: ConfigurationService) { }
+  constructor(
+    private configurationService: ConfigurationService,
+    private cookieService: CookieService,
+    private appService: AppService,
+    public router: Router
+  ) { }
 
   isOpen: boolean = false;
-  cartData: Array<any> = [
-    { 'name': 'Crackle Plates', 'price': 22.99, 'total': 45.98, 'quantity': 2 },
-    { 'name': 'Crackle Plates', 'price': 36.99, 'total': 332.91, 'quantity': 9 }
-  ];
+  cartData: any;
 
   toggleSearch() {
-    console.log('toggleSearch')
-    if (this.isOpen == true) {
-      this.isOpen = false;
-    } else {
-      this.isOpen = true;
-    }
+    this.isOpen = !this.isOpen;
   }
-
+  goShopingCart() {
+    this.router.navigate(['/shoppingcart']);
+    this.toggleSearch();
+  }
   ngOnInit() {
 
+    if (this.cookieService.get('shopizer-cart-id')) {
+      this.getCart();
+    } else {
+      this.addCart();
+    }
 
   }
+  getCart() {
+    let action = Action.CART;
+    this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
+      .subscribe(data => {
+        this.cartData = data;
+      }, error => {
+      });
+  }
+  addCart() {
+    let action = Action.CART;
+    let param = { "product": 1, "quantity": 1 }
+    this.appService.postMethod(action, param)
+      .subscribe(data => {
+        this.cartData = data;
+        this.cookieService.set('shopizer-cart-id', data.code)
+      }, error => {
+      });
+  }
   removecartData(index) {
-    this.cartData.splice(index, 1);
+    // this.cartData.splice(index, 1);
   }
 
 }

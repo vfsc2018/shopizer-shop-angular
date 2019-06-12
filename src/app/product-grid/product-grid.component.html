@@ -3,14 +3,14 @@
     <div class="grid-product">
       <div class="image bg-lightblue">
         <a href="#">
-          <custom-img [src]="'assets/images/product_31.png'" [alt]="'About Us'">
+          <custom-img [src]="result.image.imageUrl" [alt]="'About Us'">
           </custom-img>
         </a>
         <div class="addcart">
           <a href="#">Add to cart</a>
         </div>
       </div>
-      <a href="#" class="name">{{result.itemName}}</a>
+      <a href="#" class="name">{{result.description.name}}</a>
       <div class="price">${{result.price}}</div>
     </div>
   </div>

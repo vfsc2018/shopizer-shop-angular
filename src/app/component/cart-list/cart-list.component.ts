@@ -58,7 +58,7 @@ export class ListComponent implements OnInit {
   increaseQuntity(value) {
     this.onUpButtonClick.emit(value);
   }
-  onQuantityChange(index, value) {
-    this.onQtyChange.emit({ index: index, value: value });
+  onQuantityChange(data, value) {
+    this.onQtyChange.emit({ data: data, value: value });
   }
 }

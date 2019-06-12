@@ -48,14 +48,21 @@
             custom-label {
                 display: inline-block;
 
-                &:first-child {
-                    width: 50% !important;
-                }
+                // &:first-child {
+                //     width: 50% !important;
+                // }
 
-                &:last-child {
-                    // width: 50% !important;
-                    float: right;
-                }
+                // &:last-child {
+                //     // width: 50% !important;
+                //     float: right;
+                // }
+            }
+
+            span {
+                float: right;
+                color: #333 !important;
+                font-size: 18px;
+
             }
         }
 
@@ -65,14 +72,14 @@
         custom-label {
             display: inline-block;
 
-            &:first-child {
-                width: 50% !important;
-            }
+            //     // &:first-child {
+            //     //     width: 50% !important;
+            //     // }
 
-            &:last-child {
-                // width: 50% !important;
-                float: right;
-            }
+            //     // &:last-child {
+            //     //     // width: 50% !important;
+            //     //     float: right;
+            //     // }
         }
 
         span {

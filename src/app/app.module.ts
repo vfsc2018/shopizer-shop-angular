@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
-
+import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -9,6 +9,11 @@ import { AppComponent } from "./app.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { RouterModule, Routes } from "@angular/router";
+
+
+import { CookieService } from 'ngx-cookie-service';
+import { AppService } from './directive/app.service';
+
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { ConfigurationService } from "./services/configuration/configuration.service";
@@ -120,6 +125,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    HttpModule
   ],
   providers: [
     /** load merchant and configurations */
@@ -131,7 +137,9 @@ export function createTranslateLoader(http: HttpClient) {
       multi: true
     },
     CategoryService,
-    TranslateModule
+    TranslateModule,
+    AppService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

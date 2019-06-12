@@ -41,11 +41,11 @@
                     <custom-label [label]="'cart total'" [className]="'cart-border'"></custom-label>
                     <div class="sub-total">
                         <custom-label [label]="'subtotal'"></custom-label>
-                        <custom-label [label]="grandTotal"></custom-label>
+                        <span>${{subtotal}}</span>
                     </div>
                     <div class="grand-total">
                         <custom-label [label]="'grandtotal'"></custom-label>
-                        <custom-label [label]="grandTotal" [color]="'orange'"></custom-label>
+                        <span>{{total}}</span>
                     </div>
                     <btn [text]="'Apply Coupon'"></btn>
                 </div>

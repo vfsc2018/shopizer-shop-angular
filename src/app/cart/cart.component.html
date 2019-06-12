@@ -4,27 +4,33 @@
         <span class="amount">3</span>
     </button>
     <div [ngClass]="isOpen ? 'shop-cart open' : 'shop-cart'">
-        <ul class="shop-cart__list">
-            <li @item class="item" *ngFor="let result of cartData; let i = index">
-                <div class="item-image">
-                    <custom-img [src]="'assets/images/product_01.png'" [alt]="'Item 1'"></custom-img>
-                </div>
-                <div class="item-detail">
-                    <p class="name">{{result.name}}</p>
-                    <p class="price">${{result.price}}</p>
-                    <p class="amount">x{{result.quantity}}</p>
-                </div>
-                <span class="icon-close" (click)="removecartData(i)"></span>
-            </li>
-        </ul>
-        <div class="checkout m-t-26">
-            <p>Subtotal
-                <span class="sub-total">$378.99</span>
-            </p>
-            <p>Total
-                <span class="total">$378.99</span>
-            </p>
-            <btn [text]="'Checkout'" (onClick)="removecartData(i)"></btn>
+        <div *ngIf="cartData">
+            <ul class="shop-cart__list">
+                <li @item class="item" *ngFor="let result of cartData.products; let i = index">
+                    <div class="item-image">
+                        <custom-img [src]="result.images[0].imageUrl" [alt]="'Item 1'"></custom-img>
+                    </div>
+                    <div class="item-detail">
+                        <p class="name">{{result.description.name}}</p>
+                        <p class="price">${{result.price}}</p>
+                        <p class="amount">x{{result.quantity}}</p>
+                    </div>
+                    <span class="icon-close" (click)="removecartData(i)"></span>
+                </li>
+            </ul>
+            <div class="checkout m-t-26">
+                <p>Subtotal
+                    <span class="sub-total">${{cartData.subtotal}}</span>
+                </p>
+                <p>Total
+                    <span class="total">{{cartData.displayTotal}}</span>
+                </p>
+                <btn [text]="'Checkout'" (onClick)="goShopingCart()"></btn>
+            </div>
         </div>
+        <div *ngIf="!cartData">
+            No items in your shopping cart
+        </div>
+
     </div>
 </li>

@@ -1,9 +1,43 @@
 <slider></slider>
 <featured></featured>
+<div class="port-title">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h2 class="title">featured items</h2>
+                <p class="title-detail">
+                    But I must explain to you how all this mistaken idea of denouncing
+                    pleasure and praising pain was born and I will give you a complete
+                    account.
+                </p>
+                <div class="title-border mx-auto m-b-35"></div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="port-body">
     <div class="container">
         <div class="grid">
-            <product-grid [Large]="'3'" [productData]="itemData"></product-grid>
+            <div class="grid-filter">
+                <ul class="text-center">
+                    <li class="active">
+                        <span data-filter="*">All</span>
+                    </li>
+                    <li>
+                        <span data-filter=".sofa">Sofa</span>
+                    </li>
+                    <li>
+                        <span data-filter=".chair">Chair</span>
+                    </li>
+                    <li>
+                        <span data-filter=".decor">Decor</span>
+                    </li>
+                    <li>
+                        <span data-filter=".lamp">lamp</span>
+                    </li>
+                </ul>
+            </div>
+            <product-grid [Large]="'3'" [productData]="productData"></product-grid>
         </div>
     </div>
 </div>
