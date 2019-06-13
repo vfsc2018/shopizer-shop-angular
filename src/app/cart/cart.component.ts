@@ -43,6 +43,7 @@ export class CartComponent implements OnInit {
 
   toggleSearch() {
     this.isOpen = !this.isOpen;
+    this.getCart();
   }
   goShopingCart() {
     this.router.navigate(['/shoppingcart']);
@@ -50,33 +51,27 @@ export class CartComponent implements OnInit {
   }
   ngOnInit() {
 
-    if (this.cookieService.get('shopizer-cart-id')) {
-      this.getCart();
-    } else {
-      this.addCart();
-    }
-
   }
   getCart() {
     let action = Action.CART;
     this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
       .subscribe(data => {
+        // console.log(data);
         this.cartData = data;
       }, error => {
       });
   }
-  addCart() {
+  removecartData(result) {
+    console.log(result);
+    let id = this.cookieService.get('shopizer-cart-id');
     let action = Action.CART;
-    let param = { "product": 1, "quantity": 1 }
-    this.appService.postMethod(action, param)
+    let param = id + '/item/' + result.id
+    this.appService.deleteMethod(action, param)
       .subscribe(data => {
-        this.cartData = data;
-        this.cookieService.set('shopizer-cart-id', data.code)
+        this.cartData.splice(result.id, 1);
       }, error => {
       });
-  }
-  removecartData(index) {
-    // this.cartData.splice(index, 1);
+
   }
 
 }

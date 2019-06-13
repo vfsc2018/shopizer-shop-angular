@@ -12,8 +12,11 @@ export class InputFieldComponent implements OnInit {
   @Input() bottom: string;
   @Input() type: string;
   @Input() value: string;
+  @Input() name: string;
+  @Input() inputModel: string;
   @Input() placeHolder: string;
   @Output() onInputChange: EventEmitter<any> = new EventEmitter();
+  @Output() inputModelChange = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit() {

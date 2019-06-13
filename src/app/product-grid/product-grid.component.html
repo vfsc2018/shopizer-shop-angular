@@ -2,15 +2,15 @@
   <div class="col-lg-{{Large}} col-md-4 col-sm-6" *ngFor="let result of productData; let i = index">
     <div class="grid-product">
       <div class="image bg-lightblue">
-        <a href="#">
+        <a href="javascript::void()">
           <custom-img [src]="result.image.imageUrl" [alt]="'About Us'">
           </custom-img>
         </a>
         <div class="addcart">
-          <a href="#">Add to cart</a>
+          <a href="javascript::void()" (click)="onClickAddCart(result)">Add to cart</a>
         </div>
       </div>
-      <a href="#" class="name">{{result.description.name}}</a>
+      <a href="javascript::void()" class="name">{{result.description.name}}</a>
       <div class="price">${{result.price}}</div>
     </div>
   </div>

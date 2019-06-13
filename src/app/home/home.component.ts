@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -8,17 +9,8 @@ import { Action } from '../directive/app.constants';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private appService: AppService) { }
-  productData = [
-    { itemName: 'Ignacio Chairs', price: '39.00' },
-    { itemName: 'Diamond Lamp', price: '23.00' },
-    { itemName: 'High Table', price: '15.00' },
-    { itemName: 'Pendant Shade', price: '20.00' },
-    { itemName: 'Aslesha Basket', price: '27.00' },
-    { itemName: 'Driva Table Lamp', price: '56.00' },
-    { itemName: 'Hanging Sphere', price: '18.00' },
-    { itemName: 'Portable Speaker', price: '42.00' }
-  ]
+  constructor(private appService: AppService, private cookieService: CookieService, ) { }
+  productData: Array<any> = []
   ngOnInit() {
     this.getProductList()
   }
@@ -29,5 +21,25 @@ export class HomeComponent implements OnInit {
         this.productData = data.products;
       }, error => {
       });
+  }
+  addCart(result) {
+    let action = Action.CART;
+    let param = { "product": result.id, "quantity": 1 }
+    if (this.cookieService.get('shopizer-cart-id')) {
+      let id = this.cookieService.get('shopizer-cart-id');
+      this.appService.putMethod(action, id, param)
+        .subscribe(data => {
+
+        }, error => {
+        });
+    } else {
+      this.appService.postMethod(action, param)
+        .subscribe(data => {
+          console.log(data);
+          this.cookieService.set('shopizer-cart-id', data.code)
+        }, error => {
+        });
+    }
+
   }
 }

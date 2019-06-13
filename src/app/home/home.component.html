@@ -37,7 +37,7 @@
                     </li>
                 </ul>
             </div>
-            <product-grid [Large]="'3'" [productData]="productData"></product-grid>
+            <product-grid [Large]="'3'" [productData]="productData" (onClickCart)="addCart($event)"></product-grid>
         </div>
     </div>
 </div>

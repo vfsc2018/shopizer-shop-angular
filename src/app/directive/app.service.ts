@@ -34,7 +34,7 @@ export class AppService {
             );
     }
     deleteMethod(action, requestJSON) {
-        return this.http.delete(this.url + action, requestJSON)
+        return this.http.delete(this.url + action + requestJSON)
             .pipe(
                 map(this.extractData),
                 catchError(this.handleErrorObservable)

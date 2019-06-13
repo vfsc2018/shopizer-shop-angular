@@ -6,4 +6,5 @@ export class AppConstants {
 export class Action {
     public static CART = 'cart/'
     public static PRODUCT_GROUP = 'products/group/'
+    public static LOGIN = 'customer/login'
 }
