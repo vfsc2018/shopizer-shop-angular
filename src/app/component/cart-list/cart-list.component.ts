@@ -40,7 +40,7 @@ export class CartListComponent implements OnInit {
 })
 export class ListComponent implements OnInit {
 
-  @Input() data: any;
+  @Input() data: any[];
   @Output() onCrossButtonClick: EventEmitter<number> = new EventEmitter();
   @Output() onDownButtonClick: EventEmitter<number> = new EventEmitter();
   @Output() onUpButtonClick: EventEmitter<number> = new EventEmitter();
