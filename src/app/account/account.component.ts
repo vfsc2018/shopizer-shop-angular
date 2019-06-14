@@ -26,4 +26,18 @@ export class AccountComponent implements OnInit {
       }, error => {
       });
   }
+  onRegister() {
+    // console.log('-----------')
+    let action = Action.REGISTER;
+    let param = {
+      "encodedPassword": "nimble",
+      "emailAddress": "jaimin@nimblechapps.com",
+      "userName": "Jaimin",
+    }
+    this.appService.postMethod(action, param)
+      .subscribe(data => {
+        console.log(data);
+      }, error => {
+      });
+  }
 }

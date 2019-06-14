@@ -4,7 +4,8 @@
       <td>
         <div class="table-shop-product">
           <div class="image">
-            <custom-img [src]="result.images[0].imageUrl" [alt]="'Product 1'"></custom-img>
+            <custom-img [src]="result.images[0].imageUrl" [alt]="'Product 1'" *ngIf="result.images"></custom-img>
+            <!-- <custom-img [src]="result.images[0].imageUrl" [alt]="'Product 1'" *ngIf="!result.images"></custom-img> -->
           </div>
           <div class="name">{{result.description.name}}</div>
         </div>

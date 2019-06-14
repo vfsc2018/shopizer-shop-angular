@@ -1,0 +1,136 @@
+.shop {
+    .container {
+        .col-md-3 {
+            .search {
+                custom-label {
+                    .label-heading {
+                        h3 {
+                            text-transform: uppercase;
+                            font-weight: 500;
+                            font-size: 12px;
+                            color: #333;
+                            line-height: 1;
+                        }
+                    }
+                }
+
+                input-field+span {
+                    position: relative;
+                    margin: -68px 13px 0px 0px;
+                    float: right;
+                }
+            }
+
+            .filter {
+                margin-bottom: 50px;
+
+                ::ng-deep {
+                    .custom-slider {
+                        .ng5-slider {
+                            margin: 6px 0 20px !important;
+
+                            .ng5-slider-pointer {
+                                &.focus {}
+                            }
+
+                            .ng5-slider-bar {
+                                background: #cccccc;
+                                height: 2px;
+                            }
+
+                            .ng5-slider-selection {
+                                background: #e4c7a2;
+                            }
+
+                            .ng5-slider-pointer {
+                                width: 8px;
+                                height: 8px;
+                                top: auto;
+                                /* to remove the default positioning */
+                                bottom: 0;
+                                background-color: #e4c7a2;
+
+                                //border-top-left-radius: 3px;
+                                //border-top-right-radius: 3px;
+                                &:after {
+                                    display: none;
+                                }
+
+                                &:focus {}
+                            }
+
+                            .ng5-slider-bubble {
+                                bottom: 14px;
+                                display: none;
+                            }
+
+                            .ng5-slider-limit {
+                                font-weight: bold;
+                                color: #e4c7a2;
+                                display: none;
+                            }
+
+                            .ng5-slider-tick {
+                                width: 1px;
+                                height: 10px;
+                                margin-left: 4px;
+                                border-radius: 0;
+                                background: #cccccc;
+                                top: -1px;
+                            }
+
+                            .ng5-slider-tick.ng5-slider-selected {
+                                background: orange;
+                            }
+                        }
+
+                        .filter-range-value {
+                            font-size: 15px;
+
+                            btn {
+                                float: right;
+                            }
+
+                            span {
+                                vertical-align: -webkit-baseline-middle;
+                            }
+                        }
+                    }
+                }
+
+                custom-label {
+                    .label-heading {
+                        h3 {
+                            text-transform: uppercase;
+                            font-weight: 500;
+                            font-size: 12px;
+                            color: #333;
+                            line-height: 1;
+                        }
+                    }
+                }
+            }
+
+            .categories-list {
+                margin-bottom: 50px;
+            }
+
+            .shop-color {
+                margin-bottom: 50px;
+
+
+            }
+
+            .shop-size {
+                margin-bottom: 50px;
+
+                categories {
+                    ul>li>a {
+                        text-transform: uppercase !important;
+                    }
+                }
+            }
+
+        }
+    }
+}

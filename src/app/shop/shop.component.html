@@ -11,6 +11,42 @@
           <product-list [productData]="itemData"></product-list>
         </div>
       </div>
+      <div class="col-md-3">
+        <div class="search">
+          <custom-label [label]="'search'" [className]="'cart-border'"></custom-label>
+          <input-field [type]="'text'" [bottom]="'40'"></input-field><span class="icon-search"></span>
+        </div>
+        <div class="filter">
+          <custom-label [label]="'Filter by price'" [className]="'cart-border'"></custom-label>
+          <div class="custom-slider">
+            <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+            <div class="filter-range-value">
+              <span>Filter:</span>
+              <span id="filter-price-value-lower"> ${{minValue}}</span>
+              <span> - </span>
+              <span id="filter-price-value-upper">${{maxValue}}</span>
+              <btn [text]="'filter'"></btn>
+            </div>
+          </div>
+        </div>
+        <div class="categories-list">
+          <custom-label [label]="'categories'" [className]="'cart-border'"></custom-label>
+          <categories [data]="categoriesData"></categories>
+        </div>
+        <div class="shop-color">
+          <custom-label [label]="'shop by color'" [className]="'cart-border'"></custom-label>
+          <shop-color [data]="colorData"></shop-color>
+        </div>
+        <div class="shop-size">
+          <custom-label [label]="'shop by size'" [className]="'cart-border'"></custom-label>
+          <categories [data]="sizeData"></categories>
+        </div>
+        <div class="best-seller">
+          <custom-label [label]="'best seller'" [className]="'cart-border'"></custom-label>
+          <best-seller [data]="sellerData"></best-seller>
+        </div>
+
+      </div>
     </div>
   </div>
 

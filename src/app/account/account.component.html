@@ -36,7 +36,7 @@
             <form #registerForm="ngForm" role="form">
               <input-field [type]="'email'" [label]="'Email address'" [labelAfter]="true"></input-field>
               <input-field [type]="'password'" [label]="'Password'" [labelAfter]="true" [bottom]="'25'"></input-field>
-              <btn [text]="'Register'"></btn>
+              <btn [text]="'Register'" (onClick)="onRegister()"></btn>
             </form>
           </fieldset>
         </div>

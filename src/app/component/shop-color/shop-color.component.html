@@ -1,0 +1,6 @@
+<ul *ngFor="let result of data; let i = index">
+  <li>
+    <span [style.background-color]="result.color" class="color"></span><a>{{result.color}}</a><span
+      class="number">{{result.quantity}}</span>
+  </li>
+</ul>

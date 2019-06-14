@@ -1,0 +1,37 @@
+ul {
+  margin-top: -8px;
+
+  li {
+    margin-bottom: 20px;
+    line-height: 30px;
+
+    a {
+      color: #666;
+      font-size: 15px;
+      -webkit-transition: all 0.35s;
+      -o-transition: all 0.35s;
+      -moz-transition: all 0.35s;
+      transition: all 0.35s;
+      text-transform: capitalize;
+      cursor: pointer;
+
+      &:hover {
+        color: #e4c7a2;
+      }
+    }
+
+    span {
+      &.number {
+        float: right;
+      }
+
+      &.color {
+        float: left;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 12px;
+      }
+    }
+  }
+}

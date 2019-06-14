@@ -1,0 +1,13 @@
+<ul *ngFor="let result of data; let i = index">
+  <li>
+    <div class="image">
+      <a>
+        <custom-img [src]="'assets/images/product_01.png'" [alt]="'Cart'"></custom-img>
+      </a>
+    </div>
+    <div class="info">
+      <a class="name">{{result.name}}</a>
+      <span class="price">${{result.price}}</span>
+    </div>
+  </li>
+</ul>

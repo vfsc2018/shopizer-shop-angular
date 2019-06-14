@@ -13,6 +13,10 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from './directive/app.service';
+import { Ng5SliderModule } from 'ng5-slider';
+import { BarRatingModule } from "ngx-bar-rating";
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -41,7 +45,10 @@ import { CustomCheckboxComponent } from './component/custom-checkbox/custom-chec
 import { ImgComponent } from './component/img/img.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ShopComponent } from './shop/shop.component';
-
+import { WishListComponent } from './wish-list/wish-list.component';
+import { BestSellerComponent } from './component/best-seller/best-seller.component';
+import { CategoriesComponent } from './component/categories/categories.component';
+import { ShopColorComponent } from './component/shop-color/shop-color.component';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -74,6 +81,10 @@ const routes: Routes = [
   {
     path: "shop",
     component: ShopComponent
+  },
+  {
+    path: "wishlist",
+    component: WishListComponent
   }
 ];
 
@@ -108,7 +119,11 @@ export function createTranslateLoader(http: HttpClient) {
     CustomCheckboxComponent,
     ImgComponent,
     ProductListComponent,
-    ShopComponent
+    ShopComponent,
+    WishListComponent,
+    BestSellerComponent,
+    CategoriesComponent,
+    ShopColorComponent
 
   ],
   imports: [
@@ -126,7 +141,10 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    HttpModule
+    HttpModule,
+    Ng5SliderModule,
+    BarRatingModule,
+    NgxPaginationModule
   ],
   providers: [
     /** load merchant and configurations */

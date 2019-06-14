@@ -1,7 +1,7 @@
 <div class="shop-list">
   <div class="shop-list-body">
-    <div class="shop-product" *ngFor="let result of productData; let i = index">
-      <div class="product-image">
+    <div class="shop-product" *ngFor="let result of productData  | paginate: { itemsPerPage: 4, currentPage: p } ; let i = index">
+      <div class=" product-image">
         <a href="#">
           <custom-img [src]="'assets/images/product_31.png'" [alt]="'About Us'">
           </custom-img>
@@ -10,19 +10,41 @@
       <div class="product-body">
         <a href="#" class="name">{{result.itemName}}</a>
         <p class="price">${{result.price}}</p>
-        <p class="product-color">
-          <!-- <custom-checkbox class="color beige"></custom-checkbox> -->
-          <span class="color beige"></span>
-          <span class="color gray"></span>
-        </p>
+        <div class="color-choose">
+          <div>
+            <input type="radio" id="red" name="color" value="red" checked>
+            <label for="red"><span [style.background-color]="'red'"></span></label>
+          </div>
+          <div>
+            <input type="radio" id="blue" name="color" value="blue">
+            <label for="blue"><span [style.background-color]="'blue'"></span></label>
+          </div>
+          <div>
+            <input type="radio" id="black" name="color" value="black">
+            <label for="black"><span [style.background-color]="'black'"></span></label>
+          </div>
+          <!-- <span class="color gray"></span> -->
+        </div>
         <p class="description">{{result.description }}</p>
         <div class="product-button">
           <btn [text]="'Add to cart'"></btn>
-          <a href="#" class="add-to-wishlist"></a>
+          <div class="product-favourite">
+            <!-- <a href="#" class="add-to-wishlist"></a> -->
+            <input type="checkbox" class="red-heart-checkbox">
+            <div class="icon-heart"></div>
+            <!-- <custom-checkbox class="cart_like">
+            </custom-checkbox>
+            <div class="icon-heart"></div> -->
+          </div>
         </div>
-        <div class="product-rating" data-star="4"></div>
+        <div class="product-rating" data-star="4">
+          <bar-rating [rate]="3" [max]="5" [theme]="'stars'" [readOnly]="true"></bar-rating>
+        </div>
       </div>
     </div>
+  </div>
+  <div class="page">
+    <pagination-controls (pageChange)="p = $event" class="paging"></pagination-controls>
   </div>
 
 </div>
