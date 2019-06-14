@@ -19,7 +19,7 @@
             <i class="icon-down" (click)="decreaseQuntity(result)"></i>
           </span>
           <div class="quantity-input">
-            <input-field [type]="'number'" value="{{result.quantity}}" (keyup)="onQuantityChange(result,$event.target.value)"></input-field>
+            <input type="number" value="{{result.quantity}}" (keyup)="onQuantityChange(result,$event.target.value)">
           </div>
           <span class="add">
             <i class="icon-up" (click)="increaseQuntity(result)"></i>
