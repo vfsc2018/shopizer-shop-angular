@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Options } from 'ng5-slider';
+
+import { AppService } from '../directive/app.service';
+import { Action } from '../directive/app.constants';
+import { CookieService } from 'ngx-cookie-service';
+
+
 @Component({
   selector: 'shop',
   templateUrl: './shop.component.html',
@@ -16,6 +22,11 @@ export class ShopComponent implements OnInit {
     { itemName: 'Hanging Sphere', price: '18.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
     { itemName: 'Portable Speaker', price: '42.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' }
   ]
+  productData: Array<any> = [];
+  showGrid: Boolean = false;
+  show_product: any = 10;
+  page: any = 1;
+  totalRecord: Number = 0;
   sellerData: Array<any> = [
     { 'name': 'Crackle Plates', 'price': 22.99 },
     { 'name': 'floor lamp', 'price': 48.05 },
@@ -52,14 +63,25 @@ export class ShopComponent implements OnInit {
     step: 1
 
   };
-  constructor() {
+  constructor(private appService: AppService, private cookieService: CookieService) {
 
-
-    console.log('************')
   }
 
 
   ngOnInit() {
+    this.getProductList()
   }
-
+  getProductList() {
+    let action = Action.PRODUCTS;
+    this.appService.getMethod(action)
+      .subscribe(data => {
+        console.log(data);
+        this.totalRecord = data.totalCount;
+        this.productData = data.products;
+      }, error => {
+      });
+  }
+  onHideShowGrid() {
+    this.showGrid = !this.showGrid;
+  }
 }

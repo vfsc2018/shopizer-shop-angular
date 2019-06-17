@@ -1,14 +1,15 @@
 <div class="shop-list">
   <div class="shop-list-body">
-    <div class="shop-product" *ngFor="let result of productData  | paginate: { itemsPerPage: 4, currentPage: p } ; let i = index">
+
+    <div class="shop-product" *ngFor="let result of productData ; let i = index">
       <div class=" product-image">
         <a href="#">
-          <custom-img [src]="'assets/images/product_31.png'" [alt]="'About Us'">
+          <custom-img [src]="result.image.imageUrl" [alt]="'About Us'">
           </custom-img>
         </a>
       </div>
       <div class="product-body">
-        <a href="#" class="name">{{result.itemName}}</a>
+        <a href="#" class="name">{{result.description.name}}</a>
         <p class="price">${{result.price}}</p>
         <div class="color-choose">
           <div>
@@ -25,7 +26,7 @@
           </div>
           <!-- <span class="color gray"></span> -->
         </div>
-        <p class="description">{{result.description }}</p>
+        <p class="description" [innerHTML]="result.description.description">{{result.description.description}}</p>
         <div class="product-button">
           <btn [text]="'Add to cart'"></btn>
           <div class="product-favourite">
@@ -38,13 +39,10 @@
           </div>
         </div>
         <div class="product-rating" data-star="4">
-          <bar-rating [rate]="3" [max]="5" [theme]="'stars'" [readOnly]="true"></bar-rating>
+          <bar-rating [rate]="result.rating" [max]="5" [theme]="'stars'" [readOnly]="true"></bar-rating>
         </div>
       </div>
     </div>
-  </div>
-  <div class="page">
-    <pagination-controls (pageChange)="p = $event" class="paging"></pagination-controls>
   </div>
 
 </div>

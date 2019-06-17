@@ -9,7 +9,7 @@ import { Action } from '../directive/app.constants';
   styleUrls: ['./Shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-
+  header_data = [{ 'name': 'product', 'width_size': 'width-50' }, { 'name': 'price', 'width_size': 'width-10' }, { 'name': 'quantity', 'width_size': 'width-20' }, { 'name': 'total', 'width_size': 'width-20' }, { 'name': '', 'width_size': '' }];
   cartData: Array<any> = [];
   subtotal: any;
   total: any;
@@ -56,8 +56,15 @@ export class ShoppingCartComponent implements OnInit {
       });
 
   }
-  removeCartData(index: number) {
-    this.cartData.splice(index, 1);
+  removeCartData(result) {
+    console.log(result)
+    let action = Action.CART;
+    let param = { "product": result.id, "quantity": 0 }
+    this.appService.putMethod(action, this.cookieService.get('shopizer-cart-id'), param)
+      .subscribe(data => {
+        this.getCart();
+      }, error => {
+      });
   }
   amount(item) {
     return item.Amount;

@@ -609,6 +609,18 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-tick:before {
+    content: "\e90d";
+}
+
+.icon-grid:before {
+    content: "\e90b";
+}
+
+.icon-list:before {
+    content: "\e90c";
+}
+
 .icon-fill-heart:before {
     content: "\e90a";
 }

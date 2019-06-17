@@ -4,11 +4,30 @@
   <div class="container p-t-100 p-b-70">
     <div class="row">
       <div class="col-md-9">
-        <!-- <div class="grid">
-          <product-grid [Large]="'4'" [productData]="itemData"></product-grid>
-        </div> -->
-        <div class="shop-list">
-          <product-list [productData]="itemData"></product-list>
+        <div class="shop-list-heading">
+          <div class="number-product">
+            Showing
+            <span>{{show_product}}</span> -
+            <span>{{page}}</span> of
+            <span>{{totalRecord}}</span> results
+          </div>
+          <div class="shop-view-layout">
+            <span>Show</span>
+            <span id="layout_grid" class="icon-grid" (click)="onHideShowGrid()">
+            </span>
+            <span id="layout_list" class="icon-list" (click)="onHideShowGrid()">
+            </span>
+          </div>
+        </div>
+        <div class="grid" *ngIf="showGrid == false">
+          <product-grid [Large]="'4'" [productData]="productData | paginate: { itemsPerPage: show_product, currentPage: page }"></product-grid>
+        </div>
+
+        <div class="shop-list" *ngIf="showGrid == true">
+          <product-list [productData]="productData | paginate: { itemsPerPage: show_product, currentPage: page }"></product-list>
+        </div>
+        <div class="page">
+          <pagination-controls (pageChange)="page = $event" class="paging"></pagination-controls>
         </div>
       </div>
       <div class="col-md-3">

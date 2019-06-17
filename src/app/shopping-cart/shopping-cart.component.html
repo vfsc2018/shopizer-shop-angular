@@ -4,7 +4,7 @@
         <div class="container p-t-100 py-tn-30">
             <div class="row m-t-20">
                 <div class="col-md-12">
-                    <list-header></list-header>
+                    <list-header [data]="header_data"></list-header>
                 </div>
             </div>
         </div>
@@ -12,7 +12,7 @@
             <div class="row m-t-20">
                 <div class="col-md-12">
                     <list [data]="cartData" (onCrossButtonClick)="removeCartData($event)" (onDownButtonClick)="updateQuantity($event, 0)"
-                        (onQtyChange)="updateQuantity($event, '')" (onUpButtonClick)="updateQuantity($event, 1)"></list>
+                        (onQtyChange)="updateQuantity($event, '')" (onUpButtonClick)="updateQuantity($event, 1)" [showGrid]="'1'"></list>
                 </div>
             </div>
         </div>

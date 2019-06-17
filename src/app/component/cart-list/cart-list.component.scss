@@ -1,6 +1,26 @@
 .table-shop {
     width: 100%;
 
+    .width-10 {
+        width: 10%;
+    }
+
+    .width-20 {
+        width: 20%;
+    }
+
+    .width-30 {
+        width: 30%;
+    }
+
+    .width-40 {
+        width: 40%;
+    }
+
+    .width-50 {
+        width: 50%;
+    }
+
     thead {
         height: 60px;
         background-color: #e4c7a2;
@@ -14,28 +34,16 @@
             text-align: center;
         }
 
-        .widthproduct {
-            width: var(--width52);
-        }
-
-        .widthprice {
-            width: var(--width12);
-        }
-
-        .widthquantity {
-            width: var(--width22);
-        }
-
-        .widthtotal {
-            width: var(--width12);
-        }
-
     }
 
     td {
         padding: 30px 0;
         text-align: center;
         font-size: 18px;
+
+        span.icon-tick {
+            color: #e4c7a2;
+        }
 
         .quantity {
 
@@ -198,11 +206,11 @@
             }
         }
 
-        .widthproduct {
+        .width56 {
             width: var(--width29) !important;
         }
 
-        .widthquantity {
+        .width18 {
             width: var(--width35) !important;
         }
 
@@ -242,8 +250,12 @@
             line-height: 20px !important;
         }
 
-        .widthproduct {
-            width: var(--width51) !important;
+        .width56 {
+            width: var(--width55) !important;
+        }
+
+        .width18 {
+            width: var(--width18) !important;
         }
 
         td {
@@ -273,8 +285,12 @@
 
         }
 
-        .widthproduct {
-            width: var(--width48) !important;
+        .width56 {
+            width: var(--width52) !important;
+        }
+
+        .width18 {
+            width: var(--width21) !important;
         }
 
         td {

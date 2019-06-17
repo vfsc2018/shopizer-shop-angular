@@ -1,11 +1,10 @@
 <table class="table-shop">
   <thead>
     <tr>
-      <th class="widthproduct">Product</th>
-      <th class="widthprice">Price</th>
-      <th class="widthquantity">Quantity</th>
-      <th class="widthtotal">total</th>
-      <th></th>
+      <th *ngFor="let result of data; let i = index" class="{{result.width_size}}">{{result.name}}</th>
+      <!-- <th class="widthprice">{{item2}}</th>
+      <th class="widthquantity">{{item3}}</th>
+      <th class="widthtotal">{{item4}}</th> -->
     </tr>
   </thead>
 

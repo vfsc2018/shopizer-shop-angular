@@ -13,7 +13,7 @@
       <td>
         ${{result.price}}
       </td>
-      <td>
+      <td *ngIf="showGrid == '1'">
         <div class="quantity">
           <span class="sub">
             <i class="icon-down" (click)="decreaseQuntity(result)"></i>
@@ -26,11 +26,18 @@
           </span>
         </div>
       </td>
-      <td>
+      <td *ngIf="showGrid == '1'">
         ${{result.price * result.quantity}}
       </td>
+      <td *ngIf="showGrid == '2'">
+        <span class="icon-tick">
+        </span>In Stock
+      </td>
+      <td *ngIf="showGrid == '2'">
+        <btn [text]="'shop now'"></btn>
+      </td>
       <td>
-        <span class="icon-close" (click)="removecartData(i)"></span>
+        <span class="icon-close" (click)="removecartData(result)"></span>
         <!-- <a (click)="removecartData(i)">
             <custom-img [src]="'../../../assets/images/icon/close.png'" [alt]="'Close'"></custom-img>
           </a> -->

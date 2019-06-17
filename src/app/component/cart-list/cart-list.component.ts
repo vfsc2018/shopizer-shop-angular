@@ -11,7 +11,7 @@ import {
   styleUrls: ['./cart-list.component.scss']
 })
 export class CartListComponent implements OnInit {
-
+  @Input() data: any[];
 
   constructor() { }
 
@@ -41,6 +41,7 @@ export class CartListComponent implements OnInit {
 export class ListComponent implements OnInit {
 
   @Input() data: any[];
+  @Input() showGrid: any;
   @Output() onCrossButtonClick: EventEmitter<number> = new EventEmitter();
   @Output() onDownButtonClick: EventEmitter<number> = new EventEmitter();
   @Output() onUpButtonClick: EventEmitter<number> = new EventEmitter();
@@ -49,8 +50,8 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
   }
-  removecartData(index) {
-    this.onCrossButtonClick.emit(index);
+  removecartData(result) {
+    this.onCrossButtonClick.emit(result);
   }
   decreaseQuntity(value) {
     this.onDownButtonClick.emit(value);
