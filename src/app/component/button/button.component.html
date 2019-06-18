@@ -1,1 +1,2 @@
-<button type="button" class="button-class {{className}}" (click)="onButtonClick()">{{text | translate}}</button>
+<button type="submit" class="button-class {{className}}" (click)="onButtonClick()" [disabled]="!isDisabled">{{text |
+    translate}}</button>

@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, APP_INITIALIZER } from "@angular/core";
-import { HttpClientModule, HttpClient } from "@angular/common/http";
+import { HttpClientModule, HttpClient, } from "@angular/common/http";
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from "./app-routing.module";
@@ -49,6 +49,8 @@ import { WishListComponent } from './wish-list/wish-list.component';
 import { BestSellerComponent } from './component/best-seller/best-seller.component';
 import { CategoriesComponent } from './component/categories/categories.component';
 import { ShopColorComponent } from './component/shop-color/shop-color.component';
+import { FormValidationModule } from './directive/validation/form-validation.module';
+
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -144,7 +146,8 @@ export function createTranslateLoader(http: HttpClient) {
     HttpModule,
     Ng5SliderModule,
     BarRatingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormValidationModule
   ],
   providers: [
     /** load merchant and configurations */
@@ -158,7 +161,8 @@ export function createTranslateLoader(http: HttpClient) {
     CategoryService,
     TranslateModule,
     AppService,
-    CookieService
+    CookieService,
+    FormValidationModule
   ],
   bootstrap: [AppComponent]
 })
