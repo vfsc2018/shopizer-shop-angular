@@ -16,6 +16,9 @@ import { AppService } from './directive/app.service';
 import { Ng5SliderModule } from 'ng5-slider';
 import { BarRatingModule } from "ngx-bar-rating";
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxGalleryModule } from 'ngx-gallery';
+// import { OwlModule } from 'ngx-owl-carousel';
+import { TabsModule } from 'ngx-tabset';
 
 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -50,7 +53,10 @@ import { BestSellerComponent } from './component/best-seller/best-seller.compone
 import { CategoriesComponent } from './component/categories/categories.component';
 import { ShopColorComponent } from './component/shop-color/shop-color.component';
 import { FormValidationModule } from './directive/validation/form-validation.module';
-
+import { CustomTextareaComponent } from './component/custom-textarea/custom-textarea.component';
+import { CustomSelectComponent } from './component/custom-select/custom-select.component';
+import { ImgSliderComponent } from './component/img-slider/img-slider.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -75,6 +81,10 @@ const routes: Routes = [
   {
     path: "shoppingcart",
     component: ShoppingCartComponent
+  },
+  {
+    path: "product-detail",
+    component: ProductDetailComponent
   },
   {
     path: "account",
@@ -125,7 +135,11 @@ export function createTranslateLoader(http: HttpClient) {
     WishListComponent,
     BestSellerComponent,
     CategoriesComponent,
-    ShopColorComponent
+    ShopColorComponent,
+    CustomTextareaComponent,
+    CustomSelectComponent,
+    ImgSliderComponent,
+    ProductDetailComponent
 
   ],
   imports: [
@@ -147,7 +161,9 @@ export function createTranslateLoader(http: HttpClient) {
     Ng5SliderModule,
     BarRatingModule,
     NgxPaginationModule,
-    FormValidationModule
+    FormValidationModule,
+    NgxGalleryModule,
+    TabsModule
   ],
   providers: [
     /** load merchant and configurations */
@@ -161,8 +177,7 @@ export function createTranslateLoader(http: HttpClient) {
     CategoryService,
     TranslateModule,
     AppService,
-    CookieService,
-    FormValidationModule
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

@@ -18,8 +18,8 @@
               </input-field>
 
               <div class="form-group au-form">
-                <btn [text]="'Login'" (onClick)="onLogin()" [isDisabled]="loginForm.form.valid"></btn>
-                <div class="m-l-18 m-t-7">
+                <btn [text]="'Login'" (onClick)="onLogin()" [isDisabled]="!loginForm.form.valid"></btn>
+                <div class="m-l-18 m-t-8">
                   <custom-checkbox [label]="'Remember me'"></custom-checkbox>
                 </div>
 
@@ -47,7 +47,7 @@
                 placeHolder="" bottom="25" required>
                 <err-required message="Password is required"></err-required>
               </input-field>
-              <btn [text]="'Register'" (onClick)="onRegister()" [isDisabled]="registerForm.form.valid"></btn>
+              <btn [text]="'Register'" (onClick)="onRegister()" [isDisabled]="!registerForm.form.valid"></btn>
             </form>
           </fieldset>
         </div>

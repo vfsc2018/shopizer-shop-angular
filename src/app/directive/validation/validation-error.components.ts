@@ -15,10 +15,6 @@ import { ValidationComponent, ValidationType, ValidationErrorComponent } from '.
 
 
 
-interface ClockInterface {
-  string;
-}
-
 @ValidationType(RequiredValidator)
 export class RequiredValidationErrorComponent extends ValidationErrorComponent {
   constructor(

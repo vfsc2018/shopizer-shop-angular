@@ -1,0 +1,6 @@
+<div class="form-group custom-select-fields  m-b-{{bottom}}">
+  <label [ngClass]="labelAfter ? 'label-after' : ''">{{label | translate}}</label>
+  <select [(ngModel)]="selectedValue">
+    <option *ngFor="let c of data" [ngValue]="c">{{c.name}}</option>
+  </select>
+</div>

@@ -1,4 +1,4 @@
-import { Component, ComponentDecorator, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Validator, ValidatorFn } from '@angular/forms';
 import { NgControl } from '@angular/forms';
 import 'reflect-metadata';
@@ -8,7 +8,7 @@ class ValidationTypeDecorator {
   }
 }
 
-export function ValidationComponent(args: any): ComponentDecorator {
+export function ValidationComponent(args: any) {
   var opt: any = copyObject(args);
   if (opt.selector) {
     opt.selector = `err-${opt.selector}`
@@ -16,6 +16,7 @@ export function ValidationComponent(args: any): ComponentDecorator {
   opt.template = `<div *ngIf="!isValid()" class="alert alert-danger">
                     {{message}}
                   </div>`;
+
   return Component(opt);
 }
 export function copyObject<T>(object: T): T {

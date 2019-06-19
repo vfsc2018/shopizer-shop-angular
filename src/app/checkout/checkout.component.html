@@ -12,6 +12,61 @@
                 </div>
             </div>
             <div class="col-md-6">
+                <div class="au-form-body p-b-0">
+                    <custom-label [label]="'Billing Details'" [className]="'cart-border'"></custom-label>
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input-field type="text" label="First Name" labelAfter="true" name="password"
+                                    placeHolder="" bottom="24">
+                                </input-field>
+                            </div>
+                            <div class="col-sm-6">
+                                <input-field type="txt" label="Last Name" labelAfter="true" name="password" placeHolder=""
+                                    bottom="24">
+                                </input-field>
+                            </div>
+                        </div>
+                        <input-field type="text" label="Company Name" name="password" placeHolder="" bottom="24">
+                        </input-field>
+                        <div class='address-class'>
+                            <input-field type="text" label="Address" labelAfter="true" name="password" placeHolder="Street address">
+                            </input-field>
+                        </div>
+
+                        <input-field type="text" label="" name="password" placeHolder="Apartment, suite, unit etc. (optional)"
+                            bottom="24">
+                        </input-field>
+                        <input-field type="text" label="Town/City" name="password" placeHolder="" labelAfter="true"
+                            bottom="24">
+                        </input-field>
+                        <custom-select label="Country" labelAfter="true" bottom="24">
+                        </custom-select>
+                        <input-field type="text" label="Postcode / Zip" name="password" placeHolder="" labelAfter="true"
+                            bottom="24">
+                        </input-field>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input-field type="text" label="Phone" labelAfter="true" name="password" placeHolder=""
+                                    bottom="24">
+                                </input-field>
+                            </div>
+                            <div class="col-sm-6">
+                                <input-field type="txt" label="Email Address" labelAfter="true" name="password"
+                                    placeHolder="" bottom="24">
+                                </input-field>
+                            </div>
+                        </div>
+                        <div class="account-create">
+                            <custom-checkbox [label]="'Create an account?'"></custom-checkbox>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="au-form-body">
+                    <custom-label [label]="'Additional Information'" [className]="'cart-border'"></custom-label>
+                    <custom-textarea label="Order notes" name="password" placeHolder=""></custom-textarea>
+                </div>
 
             </div>
         </div>

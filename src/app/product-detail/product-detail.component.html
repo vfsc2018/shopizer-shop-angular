@@ -1,0 +1,291 @@
+<banner [title]="'Shop'"></banner>
+<div class="container p-b-90 p-t-100">
+  <div class="row">
+    <div class="col-md-9 col-sm-12">
+      <div class="product-detail">
+        <div class="shop-product p-t-25">
+          <div class="slide100-01" id="slide100-01">
+            <img-slider></img-slider>
+          </div>
+          <div class="product-body" *ngFor="let result of productDetail ; let i = index">
+            <div class="first">
+              <h3 class="name">{{result.itemName}}</h3>
+              <p class="price">${{result.price}}</p>
+              <div class="product-rating" data-star="4">
+                <bar-rating [rate]="result.rating" [max]="5" [theme]="'stars'" [readOnly]="true"></bar-rating>
+              </div>
+            </div>
+            <div class="color-choose">
+              <div>
+                <input type="radio" id="red" name="color" value="red" checked>
+                <label for="red"><span [style.background-color]="'red'"></span></label>
+              </div>
+              <div>
+                <input type="radio" id="blue" name="color" value="blue">
+                <label for="blue"><span [style.background-color]="'blue'"></span></label>
+              </div>
+              <div>
+                <input type="radio" id="black" name="color" value="black">
+                <label for="black"><span [style.background-color]="'black'"></span></label>
+              </div>
+            </div>
+            <p class="description" [innerHTML]="result.description">{{result.description}}</p>
+            <div class="product-button">
+              <div class="quantity">
+                <span class="sub">
+                  <i class="icon-down" (click)="decreaseQuntity(result)"></i>
+                </span>
+                <div class="quantity-input">
+                  <input type="number" value="{{result.quantity}}" (keyup)="onQuantityChange(result,$event.target.value)">
+                </div>
+                <span class="add">
+                  <i class="icon-up" (click)="increaseQuntity(result)"></i>
+                </span>
+              </div>
+              <btn [text]="'Add to cart'"></btn>
+              <div class="product-favourite">
+                <input type="checkbox" class="red-heart-checkbox">
+                <div class="icon-heart"></div>
+              </div>
+            </div>
+            <div class="product-available">
+              <span>Available :</span>
+              <a href="#">In stock</a>
+            </div>
+            <div class="product-sku">
+              <span class="text-black">SKU: </span>
+              2305
+            </div>
+            <div class="product-categories">
+              <span class="text-black">Categories:</span>
+              <a href="#">Furniture</a>
+              <a href="#">Decor</a>
+            </div>
+            <div class="product-share">
+              <span class="text-black">Share: </span>
+              <ul class="social-media style-3">
+                <li>
+                  <a href="#" class="facebook">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="twiiter">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="linkedin">
+                    <i class="fa fa-linkedin"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="google-plus">
+                    <i class="fa fa-google-plus"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <div class="au-tabs">
+          <!-- <ul class="nav nav-tabs">
+            <li class="active">
+              <a data-toggle="tab" href="#description-tab" [ngClass]="isOpen ? 'active show' : ''">Description</a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#additional-tab" [ngClass]="isOpen ? 'active show' : ''">additional information
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#review-tab" [ngClass]="isOpen ? 'active show' : ''">review (0)</a>
+            </li>
+          </ul> -->
+          <!-- <div class="tab-content">
+            <div id="description-tab" class="tab-pane active">
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                doloremque
+                laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
+                quasi
+                architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
+                voluptas
+                sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui
+                ratione
+                voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia.</p>
+            </div>
+            <div id="additional-tab" class="tab-pane">
+              <table class="product-additionnal">
+                <tr>
+                  <th>Weight</th>
+                  <td>3,1 kg</td>
+                </tr>
+                <tr>
+                  <th>Dimensions</th>
+                  <td>60 x 60 x 60 cm</td>
+                </tr>
+              </table>
+            </div>
+            <div id="review-tab" class="tab-pane">
+              <h5 class="title">REVIEWS</h5>
+              <p>There are no reviews yet.</p>
+              <p class="text-bigger">Be the first to review “Cloud Wall Clock”</p>
+              <div class="comment-rating">
+                <strong>Your Rating </strong>
+                <div class="au-rating">
+                  <form>
+                    <input id="star-1" type="radio" name="star" />
+                    <label for="star-1"></label>
+                    <input id="star-2" type="radio" name="star" />
+                    <label for="star-2"></label>
+                    <input id="star-3" type="radio" name="star" />
+                    <label for="star-3"></label>
+                    <input id="star-4" type="radio" name="star" />
+                    <label for="star-4"></label>
+                    <input id="star-5" type="radio" name="star" />
+                    <label for="star-5"></label>
+                  </form>
+                </div>
+
+              </div>
+              <div class="comment-place">
+                <form>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <textarea cols="30" rows="7">Your Message</textarea>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" placeholder="Your Name">
+                    </div>
+                    <div class="col-md-6">
+                      <input type="email" placeholder="Your Email">
+                    </div>
+                    <div class="col-md-12 m-t-40">
+                      <button>Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div> -->
+          <ngx-tabset>
+            <ngx-tab tabTitle="Description" class="tab-pane">
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                doloremque
+                laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
+                quasi
+                architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
+                voluptas
+                sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui
+                ratione
+                voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia.</p>
+            </ngx-tab>
+            <ngx-tab tabTitle="additional information" class="tab-pane">
+              <table class="product-additionnal">
+                <tr>
+                  <th>Weight</th>
+                  <td>3,1 kg</td>
+                </tr>
+                <tr>
+                  <th>Dimensions</th>
+                  <td>60 x 60 x 60 cm</td>
+                </tr>
+              </table>
+            </ngx-tab>
+            <ngx-tab tabTitle="review (0)" class="tab-pane">
+              <h5 class="title">REVIEWS</h5>
+              <p>There are no reviews yet.</p>
+              <p class="text-bigger">Be the first to review “Cloud Wall Clock”</p>
+              <div class="comment-rating">
+                <strong>Your Rating </strong>
+                <div class="au-rating">
+                  <form>
+                    <input id="star-1" type="radio" name="star" />
+                    <label for="star-1"></label>
+                    <input id="star-2" type="radio" name="star" />
+                    <label for="star-2"></label>
+                    <input id="star-3" type="radio" name="star" />
+                    <label for="star-3"></label>
+                    <input id="star-4" type="radio" name="star" />
+                    <label for="star-4"></label>
+                    <input id="star-5" type="radio" name="star" />
+                    <label for="star-5"></label>
+                  </form>
+                </div>
+
+              </div>
+              <div class="comment-place">
+                <form>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <textarea cols="30" rows="7">Your Message</textarea>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" placeholder="Your Name">
+                    </div>
+                    <div class="col-md-6">
+                      <input type="email" placeholder="Your Email">
+                    </div>
+                    <div class="col-md-12 m-t-40">
+                      <button>Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </ngx-tab>
+          </ngx-tabset>
+        </div>
+        <div class="port-title justify-content-center text-center">
+          <h2 class="title">related products</h2>
+          <div class="title-border mx-auto m-b-70"></div>
+        </div>
+        <div class="related-products">
+          <!-- <owl-carousel [options]="{items: 2, dots: false, navigation: false}"
+            [carouselClasses]="['owl-theme', 'row', 'sliding']" [items]="sellerData">
+            <div class="item">
+              {{sellerData.name}}
+            </div>
+          </owl-carousel> -->
+
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-12">
+      <div class="search">
+        <custom-label [label]="'search'" [className]="'cart-border'"></custom-label>
+        <input-field [type]="'text'" [bottom]="'40'"></input-field><span class="icon-search"></span>
+      </div>
+      <div class="filter">
+        <custom-label [label]="'Filter by price'" [className]="'cart-border'"></custom-label>
+        <div class="custom-slider">
+          <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+          <div class="filter-range-value">
+            <span>Filter:</span>
+            <span id="filter-price-value-lower"> ${{minValue}}</span>
+            <span> - </span>
+            <span id="filter-price-value-upper">${{maxValue}}</span>
+            <btn [text]="'filter'"></btn>
+          </div>
+        </div>
+      </div>
+      <div class="categories-list">
+        <custom-label [label]="'categories'" [className]="'cart-border'"></custom-label>
+        <categories [data]="categoriesData"></categories>
+      </div>
+      <div class="shop-color">
+        <custom-label [label]="'shop by color'" [className]="'cart-border'"></custom-label>
+        <shop-color [data]="colorData"></shop-color>
+      </div>
+      <div class="shop-size">
+        <custom-label [label]="'shop by size'" [className]="'cart-border'"></custom-label>
+        <categories [data]="sizeData"></categories>
+      </div>
+      <div class="best-seller">
+        <custom-label [label]="'best seller'" [className]="'cart-border'"></custom-label>
+        <best-seller [data]="sellerData"></best-seller>
+      </div>
+
+    </div>
+  </div>
+</div>
