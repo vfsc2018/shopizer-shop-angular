@@ -1,3 +1,16 @@
 <ul *ngFor="let result of data; let i = index">
-  <li><a>{{result.name}}</a><span class="number">{{result.quantity}}</span></li>
+  <li>
+    <a (click)="onCategoryClick(result)">{{ result.description ? result.description.name: ''}}</a>
+    <!-- <span class="number">{{result.quantity}}</span> -->
+
+    <div *ngIf="result.children != ''" class="child-category">
+
+      <ul *ngFor="let child of result.children; let i = index">
+        <li>
+          <a (click)="onCategoryClick(child)">{{child.description ? child.description.name : ''}}</a>
+          <span class="number">{{result.quantity}}</span>
+        </li>
+      </ul>
+    </div>
+  </li>
 </ul>

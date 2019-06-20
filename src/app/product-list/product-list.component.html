@@ -13,7 +13,7 @@
           <a href="#" class="name">{{result.description.name}}</a>
           <p class="price">${{result.price}}</p>
           <div class="product-rating" data-star="4">
-            <bar-rating [rate]="result.rating" [max]="5" [theme]="'stars'" [readOnly]="true"></bar-rating>
+            <ngb-rating [rate]="result.rate"></ngb-rating>
           </div>
         </div>
         <div class="color-choose" *ngIf="result.options != null">

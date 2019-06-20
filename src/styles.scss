@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./app/search/search.component";
-@import '~ngx-bar-rating/themes/br-default-theme';
-@import '~ngx-bar-rating/themes/br-stars-theme';
-@import "~ngx-tabset/ngx-tabset";
-
+// @import '~ngx-bar-rating/themes/br-default-theme';
+ // @import '~ngx-bar-rating/themes/br-stars-theme';
+// @import "~ngx-tabset/ngx-tabset";
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
 :root {
 

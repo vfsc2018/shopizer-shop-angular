@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'categories',
@@ -8,10 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CategoriesComponent implements OnInit {
 
   @Input() data: any[];
-
+  @Output() onClick: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
+  }
+  onCategoryClick(value) {
+    this.onClick.emit(value);
   }
 
 }

@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md-9">
         <div class="shop-list-heading">
-          <div class="number-product">
+          <div class="number-product" *ngIf="productData.length > 0">
             Showing
             <span>{{show_product}}</span> -
             <span>{{page}}</span> of
@@ -26,14 +26,17 @@
         <div class="shop-list" *ngIf="showGrid == true">
           <product-list [productData]="productData | paginate: { itemsPerPage: show_product, currentPage: page }"></product-list>
         </div>
-        <div class="page">
+        <div class="page" *ngIf="productData.length > 0">
           <pagination-controls (pageChange)="page = $event" class="paging"></pagination-controls>
+        </div>
+        <div *ngIf="productData.length == 0">
+          No items in your shopping cart
         </div>
       </div>
       <div class="col-md-3">
         <div class="search">
           <custom-label [label]="'search'" [className]="'cart-border'"></custom-label>
-          <input-field [type]="'text'" [bottom]="'40'"></input-field><span class="icon-search"></span>
+          <input-field type="text" bottom="40" placeHolder=""></input-field><span class="icon-search"></span>
         </div>
         <div class="filter">
           <custom-label [label]="'Filter by price'" [className]="'cart-border'"></custom-label>
@@ -50,7 +53,7 @@
         </div>
         <div class="categories-list">
           <custom-label [label]="'categories'" [className]="'cart-border'"></custom-label>
-          <categories [data]="categoriesData"></categories>
+          <categories [data]="categoriesData" (onClick)="onFilter($event, '0')"></categories>
         </div>
         <div class="shop-color">
           <custom-label [label]="'shop by color'" [className]="'cart-border'"></custom-label>

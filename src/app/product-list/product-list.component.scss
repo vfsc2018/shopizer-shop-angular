@@ -45,30 +45,14 @@
 
         .product-rating {
           position: absolute;
-          top: 15px !important;
+          top: 35px !important;
           right: 0;
           color: #ffcc66;
           cursor: pointer;
           width: 15%;
 
-          bar-rating {
-            .br-stars {
-              .br-units {
-                align-items: center;
-              }
-
-              .br-selected {
-                &:after {
-                  color: #ffcc66 !important;
-                }
-              }
-
-              .br-active {
-                &:after {
-                  color: #ffcc66 !important;
-                }
-              }
-            }
+          span:focus {
+            outline: transparent;
           }
         }
 
@@ -150,7 +134,7 @@
         .product-body {
           .product-rating {
             width: 25%;
-            top: 46px !important;
+            top: 35px !important;
           }
         }
       }
@@ -165,7 +149,7 @@
         .product-body {
           .product-rating {
             width: 35% !important;
-            top: 46px !important;
+            top: 65px !important;
           }
         }
       }

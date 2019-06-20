@@ -14,11 +14,9 @@ import { RouterModule, Routes } from "@angular/router";
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from './directive/app.service';
 import { Ng5SliderModule } from 'ng5-slider';
-import { BarRatingModule } from "ngx-bar-rating";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxGalleryModule } from 'ngx-gallery';
-// import { OwlModule } from 'ngx-owl-carousel';
-import { TabsModule } from 'ngx-tabset';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -52,7 +50,7 @@ import { WishListComponent } from './wish-list/wish-list.component';
 import { BestSellerComponent } from './component/best-seller/best-seller.component';
 import { CategoriesComponent } from './component/categories/categories.component';
 import { ShopColorComponent } from './component/shop-color/shop-color.component';
-import { FormValidationModule } from './directive/validation/form-validation.module';
+import { RequiredValidationErrorComponent } from './directive/validation/validation-error.components';
 import { CustomTextareaComponent } from './component/custom-textarea/custom-textarea.component';
 import { CustomSelectComponent } from './component/custom-select/custom-select.component';
 import { ImgSliderComponent } from './component/img-slider/img-slider.component';
@@ -139,7 +137,8 @@ export function createTranslateLoader(http: HttpClient) {
     CustomTextareaComponent,
     CustomSelectComponent,
     ImgSliderComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    RequiredValidationErrorComponent
 
   ],
   imports: [
@@ -159,11 +158,12 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     HttpModule,
     Ng5SliderModule,
-    BarRatingModule,
+
     NgxPaginationModule,
-    FormValidationModule,
+    // FormValidationModule,
     NgxGalleryModule,
-    TabsModule
+
+    CarouselModule
   ],
   providers: [
     /** load merchant and configurations */

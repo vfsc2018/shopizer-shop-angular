@@ -33,12 +33,7 @@ export class ShopComponent implements OnInit {
     { 'name': 'wooden fan', 'price': 25.54 }
   ];
 
-  categoriesData: Array<any> = [
-    { 'name': 'sofa', 'quantity': 35 },
-    { 'name': 'chair', 'quantity': 15 },
-    { 'name': 'lamp', 'quantity': 12 },
-    { 'name': 'decor', 'quantity': 22 }
-  ];
+  categoriesData: Array<any> = [];
   sizeData: Array<any> = [
     { 'name': 'xs', 'quantity': 35 },
     { 'name': 's', 'quantity': 15 },
@@ -63,19 +58,33 @@ export class ShopComponent implements OnInit {
     step: 1
 
   };
+  categoryID: any = '';
   constructor(private appService: AppService, private cookieService: CookieService) {
 
   }
 
 
   ngOnInit() {
-    this.getProductList()
+    this.getProductList();
+    this.getCategory();
   }
-  getProductList() {
-    let action = Action.PRODUCTS;
+  getCategory() {
+    let action = Action.CATEGORY;
     this.appService.getMethod(action)
       .subscribe(data => {
         console.log(data);
+        this.categoriesData = data;
+      }, error => {
+      });
+  }
+  getProductList() {
+    let action = Action.PRODUCTS;
+
+    let filter = '&category=' + this.categoryID;
+
+    this.appService.getMethod(action + '?lang=en&start=0&count=12' + filter)
+      .subscribe(data => {
+        // console.log(data);
         this.totalRecord = data.totalCount;
         this.productData = data.products;
       }, error => {
@@ -83,5 +92,11 @@ export class ShopComponent implements OnInit {
   }
   onHideShowGrid() {
     this.showGrid = !this.showGrid;
+  }
+  onFilter(result, status) {
+    if (status == 0) {
+      this.categoryID = result.id;
+    }
+    this.getProductList()
   }
 }

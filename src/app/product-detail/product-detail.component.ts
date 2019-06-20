@@ -1,11 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Options } from 'ng5-slider';
-
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.scss']
+  styleUrls: ['./product-detail.component.scss'],
+  providers: [NgbRatingConfig]
 })
 export class ProductDetailComponent implements OnInit {
   //@Input() productDetails: any[];
@@ -52,7 +54,34 @@ export class ProductDetailComponent implements OnInit {
 
   };
 
-  constructor() { }
+
+  customOptions: OwlOptions = {
+    loop: true,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: false
+  }
+
+  constructor(config: NgbRatingConfig) {
+    config.max = 5;
+    config.readonly = true;
+  }
 
   ngOnInit() {
   }

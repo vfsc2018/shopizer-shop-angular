@@ -1,27 +1,32 @@
 ul {
-  margin-top: -8px;
+    margin-top: -8px;
 
-  li {
-    margin-bottom: 10px;
-    line-height: 2;
+    li {
+        margin-bottom: 10px;
+        line-height: 2;
 
-    a {
-      color: #666;
-      font-size: 15px;
-      -webkit-transition: all 0.35s;
-      -o-transition: all 0.35s;
-      -moz-transition: all 0.35s;
-      transition: all 0.35s;
-      text-transform: capitalize;
-      cursor: pointer;
+        a {
+            color: #666;
+            font-size: 15px;
+            -webkit-transition: all 0.35s;
+            -o-transition: all 0.35s;
+            -moz-transition: all 0.35s;
+            transition: all 0.35s;
+            text-transform: capitalize;
+            cursor: pointer;
 
-      &:hover {
-        color: #e4c7a2;
-      }
+            &:hover {
+                color: #e4c7a2;
+            }
+
+        }
+
+        .child-category {
+            padding: 20px 0px 10px 20px;
+        }
+
+        span {
+            float: right;
+        }
     }
-
-    span {
-      float: right;
-    }
-  }
 }
