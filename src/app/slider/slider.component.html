@@ -1,33 +1,17 @@
-<div class="siema-container">
-  <div class="siema">
-    <div class="siema-slide" *ngFor="let sliderItem of sliderItems">
-      <div class="siema-content">
-        <h1
-          class="tp-caption slider-heading-1 text-black rs-toggle-content-active"
-        >
-          FURNITURE IMPORTS FROM THE WORLD
-        </h1>
-        <p
-          class="tp-caption slider-heading-2 text-black font-weight-light rs-toggle-content-active"
-        >
-          There are many variations of passages of Lorem.
-        </p>
-        <a href="#" class="btn btn-color text-uppercase">Shop now</a>
-      </div>
-      <div
-        class="siema-img"
-        [style.backgroundImage]="'url(' + sliderItem.img + ')'"
-      ></div>
+<ngb-carousel *ngIf="slideData" class="silde-container" [showNavigationArrows]="false">
+  <ng-template ngbSlide *ngFor="let item of slideData">
+    <custom-img [src]="item.img" [alt]="'Random first slide'">
+    </custom-img>
+
+    <div class="siema-content">
+      <h1 class="tp-caption slider-heading-1 text-black rs-toggle-content-active">
+        FURNITURE IMPORTS FROM THE WORLD
+      </h1>
+      <p class="tp-caption slider-heading-2 text-black font-weight-light rs-toggle-content-active">
+        There are many variations of passages of Lorem.
+      </p>
+      <btn [text]="'Shop now'" [className]="'gold'" (onClick)="goToShop()"></btn>
     </div>
-  </div>
-  <div class="siema-bullets">
-    <div class="siema-bullets-inner">
-      <button
-        *ngFor="let sliderItem of sliderItems; let i = index"
-        class="siema-bullet"
-        [ngClass]="{ selected: i == selectedIndex }"
-        (click)="changeSlide(i)"
-      ></button>
-    </div>
-  </div>
-</div>
+  </ng-template>
+
+</ngb-carousel>

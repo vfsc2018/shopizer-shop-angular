@@ -1,5 +1,8 @@
 .container {
   .row {
+    margin-right: -15px;
+    margin-left: -15px;
+
     .col-md-9 {
       .shop-product {
         .slide100-01 {
@@ -73,6 +76,7 @@
             display: -moz-box;
             display: -ms-flexbox;
             display: flex;
+
 
             .product-favourite {
               position: relative;
@@ -187,7 +191,7 @@
           .product-rating {
             position: absolute;
             top: 30px;
-            right: -16px;
+            right: 15px;
             color: #ffcc66;
             cursor: pointer;
 
@@ -261,19 +265,7 @@
       }
 
       .au-tabs {
-        .nav-tabs {
-          .nav-link {
-            border: none !important;
-          }
-        }
-
-        .tab-paragraph {
-          // margin-top: 28px;
-        }
-
         .review {
-
-          //margin-top: 28px;
           .comment-rating {
             margin-bottom: 35px;
             color: #ffcc66;
@@ -283,10 +275,6 @@
               width: 10%;
             }
           }
-        }
-
-        .product-additionnal {
-          //margin-top: 32px;
         }
       }
     }
@@ -346,8 +334,6 @@
                 &:after {
                   display: none;
                 }
-
-                &:focus {}
               }
 
               .ng5-slider-bubble {
@@ -423,7 +409,6 @@
   }
 }
 
-
 @media screen and (max-width: 1200px) and (min-width: 991px) {
   .container {
     .row {
@@ -441,16 +426,20 @@
                 }
               }
 
-              &>* {
-                .button-class {
-                  font-size: 12px;
-                }
+              .cart-btn {
+                width: -webkit-fill-available;
               }
 
               .product-favourite {
                 .icon-heart {
                   margin: -24px 7px 0px 10px;
                 }
+              }
+            }
+
+            .first {
+              .product-rating {
+                width: 18%;
               }
             }
           }
@@ -464,19 +453,20 @@
   .container {
     .row {
       .col-md-9 {
-        .au-tabs {
-          ngx-tabset /deep/ {
-            .nav-tabset {
-              font-size: 15px;
-            }
-
-            .nav-tabset:not(.disable-style) {
-              .nav-tab {
-                padding: 12px;
+        .product-detail {
+          .shop-product {
+            .product-body {
+              .first {
+                .product-rating {
+                  width: 15%;
+                }
               }
             }
           }
+        }
 
+
+        .au-tabs {
           .review {
             .comment-rating {
               .au-rating {
@@ -488,27 +478,25 @@
       }
     }
   }
-
 }
-
 
 @media screen and (max-width: 768px) and (min-width: 576px) {
   .container {
     .row {
       .col-md-9 {
-        .au-tabs {
-          ngx-tabset /deep/ {
-            .nav-tabset {
-              font-size: 15px;
-            }
-
-            .nav-tabset:not(.disable-style) {
-              .nav-tab {
-                padding: 12px;
+        .product-detail {
+          .shop-product {
+            .product-body {
+              .first {
+                .product-rating {
+                  width: 15%;
+                }
               }
             }
           }
+        }
 
+        .au-tabs {
           .review {
             .comment-rating {
               .au-rating {
@@ -516,8 +504,6 @@
               }
             }
           }
-
-
         }
       }
     }
@@ -528,15 +514,13 @@
   .container {
     .row {
       .col-md-9 {
-        .au-tabs {
-          ngx-tabset /deep/ {
-            .nav-tabset {
-              font-size: 13px;
-            }
-
-            .nav-tabset:not(.disable-style) {
-              .nav-tab {
-                padding: 12px;
+        .product-detail {
+          .shop-product {
+            .product-body {
+              .first {
+                .product-rating {
+                  width: 20%;
+                }
               }
             }
           }
@@ -546,6 +530,14 @@
           .comment-rating {
             .au-rating {
               width: 14% !important;
+            }
+          }
+
+
+          .comment-place {
+            .plr-15 {
+              padding-left: 15px;
+              padding-right: 15px;
             }
           }
         }

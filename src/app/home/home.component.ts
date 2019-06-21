@@ -10,7 +10,30 @@ import { CookieService } from 'ngx-cookie-service';
 export class HomeComponent implements OnInit {
 
   constructor(private appService: AppService, private cookieService: CookieService, ) { }
-  productData: Array<any> = []
+  productData: Array<any> = [];
+
+  sliderItems = [
+    {
+      title: "title1",
+      description: "lorem ipsum",
+      img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/banner.jpg"
+    },
+    {
+      title: "title2",
+      description: "lorem ipsum",
+      img: "http://placekitten.com/1920/818"
+    },
+    {
+      title: "title3",
+      description: "lorem ipsum",
+      img: "http://placekitten.com/1920/819"
+    },
+    {
+      title: "title4",
+      description: "lorem ipsum",
+      img: "http://placekitten.com/1920/820"
+    }
+  ];
   ngOnInit() {
     this.getProductList()
   }

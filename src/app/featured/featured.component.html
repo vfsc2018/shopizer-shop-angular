@@ -1,42 +1,31 @@
-<!-- Sale off -->
 <section class="p-t-100 p-b-62 ">
   <div class="container">
     <div class="row au-row">
       <div class="col-md-6">
-        <div
-          class="au-banner style-9 js-au-banner"
-          data-height="533"
-          data-image="images/banner-image-10.jpg"
-        >
+        <div class="au-banner style-9 js-au-banner" data-height="533" [style.backgroundImage]="'url(../../../assets/images/banner-image-10.jpg)'">
           <a href="#" class="banner-image"></a>
           <div class="banner-content">
-            <h3 class="title">today only <span>20</span></h3>
+            <h3 class="title">
+              today only <span>20</span>
+            </h3>
           </div>
         </div>
       </div>
       <div class="col-md-6">
-        <div
-          class="au-banner style-7 banner-medium js-au-banner"
-          data-height="245"
-          data-image="images/banner-image-08.jpg"
-        >
+        <div class="au-banner style-7 banner-medium js-au-banner" data-height="245" [style.backgroundImage]="'url(../../../assets/images/banner-image-08.jpg)'">
           <a href="#"></a>
           <div class="banner-content text-right">
             <h3 class="title">Gold Leaf</h3>
             <h4 class="sub-title">Colourful is the new black</h4>
-            <a href="#" class="banner-btn">shop now</a>
+            <btn [text]="'Shop now'" [className]="'gold'"></btn>
           </div>
         </div>
-        <div
-          class="au-banner style-8 banner-medium js-au-banner "
-          data-height="245"
-          data-image="images/banner-image-09.jpg"
-        >
+        <div class="au-banner style-8 banner-medium js-au-banner " data-height="245" [style.backgroundImage]="'url(../../../assets/images/banner-image-09.jpg)'">
           <a href="#"></a>
           <div class="banner-content">
             <h3 class="title">Wall Clock</h3>
             <h4 class="sub-title">Light Shades Inspired by Origami</h4>
-            <a href="#" class="banner-btn">shop now</a>
+            <btn [text]="'Shop now'" [className]="'gold'"></btn>
           </div>
         </div>
       </div>

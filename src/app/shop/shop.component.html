@@ -1,7 +1,7 @@
 <div class="shop">
   <banner [title]="'Shop'"></banner>
 
-  <div class="container p-t-100 p-b-70">
+  <div class="container p-t-100 p-b-70 own-grid">
     <div class="row">
       <div class="col-md-9">
         <div class="shop-list-heading">
@@ -20,11 +20,13 @@
           </div>
         </div>
         <div class="grid" *ngIf="showGrid == false">
-          <product-grid [Large]="'4'" [productData]="productData | paginate: { itemsPerPage: show_product, currentPage: page }"></product-grid>
+          <product-grid [Large]="'4'"
+            [productData]="productData | paginate: { itemsPerPage: show_product, currentPage: page }"></product-grid>
         </div>
 
         <div class="shop-list" *ngIf="showGrid == true">
-          <product-list [productData]="productData | paginate: { itemsPerPage: show_product, currentPage: page }"></product-list>
+          <product-list [productData]="productData | paginate: { itemsPerPage: show_product, currentPage: page }">
+          </product-list>
         </div>
         <div class="page" *ngIf="productData.length > 0">
           <pagination-controls (pageChange)="page = $event" class="paging"></pagination-controls>

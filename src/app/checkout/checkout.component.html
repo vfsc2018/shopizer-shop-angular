@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="checkout-heading">
-                    <a href="#">Returning customer? Click here to login</a>
+                    <a href="/account">Returning customer? Click here to login</a>
                 </div>
                 <div class="checkout-heading">
                     <a href="#">Have a coupon? Click here to enter your code</a>
@@ -66,6 +66,50 @@
                 <div class="au-form-body">
                     <custom-label [label]="'Additional Information'" [className]="'cart-border'"></custom-label>
                     <custom-textarea label="Order notes" name="password" placeHolder=""></custom-textarea>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="au-form-body">
+                    <h2 class="au-form-title form-title-border m-b-37">YOUR ORDER</h2>
+                    <table class="checkout-bill">
+                        <tbody>
+                            <tr>
+                                <th>product</th>
+                                <th>total</th>
+                            </tr>
+                            <tr>
+                                <td>Crackle Plates</td>
+                                <td>$44</td>
+                            </tr>
+                            <tr class="sub-total">
+                                <td>Subtotal</td>
+                                <td>$44</td>
+                            </tr>
+                            <tr class="total">
+                                <td>Total</td>
+                                <td>$44</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <form>
+                        <div class="checkout-payment m-b-16">
+                            <!-- <label></label> -->
+                            <custom-label [label]="'Check payment'"></custom-label>
+                            <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store
+                                Postcode.
+                            </p>
+                        </div>
+                        <div class="checkout-paypal m-t-43">
+                            <!-- //<label>Paypal</label> -->
+                            <custom-label [label]="'Paypal'"></custom-label>
+                            <!-- <img src="images/icon/paypal.png" alt="paypal"> -->
+                            <custom-img [src]="'assets/images/icon/paypal.png'" [alt]="'paypal'"></custom-img>
+                            <a href="#">What is paypal?</a>
+                        </div>
+                        <!-- <button >poceed to paypal</button> -->
+                        <btn [text]="'proceed to paypal'" class="process-button m-t-50 float-right"></btn>
+                    </form>
                 </div>
 
             </div>

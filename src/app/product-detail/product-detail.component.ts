@@ -12,10 +12,8 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 export class ProductDetailComponent implements OnInit {
   //@Input() productDetails: any[];
 
-  isOpen: boolean = false;
-
   productDetail: Array<any> = [
-    { itemName: 'Ignacio Chairs', price: '39.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' }]
+    { itemName: 'Ignacio Chairs', price: '39.00', description: 'A chair is a piece of furniture. It is used for sitting on and it can also be used for standing on, if you cant reach something.There is another type of chair called a sofa or settee.' }]
 
   sellerData: Array<any> = [
     { 'name': 'Crackle Plates', 'price': 22.99 },
@@ -54,7 +52,7 @@ export class ProductDetailComponent implements OnInit {
 
   };
 
-
+  currentJustify = 'start';
   customOptions: OwlOptions = {
     loop: true,
     pullDrag: false,

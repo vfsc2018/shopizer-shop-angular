@@ -6,4 +6,22 @@
     .account-create {
         margin-bottom: 24px;
     }
+
+    .au-form-body {
+
+        .checkout-payment {
+            color: #666 !important;
+        }
+
+        .checkout-paypal {
+            label {
+                font-size: 18px;
+                color: #666;
+                text-transform: uppercase;
+                margin-bottom: 0;
+            }
+        }
+
+
+    }
 }

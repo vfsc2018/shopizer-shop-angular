@@ -1,5 +1,5 @@
 <banner [title]="'Shop'"></banner>
-<div class="container p-b-90 p-t-100">
+<div class="container p-b-90 p-t-100 own-grid">
   <div class="row">
     <div class="col-md-9 col-sm-12">
       <div class="product-detail">
@@ -42,7 +42,9 @@
                   <i class="icon-up" (click)="increaseQuntity(result)"></i>
                 </span>
               </div>
-              <btn [text]="'Add to cart'"></btn>
+              <div class="cart-btn">
+                <btn [text]="'Add to cart'"></btn>
+              </div>
               <div class="product-favourite">
                 <input type="checkbox" class="red-heart-checkbox">
                 <div class="icon-heart"></div>
@@ -93,9 +95,7 @@
 
         </div>
         <div class="au-tabs">
-
-
-          <ngb-tabset>
+          <ngb-tabset [justify]="currentJustify" class="tabset">
             <ngb-tab title="Description">
               <ng-template ngbTabContent>
                 <p class="tab-paragraph">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
@@ -140,13 +140,13 @@
                   <div class="comment-place">
                     <form>
                       <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 plr-15">
                           <textarea cols="30" rows="7">Your Message</textarea>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 plr-15">
                           <input type="text" placeholder="Your Name">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 plr-15">
                           <input type="email" placeholder="Your Email">
                         </div>
                         <div class="col-md-12 m-t-40">

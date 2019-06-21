@@ -1,10 +1,99 @@
+.own-grid {
+
+    .col-md-3,
+    .col-md-9 {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+    }
+
+}
+
+
+.silde-container {
+    .carousel-indicators {
+        li {
+            max-width: 13px !important;
+            height: 13px !important;
+            border-radius: 50px;
+        }
+    }
+}
+
+
 .custom-category {
+    .btn:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
     .card {
         border: none !important;
+        margin-left: -6px;
     }
 
     .card-header {
         background-color: transparent !important;
         border-bottom: none !important;
+        padding: 0 !important;
+        margin-top: -10px;
+    }
+
+    ul {
+        margin-top: -2px !important;
+        margin-bottom: 0px !important;
+    }
+
+    .child-category {
+        margin-left: 30px !important;
+    }
+
+    .btn-link {
+        font-weight: 300;
+        color: #747474 !important;
+        border-radius: 0;
+
+        &:hover {
+            color: #e4c7a2 !important;
+            text-decoration: none !important;
+            background-color: transparent;
+        }
+
+        .btn-link:focus,
+        .btn-link:hover {
+            color: #e4c7a2 !important;
+            text-decoration: none !important;
+            background-color: transparent;
+            box-shadow: none !important;
+        }
+
+    }
+
+
+}
+
+
+.au-tabs {
+    .nav-tabs .nav-link.active {
+        border-color: transparent !important;
+    }
+
+    .nav-link:hover {
+        border-color: transparent !important;
+    }
+
+    .nav-tabs li {
+        flex: none !important;
+
+    }
+}
+
+@media only screen and (max-width: 575px) {
+
+
+    .au-tabs {
+        .nav-tabs li {
+            font-size: 13px !important;
+
+        }
     }
 }
