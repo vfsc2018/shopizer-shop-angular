@@ -28,9 +28,9 @@
             ],
             "styles": [
               "src/styles.scss",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/fontawesome.css",
-              "src/assets/css/theme.css"
+              "src/assets/css/theme.css",
+              "src/assets/css/boostrap/app.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true

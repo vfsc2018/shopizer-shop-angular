@@ -30,3 +30,33 @@ ul {
         }
     }
 }
+
+.accordion {
+    .card {
+        overflow: hidden;
+        border: none !important;
+        // &:not(:first-of-type) {
+        //     .card-header:first-child {
+        //         @include border-radius(0);
+        //     }
+
+        //     &:not(:last-of-type) {
+        //         border-bottom: 0;
+        //         @include border-radius(0);
+        //     }
+        // }
+
+        // &:first-of-type {
+        //     border-bottom: 0;
+        //     @include border-bottom-radius(0);
+        // }
+
+        // &:last-of-type {
+        //     @include border-top-radius(0);
+        // }
+
+        // .card-header {
+        //     margin-bottom: -$card-border-width;
+        // }
+    }
+}
