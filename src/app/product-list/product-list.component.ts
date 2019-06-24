@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -9,6 +9,9 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProductListComponent implements OnInit {
   @Input() productData: any[];
+  @Output() onClickCart: EventEmitter<any> = new EventEmitter();
+  @Output() onClickDetail: EventEmitter<any> = new EventEmitter();
+
   constructor(config: NgbRatingConfig) {
     config.max = 5;
     config.readonly = true;
@@ -16,5 +19,10 @@ export class ProductListComponent implements OnInit {
   p: any = 0;
   ngOnInit() {
   }
-
+  onClickAddCart(result) {
+    this.onClickCart.emit(result);
+  }
+  onClickName(result) {
+    this.onClickDetail.emit(result);
+  }
 }

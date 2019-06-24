@@ -10,7 +10,7 @@
           <a href="javascript::void()" (click)="onClickAddCart(result)">Add to cart</a>
         </div>
       </div>
-      <a href="javascript::void()" class="name">{{result.description.name}}</a>
+      <a href="javascript::void()" class="name" (click)="onClickName(result)">{{result.description.name}}</a>
       <div class="price">${{result.price}}</div>
     </div>
   </div>

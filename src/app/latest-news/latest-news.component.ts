@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 import Siema from "siema";
 
@@ -8,9 +9,35 @@ import Siema from "siema";
   styleUrls: ["./latest-news.component.scss"]
 })
 export class LatestNewsComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+
+  currentJustify = 'start';
+  customOptions: OwlOptions = {
+    loop: true,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      },
+      940: {
+        items: 2
+      }
+    },
+    nav: false
+  }
+
 
   ngAfterViewInit(): void {
     new Siema({

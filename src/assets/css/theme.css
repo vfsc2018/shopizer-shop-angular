@@ -36858,7 +36858,7 @@ header .header-wrapper-mobile.mobile-style-2 .header-mobile__navbar>ul li a span
 }
 
 .comment-place form input {
-    margin-top: 30px;
+    /* margin-top: 30px; */
     width: 100%;
     border: 1px solid #e5e5e5;
     padding: 15px 15px 15px 25px;

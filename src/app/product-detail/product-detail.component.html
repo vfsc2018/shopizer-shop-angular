@@ -1,49 +1,98 @@
 <banner [title]="'Shop'"></banner>
 <div class="container p-b-90 p-t-100 own-grid">
   <div class="row">
-    <div class="col-md-9 col-sm-12">
-      <div class="product-detail">
+    <div class="col-md-12 col-sm-12">
+      <div class="product-detail" *ngIf="productDetail">
         <div class="shop-product p-t-25">
           <div class="slide100-01" id="slide100-01">
-            <img-slider></img-slider>
+            <div class="main-wrap-pic">
+              <div class="main-frame">
+                <div class="wrap-main-pic">
+                  <div class="main-pic">
+                    <img src="../assets/images/pro-detail-01.jpg" alt="image">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="wrap-thumb-100 d-flex justify-content-between p-t-10">
+              <div class="wrap-arrow-slide-100 s-full ab-t-l trans-04">
+                <span class="my-arrow back prev-slide-100">
+                  <img src="../assets/images/icon/pro-left-black.png" alt="Prev">
+                </span>
+                <span class="my-arrow next next-slide-100">
+                  <img src="../assets/images/icon/pro-right-black.png" alt="Next">
+                </span>
+              </div>
+              <div class="thum-100">
+                <div class="sub-frame sub-1">
+                  <div class="wrap-main-pic">
+                    <div class="main-pic">
+                      <img src="../assets/images/pro-detail-thumb-01.jpg" alt="image">
+                    </div>
+                  </div>
+                  <div class="btn-sub-frame"></div>
+                </div>
+              </div>
+              <div class="thum-100">
+                <div class="sub-frame sub-2">
+                  <div class="wrap-main-pic">
+                    <div class="main-pic">
+                      <img src="../assets/images/pro-detail-thumb-02.jpg" alt="image">
+                    </div>
+                  </div>
+                  <div class="btn-sub-frame"></div>
+                </div>
+              </div>
+              <div class="thum-100">
+                <div class="sub-frame sub-3">
+                  <div class="wrap-main-pic">
+                    <div class="main-pic">
+                      <img src="../assets/images/pro-detail-thumb-03.jpg" alt="image">
+                    </div>
+                  </div>
+                  <div class="btn-sub-frame"></div>
+                </div>
+              </div>
+              <div class="thum-100">
+                <div class="sub-frame sub-4">
+                  <div class="wrap-main-pic">
+                    <div class="main-pic">
+                      <img src="../assets/images/pro-detail-thumb-04.jpg" alt="image">
+                    </div>
+                  </div>
+                  <div class="btn-sub-frame"></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="product-body" *ngFor="let result of productDetail ; let i = index">
+          <div class="product-body">
             <div class="first">
-              <h3 class="name">{{result.itemName}}</h3>
-              <p class="price">${{result.price}}</p>
-              <div class="product-rating" data-star="4">
-                <ngb-rating [rate]="result.rate"></ngb-rating>
+              <h3 class="name">{{productDetail.description.name}}</h3>
+              <p class="price">${{productDetail.finalPrice}}</p>
+
+            </div>
+            <div class="color-choose" *ngIf="productDetail.options">
+              <div *ngFor="let color of productDetail.options[0].optionValues ; let i = index">
+                <input type="radio" id="red_{{color.id}}" name="color" value="{{color.name}}" [checked]="color.defaultValue"
+                  (change)="handleChange($event, color.id, productDetail.id)">
+                <label for="red_{{color.id}}"><span [style.background-color]="color.name"></span></label>
               </div>
             </div>
-            <div class="color-choose">
-              <div>
-                <input type="radio" id="red" name="color" value="red" checked>
-                <label for="red"><span [style.background-color]="'red'"></span></label>
-              </div>
-              <div>
-                <input type="radio" id="blue" name="color" value="blue">
-                <label for="blue"><span [style.background-color]="'blue'"></span></label>
-              </div>
-              <div>
-                <input type="radio" id="black" name="color" value="black">
-                <label for="black"><span [style.background-color]="'black'"></span></label>
-              </div>
-            </div>
-            <p class="description" [innerHTML]="result.description">{{result.description}}</p>
+            <p class="description" [innerHTML]="productDetail.description.description">{{productDetail.description.description}}</p>
             <div class="product-button">
               <div class="quantity">
                 <span class="sub">
-                  <i class="icon-down" (click)="decreaseQuntity(result)"></i>
+                  <i class="icon-down" (click)="decreaseQuntity(productDetail)"></i>
                 </span>
                 <div class="quantity-input">
-                  <input type="number" value="{{result.quantity}}" (keyup)="onQuantityChange(result,$event.target.value)">
+                  <input type="number" value="{{productDetail.quantity}}" (keyup)="onQuantityChange(productDetail,$event.target.value)">
                 </div>
                 <span class="add">
-                  <i class="icon-up" (click)="increaseQuntity(result)"></i>
+                  <i class="icon-up" (click)="increaseQuntity(productDetail)"></i>
                 </span>
               </div>
               <div class="cart-btn">
-                <btn [text]="'Add to cart'"></btn>
+                <btn [text]="'Add to cart'" (onClick)="addToCart(productDetail)"></btn>
               </div>
               <div class="product-favourite">
                 <input type="checkbox" class="red-heart-checkbox">
@@ -51,45 +100,28 @@
               </div>
             </div>
             <div class="product-available">
-              <span>Available :</span>
-              <a href="#">In stock</a>
+              <span>Available : </span>
+              <a> {{productDetail.available ? 'In stock' : 'Not in stock'}}</a>
             </div>
             <div class="product-sku">
               <span class="text-black">SKU: </span>
-              2305
+              {{productDetail.sku}}
             </div>
             <div class="product-categories">
               <span class="text-black">Categories: </span>
-              <a href="#" *ngFor="let result of categoriesData ; let i = index">{{result.name}}</a>
+              <a *ngFor="let result of productDetail.categories ; let i = index">{{result.description.description}}</a>
             </div>
             <div class="product-share">
               <span class="text-black">Share: </span>
-              <!-- <ul class="social-media style-3">
-                <li>
-                  <a href="#" class="facebook">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="twiiter">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="linkedin">
-                    <i class="fa fa-linkedin"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="google-plus">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </li>
-              </ul> -->
+
               <span class="icon-facebook icon"></span>
               <span class="icon-twitter icon"></span>
               <span class="icon-linkdin icon"></span>
               <span class="icon-googleplus icon"></span>
+
+            </div>
+            <div class="product-rating" data-star="5">
+              <ngb-rating [rate]="productDetail.rating"></ngb-rating>
             </div>
           </div>
 
@@ -98,15 +130,8 @@
           <ngb-tabset [justify]="currentJustify" class="tabset">
             <ngb-tab title="Description">
               <ng-template ngbTabContent>
-                <p class="tab-paragraph">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                  doloremque
-                  laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
-                  quasi
-                  architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-                  voluptas
-                  sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui
-                  ratione
-                  voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia.</p>
+                <p class="tab-paragraph" [innerHTML]="productDetail.description.description">{{productDetail.description.description}}</p>
+
               </ng-template>
             </ngb-tab>
             <ngb-tab>
@@ -115,11 +140,12 @@
                 <table class="product-additionnal">
                   <tr>
                     <th>Weight</th>
-                    <td>3,1 kg</td>
+                    <td>{{productDetail.productSpecifications.weight}} kg</td>
                   </tr>
                   <tr>
                     <th>Dimensions</th>
-                    <td>60 x 60 x 60 cm</td>
+                    <td>{{productDetail.productSpecifications.length}} x {{productDetail.productSpecifications.weight}}
+                      x {{productDetail.productSpecifications.height}} cm</td>
                   </tr>
                 </table>
               </ng-template>
@@ -141,16 +167,19 @@
                     <form>
                       <div class="row">
                         <div class="col-md-12 plr-15">
-                          <textarea cols="30" rows="7">Your Message</textarea>
+                          <custom-textarea name="password" placeHolder="Your Message"></custom-textarea>
+
                         </div>
                         <div class="col-md-6 plr-15">
-                          <input type="text" placeholder="Your Name">
+                          <input-field type="text" name="ng-template" placeHolder="Your Name">
+                          </input-field>
                         </div>
                         <div class="col-md-6 plr-15">
-                          <input type="email" placeholder="Your Email">
+                          <input-field type="text" name="email" placeHolder="Your Email">
+                          </input-field>
                         </div>
                         <div class="col-md-12 m-t-40">
-                          <button>Submit</button>
+                          <btn [text]="'Submit'"></btn>
                         </div>
                       </div>
                     </form>
@@ -168,89 +197,19 @@
           <div class="title-border mx-auto m-b-70"></div>
         </div>
         <div class="related-products">
-          <!-- <owl-carousel [options]="{items: 2, dots: false, navigation: false}"
-            [carouselClasses]="['owl-theme', 'row', 'sliding']" [items]="sellerData">
-            <div class="item">
-              {{sellerData.name}}
-            </div>
-          </owl-carousel> -->
+
+
           <owl-carousel-o [options]="customOptions">
             <ng-template carouselSlide>
-              <div class="col-md-12">
-                <div class="grid-product">
-                  <div class="image bg-lightblue">
-                    <img src="https://cdn.pixabay.com/photo/2015/11/09/14/43/laptop-1035345__340.jpg" alt="Chair">
-                    <div class="addcart">
-                      <a href="#">Add to cart</a>
-                    </div>
-                  </div>
-                  <div class="name">Pendant Shade</div>
-                  <div class="price">$20.00</div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="col-md-12">
-                <div class="grid-product">
-                  <div class="image bg-lightblue">
-                    <img src="https://cdn.pixabay.com/photo/2015/11/09/14/43/laptop-1035345__340.jpg" alt="Chair">
-                    <div class="addcart">
-                      <a href="#">Add to cart</a>
-                    </div>
-                  </div>
-                  <div class="name">Pendant Shade</div>
-                  <div class="price">$20.00</div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="col-md-12">
-                <div class="grid-product">
-                  <div class="image bg-lightblue">
-                    <img src="https://cdn.pixabay.com/photo/2015/11/09/14/43/laptop-1035345__340.jpg" alt="Chair">
-                    <div class="addcart">
-                      <a href="#">Add to cart</a>
-                    </div>
-                  </div>
-                  <div class="name">Pendant Shade</div>
-                  <div class="price">$20.00</div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="col-md-12">
-                <div class="grid-product">
-                  <div class="image bg-lightblue">
-                    <img src="https://cdn.pixabay.com/photo/2015/11/09/14/43/laptop-1035345__340.jpg" alt="Chair">
-                    <div class="addcart">
-                      <a href="#">Add to cart</a>
-                    </div>
-                  </div>
-                  <div class="name">Pendant Shade</div>
-                  <div class="price">$20.00</div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="col-md-12">
-                <div class="grid-product">
-                  <div class="image bg-lightblue">
-                    <img src="https://cdn.pixabay.com/photo/2015/11/09/14/43/laptop-1035345__340.jpg" alt="Chair">
-                    <div class="addcart">
-                      <a href="#">Add to cart</a>
-                    </div>
-                  </div>
-                  <div class="name">Pendant Shade</div>
-                  <div class="price">$20.00</div>
-                </div>
-              </div>
+              <product-grid [Large]="'4'" [productData]="reletedProduct" (onClickCart)="addToCart($event)"
+                (onClickDetail)="goToDetailsPage($event)"></product-grid>
             </ng-template>
           </owl-carousel-o>
 
         </div>
       </div>
     </div>
-    <div class="col-md-3 col-sm-12">
+    <!-- <div class="col-md-3 col-sm-12">
       <div class="search">
         <custom-label [label]="'search'" [className]="'cart-border'"></custom-label>
         <input-field [type]="'text'" [bottom]="'40'"></input-field><span class="icon-search"></span>
@@ -285,6 +244,6 @@
         <best-seller [data]="sellerData"></best-seller>
       </div>
 
-    </div>
+    </div> -->
   </div>
 </div>

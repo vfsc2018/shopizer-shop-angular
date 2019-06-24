@@ -14,47 +14,55 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <div class="project">
-          <div class="project-image">
-            <a href="#">
-              <img src="assets/images/project_02.jpg" alt="Project 1" />
-            </a>
+
+    <owl-carousel-o [options]="customOptions">
+      <div class="row">
+        <ng-template carouselSlide>
+          <div class="col-md-6">
+            <div class="project">
+              <div class="project-image">
+                <a href="#">
+                  <img src="assets/images/project_02.jpg" alt="Project 1" />
+                </a>
+              </div>
+              <div class="project-body">
+                <p class="date">
+                  <span class="day">12</span>
+                  <span class="month">June</span>
+                </p>
+                <a href="#" class="name">Classically Stylish</a>
+                <p class="resume">
+                  At vero eos et accusamus et iusto odio dignissimos ducimusn.
+                </p>
+                <a href="#">Read more</a>
+              </div>
+            </div>
           </div>
-          <div class="project-body">
-            <p class="date">
-              <span class="day">12</span>
-              <span class="month">June</span>
-            </p>
-            <a href="#" class="name">Classically Stylish</a>
-            <p class="resume">
-              At vero eos et accusamus et iusto odio dignissimos ducimusn.
-            </p>
-            <a href="#">Read more</a>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="col-md-6">
+            <div class="project">
+              <div class="project-image">
+                <a href="#">
+                  <img src="assets/images/project_02.jpg" alt="Project 1" />
+                </a>
+              </div>
+              <div class="project-body">
+                <p class="date">
+                  <span class="day">12</span>
+                  <span class="month">June</span>
+                </p>
+                <a href="#" class="name">Classically Stylish</a>
+                <p class="resume">
+                  At vero eos et accusamus et iusto odio dignissimos ducimusn.
+                </p>
+                <a href="#">Read more</a>
+              </div>
+            </div>
           </div>
-        </div>
+        </ng-template>
       </div>
-      <div class="col-md-6">
-        <div class="project">
-          <div class="project-image">
-            <a href="#">
-              <img src="assets/images/project_02.jpg" alt="Project 1" />
-            </a>
-          </div>
-          <div class="project-body">
-            <p class="date">
-              <span class="day">12</span>
-              <span class="month">June</span>
-            </p>
-            <a href="#" class="name">Classically Stylish</a>
-            <p class="resume">
-              At vero eos et accusamus et iusto odio dignissimos ducimusn.
-            </p>
-            <a href="#">Read more</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    </owl-carousel-o>
+
   </div>
 </div>

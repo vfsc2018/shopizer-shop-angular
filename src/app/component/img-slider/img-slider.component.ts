@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 
 @Component({
@@ -8,8 +8,8 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 })
 export class ImgSliderComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
-  galleryImages: NgxGalleryImage[];
-
+  // galleryImages: NgxGalleryImage[];
+  @Input() galleryImages: NgxGalleryImage[];
   constructor() { }
 
   ngOnInit(): void {
@@ -20,14 +20,20 @@ export class ImgSliderComponent implements OnInit {
       { "breakpoint": 300, "width": "100%", "height": "200px", "thumbnailsColumns": 2 },
       { "breakpoint": 767, "width": "100%", "height": "500px", "thumbnailsColumns": 4 },
       { "breakpoint": 991, "width": "100%", "height": "500px", "thumbnailsColumns": 4 },
-      { "breakpoint": 1199, "width": "100%", "height": "545px", "thumbnailsColumns": 4 }
+      { "breakpoint": 1199, "width": "100%", "height": "545px", "thumbnailsColumns": 4 },
+      {
+        width: '620px',
+        height: '630px',
+        thumbnailsColumns: 4,
+        imageAnimation: NgxGalleryAnimation.Slide
+      }
     ];
 
     this.galleryImages = [
       {
-        small: 'https://cdn.pixabay.com/photo/2014/12/15/17/19/architect-569361__340.jpg',
-        medium: 'https://cdn.pixabay.com/photo/2014/12/15/17/19/architect-569361__340.jpg',
-        big: 'https://cdn.pixabay.com/photo/2014/12/15/17/19/architect-569361__340.jpg'
+        small: 'https://s3.ca-central-1.amazonaws.com/shopizer-demo/products/DEFAULT/xyzabc/SMALL/kit-shelve-2i.jpg',
+        medium: 'https://s3.ca-central-1.amazonaws.com/shopizer-demo/products/DEFAULT/xyzabc/SMALL/kit-shelve-2i.jpg',
+        big: 'https://s3.ca-central-1.amazonaws.com/shopizer-demo/products/DEFAULT/xyzabc/SMALL/kit-shelve-2i.jpg'
       },
       {
         small: 'https://cdn.pixabay.com/photo/2016/11/19/17/25/furniture-1840463__340.jpg',

@@ -4,7 +4,7 @@ import { Options } from 'ng5-slider';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'shop',
@@ -59,7 +59,7 @@ export class ShopComponent implements OnInit {
 
   };
   categoryID: any = '';
-  constructor(private appService: AppService, private cookieService: CookieService) {
+  constructor(private appService: AppService, private cookieService: CookieService, public router: Router) {
 
   }
 
@@ -98,5 +98,28 @@ export class ShopComponent implements OnInit {
       this.categoryID = result.id;
     }
     this.getProductList()
+  }
+  addToCart(result) {
+    let action = Action.CART;
+    let param = { "product": result.id, "quantity": 1 }
+    if (this.cookieService.get('shopizer-cart-id')) {
+      let id = this.cookieService.get('shopizer-cart-id');
+      this.appService.putMethod(action, id, param)
+        .subscribe(data => {
+
+        }, error => {
+        });
+    } else {
+      this.appService.postMethod(action, param)
+        .subscribe(data => {
+          console.log(data);
+          this.cookieService.set('shopizer-cart-id', data.code)
+        }, error => {
+        });
+    }
+  }
+  goToDetailsPage(result) {
+    this.router.navigate(['/product-detail'], { queryParams: { productId: result.id } });
+    // this.router.navigate(['/product-detail'], { param: { productid: result.id } });
   }
 }

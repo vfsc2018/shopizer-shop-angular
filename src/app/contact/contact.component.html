@@ -1,0 +1,115 @@
+<div id="map-canvas">
+  <agm-map [latitude]="lat" [mapDraggable]="false" [longitude]="lng">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+</div>
+<div class="container">
+  <div class="contact-info-wrapper d-none d-lg-block">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">
+          <!-- <img src="images/icon/contact_location.png" alt="Location"> -->
+          <span class="icon-location"></span>
+        </div>
+        <div class="contact-text">
+          No 40 Baria Sreet 133/2,
+          <br> NewYork
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <!-- <img alt="" class="icon-call"> -->
+          <span class="icon-call"></span>
+        </div>
+        <div class="contact-text">
+          (+300) 125-1365
+          <br>(683) 833 1660
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <span class="icon-mail"></span>
+        </div>
+        <div class="contact-text">
+          isa-85@example.com
+          <br> jean-lee@example.com
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <!-- <img src="images/icon/contact_web.png" alt="web"> -->
+          <span class="icon-web"></span>
+        </div>
+        <div class="contact-text">
+          www.Lyrae.com
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container py-85 py-tn-50">
+  <div class="port-title">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+          <h2 class="title">contact us</h2>
+          <p class="title-detail">But I must explain to you how all this mistaken idea of denouncing pleasure and
+            praising pain
+            was born and I will give you a complete account.</p>
+          <div class="title-border mx-auto m-b-55 m-b-tn-35"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="port-body">
+    <div class="contact-form">
+      <div class="messages" id="status"></div>
+      <form id="contact-form">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group au-form">
+              <!-- <input type="text" id="name" name="name" placeholder="Your Full Name *" required
+                data-error="Name is required."> -->
+              <input-field type="text" id="name" placeHolder="Your Full Name *" class="name"></input-field>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group au-form">
+              <!-- <input type="email" id="email" name="email" placeholder="Your Mail *" required
+                data-error="Please, enter a valid email."> -->
+              <input-field id="name" type="email" placeHolder="Your Mail *" class="mail"></input-field>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group au-form">
+              <!-- <input type="text" id="address" name="address" placeholder="Your Address" required
+                data-error="Address is required"> -->
+              <input-field id="name" type="text" placeHolder="Your Address" class="address"></input-field>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group au-form">
+              <!-- <input type="text" id="phone" name="phone" placeholder="Your Phone *" required
+                data-error="Phone is required"> -->
+              <input-field id="name" type="text" placeHolder="Your Phone *" class="phone"></input-field>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group au-form">
+              <!-- <textarea rows="9" placeholder="Your Message" id="msg" name="msg" required
+                data-error="Please, leave us a message"></textarea> -->
+              <custom-textarea name="password" id="name" placeHolder="Your Message" class="txtarea">
+              </custom-textarea>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group au-form">
+              <!-- <button type="submit" id="contactBtn" class="mx-auto">Send us now</button> -->
+              <btn [text]="'Send us now'" class="m-t-10 contactBtn"></btn>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

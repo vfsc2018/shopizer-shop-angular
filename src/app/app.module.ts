@@ -10,7 +10,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { RouterModule, Routes } from "@angular/router";
 
-
+import { AgmCoreModule } from '@agm/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from './directive/app.service';
 import { Ng5SliderModule } from 'ng5-slider';
@@ -55,6 +55,7 @@ import { CustomTextareaComponent } from './component/custom-textarea/custom-text
 import { CustomSelectComponent } from './component/custom-select/custom-select.component';
 import { ImgSliderComponent } from './component/img-slider/img-slider.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ContactComponent } from './contact/contact.component';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -95,6 +96,10 @@ const routes: Routes = [
   {
     path: "wishlist",
     component: WishListComponent
+  },
+  {
+    path: "contact",
+    component: ContactComponent
   }
 ];
 
@@ -138,7 +143,8 @@ export function createTranslateLoader(http: HttpClient) {
     CustomSelectComponent,
     ImgSliderComponent,
     ProductDetailComponent,
-    RequiredValidationErrorComponent
+    RequiredValidationErrorComponent,
+    ContactComponent
 
   ],
   imports: [
@@ -155,6 +161,9 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: createTranslateLoader,
         deps: [HttpClient]
       }
+    }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC2tK2itcy8Pfykl2X2rcyOpoJcBDl-5pU'
     }),
     HttpModule,
     Ng5SliderModule,

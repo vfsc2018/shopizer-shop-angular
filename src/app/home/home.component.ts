@@ -21,17 +21,17 @@ export class HomeComponent implements OnInit {
     {
       title: "title2",
       description: "lorem ipsum",
-      img: "http://placekitten.com/1920/818"
+      img: "../../assets/images/slide2.jpg"
     },
     {
       title: "title3",
       description: "lorem ipsum",
-      img: "http://placekitten.com/1920/819"
+      img: "../../assets/images/slide4.jpg"
     },
     {
       title: "title4",
       description: "lorem ipsum",
-      img: "http://placekitten.com/1920/820"
+      img: "../../assets/images/slide5.jpg"
     }
   ];
   ngOnInit() {

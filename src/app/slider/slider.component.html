@@ -1,7 +1,9 @@
 <ngb-carousel *ngIf="slideData" class="silde-container" [showNavigationArrows]="false">
   <ng-template ngbSlide *ngFor="let item of slideData">
-    <custom-img [src]="item.img" [alt]="'Random first slide'">
-    </custom-img>
+    <div class="item">
+      <custom-img [src]="item.img" [alt]="'Random first slide'">
+      </custom-img>
+    </div>
 
     <div class="siema-content">
       <h1 class="tp-caption slider-heading-1 text-black rs-toggle-content-active">
@@ -13,5 +15,4 @@
       <btn [text]="'Shop now'" [className]="'gold'" (onClick)="goToShop()"></btn>
     </div>
   </ng-template>
-
 </ngb-carousel>

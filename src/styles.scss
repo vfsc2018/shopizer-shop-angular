@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./app/search/search.component";
 // @import '~ngx-bar-rating/themes/br-default-theme';
- // @import '~ngx-bar-rating/themes/br-stars-theme';
+// @import '~ngx-bar-rating/themes/br-stars-theme';
 // @import "~ngx-tabset/ngx-tabset";
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
@@ -610,6 +610,22 @@
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mail:before {
+    content: "\e90e";
+}
+
+.icon-location:before {
+    content: "\e90f";
+}
+
+.icon-web:before {
+    content: "\e910";
+}
+
+.icon-call:before {
+    content: "\e911";
 }
 
 .icon-tick:before {

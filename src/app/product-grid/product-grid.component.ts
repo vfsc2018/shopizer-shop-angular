@@ -11,11 +11,15 @@ export class ProductGridComponent implements OnInit {
   @Input() Large: any;
   @Input() Hide: any;
   @Output() onClickCart: EventEmitter<any> = new EventEmitter();
+  @Output() onClickDetail: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
   ngOnInit() {
   }
   onClickAddCart(result) {
     this.onClickCart.emit(result);
+  }
+  onClickName(result) {
+    this.onClickDetail.emit(result);
   }
 }
