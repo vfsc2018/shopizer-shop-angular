@@ -3,12 +3,12 @@ agm-map {
 }
 
 .contact-info-wrapper {
-  widtH: 100%;
+  width: 100%;
   position: relative;
   height: 89px;
 
   .contact-info {
-    widtH: 100%;
+    width: 100%;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -75,7 +75,6 @@ agm-map {
   border: 1px solid #e4c7a2;
 }
 
-
 .container {
   .port-title {
     .title {
@@ -112,23 +111,22 @@ agm-map {
 
         .name {
           margin-bottom: -15px;
-          padding-right: 15px;
+          padding-right: 10px;
         }
 
         .mail {
           margin-bottom: -15px;
-          padding-left: 15px;
+          padding-left: 10px;
         }
 
         .phone {
           margin-bottom: 15px;
-          padding-left: 15px;
+          padding-left: 10px;
         }
 
         .address {
           margin-bottom: 15px;
-          padding-right: 15px;
-
+          padding-right: 10px;
         }
 
         .txtarea {
@@ -143,7 +141,6 @@ agm-map {
       }
     }
   }
-
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -156,8 +153,24 @@ agm-map {
   agm-map {
     height: 500px;
   }
+  .container {
+    .contact-info {
+      padding: 20px 10px;
+      width: 700px;
+      .contact-item {
+        flex: 1;
+        .contact-icon {
+          font-size: 30px;
+        }
+        .contact-text {
+          font-size: 14px;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+      }
+    }
+  }
 }
-
 
 @media screen and (max-width: 767px) and (min-width: 576px) {
   agm-map {
@@ -170,7 +183,24 @@ agm-map {
     min-height: 1px;
     padding-right: 15px;
     padding-left: 15px;
-
+    .contact-info {
+      width: 100%;
+      padding: 25px 15px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+      .contact-item {
+        flex: 1;
+        .contact-icon {
+          font-size: 30px;
+        }
+        .contact-text {
+          font-size: 14px;
+          padding-left: 20px;
+          padding-right: 10px;
+        }
+      }
+    }
     .port-body {
       .contact-form {
         .form-group {
@@ -200,29 +230,44 @@ agm-map {
           .address {
             margin-bottom: -15px;
             padding-right: 0px;
-
           }
         }
       }
     }
-
   }
-
 }
 
 @media screen and (max-width: 575px) {
   agm-map {
     height: 400px;
   }
-
+  .mtop {
+    margin-top: 80px;
+  }
   .container {
     position: relative;
     width: 100%;
     min-height: 1px;
     padding-right: 15px;
     padding-left: 15px;
-
-
+    .contact-info {
+      width: 100%;
+      padding: 10px 15px;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 10px;
+      .contact-item {
+        flex: 1;
+        .contact-icon {
+          font-size: 30px;
+        }
+        .contact-text {
+          font-size: 14px;
+          padding-left: 20px;
+          padding-right: 10px;
+        }
+      }
+    }
     .port-body {
       .contact-form {
         .form-group {
@@ -233,6 +278,11 @@ agm-map {
 
         .au-form {
           padding: 0px !important;
+          justify-content: center;
+
+          button[type="submit"] {
+            margin-top: 10px;
+          }
 
           .name {
             margin-bottom: -15px;
@@ -252,18 +302,13 @@ agm-map {
           .address {
             margin-bottom: -15px;
             padding-right: 0px;
-
           }
 
           .contactBtn {
-            top: 50%;
             text-align: center;
-            width: 30%;
           }
         }
       }
     }
-
   }
-
 }

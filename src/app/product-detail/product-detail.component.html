@@ -68,27 +68,31 @@
           <div class="product-body">
             <div class="first">
               <h3 class="name">{{productDetail.description.name}}</h3>
-              <p class="price">${{productDetail.finalPrice}}</p>
+              <p class="price">{{productDetail.finalPrice}}</p>
 
             </div>
             <div class="color-choose" *ngIf="productDetail.options">
-              <div *ngFor="let color of productDetail.options[0].optionValues ; let i = index">
-                <input type="radio" id="red_{{color.id}}" name="color" value="{{color.name}}" [checked]="color.defaultValue"
-                  (change)="handleChange($event, color.id, productDetail.id)">
-                <label for="red_{{color.id}}"><span [style.background-color]="color.name"></span></label>
+              <div *ngFor="let option of productDetail.options; let i = index">
+                <div *ngIf="option.code == 'COLOR'">
+                  <div *ngFor=" let color of option.optionValues ; let j=index">
+                    <input type="radio" id="red_{{color.id}}" name="color" value="{{color.name}}" [checked]="color.defaultValue"
+                      (change)="handleChange($event, color, productDetail.id, option)">
+                    <label for="red_{{color.id}}"><span [style.background-color]="color.name"></span></label>
+                  </div>
+                </div>
               </div>
             </div>
             <p class="description" [innerHTML]="productDetail.description.description">{{productDetail.description.description}}</p>
             <div class="product-button">
               <div class="quantity">
                 <span class="sub">
-                  <i class="icon-down" (click)="decreaseQuntity(productDetail)"></i>
+                  <i class="icon-down" (click)="qtyUpdate(0)"></i>
                 </span>
                 <div class="quantity-input">
-                  <input type="number" value="{{productDetail.quantity}}" (keyup)="onQuantityChange(productDetail,$event.target.value)">
+                  <input type="number" value="{{qty}}">
                 </div>
                 <span class="add">
-                  <i class="icon-up" (click)="increaseQuntity(productDetail)"></i>
+                  <i class="icon-up" (click)="qtyUpdate(1)"></i>
                 </span>
               </div>
               <div class="cart-btn">
@@ -101,7 +105,7 @@
             </div>
             <div class="product-available">
               <span>Available : </span>
-              <a> {{productDetail.available ? 'In stock' : 'Not in stock'}}</a>
+              <a> {{productDetail.available ? 'In stock' : 'Not in stock'}} <b>({{productDetail.quantity}})</b></a>
             </div>
             <div class="product-sku">
               <span class="text-black">SKU: </span>
@@ -156,30 +160,34 @@
                   <h5 class="title">REVIEWS</h5>
                   <p>There are no reviews yet.</p>
                   <p class="text-bigger">Be the first to review “Cloud Wall Clock”</p>
-                  <div class="comment-rating">
+                  <div class="comment-rating" *ngIf="auth">
                     <strong>Your Rating </strong>
                     <div class="au-rating" data-star="4">
-                      <ngb-rating [rate]="rate"></ngb-rating>
+                      <ngb-rating [(rate)]="review.rate" required></ngb-rating>
                     </div>
 
                   </div>
-                  <div class="comment-place">
-                    <form>
+                  <div *ngIf="!auth">
+                    <p class="text-bigger">Please <a href="/account"><u>signin</u></a> for writing a new review</p>
+                  </div>
+                  <div class="comment-place" *ngIf="auth">
+                    <form #reviewForm="ngForm" role="form">
                       <div class="row">
                         <div class="col-md-12 plr-15">
-                          <custom-textarea name="password" placeHolder="Your Message"></custom-textarea>
+                          <custom-textarea placeHolder="Your Message" [(ngModel)]="review.description" name="description"
+                            required></custom-textarea>
 
                         </div>
-                        <div class="col-md-6 plr-15">
+                        <!-- <div class="col-md-6 plr-15">
                           <input-field type="text" name="ng-template" placeHolder="Your Name">
                           </input-field>
                         </div>
                         <div class="col-md-6 plr-15">
                           <input-field type="text" name="email" placeHolder="Your Email">
                           </input-field>
-                        </div>
+                        </div> -->
                         <div class="col-md-12 m-t-40">
-                          <btn [text]="'Submit'"></btn>
+                          <btn [text]="'Submit'" (onClick)="onSubmitReview(productDetail.id)" [isDisabled]="!reviewForm.form.valid"></btn>
                         </div>
                       </div>
                     </form>

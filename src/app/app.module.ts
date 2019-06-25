@@ -56,6 +56,9 @@ import { CustomSelectComponent } from './component/custom-select/custom-select.c
 import { ImgSliderComponent } from './component/img-slider/img-slider.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ContactComponent } from './contact/contact.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ErrorComponent } from './error/error.component';
+
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -100,6 +103,14 @@ const routes: Routes = [
   {
     path: "contact",
     component: ContactComponent
+  },
+  {
+    path: "forgot-password",
+    component: ForgotPasswordComponent
+  },
+  {
+    path: "error",
+    component: ErrorComponent
   }
 ];
 
@@ -144,7 +155,9 @@ export function createTranslateLoader(http: HttpClient) {
     ImgSliderComponent,
     ProductDetailComponent,
     RequiredValidationErrorComponent,
-    ContactComponent
+    ContactComponent,
+    ForgotPasswordComponent,
+    ErrorComponent
 
   ],
   imports: [

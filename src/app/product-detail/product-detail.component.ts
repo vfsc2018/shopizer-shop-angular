@@ -19,8 +19,13 @@ export class ProductDetailComponent implements OnInit {
 
   productDetail: any;
   reletedProduct: Array<any> = [];
+  auth: any;
 
-
+  qty: any = 1;
+  review = {
+    description: '',
+    rate: 0
+  }
   // minValue: number = 22;
   // maxValue: number = 77;
   options: Options = {
@@ -32,7 +37,7 @@ export class ProductDetailComponent implements OnInit {
 
   currentJustify = 'center';
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     pullDrag: false,
     dots: false,
     navSpeed: 700,
@@ -56,10 +61,12 @@ export class ProductDetailComponent implements OnInit {
   productId: any;
   constructor(config: NgbRatingConfig, private route: ActivatedRoute, private appService: AppService, private cookieService: CookieService) {
     config.max = 5;
-    config.readonly = true;
+    // config.readonly = true;
     this.route.queryParams.subscribe(params => {
       console.log(params)
       this.productId = params.productId;
+      this.auth = this.cookieService.get('auth');
+      console.log(this.auth);
       // console.log(params.get("id"))
     })
   }
@@ -80,38 +87,31 @@ export class ProductDetailComponent implements OnInit {
     this.getRelatedProduct()
   }
   getRelatedProduct() {
-    // let action = Action.PRODUCTS;
-
-    // this.appService.getMethod(action + this.productId + '/related')
-    //   .subscribe(data => {
-    //     console.log(data);
-    //     this.productDetail = data;
-
-    //   }, error => {
-    //   });
-
     let action = Action.PRODUCTS;
-    this.appService.getMethod(action + '?lang=en&start=0&count=12')
+
+    this.appService.getMethod(action + this.productId + '/related')
       .subscribe(data => {
         console.log(data);
-        this.reletedProduct = data.products;
+        this.productDetail = data;
+
       }, error => {
       });
+
   }
-  handleChange(event, colorId, productID) {
-    console.log(event);
+  handleChange(event, color, productID, option) {
+    // console.log(event);
     let action = Action.PRODUCTS + productID + '/variant';
-    let param = { "product": colorId, "attribute": 50, "value": 23 }
+    let param = { "options": [{ "option": option.id, "value": color.id }] }
     this.appService.postMethod(action, param)
       .subscribe(data => {
         console.log(data);
-        // this.cookieService.set('shopizer-cart-id', data.code)
+        this.productDetail.finalPrice = data.finalPrice;
       }, error => {
       });
   }
   addToCart(product) {
     let action = Action.CART;
-    let param = { "product": product.id, "quantity": product.quantity }
+    let param = { "product": product.id, "quantity": this.qty, "attributes": [{ "id": 3 }] }
     if (this.cookieService.get('shopizer-cart-id')) {
       let id = this.cookieService.get('shopizer-cart-id');
       this.appService.putMethod(action, id, param)
@@ -127,6 +127,25 @@ export class ProductDetailComponent implements OnInit {
         }, error => {
         });
     }
+  }
+  qtyUpdate(status) {
+    if (status == 1) {
+      this.qty = this.qty + 1;
+    } else {
+      if (this.qty > 0) {
+        this.qty = this.qty - 1;
+      }
+    }
+  }
+  onSubmitReview(productID) {
+    // let action = 'auth/' + Action.PRODUCTS + productID + '/reviews'
+    // let param = { "customerId": '', "date": '2019-06-20', "description": this.review.description, 'language': 'en', 'productId': productID, 'rating': this.review.rate }
+    // this.appService.postMethod('auth/' + action, param)
+    //   .subscribe(data => {
+    //     console.log(data);
+    //     this.cookieService.set('shopizer-cart-id', data.code)
+    //   }, error => {
+    //   });
   }
 
 }

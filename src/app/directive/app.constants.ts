@@ -1,5 +1,6 @@
 export class AppConstants {
     public static API_URL = 'http://35.183.44.129:8080/api/v1/';
+    public static API_URL_AUTH = 'http://35.183.44.129:8080/api/v1/auth/';
 
 }
 
