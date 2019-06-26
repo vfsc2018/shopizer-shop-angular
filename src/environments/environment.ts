@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://35.183.44.129:8080',
-  merchant:'DEFAULT'
+  baseUrl: 'http://99.79.1.102:8080',
+  merchant: 'DEFAULT'
 };
 
 /*

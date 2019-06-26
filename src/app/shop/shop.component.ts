@@ -60,13 +60,14 @@ export class ShopComponent implements OnInit {
   };
   categoryID: any = '';
   constructor(private appService: AppService, private cookieService: CookieService, public router: Router) {
-
+    this.categoryID = localStorage.getItem('category_id');
+    this.getProductList();
+    this.getCategory();
   }
 
 
   ngOnInit() {
-    this.getProductList();
-    this.getCategory();
+
   }
   getCategory() {
     let action = Action.CATEGORY;

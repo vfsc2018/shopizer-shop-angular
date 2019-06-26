@@ -14,6 +14,7 @@ export class CategoriesComponent implements OnInit {
   ngOnInit() {
   }
   onCategoryClick(value) {
+    console.log(value)
     this.onClick.emit(value);
   }
 

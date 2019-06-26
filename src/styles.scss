@@ -612,6 +612,22 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-timer:before {
+    content: "\e912";
+}
+
+.icon-chat:before {
+    content: "\e913";
+}
+
+.icon-user:before {
+    content: "\e914";
+}
+
+.icon-reply:before {
+    content: "\e915";
+}
+
 .icon-mail:before {
     content: "\e90e";
 }

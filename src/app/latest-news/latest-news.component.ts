@@ -16,7 +16,7 @@ export class LatestNewsComponent implements OnInit {
 
   currentJustify = 'start';
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     pullDrag: false,
     dots: false,
     navSpeed: 700,
@@ -39,9 +39,9 @@ export class LatestNewsComponent implements OnInit {
   }
 
 
-  ngAfterViewInit(): void {
-    new Siema({
-      perPage: 2
-    });
+  ngAfterViewInit() {
+    // new Siema({
+    //   perPage: 2
+    // });
   }
 }

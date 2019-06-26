@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
+
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -11,7 +12,9 @@ export class HomeComponent implements OnInit {
 
   constructor(private appService: AppService, private cookieService: CookieService, ) { }
   productData: Array<any> = [];
-
+  filterData: Array<any> = [];
+  categoryData: Array<any> = [];
+  public loading = false;
   sliderItems = [
     {
       title: "title1",
@@ -41,27 +44,62 @@ export class HomeComponent implements OnInit {
     let action = Action.PRODUCT_GROUP;
     this.appService.getMethod(action + 'FEATURED_ITEM')
       .subscribe(data => {
+        console.log(data.products);
+        data.products.map(item => {
+          item.categories.map(category => {
+            // console.log(category)
+            let index = this.categoryData.findIndex(value => value.id == category.id);
+            if (index == -1) {
+              this.categoryData.push({ 'id': category.description.id, 'name': category.description.name })
+            }
+          })
+        });
+        // console.log(this.categoryData)
         this.productData = data.products;
+        this.filterData = data.products;
       }, error => {
       });
   }
   addCart(result) {
+    this.loading = true;
     let action = Action.CART;
     let param = { "product": result.id, "quantity": 1 }
     if (this.cookieService.get('shopizer-cart-id')) {
       let id = this.cookieService.get('shopizer-cart-id');
       this.appService.putMethod(action, id, param)
         .subscribe(data => {
-
+          this.loading = false;
         }, error => {
+          this.loading = false;
         });
     } else {
       this.appService.postMethod(action, param)
         .subscribe(data => {
           console.log(data);
-          this.cookieService.set('shopizer-cart-id', data.code)
+          this.cookieService.set('shopizer-cart-id', data.code);
+          this.loading = false;
         }, error => {
+          this.loading = false;
         });
+    }
+
+  }
+  filterFeaturedItem(val) {
+    console.log(val);
+    if (val != '') {
+      this.filterData = [];
+      this.productData.map(item => {
+        item.categories.map(category => {
+          // console.log(category)
+          if (val.id == category.description.id) {
+            console.log(item)
+            this.filterData.push(item)
+          }
+        })
+      });
+
+    } else {
+      this.filterData = this.productData;
     }
 
   }

@@ -1,6 +1,7 @@
 <slider [slideData]="sliderItems"></slider>
 <featured></featured>
 <div class="port-title">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
@@ -21,23 +22,14 @@
             <div class="grid-filter">
                 <ul class="text-center">
                     <li class="active">
-                        <span data-filter="*">All</span>
+                        <span (click)="filterFeaturedItem('')">All</span>
                     </li>
-                    <li>
-                        <span data-filter=".sofa">Sofa</span>
-                    </li>
-                    <li>
-                        <span data-filter=".chair">Chair</span>
-                    </li>
-                    <li>
-                        <span data-filter=".decor">Decor</span>
-                    </li>
-                    <li>
-                        <span data-filter=".lamp">lamp</span>
+                    <li *ngFor="let cat of categoryData; let i = index">
+                        <span (click)="filterFeaturedItem(cat)">{{cat.name}}</span>
                     </li>
                 </ul>
             </div>
-            <product-grid [Large]="'3'" [productData]="productData" (onClickCart)="addCart($event)"></product-grid>
+            <product-grid [Large]="'3'" [productData]="filterData" (onClickCart)="addCart($event)"></product-grid>
         </div>
     </div>
 </div>

@@ -1,0 +1,184 @@
+<banner [title]="'blog'"></banner>
+<div class="container p-t-100 p-b-70 py-tn-50">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="blog-single">
+        <div class="blog-single-content">
+          <h3 class="post__title-1">There are many variations of passages</h3>
+          <div class="post__date m-b-15">
+            <ul>
+              <li class="date"><span class="icon-timer"></span>
+                <a href="#">14 June</a>
+              </li>
+              <li class="author"><span class="icon-user"></span>
+                <a href="#">Evelyn Powell</a>
+              </li>
+              <li class="comments"><span class="icon-chat"></span>
+                <a href="#">56</a>
+              </li>
+            </ul>
+          </div>
+          <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+            was born and I will give you a complete account of the system, and expound the actual teachings
+            of the great explorer of the truth, the master-builder of human happiness. No one rejects,
+            dislikes, or avoids pleasure itself.</p>
+          <ul class="blog-single-list">
+            <li class="title">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+            </li>
+            <li>On the other hand, we denounce with righteous indignation and dislike.</li>
+            <li>But in certain circumstances and owing to the claims of duty or the obligations of business.</li>
+            <li>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit.</li>
+            <li>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet.</li>
+          </ul>
+          <img src="../../assets/images/news_18.jpg" alt="News 1">
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
+            vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+            aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+          <ul class="blog-single-list">
+            <li class="title">It is a long established fact that a reader will be distracted by the readable content of
+              a page.</li>
+            <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
+            <li>Contrary to popular belief, Lorem Ipsum is not simply random text</li>
+          </ul>
+          <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,
+            making this the first true generator on the Internet. It uses a dictionary of over 200 Latin
+            words.
+          </p>
+          <!-- Content -->
+        </div>
+        <nav class="blog-share">
+          <ul>
+            <li>
+              <span>Share:</span>
+            </li>
+            <li>
+              <a href="#">
+                <i class="icon-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="icon-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="icon-linkdin"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="icon-googleplus"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="amount-comment">
+            <span>2</span> comments
+          </div>
+        </nav>
+        <div class="blog-comment">
+          <h3 class="title">Comment</h3>
+          <div class="comment-list">
+            <div class="first-comment">
+              <div class="comment-detail">
+                <div class="comment-detail__image">
+                  <!-- <img src="../../assets/images/user_01.jpg" alt="User 1"> -->
+                  <custom-img [src]="'../../assets/images/user_01.jpg'" [alt]="'Cart'"></custom-img>
+                </div>
+                <div class="comment-detail__body">
+                  <div class="comment-info">
+                    <a class="author">Amber Reyes</a>
+                    <span class="time-comment">March 28, 2018 at 9:12 am</span>
+                  </div>
+                  <div class="comment-content">
+                    <p>But I must explain to you how all this mistaken idea of denouncing pleasure
+                      and praising pain was born and I will give you a complete account of
+                      the system, and expound the actual</p>
+                  </div>
+                  <div class="comment-reply">
+                    <span class="icon-reply"></span><a href="#">Reply</a>
+                  </div>
+                </div>
+              </div>
+              <div class="reply-comment">
+                <div class="comment-detail">
+                  <div class="comment-detail__image">
+                    <!-- <img src="../../assets/images/user_02.jpg" alt="User 2"> -->
+                    <custom-img [src]="'../../assets/images/user_01.jpg'" [alt]="'Cart'"></custom-img>
+                  </div>
+                  <div class="comment-detail__body">
+                    <div class="comment-info">
+                      <a class="author">Zachary Myers</a>
+                      <span class="time-comment">March 28, 2018 at 9:12 am</span>
+                    </div>
+                    <div class="comment-content">
+                      <p> The generated Lorem Ipsum is therefore always free from repetition, injected
+                        humour, or non-characteristic words etc.</p>
+                    </div>
+                    <div class="comment-reply">
+                      <span class="icon-reply"></span><a href="#">Reply</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="title">Leave your comment</h3>
+          <div class="comment-place">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <!-- <textarea cols="30" rows="10">Your Message</textarea> -->
+                  <custom-textarea name="msg" id="name" placeHolder="Your Message">
+                  </custom-textarea>
+                </div>
+                <div class="col-md-6 m-up">
+                  <!-- <input type="text" placeholder="Your Name"> -->
+                  <input-field type="text" placeHolder="Your Name"></input-field>
+                </div>
+                <div class="col-md-6 m-up">
+                  <!-- <input type="email" placeholder="Your Email"> -->
+                  <input-field type="email" placeHolder="Your Email"></input-field>
+                </div>
+                <div class="col-md-12 m-t-40 m-btn-up">
+                  <!-- <button>Submit</button> -->
+                  <btn [text]="'Submit'"></btn>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-3">
+      <div class="search">
+        <custom-label [label]="'search'" [className]="'cart-border'"></custom-label>
+        <input-field type="text" bottom="40" placeHolder=""></input-field><span class="icon-search"></span>
+      </div>
+      <div class="categories-list">
+        <custom-label [label]="'blog categories'" [className]="'cart-border'"></custom-label>
+        <categories [data]="blogcategories"></categories>
+      </div>
+      <div class="best-seller">
+        <custom-label [label]="'recent posts'" [className]="'cart-border'"></custom-label>
+        <best-seller [data]="sellerData"></best-seller>
+      </div>
+      <div class="blog-tags">
+        <custom-label [label]="'blog tags'" [className]="'cart-border'"></custom-label>
+        <div class="sidebar-item__body">
+          <div class="sidebar-tags">
+            <btn [text]="'Chair'" [className]="'silver'"></btn>
+            <btn [text]="'Decor'" [className]="'silver'"></btn>
+            <btn [text]="'Table'" [className]="'silver'"></btn>
+            <btn [text]="'Lighting'" [className]="'silver'"></btn>
+            <btn [text]="'Furniture'" [className]="'silver'"></btn>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

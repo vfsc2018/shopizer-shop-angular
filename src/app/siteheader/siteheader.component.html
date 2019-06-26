@@ -6,9 +6,11 @@
             <div class="header header-style-1">
                 <div class="header-main">
                     <div class="header__logo">
-                        <!-- <a href="index.html">
-                            <!-- <img src="{{merchant?.logo?.path}}" /> -->
-                        <!-- </a>  -->
+                        <span *ngIf="!merchant.logo.path">{{merchant ? merchant.name: ''}}</span>
+                        <a href="/home" *ngIf="merchant.logo.path">
+                            <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
+                            </custom-img>
+                        </a>
                     </div>
                     <nav class="header__navbar">
                         <ul class="navbar-menu">
@@ -16,7 +18,7 @@
                                 <a href="/">Home</a>
                             </li>
                             <li *ngFor="let category of category">
-                                <a href="/category/{{ category.description.friendlyUrl }}">{{
+                                <a href="javascript::void()" (click)="onClickCategory(category)">{{
                                     category.description.name.toUpperCase() }}</a>
                                 <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
                                     <menu-item #menu [items]="category.children"></menu-item>
@@ -26,23 +28,7 @@
                                 <a href="/page/{{ content.slug }}">{{content.description ?
                                     content.description.name:''}}</a>
                             </li>
-                            <!--
-                                  <a href="#">about</a>
-                                  <ul class="sub-menu">
-                                      <li>
-                                          <a href="my-account.html">My Account</a>
-                                      </li>
-                                      <li>
-                                          <a href="forget-password.html">Forget Password</a>
-                                      </li>
-                                      <li>
-                                          <a href="coming-soon.html">Cooming Soon</a>
-                                      </li>
-                                      <li>
-                                          <a href="404.html">404 Error</a>
-                                      </li>
-                                  </ul>
-                                -->
+
                             <li>
                                 <a href="/contact">Contact</a>
                             </li>
@@ -79,28 +65,7 @@
                 <ul>
                     <li>
                         <a href="#">Home</a>
-                        <!--
-                          <ul class="sub-menu">
-                              <li>
-                                  <a href="index.html">Homepage_v1</a>
-                              </li>
-                              <li>
-                                  <a href="index2.html">Homepage_v2</a>
-                              </li>
-                              <li>
-                                  <a href="index3.html">Homepage_v3</a>
-                              </li>
-                              <li>
-                                  <a href="index4.html">Homepage_v4</a>
-                              </li>
-                              <li>
-                                  <a href="index5.html">Homepage_v5</a>
-                              </li>
-                              <li>
-                                  <a href="index6.html">Homepage_v6</a>
-                              </li>
-                          </ul>
-                          -->
+
                     </li>
                     <li>
                         <a href="about.html">About Us</a>

@@ -58,7 +58,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ContactComponent } from './contact/contact.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ErrorComponent } from './error/error.component';
-
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -74,6 +75,10 @@ export function loadConfigurations(configurationService: ConfigurationService) {
 const routes: Routes = [
   {
     path: "",
+    component: HomeComponent
+  },
+  {
+    path: "home",
     component: HomeComponent
   },
   {
@@ -111,10 +116,21 @@ const routes: Routes = [
   {
     path: "error",
     component: ErrorComponent
+  },
+  {
+    path: "blog-detail",
+    component: BlogDetailComponent
   }
 ];
 
-
+const loading = {
+  animationType: ngxLoadingAnimationTypes.threeBounce,
+  backdropBackgroundColour: 'rgba(0,0,0,0.7)',
+  backdropBorderRadius: '14px',
+  primaryColour: '#de6e26',
+  secondaryColour: '#de6e26',
+  tertiaryColour: '#de6e26'
+}
 export function createTranslateLoader(http: HttpClient) {
 
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -157,7 +173,8 @@ export function createTranslateLoader(http: HttpClient) {
     RequiredValidationErrorComponent,
     ContactComponent,
     ForgotPasswordComponent,
-    ErrorComponent
+    ErrorComponent,
+    BlogDetailComponent
 
   ],
   imports: [
@@ -175,6 +192,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    NgxLoadingModule.forRoot(loading),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC2tK2itcy8Pfykl2X2rcyOpoJcBDl-5pU'
     }),

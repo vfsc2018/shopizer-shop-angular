@@ -1,19 +1,25 @@
 .sub-menu {
-  transform: translateY(10px);
+    transform: translateY(10px);
 
-  transition-property: opacity, transform, visibility;
-  transition-duration: 0.3s;
+    transition-property: opacity, transform, visibility;
+    transition-duration: 0.3s;
 }
 
-.navbar-menu > li:hover .sub-menu {
-  transform: translateY(0);
+.navbar-menu>li:hover .sub-menu {
+    transform: translateY(0);
 }
 
 .header-mobile__button {
-  background-color: transparent;
-  border: none;
+    background-color: transparent;
+    border: none;
 
-  &:focus {
-    outline: none;
-  }
+    &:focus {
+        outline: none;
+    }
+}
+
+.header-wrapper {
+    .header__logo {
+        width: 100px
+    }
 }
