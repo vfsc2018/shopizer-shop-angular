@@ -5,8 +5,8 @@ import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 @Component({
   selector: 'shopping-cart',
-  templateUrl: './Shopping-cart.component.html',
-  styleUrls: ['./Shopping-cart.component.scss']
+  templateUrl: './shopping-cart.component.html',
+  styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
   header_data = [{ 'name': 'product', 'width_size': 'width-50' }, { 'name': 'price', 'width_size': 'width-10' }, { 'name': 'quantity', 'width_size': 'width-20' }, { 'name': 'total', 'width_size': 'width-20' }, { 'name': '', 'width_size': '' }];
