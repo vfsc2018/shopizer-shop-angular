@@ -58,7 +58,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ContactComponent } from './contact/contact.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ErrorComponent } from './error/error.component';
-import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
@@ -123,14 +123,7 @@ const routes: Routes = [
   }
 ];
 
-const loading = {
-  animationType: ngxLoadingAnimationTypes.threeBounce,
-  backdropBackgroundColour: 'rgba(0,0,0,0.7)',
-  backdropBorderRadius: '14px',
-  primaryColour: '#de6e26',
-  secondaryColour: '#de6e26',
-  tertiaryColour: '#de6e26'
-}
+
 export function createTranslateLoader(http: HttpClient) {
 
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -192,7 +185,6 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    NgxLoadingModule.forRoot(loading),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC2tK2itcy8Pfykl2X2rcyOpoJcBDl-5pU'
     }),
@@ -203,7 +195,8 @@ export function createTranslateLoader(http: HttpClient) {
     // FormValidationModule,
     NgxGalleryModule,
 
-    CarouselModule
+    CarouselModule,
+    Ng4LoadingSpinnerModule
   ],
   providers: [
     /** load merchant and configurations */

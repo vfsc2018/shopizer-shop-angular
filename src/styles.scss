@@ -612,6 +612,26 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-right:before {
+    content: "\e919";
+}
+
+.icon-left:before {
+    content: "\e91a";
+}
+
+.icon-instagram:before {
+    content: "\e916";
+}
+
+.icon-pinterest:before {
+    content: "\e917";
+}
+
+.icon-cart:before {
+    content: "\e918";
+}
+
 .icon-timer:before {
     content: "\e912";
 }

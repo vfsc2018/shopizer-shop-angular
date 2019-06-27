@@ -3,6 +3,7 @@ import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
 
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -10,7 +11,8 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private appService: AppService, private cookieService: CookieService, ) { }
+  constructor(private appService: AppService, private cookieService: CookieService,
+    private spinnerService: Ng4LoadingSpinnerService) { }
   productData: Array<any> = [];
   filterData: Array<any> = [];
   categoryData: Array<any> = [];
@@ -44,7 +46,7 @@ export class HomeComponent implements OnInit {
     let action = Action.PRODUCT_GROUP;
     this.appService.getMethod(action + 'FEATURED_ITEM')
       .subscribe(data => {
-        console.log(data.products);
+        // console.log(data.products);
         data.products.map(item => {
           item.categories.map(category => {
             // console.log(category)
@@ -61,25 +63,25 @@ export class HomeComponent implements OnInit {
       });
   }
   addCart(result) {
-    this.loading = true;
+    this.spinnerService.show();
     let action = Action.CART;
     let param = { "product": result.id, "quantity": 1 }
     if (this.cookieService.get('shopizer-cart-id')) {
       let id = this.cookieService.get('shopizer-cart-id');
       this.appService.putMethod(action, id, param)
         .subscribe(data => {
-          this.loading = false;
+          this.spinnerService.hide();
         }, error => {
-          this.loading = false;
+          this.spinnerService.hide();
         });
     } else {
       this.appService.postMethod(action, param)
         .subscribe(data => {
           console.log(data);
           this.cookieService.set('shopizer-cart-id', data.code);
-          this.loading = false;
+          this.spinnerService.hide();
         }, error => {
-          this.loading = false;
+          this.spinnerService.hide();
         });
     }
 

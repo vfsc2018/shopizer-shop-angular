@@ -35123,7 +35123,7 @@ header .header-wrapper-desktop .header .header-main .header__navbar ul.navbar-me
     width: 194px !important;
     border-top: 5px solid #e4c7a2;
     position: absolute;
-    top: 112px;
+    top: 128px;
     left: -8px;
     width: 100%;
     padding: 25px 0 25px 30px;
@@ -35205,7 +35205,7 @@ header .header-wrapper-desktop .header .header-main .header__button ul li.header
 header .header-wrapper-desktop .header .header-main .header__button ul li.header-shop-cart .shop-cart-button .amount {
     position: absolute;
     top: -5px;
-    right: -11px;
+    right: -7px;
     width: 13px;
     height: 13px;
     -webkit-border-radius: 50%;

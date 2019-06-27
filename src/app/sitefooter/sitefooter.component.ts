@@ -18,12 +18,12 @@ export class SitefooterComponent implements OnInit {
   }
 
   ngOnInit() {
-    let action = Action.CONFIGURATIONS;
-    this.appService.getMethod(action)
-      .subscribe(data => {
-        this.configuration = data;
-      }, error => {
-      });
+    // let action = Action.CONFIGURATIONS;
+    // this.appService.getMethod(action)
+    //   .subscribe(data => {
+    //     this.configuration = data;
+    //   }, error => {
+    //   });
 
     this.getCategoryHierarchy()
     this.getContent()

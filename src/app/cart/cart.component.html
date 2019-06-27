@@ -1,6 +1,7 @@
 <li class="header-shop-cart">
     <button class="shop-cart-button" (click)="toggleSearch()">
-        <custom-img [src]="'assets/images/icon/header-cart.png'" [alt]="'Cart'"></custom-img>
+        <!-- <custom-img [src]="'assets/images/icon/header-cart.png'" [alt]="'Cart'"></custom-img> -->
+        <span class="icon-cart"></span>
         <span class="amount">3</span>
     </button>
     <div [ngClass]="isOpen ? 'shop-cart open' : 'shop-cart'">

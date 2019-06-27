@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
 import { Category } from '../../services/category/model/category'
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'menu-item',
@@ -10,10 +10,13 @@ import {Router} from '@angular/router';
 export class MenuItemComponent implements OnInit {
   @Input() items: Category[];
   @ViewChild('childMenu') public childMenu;
-
+  @Output() onClick: EventEmitter<any> = new EventEmitter();
   constructor(public router: Router) {
   }
 
   ngOnInit() {
+  }
+  onClickCategory(value) {
+    this.onClick.emit(value);
   }
 }

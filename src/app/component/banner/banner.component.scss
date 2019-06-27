@@ -4,6 +4,7 @@
     .pageintro-bg {
         position: relative;
         overflow: hidden;
+        max-width: none !important;
 
         &:before {
             content: '';

@@ -8,9 +8,19 @@
 
 }
 
-.product-rating .ng-star-inserted {
-    margin-right: 7px;
+.container {
+    padding-right: 20px !important;
+    padding-left: 20px !important;
 }
+
+.spinner {
+    top: 50% !important;
+    left: 50% !important;
+}
+
+// .product-rating .ng-star-inserted {
+//     margin-right: 7px;
+// }
 
 .comment-rating .ng-star-inserted {
     margin-right: 7px;
