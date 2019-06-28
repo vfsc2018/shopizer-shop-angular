@@ -25,22 +25,17 @@ export class HomeComponent implements OnInit {
     {
       title: "title1",
       description: "lorem ipsum",
-      img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/banner.jpg"
+      img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/slider2.jpg"
     },
     {
       title: "title2",
       description: "lorem ipsum",
-      img: "../../assets/images/slide2.jpg"
+      img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/slider3.jpg"
     },
     {
       title: "title3",
       description: "lorem ipsum",
-      img: "../../assets/images/slide4.jpg"
-    },
-    {
-      title: "title4",
-      description: "lorem ipsum",
-      img: "../../assets/images/slide5.jpg"
+      img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/banner.jpg"
     }
   ];
   ngOnInit() {

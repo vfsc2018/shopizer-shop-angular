@@ -24,9 +24,12 @@
                   <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
                 </ul>
               </li>
-              <li *ngFor="let content of content" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-                <a>{{content.name}}</a>
-              </li>
+              
+              <ng-container *ngFor="let content of content">
+                <ng-container *ngIf="content.displayedInMenu">
+                  <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }"><a>{{content.name}}</a></li>
+                </ng-container>
+              </ng-container>
 
               <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
                 <a routerLink="/contact">Contact</a>
