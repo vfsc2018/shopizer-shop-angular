@@ -1,14 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-// import { Merchant } from '../services/configuration/merchant'
-// import { Category } from '../services/category/model/category'
-// import { ConfigurationService } from '../services/configuration/configuration.service'
-// import { CategoryService } from '../services/category/category.service'
-// import { ContentService } from '../shared/services/content/content.service'
-// import { Content } from '../shared/model/content/content'
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 
 import { CookieService } from 'ngx-cookie-service';
+import { CartComponent } from '../cart/cart.component';
 
 import { Router } from '@angular/router';
 
@@ -18,12 +13,14 @@ import { Router } from '@angular/router';
     styleUrls: ['./siteheader.component.scss']
 })
 export class SiteheaderComponent implements OnInit {
+    @ViewChild("CartComponent") CartComponent: CartComponent;
 
     merchant = null;
     category: Array<any> = [];
     content: Array<any> = [];
     active: any;
     subclick: any;
+    isOpen: boolean = false;
     constructor(
         private appService: AppService,
         private cookieService: CookieService, public router: Router
@@ -70,7 +67,7 @@ export class SiteheaderComponent implements OnInit {
     onClickCategory(data) {
         // console.log(data)
         localStorage.setItem('category_id', data.id);
-        this.router.navigate(['/shop']);
+        // this.router.navigate(['/shop']);
         this.subclick = this.subclick == '' ? 'active' : ''
     }
     onClickMenu() {
@@ -78,5 +75,11 @@ export class SiteheaderComponent implements OnInit {
     }
     onClicksub() {
         this.active = this.active == '' ? 'active' : ''
+    }
+    toggleSearch() {
+        console.log('toggleSearch');
+        this.isOpen = !this.isOpen;
+        this.CartComponent.getCart();
+        // this.getCart();
     }
 }

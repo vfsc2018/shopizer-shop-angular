@@ -19,6 +19,13 @@
 
     }
 
+    /deep/ custom-img {
+        img {
+            max-width: none;
+        }
+
+    }
+
     .pageintro-body {
         position: absolute;
         top: 50%;

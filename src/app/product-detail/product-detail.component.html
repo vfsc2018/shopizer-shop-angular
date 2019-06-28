@@ -75,14 +75,15 @@
               <div *ngFor="let option of productDetail.options; let i = index">
                 <div *ngIf="option.code == 'COLOR'">
                   <div *ngFor=" let color of option.optionValues ; let j=index">
-                    <input type="radio" id="red_{{color.id}}" name="color" value="{{color.name}}" [checked]="color.defaultValue"
-                      (change)="handleChange($event, color, productDetail.id, option)">
+                    <input type="radio" id="red_{{color.id}}" name="color" value="{{color.name}}"
+                      [checked]="color.defaultValue" (change)="handleChange($event, color, productDetail.id, option)">
                     <label for="red_{{color.id}}"><span [style.background-color]="color.name"></span></label>
                   </div>
                 </div>
               </div>
             </div>
-            <p class="description" [innerHTML]="productDetail.description.description">{{productDetail.description.description}}</p>
+            <p class="description" [innerHTML]="productDetail.description.description">
+              {{productDetail.description.description}}</p>
             <div class="product-button">
               <div class="quantity">
                 <span class="sub">
@@ -133,7 +134,8 @@
           <ngb-tabset [justify]="currentJustify" class="tabset">
             <ngb-tab title="Description">
               <ng-template ngbTabContent>
-                <p class="tab-paragraph" [innerHTML]="productDetail.description.description">{{productDetail.description.description}}</p>
+                <p class="tab-paragraph" [innerHTML]="productDetail.description.description">
+                  {{productDetail.description.description}}</p>
 
               </ng-template>
             </ngb-tab>
@@ -157,7 +159,77 @@
               <ng-template ngbTabContent>
                 <div class="review">
                   <h5 class="title">REVIEWS</h5>
-                  <p>There are no reviews yet.</p>
+                  <div class="review-outer">
+                    <div class="review-inner">
+                      <p>There are no reviews yet.</p>
+
+                      <div class="single-review">
+                        <div class="au-rating" data-star="4">
+                          <ngb-rating [(rate)]="review.rate" required></ngb-rating>
+                        </div>
+                        <div class="review-div">
+                          <div class="review-inside">
+                            <p class="review-text">this product is very genuine and i m using this sice 2 months i
+                              thught
+                              this is value of money.but this isnt working properly since few days even customer care
+                              not
+                              respondinf from them side.</p>
+
+                          </div>
+                          <p class="review-date">-Test Test 2018-09-20</p>
+                        </div>
+                      </div>
+                      <div class="single-review">
+                        <div class="au-rating" data-star="4">
+                          <ngb-rating [(rate)]="review.rate" required></ngb-rating>
+                        </div>
+                        <div class="review-div">
+                          <div class="review-inside">
+                            <p class="review-text">this product is very genuine and i m using this sice 2 months i
+                              thught
+                              this is value of money.but this isnt working properly since few days even customer care
+                              not
+                              respondinf from them side.</p>
+
+                          </div>
+                          <p class="review-date">-Test Test 2018-09-20</p>
+                        </div>
+                      </div>
+                      <div class="single-review">
+                        <div class="au-rating" data-star="4">
+                          <ngb-rating [(rate)]="review.rate" required></ngb-rating>
+                        </div>
+                        <div class="review-div">
+                          <div class="review-inside">
+                            <p class="review-text">this product is very genuine and i m using this sice 2 months i
+                              thught
+                              this is value of money.but this isnt working properly since few days even customer care
+                              not
+                              respondinf from them side.</p>
+
+                          </div>
+                          <p class="review-date">-Test Test 2018-09-20</p>
+                        </div>
+                      </div>
+                      <div class="single-review">
+                        <div class="au-rating" data-star="4">
+                          <ngb-rating [(rate)]="review.rate" required></ngb-rating>
+                        </div>
+                        <div class="review-div">
+                          <div class="review-inside">
+                            <p class="review-text">this product is very genuine and i m using this sice 2 months i
+                              thught
+                              this is value of money.but this isnt working properly since few days even customer care
+                              not
+                              respondinf from them side.</p>
+
+                          </div>
+                          <p class="review-date">-Test Test 2018-09-20</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
                   <p class="text-bigger">Be the first to review “Cloud Wall Clock”</p>
                   <div class="comment-rating" *ngIf="auth">
                     <strong>Your Rating </strong>
@@ -173,8 +245,8 @@
                     <form #reviewForm="ngForm" role="form">
                       <div class="row">
                         <div class="col-md-12 plr-15">
-                          <custom-textarea placeHolder="Your Message" [(ngModel)]="review.description" name="description"
-                            required></custom-textarea>
+                          <custom-textarea placeHolder="Your Message" [(ngModel)]="review.description"
+                            name="description" required></custom-textarea>
 
                         </div>
                         <!-- <div class="col-md-6 plr-15">
@@ -186,7 +258,8 @@
                           </input-field>
                         </div> -->
                         <div class="col-md-12 m-t-40">
-                          <btn [text]="'Submit'" (onClick)="onSubmitReview(productDetail.id)" [isDisabled]="!reviewForm.form.valid"></btn>
+                          <btn [text]="'Submit'" (onClick)="onSubmitReview(productDetail.id)"
+                            [isDisabled]="!reviewForm.form.valid"></btn>
                         </div>
                       </div>
                     </form>

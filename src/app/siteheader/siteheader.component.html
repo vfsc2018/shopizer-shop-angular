@@ -1,89 +1,95 @@
 <!-- Header -->
 <header>
-    <div class="header-wrapper" *ngIf="merchant">
-        <!-- Desktop Menu -->
-        <div class="header-wrapper-desktop d-none d-lg-block">
-            <div class="header header-style-1">
-                <div class="header-main">
-                    <div class="header__logo">
-                        <span *ngIf="merchant.logo == null">{{merchant.name}}</span>
-                        <a href="" *ngIf="merchant.logo != null">
-                            <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
-                            </custom-img>
-                        </a>
-                    </div>
-                    <nav class="header__navbar">
-                        <ul class="navbar-menu">
-                            <li class="active">
-                                <a href="">Home</a>
-                            </li>
-                            <li *ngFor="let category of category">
-                                <a href="javascript::void()" (click)="onClickCategory(category)">
-                                    {{category.description.name.toUpperCase() }}</a>
-                                <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
-                                    <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
-                                </ul>
-                            </li>
-                            <li *ngFor="let content of content">
-                                <a href="">{{content.name}}</a>
-                            </li>
-
-                            <li>
-                                <a href="/contact">Contact</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="header__button">
-                        <ul>
-                            <li class="header-search">
-                                <search></search>
-                            </li>
-                            <cart></cart>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Desktop Menu -->
-
-        <!-- Mobile Menu -->
-        <div class="header-wrapper-mobile d-block d-lg-none">
-            <div class="header-mobile__bar">
-                <div class="header__logo">
-                    <span *ngIf="merchant.logo == null">{{merchant.name}}</span>
-                    <a href="/home" *ngIf="merchant.logo != null">
-                        <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
-                        </custom-img>
-                    </a>
-                </div>
-                <button class="header-mobile__button" (click)="onClickMenu()">
-                    <span class="humburger-box {{active}}">
-                        <span class="hamburger__inner"></span>
-                    </span>
-                </button>
-            </div>
-            <nav class="header-mobile__navbar {{active}}">
-                <ul>
-                    <li>
-                        <a href="">Home</a>
-                    </li>
-                    <li *ngFor="let category of category" class={{subclick}}>
-                        <a href="javascript::void()" (click)="onClickCategory(category)">
-                            {{category.description.name}}</a>
-                        <ul class="sub-menu {{subclick}}" *ngIf="category.children && category.children.length > 0">
-                            <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
-                        </ul>
-                    </li>
-                    <li *ngFor="let content of content">
-                        <a href="">{{content.name}}</a>
-                    </li>
-                    <li>
-                        <a href="/contact">Contact</a>
-                    </li>
+  <div class="header-wrapper" *ngIf="merchant">
+    <!-- Desktop Menu -->
+    <div class="header-wrapper-desktop d-none d-lg-block">
+      <div class="header header-style-1">
+        <div class="header-main">
+          <div class="header__logo">
+            <span *ngIf="merchant.logo == null">{{merchant.name}}</span>
+            <a href="" *ngIf="merchant.logo != null">
+              <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
+              </custom-img>
+            </a>
+          </div>
+          <nav class="header__navbar">
+            <ul class="navbar-menu">
+              <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                <a routerLink="/home">Home</a>
+              </li>
+              <li *ngFor="let category of category" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                <a (click)="onClickCategory(category)" routerLink="/shop">
+                  {{category.description.name.toUpperCase() }}</a>
+                <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
+                  <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
                 </ul>
-            </nav>
+              </li>
+              <li *ngFor="let content of content" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                <a>{{content.name}}</a>
+              </li>
+
+              <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                <a routerLink="/contact">Contact</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="header__button">
+            <ul>
+              <li class="header-search">
+                <search></search>
+              </li>
+              <button class="shop-cart-button" (click)="toggleSearch()">
+                <!-- <custom-img [src]="'assets/images/icon/header-cart.png'" [alt]="'Cart'"></custom-img> -->
+                <span class="icon-cart"></span>
+                <span class="amount">3</span>
+              </button>
+              <cart [isOpen]="isOpen" #CartComponent></cart>
+            </ul>
+          </div>
         </div>
-        <!-- End Mobile Menu -->
+      </div>
     </div>
+    <!-- End Desktop Menu -->
+
+    <!-- Mobile Menu -->
+    <div class="header-wrapper-mobile d-block d-lg-none">
+      <div class="header-mobile__bar">
+        <div class="header__logo">
+          <span *ngIf="merchant.logo == null">{{merchant.name}}</span>
+          <a href="/home" *ngIf="merchant.logo != null">
+            <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
+            </custom-img>
+          </a>
+        </div>
+        <button class="header-mobile__button" (click)="onClickMenu()">
+          <span class="humburger-box {{active}}">
+            <span class="hamburger__inner"></span>
+          </span>
+        </button>
+      </div>
+      <nav class="header-mobile__navbar {{active}}">
+        <ul>
+          <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+            <a routerLink="/home">Home</a>
+          </li>
+          <li *ngFor="let category of category" class={{subclick}} routerLinkActive="active"
+            routerLinkActiveOptions="{ exact: true }">
+            <a routerLink="/shop" (click)="onClickCategory(category)">
+              {{category.description.name}}</a><span class="icon-right"></span>
+            <ul class="sub-menu {{subclick}}" *ngIf="category.children && category.children.length > 0">
+              <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
+            </ul>
+          </li>
+          <li *ngFor="let content of content" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+            <a>{{content.name}}</a>
+          </li>
+          <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+            <a routerLink="/contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- End Mobile Menu -->
+  </div>
 </header>
 <!-- End Heder -->

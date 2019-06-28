@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
-
+import { CartComponent } from '../cart/cart.component';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
   selector: 'home',
@@ -10,13 +10,17 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private appService: AppService, private cookieService: CookieService,
-    private spinnerService: Ng4LoadingSpinnerService) { }
+  @ViewChild("CartComponent") CartComponent: CartComponent;
+  constructor(
+    private appService: AppService,
+    private cookieService: CookieService,
+    private spinnerService: Ng4LoadingSpinnerService
+  ) { }
   productData: Array<any> = [];
   filterData: Array<any> = [];
   categoryData: Array<any> = [];
   public loading = false;
+  isOpen: boolean;
   sliderItems = [
     {
       title: "title1",
@@ -71,6 +75,8 @@ export class HomeComponent implements OnInit {
       this.appService.putMethod(action, id, param)
         .subscribe(data => {
           this.spinnerService.hide();
+          this.isOpen = true;
+          this.CartComponent.getCart();
         }, error => {
           this.spinnerService.hide();
         });
@@ -80,10 +86,13 @@ export class HomeComponent implements OnInit {
           console.log(data);
           this.cookieService.set('shopizer-cart-id', data.code);
           this.spinnerService.hide();
+          this.isOpen = true;
+          this.CartComponent.getCart();
         }, error => {
           this.spinnerService.hide();
         });
     }
+
 
   }
   filterFeaturedItem(val) {

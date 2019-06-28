@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 
 import { CookieService } from 'ngx-cookie-service';
@@ -28,35 +28,29 @@ import { Action } from '../directive/app.constants';
     ])
   ]
 })
-export class CartComponent implements OnInit {
+export class CartComponent {
 
   private merchant = null;
+  @Input() isOpen: boolean;
+
   constructor(
     private configurationService: ConfigurationService,
     private cookieService: CookieService,
     private appService: AppService,
     public router: Router
-  ) { }
+  ) {
+  }
 
-  isOpen: boolean = false;
   cartData: any;
 
-  toggleSearch() {
-    this.isOpen = !this.isOpen;
-    this.getCart();
-  }
   goShopingCart() {
     this.router.navigate(['/shoppingcart']);
-    this.toggleSearch();
-  }
-  ngOnInit() {
-
   }
   getCart() {
     let action = Action.CART;
     this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
       .subscribe(data => {
-        // console.log(data);
+        console.log(data, '************');
         this.cartData = data;
       }, error => {
       });
