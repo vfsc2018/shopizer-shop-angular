@@ -29,6 +29,7 @@ header {
     left: 0;
     width: 100%;
     z-index: 999;
+
     .shop-cart-button {
         background-color: transparent;
         border: none;
@@ -52,6 +53,7 @@ header {
         }
 
     }
+
     .header-wrapper-desktop {
         .header {
             background-color: #fff;
@@ -324,7 +326,8 @@ header {
             -ms-flex-align: center;
             align-items: center;
             height: 80px;
-            .header__logo{
+
+            .header__logo {
                 width: 100px;
             }
 
@@ -392,33 +395,36 @@ header {
 
 
             -webkit-animation: fade-in-top 0.8s linear reverse both;
-	        animation: fade-in-top 0.8s linear reverse both;
+            animation: fade-in-top 0.8s linear reverse both;
 
             @-webkit-keyframes fade-in-top {
                 0% {
-                  -webkit-transform: translateY(-50px);
-                          transform: translateY(-50px);
-                  opacity: 0;
+                    -webkit-transform: translateY(-50px);
+                    transform: translateY(-50px);
+                    opacity: 0;
                 }
+
                 100% {
-                  -webkit-transform: translateY(0);
-                          transform: translateY(0);
-                  opacity: 1;
+                    -webkit-transform: translateY(0);
+                    transform: translateY(0);
+                    opacity: 1;
                 }
-              }
-              @keyframes fade-in-top {
+            }
+
+            @keyframes fade-in-top {
                 0% {
-                  -webkit-transform: translateY(-50px);
-                          transform: translateY(-50px);
-                  opacity: 0;
+                    -webkit-transform: translateY(-50px);
+                    transform: translateY(-50px);
+                    opacity: 0;
                 }
+
                 100% {
-                  -webkit-transform: translateY(0);
-                          transform: translateY(0);
-                  opacity: 1;
+                    -webkit-transform: translateY(0);
+                    transform: translateY(0);
+                    opacity: 1;
                 }
-              }
-              
+            }
+
 
 
             &>ul {
@@ -506,35 +512,38 @@ header {
 
         .header-mobile__navbar.active {
             display: block;
-            
+
             -webkit-animation: fade-in-top 0.6s ease-in-out both;
-	        animation: fade-in-top 0.6s ease-in-out both;
+            animation: fade-in-top 0.6s ease-in-out both;
 
             @-webkit-keyframes fade-in-top {
                 0% {
-                  -webkit-transform: translateY(-50px);
-                          transform: translateY(-50px);
-                  opacity: 0;
+                    -webkit-transform: translateY(-50px);
+                    transform: translateY(-50px);
+                    opacity: 0;
                 }
+
                 100% {
-                  -webkit-transform: translateY(0);
-                          transform: translateY(0);
-                  opacity: 1;
+                    -webkit-transform: translateY(0);
+                    transform: translateY(0);
+                    opacity: 1;
                 }
-              }
-              @keyframes fade-in-top {
+            }
+
+            @keyframes fade-in-top {
                 0% {
-                  -webkit-transform: translateY(-50px);
-                          transform: translateY(-50px);
-                  opacity: 0;
+                    -webkit-transform: translateY(-50px);
+                    transform: translateY(-50px);
+                    opacity: 0;
                 }
+
                 100% {
-                  -webkit-transform: translateY(0);
-                          transform: translateY(0);
-                  opacity: 1;
+                    -webkit-transform: translateY(0);
+                    transform: translateY(0);
+                    opacity: 1;
                 }
-              }
-              
+            }
+
 
 
 
@@ -550,8 +559,9 @@ header {
                 li {
                     position: relative;
                     border-top: 1px solid #ccc;
-                    span{
-                        float: right; 
+
+                    span {
+                        float: right;
                         padding-top: 15px;
                         color: #484848;
                         font-size: 12px;
@@ -566,11 +576,13 @@ header {
                         li {
                             border-top: 1px solid #ccc;
                         }
-                        .icon-right::before{
+
+                        .icon-right::before {
                             content: "\e902";
                             font-weight: bold;
                             font-size: 12px;
                         }
+
                         &>a {
                             color: #e4c7a2;
 
@@ -692,22 +704,22 @@ header .header-wrapper-mobile.mobile-style-2 .header-mobile__bar .header-mobile_
     background-color: #fff;
 }
 
-@media only screen and (min-width: 1441px) and (max-width: 1502px){
+@media only screen and (min-width: 1441px) and (max-width: 1502px) {
     header {
         .header-wrapper-desktop {
             .header {
-                .header-main {  
-                    .header__logo{
+                .header-main {
+                    .header__logo {
                         width: 110px;
                     }
                 }
             }
         }
-    }    
+    }
 }
 
 
-@media only screen and (min-width: 1200px) and (max-width: 1440px){
+@media only screen and (min-width: 1200px) and (max-width: 1440px) {
     header {
         .header-wrapper-desktop {
             .header {
@@ -717,49 +729,57 @@ header .header-wrapper-mobile.mobile-style-2 .header-mobile__bar .header-mobile_
                             &.navbar-menu {
                                 &>li {
                                     padding: 0 10px;
-                                    a{
+
+                                    a {
                                         font-size: 14px;
                                     }
                                 }
                             }
                         }
                     }
-                    .header__logo{
+
+                    .header__logo {
                         width: 110px;
                     }
                 }
             }
         }
-    }    
+    }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     header {
         .header-wrapper-desktop {
             .header {
-                    .header-main {
-                        .header__navbar { padding-left: 10px;
-                            ul {    padding-top: 14px;
-                                &.navbar-menu {
-                                    &>li {
-                                        padding: 0 10px;
-                                        a{
-                                            line-height: 40px;
-                                            font-size: 14px;
-                                        }
+                .header-main {
+                    .header__navbar {
+                        padding-left: 10px;
+
+                        ul {
+                            padding-top: 14px;
+
+                            &.navbar-menu {
+                                &>li {
+                                    padding: 0 10px;
+
+                                    a {
+                                        line-height: 40px;
+                                        font-size: 14px;
                                     }
                                 }
                             }
                         }
-                        .header__button{
-                            ul{
-                                display: flex;
-                            }
+                    }
+
+                    .header__button {
+                        ul {
+                            display: flex;
                         }
+                    }
+                }
             }
         }
     }
-}
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
