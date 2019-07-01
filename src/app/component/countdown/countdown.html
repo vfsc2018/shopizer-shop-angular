@@ -1,0 +1,6 @@
+<div class="countdown">
+  <div *ngFor="let time of display; let i = index" class="measurements {{time}}">
+    <span class="uk-text-primary"> {{displayNumbers[i]}} {{time}} </span>
+  </div>
+</div>
+<ng-content></ng-content>

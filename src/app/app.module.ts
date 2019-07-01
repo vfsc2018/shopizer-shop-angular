@@ -61,7 +61,7 @@ import { ErrorComponent } from './error/error.component';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
-import { CountDown } from "ng4-date-countdown-timer";
+import { CountDown } from "./component/countdown/countdown";
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
