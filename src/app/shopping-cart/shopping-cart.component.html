@@ -1,11 +1,12 @@
 <div class="shopping-cart">
     <banner [title]="'Shop Cart'"></banner>
+    <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
     <div>
         <div class="container p-t-100 py-tn-30">
             <div class="row m-t-20">
                 <div class="col-md-12">
                     <list-header [data]="header_data"></list-header>
-            
+
                     <list [data]="cartData" (onCrossButtonClick)="removeCartData($event)" (onDownButtonClick)="updateQuantity($event, 0)"
                         (onQtyChange)="updateQuantity($event, '')" (onUpButtonClick)="updateQuantity($event, 1)"
                         [showGrid]="'1'"></list>

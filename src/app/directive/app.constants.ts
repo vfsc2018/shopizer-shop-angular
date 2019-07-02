@@ -20,5 +20,8 @@ export class Action {
     public static REGISTER = 'customer/register/'
     public static CATEGORY = 'category/'
     public static CONFIGURATIONS = 'configurations/'
+    public static PITCH = 'pitch/'
+    public static BOXES = 'boxes/'
+    public static NEWSLETTER = 'newsletter/'
 
 }

@@ -4,8 +4,8 @@ import { Options } from 'ng5-slider';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
-
+import { Router, ActivatedRoute } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
   selector: 'shop',
   templateUrl: './shop.component.html',
@@ -59,36 +59,48 @@ export class ShopComponent implements OnInit {
 
   };
   categoryID: any = '';
-  constructor(private appService: AppService, private cookieService: CookieService, public router: Router) {
-    this.categoryID = localStorage.getItem('category_id') != null ? localStorage.getItem('category_id') : '';
-    this.getProductList();
-    this.getCategory();
+  constructor(
+    private appService: AppService,
+    private cookieService: CookieService,
+    public router: Router,
+    private route: ActivatedRoute,
+    private spinnerService: Ng4LoadingSpinnerService
+  ) {
+    this.route.queryParams.subscribe(params => {
+      // console.log(params.categoryId)
+      if (params.categoryId == undefined) {
+        this.categoryID = '';
+      } else {
+        this.categoryID = params.categoryId;
+      }
+      this.getProductList();
+    })
   }
 
-
   ngOnInit() {
-
+    this.getCategory();
   }
   getCategory() {
     let action = Action.CATEGORY;
     this.appService.getMethod(action)
       .subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.categoriesData = data;
       }, error => {
       });
   }
   getProductList() {
+    this.spinnerService.show();
     let action = Action.PRODUCTS;
-
     let filter = '&category=' + this.categoryID;
-
     this.appService.getMethod(action + '?lang=en&start=0&count=12' + filter)
       .subscribe(data => {
         // console.log(data);
         this.totalRecord = data.totalCount;
         this.productData = data.products;
+        this.spinnerService.hide();
       }, error => {
+        this.spinnerService.hide();
       });
   }
   onHideShowGrid() {
@@ -101,6 +113,7 @@ export class ShopComponent implements OnInit {
     this.getProductList()
   }
   addToCart(result) {
+    this.spinnerService.show();
     let action = Action.CART;
     let param = { "product": result.id, "quantity": 1 }
     if (this.cookieService.get('shopizer-cart-id')) {
@@ -110,6 +123,7 @@ export class ShopComponent implements OnInit {
 
         }, error => {
         });
+      this.spinnerService.hide();
     } else {
       this.appService.postMethod(action, param)
         .subscribe(data => {
@@ -117,10 +131,14 @@ export class ShopComponent implements OnInit {
           this.cookieService.set('shopizer-cart-id', data.code)
         }, error => {
         });
+      this.spinnerService.hide();
     }
   }
   goToDetailsPage(result) {
     this.router.navigate(['/product-detail'], { queryParams: { productId: result.id } });
     // this.router.navigate(['/product-detail'], { param: { productid: result.id } });
+  }
+  public ngOnDestroy() {
+    localStorage.setItem('category_id', '')
   }
 }

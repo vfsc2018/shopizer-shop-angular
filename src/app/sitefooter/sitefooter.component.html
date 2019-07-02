@@ -6,7 +6,13 @@
           <div class="footer-item">
             <div class="footer-item-heading">
               <div class="logo">
-                {{merchant.name}}
+                <span *ngIf="merchant.logo == null">{{merchant.name}}</span>
+                <a href="" *ngIf="merchant.logo != null">
+                  <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
+                  </custom-img>
+                </a>
+
+                <!-- {{merchant.name}} -->
                 <!-- <a href="#">
                   <img
                     src="assets/images/icon/logo_03.png"
@@ -16,12 +22,9 @@
                 </a> -->
               </div>
             </div>
-            <div class="footer-item-content">
-              <p class="m-t-10">
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum is that it has a more-or-less
-                normal.
+            <div class="footer-item-content" *ngIf="pitchContent">
+              <p class="m-t-25" [innerHTML]="pitchContent.boxContent">
+                {{pitchContent.boxContent}}
               </p>
             </div>
           </div>
@@ -64,26 +67,26 @@
               <ul class="footer-latest-post">
                 <li>
                   <div class="post-item">
-                    <a href="">Home</a>
+                    <a href="/">Home</a>
                     <span class="post-time"></span>
                   </div>
                   <div class="post-item" *ngFor="let category of category">
                     <a href="#">{{category.description.name}}</a>
                   </div>
                   <div class="post-item" *ngFor="let content of content">
-                    <a href="#">{{content.name}}</a>
+                    <a href="#" *ngIf="content.displayedInMenu">{{content.name}}</a>
                   </div>
                   <div class="post-item">
-                    <a href="#">Contact Us</a>
+                    <a href="/contact">Contact Us</a>
                   </div>
                   <div class="post-item">
                     <a href="#">{{merchant.defaultLanguage == 'en' ? 'French': 'English'}}</a>
                   </div>
                   <div class="post-item">
-                    <a href="#">Register</a>
+                    <a href="/account">Register</a>
                   </div>
                   <div class="post-item">
-                    <a href="#">Sign In</a>
+                    <a href="/account">Sign In</a>
                   </div>
                 </li>
               </ul>

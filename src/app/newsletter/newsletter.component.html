@@ -1,5 +1,7 @@
 <section class="py-70 bg-signup">
+
   <div class="container">
+    <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
     <div class="row justify-content-end">
       <div class="col-lg-6 col-md-8 col-sm-12">
         <div class="port-title m-t-41">
@@ -13,9 +15,14 @@
           <div class="title-border"></div>
         </div>
         <div class="signup-form">
-          <form>
-            <input type="text" placeholder="Your email address" />
-            <button type="submit">Submit</button>
+          <form #newsletterForm="ngForm" role="form">
+            <input-field type="email" [(ngModel)]="news.email" name="email" placeHolder="Your email address" required
+              #email="ngModel" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z0-9-.]{2,}">
+              <err-required message="Valid email required" [isValid]="email.valid || (email.pristine)">
+              </err-required>
+            </input-field>
+            <!-- <input type="text" /> -->
+            <btn [text]="'Submit'" (onClick)="onNewsLetter()" [isDisabled]="!newsletterForm.form.valid"></btn>
           </form>
           <!-- Social Media  -->
           <nav class="social-media">

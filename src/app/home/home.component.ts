@@ -70,11 +70,12 @@ export class HomeComponent implements OnInit {
       this.appService.putMethod(action, id, param)
         .subscribe(data => {
           this.spinnerService.hide();
-          this.isOpen = true;
-          this.CartComponent.getCart();
+
         }, error => {
           this.spinnerService.hide();
         });
+      this.isOpen = true;
+      this.CartComponent.getCart();
     } else {
       this.appService.postMethod(action, param)
         .subscribe(data => {

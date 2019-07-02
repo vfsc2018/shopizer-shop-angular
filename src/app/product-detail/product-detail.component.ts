@@ -6,6 +6,7 @@ import { ActivatedRoute } from "@angular/router";
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
   selector: 'product-detail',
   templateUrl: './product-detail.component.html',
@@ -59,7 +60,13 @@ export class ProductDetailComponent implements OnInit {
     nav: false
   }
   productId: any;
-  constructor(config: NgbRatingConfig, private route: ActivatedRoute, private appService: AppService, private cookieService: CookieService) {
+  constructor(
+    config: NgbRatingConfig,
+    private route: ActivatedRoute,
+    private appService: AppService,
+    private cookieService: CookieService,
+    private spinnerService: Ng4LoadingSpinnerService
+  ) {
     config.max = 5;
     // config.readonly = true;
     this.route.queryParams.subscribe(params => {
@@ -75,26 +82,28 @@ export class ProductDetailComponent implements OnInit {
     this.getProductDetails()
   }
   getProductDetails() {
+    this.spinnerService.show();
     let action = Action.PRODUCTS;
 
     this.appService.getMethod(action + this.productId + '?lang=en')
       .subscribe(data => {
         console.log(data);
         this.productDetail = data;
-
+        // this.spinnerService.hide();
       }, error => {
+        // this.spinnerService.hide();
       });
     this.getRelatedProduct()
   }
   getRelatedProduct() {
     let action = Action.PRODUCTS;
-
     this.appService.getMethod(action + this.productId + '/related')
       .subscribe(data => {
         console.log(data);
         this.productDetail = data;
-
+        this.spinnerService.hide();
       }, error => {
+        this.spinnerService.hide();
       });
 
   }
@@ -110,21 +119,25 @@ export class ProductDetailComponent implements OnInit {
       });
   }
   addToCart(product) {
+    this.spinnerService.show();
     let action = Action.CART;
     let param = { "product": product.id, "quantity": this.qty, "attributes": [{ "id": 3 }] }
     if (this.cookieService.get('shopizer-cart-id')) {
       let id = this.cookieService.get('shopizer-cart-id');
       this.appService.putMethod(action, id, param)
         .subscribe(data => {
-
+          this.spinnerService.hide();
         }, error => {
+          this.spinnerService.hide();
         });
     } else {
       this.appService.postMethod(action, param)
         .subscribe(data => {
           console.log(data);
-          this.cookieService.set('shopizer-cart-id', data.code)
+          this.cookieService.set('shopizer-cart-id', data.code);
+          this.spinnerService.hide();
         }, error => {
+          this.spinnerService.hide();
         });
     }
   }

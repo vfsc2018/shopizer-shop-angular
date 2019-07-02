@@ -1,0 +1,156 @@
+/deep/ header {
+  display: none;
+}
+
+/deep/ footer {
+  display: none;
+}
+
+.container-fuild {
+  .coming-soon {
+    .coming-time {
+      .coming-time-body {
+        .logo {
+          text-align: -webkit-center;
+
+          /deep/ custom-img {
+            img {
+              width: 30%;
+              max-width: none;
+
+            }
+          }
+        }
+
+        .coming-down {
+          justify-content: center;
+        }
+
+        nav {
+          &.social-media {
+            &.style-2 {
+              li {
+                a {
+                  text-decoration: none;
+
+                  span {
+                    line-height: 2;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        /deep/ countdown {
+          .countdown {
+            div {
+              width: 115px;
+              height: 115px;
+              background-color: #262626;
+              padding: 20px 10px;
+              color: #fff;
+              font-size: 20px;
+              line-height: 30px;
+              margin: 15px 10px 15px 0;
+              font-family: 'Montserrat', 'Lato', sans-serif;
+
+              .measurements-number {
+                font-size: 40px;
+                display: block;
+                margin-bottom: 8px;
+              }
+
+              .measurements-text {
+                font-size: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .coming-image {
+      /deep/ custom-img {
+        img {
+          max-width: none;
+
+        }
+      }
+    }
+
+    .coming-button {
+      padding: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .coming-soon {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #333;
+
+    .coming-time {
+      -webkit-box-flex: 0;
+      -webkit-flex: 0 0 100%;
+      -moz-box-flex: 0;
+      -ms-flex: 0 0 100%;
+      flex: 0 0 100%;
+      padding: 50px 0;
+
+
+      .coming-time-body {
+        .coming-time-title {
+          font-size: 35px;
+        }
+
+
+        /deep/ countdown {
+          .countdown {
+            div {
+              width: 50px !important;
+              height: 45px !important;
+              background-color: #262626;
+              padding: 0px !important;
+              color: #fff;
+              font-size: 20px;
+              line-height: 20px !important;
+              margin: 0 !important;
+              font-family: 'Montserrat', 'Lato', sans-serif;
+              margin: 0 5px !important;
+              padding: 5px !important;
+              font-size: 13px !important;
+              line-height: 1.2 !important;
+
+              .measurements-number {
+                font-size: 20px !important;
+                display: block;
+                margin-bottom: 0px !important;
+              }
+
+              .measurements-text {
+                font-size: 10px !important;
+              }
+            }
+          }
+        }
+
+        .coming-button {
+          margin: 30px auto;
+        }
+      }
+    }
+
+    .coming-image {
+      display: none;
+    }
+  }
+
+}

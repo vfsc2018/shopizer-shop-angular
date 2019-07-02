@@ -1,0 +1,41 @@
+  <div class="container-fuild">
+    <div class="coming-soon">
+      <div class="coming-time">
+        <div class="coming-time-body">
+          <div class="logo">
+            <span *ngIf="merchant.logo == null">{{merchant.name}}</span>
+            <a href="" *ngIf="merchant.logo != null">
+              <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
+              </custom-img>
+            </a>
+          </div>
+          <h2 class="coming-time-title">coming soon</h2>
+
+          <countdown [text]="text" units="Weeks | Days | Hours | Minutes | Seconds" end="July 22, 2019">
+          </countdown>
+          <!-- <a href="#" class="coming-button">
+            contact us
+          </a> -->
+          <btn [text]="'contact us'" [className]="'gold'" class="coming-button"></btn>
+          <nav class="social-media style-2">
+            <ul>
+              <li>
+                <a href="#"><span class="icon-facebook"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="icon-instagram"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="icon-pinterest"></span></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="coming-image">
+        <!-- <img src="images/coming-soon.jpg" alt="Lyrae"> -->
+        <custom-img [src]="'../../assets/images/coming-soon.jpg'" [alt]="'Lyrae'"></custom-img>
+      </div>
+
+    </div>
+  </div>

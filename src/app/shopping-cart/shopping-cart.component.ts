@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
   selector: 'shopping-cart',
   templateUrl: './shopping-cart.component.html',
@@ -16,22 +17,27 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(
     private cookieService: CookieService,
-    private appService: AppService
+    private appService: AppService,
+    private spinnerService: Ng4LoadingSpinnerService
   ) { }
   ngOnInit() {
     this.getCart()
   }
   getCart() {
+    this.spinnerService.show();
     let action = Action.CART;
     this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
       .subscribe(data => {
+        this.spinnerService.hide();
         this.cartData = data.products;
         this.subtotal = data.subtotal;
         this.total = data.displayTotal;
       }, error => {
+        this.spinnerService.hide();
       });
   }
   public updateQuantity(result, flag: any): void {
+    this.spinnerService.show();
     let product;
     let quantity;
     if (flag == 1) {
@@ -52,18 +58,22 @@ export class ShoppingCartComponent implements OnInit {
         this.cartData = data.products;
         this.subtotal = data.subtotal;
         this.total = data.displayTotal;
+        this.spinnerService.hide();
       }, error => {
+        this.spinnerService.hide();
       });
 
   }
   removeCartData(result) {
-    console.log(result)
+    this.spinnerService.show();
     let action = Action.CART;
     let param = { "product": result.id, "quantity": 0 }
     this.appService.putMethod(action, this.cookieService.get('shopizer-cart-id'), param)
       .subscribe(data => {
         this.getCart();
+        this.spinnerService.hide();
       }, error => {
+        this.spinnerService.hide();
       });
   }
   amount(item) {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'error',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./error.component.scss']
 })
 export class ErrorComponent implements OnInit {
-
-  constructor() { }
+  merchant: any;
+  constructor(private cookieService: CookieService) { }
 
   ngOnInit() {
+    this.merchant = JSON.parse(this.cookieService.get('store-data'));
   }
 
 }

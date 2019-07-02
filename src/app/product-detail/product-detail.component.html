@@ -1,5 +1,6 @@
 <banner [title]="'Shop'"></banner>
 <div class="container p-b-90 p-t-100 own-grid">
+  <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
   <div class="row">
     <div class="col-md-12 col-sm-12">
       <div class="product-detail" *ngIf="productDetail">
@@ -75,8 +76,8 @@
               <div *ngFor="let option of productDetail.options; let i = index">
                 <div *ngIf="option.code == 'COLOR'">
                   <div *ngFor=" let color of option.optionValues ; let j=index">
-                    <input type="radio" id="red_{{color.id}}" name="color" value="{{color.name}}"
-                      [checked]="color.defaultValue" (change)="handleChange($event, color, productDetail.id, option)">
+                    <input type="radio" id="red_{{color.id}}" name="color" value="{{color.name}}" [checked]="color.defaultValue"
+                      (change)="handleChange($event, color, productDetail.id, option)">
                     <label for="red_{{color.id}}"><span [style.background-color]="color.name"></span></label>
                   </div>
                 </div>
@@ -245,8 +246,8 @@
                     <form #reviewForm="ngForm" role="form">
                       <div class="row">
                         <div class="col-md-12 plr-15">
-                          <custom-textarea placeHolder="Your Message" [(ngModel)]="review.description"
-                            name="description" required></custom-textarea>
+                          <custom-textarea placeHolder="Your Message" [(ngModel)]="review.description" name="description"
+                            required></custom-textarea>
 
                         </div>
                         <!-- <div class="col-md-6 plr-15">
@@ -258,8 +259,7 @@
                           </input-field>
                         </div> -->
                         <div class="col-md-12 m-t-40">
-                          <btn [text]="'Submit'" (onClick)="onSubmitReview(productDetail.id)"
-                            [isDisabled]="!reviewForm.form.valid"></btn>
+                          <btn [text]="'Submit'" (onClick)="onSubmitReview(productDetail.id)" [isDisabled]="!reviewForm.form.valid"></btn>
                         </div>
                       </div>
                     </form>

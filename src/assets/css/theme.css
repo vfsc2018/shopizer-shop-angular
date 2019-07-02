@@ -35193,9 +35193,9 @@ header .header-wrapper-desktop .header .header-main .header__button ul li {
     display: inline-block;
 }
 
-header .header-wrapper-desktop .header .header-main .header__button ul li:last-child {
+/* header .header-wrapper-desktop .header .header-main .header__button ul li:last-child {
     padding-right: 0;
-}
+} */
 
 header .header-wrapper-desktop .header .header-main .header__button ul li.header-shop-cart .shop-cart-button {
     position: relative;

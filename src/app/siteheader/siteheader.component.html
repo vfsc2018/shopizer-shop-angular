@@ -15,16 +15,16 @@
           <nav class="header__navbar">
             <ul class="navbar-menu">
               <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-                <a routerLink="/home">Home</a>
+                <a routerLink="/">Home</a>
               </li>
               <li *ngFor="let category of category" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-                <a (click)="onClickCategory(category)" routerLink="/shop">
+                <a (click)="onClickCategory(category)">
                   {{category.description.name.toUpperCase() }}</a>
                 <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
                   <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
                 </ul>
               </li>
-              
+
               <ng-container *ngFor="let content of content">
                 <ng-container *ngIf="content.displayedInMenu">
                   <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }"><a>{{content.name}}</a></li>
@@ -73,10 +73,9 @@
       <nav class="header-mobile__navbar {{active}}">
         <ul>
           <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-            <a routerLink="/home">Home</a>
+            <a routerLink="/">Home</a>
           </li>
-          <li *ngFor="let category of category" class={{subclick}} routerLinkActive="active"
-            routerLinkActiveOptions="{ exact: true }">
+          <li *ngFor="let category of category" class={{subclick}} routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
             <a routerLink="/shop" (click)="onClickCategory(category)">
               {{category.description.name}}</a><span class="icon-right"></span>
             <ul class="sub-menu {{subclick}}" *ngIf="category.children && category.children.length > 0">
@@ -84,7 +83,7 @@
             </ul>
           </li>
           <li *ngFor="let content of content" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-            <a>{{content.name}}</a>
+            <a *ngIf="content.displayedInMenu">{{content.name}}</a>
           </li>
           <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
             <a routerLink="/contact">Contact</a>

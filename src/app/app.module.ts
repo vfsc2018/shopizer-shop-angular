@@ -60,6 +60,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ErrorComponent } from './error/error.component';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import { CountDown } from "ng4-date-countdown-timer";
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -74,7 +76,7 @@ export function loadConfigurations(configurationService: ConfigurationService) {
 
 const routes: Routes = [
   {
-    path: "home",
+    path: "",
     component: HomeComponent
   },
   {
@@ -116,6 +118,10 @@ const routes: Routes = [
   {
     path: "blog-detail",
     component: BlogDetailComponent
+  },
+  {
+    path: "coming-soon",
+    component: ComingSoonComponent
   }
 ];
 
@@ -163,7 +169,9 @@ export function createTranslateLoader(http: HttpClient) {
     ContactComponent,
     ForgotPasswordComponent,
     ErrorComponent,
-    BlogDetailComponent
+    BlogDetailComponent,
+    ComingSoonComponent,
+    CountDown
 
   ],
   imports: [
@@ -186,11 +194,9 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     HttpModule,
     Ng5SliderModule,
-
     NgxPaginationModule,
     // FormValidationModule,
     NgxGalleryModule,
-
     CarouselModule,
     Ng4LoadingSpinnerModule
   ],

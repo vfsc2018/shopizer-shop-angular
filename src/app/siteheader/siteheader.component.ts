@@ -23,10 +23,8 @@ export class SiteheaderComponent implements OnInit {
     isOpen: boolean = false;
     constructor(
         private appService: AppService,
-        private cookieService: CookieService, public router: Router
-        // private configurationService: ConfigurationService,
-        // private categoryService: CategoryService,
-        // private contentService: ContentService
+        private cookieService: CookieService,
+        public router: Router
     ) { }
 
     ngOnInit() {
@@ -66,8 +64,9 @@ export class SiteheaderComponent implements OnInit {
     }
     onClickCategory(data) {
         // console.log(data)
-        localStorage.setItem('category_id', data.id);
-        // this.router.navigate(['/shop']);
+        // localStorage.setItem('category_id', data.id);
+
+        this.router.navigate(['/shop'], { queryParams: { categoryId: data.id } });
         this.subclick = this.subclick == '' ? 'active' : ''
     }
     onClickMenu() {
@@ -77,7 +76,6 @@ export class SiteheaderComponent implements OnInit {
         this.active = this.active == '' ? 'active' : ''
     }
     toggleSearch() {
-        console.log('toggleSearch');
         this.isOpen = !this.isOpen;
         this.CartComponent.getCart();
         // this.getCart();

@@ -74,12 +74,12 @@
 
             .col-md-3 {
                 .search {
-                    custom-label {
+                    /deep/ custom-label {
                         .label-heading {
                             h3 {
                                 text-transform: uppercase;
                                 font-weight: 500;
-                                font-size: 12px;
+                                font-size: 18px;
                                 color: #333;
                                 line-height: 1;
                             }
@@ -99,6 +99,18 @@
 
                 .filter {
                     margin-bottom: 50px;
+
+                    /deep/ custom-label {
+                        .label-heading {
+                            h3 {
+                                text-transform: uppercase;
+                                font-weight: 500;
+                                font-size: 18px;
+                                color: #333;
+                                line-height: 1;
+                            }
+                        }
+                    }
 
                     ::ng-deep {
                         .custom-slider {
@@ -189,6 +201,18 @@
 
                 .categories-list {
                     margin-bottom: 50px;
+
+                    /deep/ custom-label {
+                        .label-heading {
+                            h3 {
+                                text-transform: uppercase;
+                                font-weight: 500;
+                                font-size: 18px;
+                                color: #333;
+                                line-height: 1;
+                            }
+                        }
+                    }
                 }
 
                 .shop-color {
@@ -200,9 +224,49 @@
                 .shop-size {
                     margin-bottom: 50px;
 
+                    /deep/ custom-label {
+                        .label-heading {
+                            h3 {
+                                text-transform: uppercase;
+                                font-weight: 500;
+                                font-size: 18px;
+                                color: #333;
+                                line-height: 1;
+                            }
+                        }
+                    }
+
                     categories {
                         ul>li>a {
                             text-transform: uppercase !important;
+                        }
+                    }
+                }
+
+                .shop-color {
+                    /deep/ custom-label {
+                        .label-heading {
+                            h3 {
+                                text-transform: uppercase;
+                                font-weight: 500;
+                                font-size: 18px;
+                                color: #333;
+                                line-height: 1;
+                            }
+                        }
+                    }
+                }
+
+                .best-seller {
+                    /deep/ custom-label {
+                        .label-heading {
+                            h3 {
+                                text-transform: uppercase;
+                                font-weight: 500;
+                                font-size: 18px;
+                                color: #333;
+                                line-height: 1;
+                            }
                         }
                     }
                 }

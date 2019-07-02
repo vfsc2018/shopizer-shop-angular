@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'shopizer';
   constructor(private translate: TranslateService, private router: Router) {
     translate.setDefaultLang('en');
-    this.router.navigate(['/home']);
+    // this.router.navigate(['/home']);
   }
 }
