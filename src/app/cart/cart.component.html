@@ -1,5 +1,8 @@
 <li class="header-shop-cart">
-
+    <button class="shop-cart-button" (click)="toggleSearch()">
+        <span class="icon-cart"></span>
+        <span class="amount" *ngIf="count > 0">{{count}}</span>
+    </button>
     <div [ngClass]="isOpen ? 'shop-cart open' : 'shop-cart'">
         <div *ngIf="cartData">
             <ul class="shop-cart__list">

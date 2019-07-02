@@ -31,9 +31,9 @@
             (onClickCart)="addToCart($event)" (onClickDetail)="goToDetailsPage($event)">
           </product-list>
         </div>
-        <div class="page" *ngIf="productData.length > 0">
+        <!-- <div class="page" *ngIf="productData.length > 0">
           <pagination-controls (pageChange)="page = $event" class="paging"></pagination-controls>
-        </div>
+        </div> -->
         <div *ngIf="productData.length == 0">
           No items in your shopping cart
         </div>

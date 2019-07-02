@@ -164,3 +164,9 @@
         }
     }
 }
+
+/deep/ virtual-scroller {
+    .scrollable-content {
+        position: relative !important;
+    }
+}

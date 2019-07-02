@@ -3,6 +3,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
+
+import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
   selector: 'shopping-cart',
@@ -18,6 +20,7 @@ export class ShoppingCartComponent implements OnInit {
   constructor(
     private cookieService: CookieService,
     private appService: AppService,
+    public router: Router,
     private spinnerService: Ng4LoadingSpinnerService
   ) { }
   ngOnInit() {
@@ -33,6 +36,8 @@ export class ShoppingCartComponent implements OnInit {
         this.subtotal = data.subtotal;
         this.total = data.displayTotal;
       }, error => {
+        this.router.navigate(['/']);
+        this.cookieService.delete('shopizer-cart-id')
         this.spinnerService.hide();
       });
   }
@@ -73,6 +78,7 @@ export class ShoppingCartComponent implements OnInit {
         this.getCart();
         this.spinnerService.hide();
       }, error => {
+        this.getCart();
         this.spinnerService.hide();
       });
   }

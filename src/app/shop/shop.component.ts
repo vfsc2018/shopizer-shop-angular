@@ -117,6 +117,7 @@ export class ShopComponent implements OnInit {
     let action = Action.CART;
     let param = { "product": result.id, "quantity": 1 }
     if (this.cookieService.get('shopizer-cart-id')) {
+
       let id = this.cookieService.get('shopizer-cart-id');
       this.appService.putMethod(action, id, param)
         .subscribe(data => {

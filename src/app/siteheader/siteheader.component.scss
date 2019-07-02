@@ -216,42 +216,45 @@ header {
                             }
 
                             &.header-search {
-                                .search-input {
-                                    position: fixed;
-                                    width: 100%;
-                                    background-color: #fff;
-                                    top: 0;
-                                    right: 0;
-                                    z-index: 998;
-
-                                    input {
-                                        height: 112px;
+                                /deep/ search {
+                                    .search-input {
+                                        position: fixed;
                                         width: 100%;
-                                        padding: 0 150px;
-                                        border: none;
-                                        background-color: #fff;
-                                    }
+                                        background-color: transparent;
+                                        top: 0;
+                                        right: 0;
+                                        z-index: 998;
 
-                                    a {
-                                        position: absolute;
-                                        top: 50%;
-                                        right: 145px;
-                                        -webkit-transform: translateY(-50%);
-                                        -moz-transform: translateY(-50%);
-                                        -ms-transform: translateY(-50%);
-                                        -o-transform: translateY(-50%);
-                                        transform: translateY(-50%);
-                                        height: 12px;
-                                        width: 12px;
-                                        display: block;
-                                        // background: url(../images/icon/close-search.png) no-repeat center;
-                                        -webkit-transition: all 0.35s;
-                                        -o-transition: all 0.35s;
-                                        -moz-transition: all 0.35s;
-                                        transition: all 0.35s;
+                                        input {
+                                            height: 128px !important;
+                                            width: 100%;
+                                            padding: 0 150px;
+                                            border: none;
+                                            background-color: #fff;
+                                            border-bottom: 5px solid #e4c7a2;
+                                        }
 
-                                        &:hover {
-                                            // background: url(../images/icon/close-search-1.png) no-repeat center;
+                                        a {
+                                            position: absolute;
+                                            top: 62px;
+                                            right: 145px;
+                                            -webkit-transform: translateY(-50%);
+                                            -moz-transform: translateY(-50%);
+                                            -ms-transform: translateY(-50%);
+                                            -o-transform: translateY(-50%);
+                                            transform: translateY(-50%);
+                                            height: 12px;
+                                            width: 12px;
+                                            display: block;
+                                            // background: url(../images/icon/close-search.png) no-repeat center;
+                                            -webkit-transition: all 0.35s;
+                                            -o-transition: all 0.35s;
+                                            -moz-transition: all 0.35s;
+                                            transition: all 0.35s;
+
+                                            &:hover {
+                                                // background: url(../images/icon/close-search-1.png) no-repeat center;
+                                            }
                                         }
                                     }
                                 }

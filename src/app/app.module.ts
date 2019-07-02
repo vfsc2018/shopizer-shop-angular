@@ -62,6 +62,8 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { CountDown } from "./component/countdown/countdown";
+import { AutocompleteComponent } from './component/autocomplete/autocomplete.component';
+import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -171,7 +173,8 @@ export function createTranslateLoader(http: HttpClient) {
     ErrorComponent,
     BlogDetailComponent,
     ComingSoonComponent,
-    CountDown
+    CountDown,
+    AutocompleteComponent
 
   ],
   imports: [
@@ -198,7 +201,8 @@ export function createTranslateLoader(http: HttpClient) {
     // FormValidationModule,
     NgxGalleryModule,
     CarouselModule,
-    Ng4LoadingSpinnerModule
+    Ng4LoadingSpinnerModule,
+    VirtualScrollerModule
   ],
   providers: [
     /** load merchant and configurations */

@@ -23,5 +23,7 @@ export class Action {
     public static PITCH = 'pitch/'
     public static BOXES = 'boxes/'
     public static NEWSLETTER = 'newsletter/'
+    public static SEARCH = 'search/'
+    public static AUTOCOMPLETE = 'autocomplete/'
 
 }

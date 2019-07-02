@@ -31,8 +31,9 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 export class CartComponent {
 
   private merchant = null;
-  @Input() isOpen: boolean;
-
+  // @Input() isOpen: boolean;
+  isOpen: boolean = false;
+  count: number = 0;
   constructor(
     private configurationService: ConfigurationService,
     private cookieService: CookieService,
@@ -40,7 +41,7 @@ export class CartComponent {
     public router: Router,
     private spinnerService: Ng4LoadingSpinnerService
   ) {
-    console.log(this.isOpen);
+    this.getCart();
   }
 
   cartData: any;
@@ -54,24 +55,30 @@ export class CartComponent {
     this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
       .subscribe(data => {
         this.cartData = data;
+        this.count = data.products.length;
         this.spinnerService.hide();
       }, error => {
+        this.cartData = '';
+        this.cookieService.delete('shopizer-cart-id');
         this.spinnerService.hide();
       });
   }
   removecartData(result) {
     this.spinnerService.show();
-    let id = this.cookieService.get('shopizer-cart-id');
     let action = Action.CART;
-    let param = id + '/item/' + result.id
-    this.appService.deleteMethod(action, param)
+    let param = { "product": result.id, "quantity": 0 }
+    this.appService.putMethod(action, this.cookieService.get('shopizer-cart-id'), param)
       .subscribe(data => {
-        this.cartData.splice(result.id, 1);
+        this.getCart();
         this.spinnerService.hide();
       }, error => {
+        this.getCart();
         this.spinnerService.hide();
       });
-
+  }
+  toggleSearch() {
+    this.isOpen = !this.isOpen;
+    this.getCart();
   }
 
 }

@@ -1,17 +1,19 @@
-<div class="grid-body row" data-layout="fitRows">
-  <div class="col-lg-{{Large}} col-md-6 col-sm-6" *ngFor="let result of productData; let i = index">
-    <div class="grid-product">
-      <div class="image bg-lightblue">
-        <a href="javascript::void()">
-          <custom-img [src]="result.image.imageUrl" [alt]="'About Us'">
-          </custom-img>
-        </a>
-        <div class="addcart">
-          <a href="javascript::void()" (click)="onClickAddCart(result)">Add to cart</a>
+<virtual-scroller #scroll [items]="result">
+  <div class="grid-body row" data-layout="fitRows">
+    <div class="col-lg-{{Large}} col-md-6 col-sm-6" *ngFor="let result of productData; let i = index">
+      <div class="grid-product">
+        <div class="image bg-lightblue">
+          <a href="javascript::void()">
+            <custom-img [src]="result.image.imageUrl" [alt]="'About Us'">
+            </custom-img>
+          </a>
+          <div class="addcart">
+            <a href="javascript::void()" (click)="onClickAddCart(result)">Add to cart</a>
+          </div>
         </div>
+        <a href="javascript::void()" class="name" (click)="onClickName(result)">{{result.description.name}}</a>
+        <div class="price">${{result.price}}</div>
       </div>
-      <a href="javascript::void()" class="name" (click)="onClickName(result)">{{result.description.name}}</a>
-      <div class="price">${{result.price}}</div>
     </div>
   </div>
-</div>
+</virtual-scroller>

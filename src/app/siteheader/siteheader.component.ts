@@ -3,7 +3,7 @@ import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 
 import { CookieService } from 'ngx-cookie-service';
-import { CartComponent } from '../cart/cart.component';
+// import { CartComponent } from '../cart/cart.component';
 
 import { Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./siteheader.component.scss']
 })
 export class SiteheaderComponent implements OnInit {
-    @ViewChild("CartComponent") CartComponent: CartComponent;
+    // @ViewChild("CartComponent") CartComponent: CartComponent;
 
     merchant = null;
     category: Array<any> = [];
@@ -75,9 +75,9 @@ export class SiteheaderComponent implements OnInit {
     onClicksub() {
         this.active = this.active == '' ? 'active' : ''
     }
-    toggleSearch() {
-        this.isOpen = !this.isOpen;
-        this.CartComponent.getCart();
-        // this.getCart();
-    }
+    // toggleSearch() {
+    //     this.isOpen = !this.isOpen;
+    //     this.CartComponent.getCart();
+    //     // this.getCart();
+    // }
 }

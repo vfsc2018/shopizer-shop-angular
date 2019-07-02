@@ -142,6 +142,7 @@
 
                 &:hover {
                   color: #333;
+                  text-decoration: none;
                 }
               }
             }
@@ -284,15 +285,19 @@
       padding-left: 15px;
 
       .search {
-        custom-label {
+        /deep/ custom-label {
           .label-heading {
             h3 {
               text-transform: uppercase;
               font-weight: 500;
-              font-size: 12px;
+              font-size: 18px;
               color: #333;
               line-height: 1;
             }
+          }
+
+          /deep/ .cart-border {
+            margin-bottom: 0 !important;
           }
         }
 
@@ -305,11 +310,60 @@
 
       .categories-list {
         margin-bottom: 50px;
+
+        /deep/ custom-label {
+          .label-heading {
+            h3 {
+              text-transform: uppercase;
+              font-weight: 500;
+              font-size: 18px;
+              color: #333;
+              line-height: 1;
+            }
+          }
+        }
+      }
+
+      .best-seller {
+        /deep/ custom-label {
+          .label-heading {
+            h3 {
+              text-transform: uppercase;
+              font-weight: 500;
+              font-size: 18px;
+              color: #333;
+              line-height: 1;
+            }
+          }
+        }
       }
 
       .blog-tags {
+        /deep/ custom-label {
+          .label-heading {
+            h3 {
+              text-transform: uppercase;
+              font-weight: 500;
+              font-size: 18px;
+              color: #333;
+              line-height: 1;
+            }
+          }
+
+          /deep/ .cart-border {
+            margin-bottom: 20px !important;
+          }
+        }
+
         .sidebar-item__body {
           margin-top: -10px;
+          margin-right: -7px;
+
+          .side-tag {
+            padding-top: 10px;
+            padding-right: 8px;
+            display: inline-block;
+          }
         }
       }
     }
@@ -370,6 +424,21 @@
         }
       }
 
+    }
+
+    .col-md-3 {
+      .blog-tags {
+        .sidebar-item__body {
+
+          .sidebar-tags {
+            /deep/ btn {
+              .button-class {
+                font-size: 15px !important;
+              }
+            }
+          }
+        }
+      }
     }
 
   }
@@ -435,6 +504,21 @@
         }
       }
 
+    }
+
+    .col-md-3 {
+      .blog-tags {
+        .sidebar-item__body {
+
+          .sidebar-tags {
+            /deep/ btn {
+              .button-class {
+                margin-bottom: 0px;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -74,16 +74,16 @@ export class HomeComponent implements OnInit {
         }, error => {
           this.spinnerService.hide();
         });
-      this.isOpen = true;
-      this.CartComponent.getCart();
+      // this.isOpen = true;
+      this.CartComponent.toggleSearch();
     } else {
       this.appService.postMethod(action, param)
         .subscribe(data => {
           console.log(data);
           this.cookieService.set('shopizer-cart-id', data.code);
           this.spinnerService.hide();
-          this.isOpen = true;
-          this.CartComponent.getCart();
+          // this.isOpen = true;
+          this.CartComponent.toggleSearch();
         }, error => {
           this.spinnerService.hide();
         });
