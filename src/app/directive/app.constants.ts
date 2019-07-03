@@ -25,5 +25,6 @@ export class Action {
     public static NEWSLETTER = 'newsletter/'
     public static SEARCH = 'search/'
     public static AUTOCOMPLETE = 'autocomplete/'
+    public static VARIANTS = 'variants/'
 
 }

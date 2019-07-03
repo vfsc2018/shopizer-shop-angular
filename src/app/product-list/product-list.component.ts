@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
-
+import { IPageInfo } from 'ngx-virtual-scroller';
 @Component({
   selector: 'product-list',
   templateUrl: './product-list.component.html',
@@ -11,6 +11,7 @@ export class ProductListComponent implements OnInit {
   @Input() productData: any[];
   @Output() onClickCart: EventEmitter<any> = new EventEmitter();
   @Output() onClickDetail: EventEmitter<any> = new EventEmitter();
+  @Output() onPagination: EventEmitter<any> = new EventEmitter();
 
   constructor(config: NgbRatingConfig) {
     config.max = 5;
@@ -24,5 +25,9 @@ export class ProductListComponent implements OnInit {
   }
   onClickName(result) {
     this.onClickDetail.emit(result);
+  }
+  fetchMore(event: IPageInfo) {
+    if (event.endIndex !== this.productData.length - 1 || event.endIndex == -1) return;
+    this.onPagination.emit(this.productData.length);
   }
 }

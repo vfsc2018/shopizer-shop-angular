@@ -1,7 +1,7 @@
 <div class="shop-list">
   <div class="shop-list-body">
-    <virtual-scroller #scroll [items]="result">
-      <div class="shop-product" *ngFor="let result of productData ; let i = index">
+    <virtual-scroller #scroll [items]="productData" (vsEnd)="fetchMore($event)" [enableUnequalChildrenSizes]="true">
+      <div class="shop-product" *ngFor="let result of scroll.viewPortItems ; let i = index">
         <div class=" product-image">
           <a href="#">
             <custom-img [src]="result.image.imageUrl" [alt]="'About Us'">
@@ -21,7 +21,6 @@
               <input type="radio" id="red_{{color.id}}" name="color" value="{{color.name}}">
               <label for="red_{{color.id}}"><span [style.background-color]="color.name"></span></label>
             </div>
-            <!-- <span class="color gray"></span> -->
           </div>
           <p class="description" [innerHTML]="result.description.description">{{result.description.description}}</p>
           <div class="product-button">
@@ -33,6 +32,10 @@
           </div>
 
         </div>
+
+      </div>
+      <div class="content">
+        <ng-content></ng-content>
       </div>
     </virtual-scroller>
   </div>

@@ -1,6 +1,6 @@
-<virtual-scroller #scroll [items]="result">
+<virtual-scroller #scroll [items]="productData" (vsEnd)="fetchMore($event)" [enableUnequalChildrenSizes]="true">
   <div class="grid-body row" data-layout="fitRows">
-    <div class="col-lg-{{Large}} col-md-6 col-sm-6" *ngFor="let result of productData; let i = index">
+    <div class="col-lg-{{Large}} col-md-6 col-sm-6" *ngFor="let result of scroll.viewPortItems; let i = index">
       <div class="grid-product">
         <div class="image bg-lightblue">
           <a href="javascript::void()">
@@ -16,4 +16,5 @@
       </div>
     </div>
   </div>
+  <ng-content></ng-content>
 </virtual-scroller>

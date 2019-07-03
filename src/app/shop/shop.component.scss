@@ -5,6 +5,16 @@
             margin-left: -15px;
 
             .col-md-9 {
+                .no-more-data {
+                    color: #ff4c3a;
+                    border: 1px solid #ff4c3a;
+                    padding: 10px;
+                    text-align: center;
+                    width: 19%;
+                    vertical-align: ce;
+                    margin-left: 40%;
+                }
+
                 .shop-list-heading {
                     display: -webkit-box;
                     display: -webkit-flex;
@@ -18,6 +28,8 @@
                         -ms-flex-item-align: start;
                         align-self: flex-start;
                     }
+
+
 
                     .shop-view-layout {
                         margin-left: auto;

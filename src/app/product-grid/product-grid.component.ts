@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+import { IPageInfo } from 'ngx-virtual-scroller';
 @Component({
   selector: 'product-grid',
   templateUrl: './product-grid.component.html',
@@ -12,7 +12,7 @@ export class ProductGridComponent implements OnInit {
   @Input() Hide: any;
   @Output() onClickCart: EventEmitter<any> = new EventEmitter();
   @Output() onClickDetail: EventEmitter<any> = new EventEmitter();
-
+  @Output() onPagination: EventEmitter<any> = new EventEmitter();
   constructor() { }
   ngOnInit() {
   }
@@ -21,5 +21,9 @@ export class ProductGridComponent implements OnInit {
   }
   onClickName(result) {
     this.onClickDetail.emit(result);
+  }
+  fetchMore(event: IPageInfo) {
+    if (event.endIndex !== this.productData.length - 1 || event.endIndex == -1) return;
+    this.onPagination.emit(this.productData.length);
   }
 }

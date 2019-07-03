@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Options } from 'ng5-slider';
 
 import { AppService } from '../directive/app.service';
-import { Action } from '../directive/app.constants';
+import { Action, AppConstants } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -25,6 +25,8 @@ export class ShopComponent implements OnInit {
   productData: Array<any> = [];
   showGrid: Boolean = false;
   show_product: any = 10;
+  skip: any = 0;
+  limit: any = 12;
   page: any = 1;
   totalRecord: Number = 0;
   sellerData: Array<any> = [
@@ -34,22 +36,8 @@ export class ShopComponent implements OnInit {
   ];
 
   categoriesData: Array<any> = [];
-  sizeData: Array<any> = [
-    { 'name': 'xs', 'quantity': 35 },
-    { 'name': 's', 'quantity': 15 },
-    { 'name': 'm', 'quantity': 12 },
-    { 'name': 'l', 'quantity': 15 },
-    { 'name': 'xl', 'quantity': 15 },
-    { 'name': 'xxl', 'quantity': 15 }
-  ];
-  colorData: Array<any> = [
-    { 'color': 'black', 'quantity': 4 },
-    { 'color': 'green', 'quantity': 15 },
-    { 'color': 'pink', 'quantity': 12 },
-    { 'color': 'blue', 'quantity': 6 },
-    { 'color': 'red', 'quantity': 8 },
-    { 'color': 'yellow', 'quantity': 2 }
-  ];
+  sizeData: Array<any> = [];
+  colorData: Array<any> = [];
   minValue: number = 22;
   maxValue: number = 77;
   options: Options = {
@@ -59,6 +47,7 @@ export class ShopComponent implements OnInit {
 
   };
   categoryID: any = '';
+  loadmore: boolean = false;
   constructor(
     private appService: AppService,
     private cookieService: CookieService,
@@ -93,15 +82,19 @@ export class ShopComponent implements OnInit {
     this.spinnerService.show();
     let action = Action.PRODUCTS;
     let filter = '&category=' + this.categoryID;
-    this.appService.getMethod(action + '?lang=en&start=0&count=12' + filter)
+    this.appService.getMethod(action + '?lang=en&start=' + this.skip + '&count=' + this.limit + '' + filter)
       .subscribe(data => {
-        // console.log(data);
         this.totalRecord = data.totalCount;
-        this.productData = data.products;
+        this.productData = this.productData.concat(data.products);
         this.spinnerService.hide();
+        this.loadmore = false;
       }, error => {
+        this.loadmore = false;
         this.spinnerService.hide();
       });
+    if (this.categoryID) {
+      this.getVariants();
+    }
   }
   onHideShowGrid() {
     this.showGrid = !this.showGrid;
@@ -141,5 +134,28 @@ export class ShopComponent implements OnInit {
   }
   public ngOnDestroy() {
     localStorage.setItem('category_id', '')
+  }
+  onRefresh(value) {
+    this.loadmore = true;
+    this.skip = value;
+    this.getProductList();
+  }
+  getVariants() {
+    let action = Action.CATEGORY + this.categoryID + '/' + Action.VARIANTS
+    this.appService.getMethod(action)
+      .subscribe(data => {
+        data.map(variant => {
+          if (variant.name == 'Color') {
+            this.colorData = variant.options;
+          } else if (variant.name == "Size") {
+            this.sizeData = variant.options;
+          }
+        });
+
+        this.spinnerService.hide();
+      }, error => {
+        this.spinnerService.hide();
+      });
+
   }
 }

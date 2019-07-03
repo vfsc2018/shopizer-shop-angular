@@ -28,9 +28,7 @@
                 <btn [text]="'Checkout'" (onClick)="goShopingCart()"></btn>
             </div>
         </div>
-        <div *ngIf="!cartData">
-            No items in your shopping cart
-        </div>
+        <no-data *ngIf="!cartData" [message]="'No items in your shopping cart'"></no-data>
 
     </div>
 </li>

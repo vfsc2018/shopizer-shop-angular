@@ -50,6 +50,7 @@ import { WishListComponent } from './wish-list/wish-list.component';
 import { BestSellerComponent } from './component/best-seller/best-seller.component';
 import { CategoriesComponent } from './component/categories/categories.component';
 import { ShopColorComponent } from './component/shop-color/shop-color.component';
+import { ShopSizeComponent } from './component/shop-size/shop-size.component';
 import { RequiredValidationErrorComponent } from './directive/validation/validation-error.components';
 import { CustomTextareaComponent } from './component/custom-textarea/custom-textarea.component';
 import { CustomSelectComponent } from './component/custom-select/custom-select.component';
@@ -64,6 +65,7 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { CountDown } from "./component/countdown/countdown";
 import { AutocompleteComponent } from './component/autocomplete/autocomplete.component';
 import { VirtualScrollerModule } from 'ngx-virtual-scroller';
+import { NoDataComponent } from './component/no-data/no-data.component';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -174,7 +176,9 @@ export function createTranslateLoader(http: HttpClient) {
     BlogDetailComponent,
     ComingSoonComponent,
     CountDown,
-    AutocompleteComponent
+    AutocompleteComponent,
+    ShopSizeComponent,
+    NoDataComponent
 
   ],
   imports: [

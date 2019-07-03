@@ -166,7 +166,14 @@
 }
 
 /deep/ virtual-scroller {
-    .scrollable-content {
-        position: relative !important;
+    height: 1100px;
+
+    .total-padding {
+        height: 0px !important;
     }
+}
+
+.vertical.selfScroll {
+    overflow-y: unset !important;
+    overflow-x: visible;
 }

@@ -41330,3 +41330,7 @@ button.disabled {
         font-size: 15px;
     }
 }
+
+::-webkit-scrollbar {
+    background-color: transparent;
+}
