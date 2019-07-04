@@ -114,3 +114,17 @@
         }
     }
 }
+
+.modal-backdrop {
+    display: none !important;
+}
+
+.modal-dialog {
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+}
+
+.modal-open {
+    padding-right: 0px !important;
+    overflow: auto !important;
+}

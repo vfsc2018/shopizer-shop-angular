@@ -3,8 +3,10 @@ import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 
 import { CookieService } from 'ngx-cookie-service';
-// import { CartComponent } from '../cart/cart.component';
 
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { CartComponent } from '../cart/cart.component';
+import { DataSharingService } from '../directive/data-sharing.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,12 +22,20 @@ export class SiteheaderComponent implements OnInit {
     content: Array<any> = [];
     active: any;
     subclick: any;
-    isOpen: boolean = false;
+    count: number = 0;
     constructor(
         private appService: AppService,
         private cookieService: CookieService,
-        public router: Router
-    ) { }
+        public router: Router,
+        private modalService: NgbModal,
+        private dataSharingService: DataSharingService
+    ) {
+        this.dataSharingService.count.subscribe(value => {
+            localStorage.setItem('itemCount', JSON.stringify(value))
+            this.count = value;
+        });
+        this.count = JSON.parse(localStorage.getItem('itemCount'));
+    }
 
     ngOnInit() {
         this.getStore();
@@ -34,7 +44,6 @@ export class SiteheaderComponent implements OnInit {
 
     }
     getStore() {
-
         let action = Action.STORE + Action.DEFAULT;
         this.appService.getMethod(action)
             .subscribe(data => {
@@ -75,9 +84,8 @@ export class SiteheaderComponent implements OnInit {
     onClicksub() {
         this.active = this.active == '' ? 'active' : ''
     }
-    // toggleSearch() {
-    //     this.isOpen = !this.isOpen;
-    //     this.CartComponent.getCart();
-    //     // this.getCart();
-    // }
+    toggleSearch() {
+        let modalRef = this.modalService.open(CartComponent);
+        modalRef.componentInstance.isOpen = true;
+    }
 }

@@ -3,6 +3,8 @@ import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
 import { CartComponent } from '../cart/cart.component';
+
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
   selector: 'home',
@@ -10,11 +12,13 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  @ViewChild("CartComponent") CartComponent: CartComponent;
+  // @ViewChild("CartComponent") CartComponent: CartComponent;
   constructor(
     private appService: AppService,
     private cookieService: CookieService,
-    private spinnerService: Ng4LoadingSpinnerService
+    private spinnerService: Ng4LoadingSpinnerService,
+
+    private modalService: NgbModal
   ) { }
   productData: Array<any> = [];
   filterData: Array<any> = [];
@@ -70,20 +74,22 @@ export class HomeComponent implements OnInit {
       this.appService.putMethod(action, id, param)
         .subscribe(data => {
           this.spinnerService.hide();
-
+          let modalRef = this.modalService.open(CartComponent);
+          modalRef.componentInstance.isOpen = true
         }, error => {
           this.spinnerService.hide();
+          let modalRef = this.modalService.open(CartComponent);
+          modalRef.componentInstance.isOpen = true
         });
-      // this.isOpen = true;
-      this.CartComponent.toggleSearch();
+
     } else {
       this.appService.postMethod(action, param)
         .subscribe(data => {
           console.log(data);
           this.cookieService.set('shopizer-cart-id', data.code);
           this.spinnerService.hide();
-          // this.isOpen = true;
-          this.CartComponent.toggleSearch();
+          let modalRef = this.modalService.open(CartComponent);
+          modalRef.componentInstance.isOpen = true;
         }, error => {
           this.spinnerService.hide();
         });

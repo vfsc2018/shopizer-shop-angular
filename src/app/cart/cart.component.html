@@ -1,34 +1,34 @@
-<li class="header-shop-cart">
+<!-- <li class="header-shop-cart">
     <button class="shop-cart-button" (click)="toggleSearch()">
         <span class="icon-cart"></span>
         <span class="amount" *ngIf="count > 0">{{count}}</span>
     </button>
-    <div [ngClass]="isOpen ? 'shop-cart open' : 'shop-cart'">
-        <div *ngIf="cartData">
-            <ul class="shop-cart__list">
-                <li @item class="item" *ngFor="let result of cartData.products; let i = index">
-                    <div class="item-image">
-                        <custom-img [src]="result.images[0].imageUrl" [alt]="'Item 1'"></custom-img>
-                    </div>
-                    <div class="item-detail">
-                        <p class="name">{{result.description.name}}</p>
-                        <p class="price">${{result.price}}</p>
-                        <p class="amount">x{{result.quantity}}</p>
-                    </div>
-                    <span class="icon-close" (click)="removecartData(result)"></span>
-                </li>
-            </ul>
-            <div class="checkout m-t-26">
-                <p>Subtotal
-                    <span class="sub-total">${{cartData.subtotal}}</span>
-                </p>
-                <p>Total
-                    <span class="total">{{cartData.displayTotal}}</span>
-                </p>
-                <btn [text]="'Checkout'" (onClick)="goShopingCart()"></btn>
-            </div>
+</li> -->
+<div [ngClass]="isOpen ? 'shop-cart open' : 'shop-cart'">
+    <div *ngIf="cartData">
+        <ul class="shop-cart__list">
+            <li @item class="item" *ngFor="let result of cartData.products; let i = index">
+                <div class="item-image">
+                    <custom-img [src]="result.images[0].imageUrl" [alt]="'Item 1'"></custom-img>
+                </div>
+                <div class="item-detail">
+                    <p class="name">{{result.description.name}}</p>
+                    <p class="price">${{result.price}}</p>
+                    <p class="amount">x{{result.quantity}}</p>
+                </div>
+                <span class="icon-close" (click)="removecartData(result)"></span>
+            </li>
+        </ul>
+        <div class="checkout m-t-26">
+            <p>Subtotal
+                <span class="sub-total">${{cartData.subtotal}}</span>
+            </p>
+            <p>Total
+                <span class="total">{{cartData.displayTotal}}</span>
+            </p>
+            <btn [text]="'Checkout'" (onClick)="goShopingCart()"></btn>
         </div>
-        <no-data *ngIf="!cartData" [message]="'No items in your shopping cart'"></no-data>
-
     </div>
-</li>
+    <no-data *ngIf="!cartData" [message]="'No items in your shopping cart'"></no-data>
+
+</div>

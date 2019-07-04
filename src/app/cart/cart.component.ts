@@ -7,10 +7,12 @@ import { ConfigurationService } from '../services/configuration/configuration.se
 import { IfStmt } from '@angular/compiler';
 import { trigger, style, animate, transition, } from '@angular/animations';
 
+import { DataSharingService } from '../directive/data-sharing.service';
 import { Router } from '@angular/router';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 @Component({
   selector: 'cart',
   templateUrl: './cart.component.html',
@@ -31,16 +33,18 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 export class CartComponent {
 
   private merchant = null;
-  // @Input() isOpen: boolean;
-  isOpen: boolean = false;
-  count: number = 0;
+  @Input() isOpen: boolean;
+  // isOpen: boolean = false;
+  // count: number = 0;
   constructor(
     private configurationService: ConfigurationService,
     private cookieService: CookieService,
     private appService: AppService,
     public router: Router,
-    private spinnerService: Ng4LoadingSpinnerService
+    private spinnerService: Ng4LoadingSpinnerService,
+    private dataSharingService: DataSharingService
   ) {
+    console.log('fffdsf');
     this.getCart();
   }
 
@@ -55,10 +59,11 @@ export class CartComponent {
     this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
       .subscribe(data => {
         this.cartData = data;
-        this.count = data.products.length;
+        this.dataSharingService.count.next(data.quantity);
         this.spinnerService.hide();
       }, error => {
         this.cartData = '';
+        this.dataSharingService.count.next(0);
         this.cookieService.delete('shopizer-cart-id');
         this.spinnerService.hide();
       });
@@ -76,9 +81,9 @@ export class CartComponent {
         this.spinnerService.hide();
       });
   }
-  toggleSearch() {
-    this.isOpen = !this.isOpen;
-    this.getCart();
-  }
+  // toggleSearch() {
+  //   this.isOpen = !this.isOpen;
+  //   this.getCart();
+  // }
 
 }

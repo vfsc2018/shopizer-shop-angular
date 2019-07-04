@@ -41,8 +41,12 @@
               <li class="header-search">
                 <search></search>
               </li>
-
-              <cart></cart>
+              <li class="header-shop-cart">
+                <button class="shop-cart-button" (click)="toggleSearch()">
+                  <span class="icon-cart"></span>
+                  <span class="amount">{{count}}</span>
+                </button>
+              </li>
             </ul>
           </div>
         </div>

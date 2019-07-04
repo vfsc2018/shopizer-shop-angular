@@ -13,6 +13,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AgmCoreModule } from '@agm/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from './directive/app.service';
+import { DataSharingService } from './directive/data-sharing.service';
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxGalleryModule } from 'ngx-gallery';
@@ -179,7 +180,9 @@ export function createTranslateLoader(http: HttpClient) {
     AutocompleteComponent,
     ShopSizeComponent,
     NoDataComponent
-
+  ],
+  entryComponents: [
+    CartComponent
   ],
   imports: [
     NgbModule,
@@ -220,7 +223,8 @@ export function createTranslateLoader(http: HttpClient) {
     CategoryService,
     TranslateModule,
     AppService,
-    CookieService
+    CookieService,
+    DataSharingService
   ],
   bootstrap: [AppComponent]
 })

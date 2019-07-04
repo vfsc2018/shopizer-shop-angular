@@ -10,6 +10,7 @@ export class ProductGridComponent implements OnInit {
   @Input() productData: any[];
   @Input() Large: any;
   @Input() Hide: any;
+  @Input() withScroll: string;
   @Output() onClickCart: EventEmitter<any> = new EventEmitter();
   @Output() onClickDetail: EventEmitter<any> = new EventEmitter();
   @Output() onPagination: EventEmitter<any> = new EventEmitter();
