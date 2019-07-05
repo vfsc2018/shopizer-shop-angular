@@ -89,5 +89,8 @@ export class ShoppingCartComponent implements OnInit {
   sum(prev, next) {
     return prev + next;
   }
+  onCheckOut() {
+    this.router.navigate(['/checkout']);
+  }
 
 }

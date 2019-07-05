@@ -128,3 +128,16 @@
     padding-right: 0px !important;
     overflow: auto !important;
 }
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: inherit !important;
+    z-index: 1;
+    width: 30%;
+    display: none;
+    overflow: hidden;
+    outline: 0;
+}

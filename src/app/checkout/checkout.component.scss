@@ -1,4 +1,12 @@
 .checkout {
+    .container {
+        .col-md-6 {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+    }
+
+
     .address-class {
         margin-bottom: -15px;
     }
@@ -14,15 +22,35 @@
         }
 
         .checkout-payment {
-            color: #666 !important;
+            /deep/ custom-label {
+                .label-heading {
+                    h3 {
+                        font-size: 18px;
+                        color: #666;
+                        text-transform: uppercase;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            .simple-text {
+                color: #999;
+                font-size: 14px;
+            }
+
         }
 
         .checkout-paypal {
-            label {
-                font-size: 18px;
-                color: #666;
-                text-transform: uppercase;
-                margin-bottom: 0;
+            /deep/ custom-label {
+                .label-heading {
+                    h3 {
+                        padding-top: 50%;
+                        font-size: 18px;
+                        color: #666;
+                        text-transform: uppercase;
+                        margin-bottom: 0;
+                    }
+                }
             }
         }
 

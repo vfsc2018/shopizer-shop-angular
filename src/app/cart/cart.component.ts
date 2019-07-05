@@ -34,8 +34,6 @@ export class CartComponent {
 
   private merchant = null;
   @Input() isOpen: boolean;
-  // isOpen: boolean = false;
-  // count: number = 0;
   constructor(
     private configurationService: ConfigurationService,
     private cookieService: CookieService,
@@ -44,7 +42,6 @@ export class CartComponent {
     private spinnerService: Ng4LoadingSpinnerService,
     private dataSharingService: DataSharingService
   ) {
-    console.log('fffdsf');
     this.getCart();
   }
 
@@ -59,14 +56,26 @@ export class CartComponent {
     this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
       .subscribe(data => {
         this.cartData = data;
-        this.dataSharingService.count.next(data.quantity);
+        this.refreshCount(data.quantity);
+        this.addCartLocal(data.products);
         this.spinnerService.hide();
       }, error => {
         this.cartData = '';
-        this.dataSharingService.count.next(0);
+        this.refreshCount(0);
         this.cookieService.delete('shopizer-cart-id');
         this.spinnerService.hide();
       });
+  }
+  addCartLocal(data) {
+    let localCart = [];
+    data.map((value) => {
+      localCart.push({ 'id': value.id, 'quantity': value.quantity })
+    });
+    this.cookieService.set('localCart', JSON.stringify(localCart));
+  }
+  refreshCount(value) {
+    this.dataSharingService.count.next(value);
+    localStorage.setItem('itemCount', JSON.stringify(value))
   }
   removecartData(result) {
     this.spinnerService.show();
@@ -74,6 +83,10 @@ export class CartComponent {
     let param = { "product": result.id, "quantity": 0 }
     this.appService.putMethod(action, this.cookieService.get('shopizer-cart-id'), param)
       .subscribe(data => {
+        let cartData = JSON.parse(this.cookieService.get('localCart'));
+        let index = cartData.findIndex(order => order.id === result.id);
+        cartData.splice(index, 1);
+        this.cookieService.set('localCart', JSON.stringify(cartData));
         this.getCart();
         this.spinnerService.hide();
       }, error => {

@@ -26,5 +26,6 @@ export class Action {
     public static SEARCH = 'search/'
     public static AUTOCOMPLETE = 'autocomplete/'
     public static VARIANTS = 'variants/'
+    public static PAYMENT = 'payment/'
 
 }

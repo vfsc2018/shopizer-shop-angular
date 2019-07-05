@@ -14,46 +14,49 @@
             <div class="col-md-6">
                 <div class="au-form-body p-b-0">
                     <custom-label [label]="'Billing Details'" [className]="'cart-border'"></custom-label>
-                    <form>
+                    <form #checkoutForm="ngForm" role="form">
                         <div class="row">
                             <div class="col-sm-6">
-                                <input-field type="text" label="First Name" labelAfter="true" name="password"
-                                    placeHolder="" bottom="24">
+                                <input-field type="text" label="First Name" labelAfter="true" [(ngModel)]="checkout.firstname"
+                                    name="firstname" placeHolder="" bottom="24">
                                 </input-field>
                             </div>
                             <div class="col-sm-6">
-                                <input-field type="txt" label="Last Name" labelAfter="true" name="password" placeHolder=""
-                                    bottom="24">
+                                <input-field type="txt" label="Last Name" labelAfter="true" [(ngModel)]="checkout.lastname"
+                                    name="lastname" placeHolder="" bottom="24">
                                 </input-field>
                             </div>
                         </div>
-                        <input-field type="text" label="Company Name" name="password" placeHolder="" bottom="24">
+                        <input-field type="text" label="Company Name" [(ngModel)]="checkout.companyName" name="companyName"
+                            placeHolder="" bottom="24">
                         </input-field>
                         <div class='address-class'>
-                            <input-field type="text" label="Address" labelAfter="true" name="password" placeHolder="Street address">
+                            <input-field type="text" label="Address" labelAfter="true" [(ngModel)]="checkout.address"
+                                name="address" placeHolder="Street address">
                             </input-field>
                         </div>
 
-                        <input-field type="text" label="" name="password" placeHolder="Apartment, suite, unit etc. (optional)"
+                        <input-field type="text" label="" [(ngModel)]="checkout.address1" name="address1" placeHolder="Apartment, suite, unit etc. (optional)"
                             bottom="24">
                         </input-field>
-                        <input-field type="text" label="Town/City" name="password" placeHolder="" labelAfter="true"
-                            bottom="24">
+                        <input-field type="text" label="Town/City" [(ngModel)]="checkout.city" name="city" placeHolder=""
+                            labelAfter="true" bottom="24">
                         </input-field>
-                        <custom-select label="Country" labelAfter="true" bottom="24">
+                        <custom-select label="Country" labelAfter="true" bottom="24" [(ngModel)]="checkout.country"
+                            name="country" [data]="countyData">
                         </custom-select>
-                        <input-field type="text" label="Postcode / Zip" name="password" placeHolder="" labelAfter="true"
-                            bottom="24">
+                        <input-field type="text" label="Postcode / Zip" [(ngModel)]="checkout.postcode" name="postcode"
+                            placeHolder="" labelAfter="true" bottom="24">
                         </input-field>
                         <div class="row">
                             <div class="col-sm-6">
-                                <input-field type="text" label="Phone" labelAfter="true" name="password" placeHolder=""
-                                    bottom="24">
+                                <input-field type="text" label="Phone" labelAfter="true" [(ngModel)]="checkout.phone"
+                                    name="phone" placeHolder="" bottom="24">
                                 </input-field>
                             </div>
                             <div class="col-sm-6">
-                                <input-field type="text" label="Email Address" labelAfter="true" name="password"
-                                    placeHolder="" bottom="24">
+                                <input-field type="text" label="Email Address" labelAfter="true" [(ngModel)]="checkout.email"
+                                    name="email" placeHolder="" bottom="24">
                                 </input-field>
                             </div>
                         </div>
@@ -65,11 +68,11 @@
                 </div>
                 <div class="au-form-body">
                     <custom-label [label]="'Additional Information'" [className]="'cart-border'"></custom-label>
-                    <custom-textarea label="Order notes" name="password" placeHolder=""></custom-textarea>
+                    <custom-textarea label="Order notes" [(ngModel)]="checkout.note" name="note" placeHolder=""></custom-textarea>
                 </div>
 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" *ngIf="summeryOrder">
                 <div class="au-form-body">
                     <h2 class="au-form-title form-title-border m-b-37">YOUR ORDER</h2>
                     <table class="checkout-bill">
@@ -84,11 +87,11 @@
                             </tr>
                             <tr class="sub-total">
                                 <td>Subtotal</td>
-                                <td>$44</td>
+                                <td>{{summeryOrder.subTotal}}</td>
                             </tr>
                             <tr class="total">
                                 <td>Total</td>
-                                <td>$44</td>
+                                <td>{{summeryOrder.total}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -96,11 +99,12 @@
                         <div class="checkout-payment m-b-16">
                             <!-- <label></label> -->
                             <custom-label [label]="'Check payment'"></custom-label>
-                            <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store
+                            <p class="simple-text">Please send a check to Store Name, Store Street, Store Town, Store
+                                State / County, Store
                                 Postcode.
                             </p>
                         </div>
-                        <div class="checkout-paypal m-t-43">
+                        <div class="checkout-paypal m-t-16">
                             <!-- //<label>Paypal</label> -->
                             <custom-label [label]="'Paypal'"></custom-label>
                             <!-- <img src="images/icon/paypal.png" alt="paypal"> -->
@@ -108,7 +112,7 @@
                             <a href="#">What is paypal?</a>
                         </div>
                         <!-- <button >poceed to paypal</button> -->
-                        <btn [text]="'proceed to paypal'" class="process-button m-t-50 float-right"></btn>
+                        <btn [text]="'proceed to paypal'" class="process-button m-t-50 float-right" (onClick)="onPayment()"></btn>
                     </form>
                 </div>
 

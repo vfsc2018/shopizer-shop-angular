@@ -3,7 +3,7 @@ import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
 import { CartComponent } from '../cart/cart.component';
-
+import { DataSharingService } from '../directive/data-sharing.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
     private appService: AppService,
     private cookieService: CookieService,
     private spinnerService: Ng4LoadingSpinnerService,
+    private dataSharingService: DataSharingService,
 
     private modalService: NgbModal
   ) { }
@@ -68,34 +69,47 @@ export class HomeComponent implements OnInit {
   addCart(result) {
     this.spinnerService.show();
     let action = Action.CART;
-    let param = { "product": result.id, "quantity": 1 }
+
     if (this.cookieService.get('shopizer-cart-id')) {
+      let cartData = JSON.parse(this.cookieService.get('localCart'));
+      let index = cartData.findIndex(order => order.id === result.id);
+      let param = { "product": result.id, "quantity": index == -1 ? 1 : cartData[index].quantity + 1 }
       let id = this.cookieService.get('shopizer-cart-id');
       this.appService.putMethod(action, id, param)
         .subscribe(data => {
           this.spinnerService.hide();
-          let modalRef = this.modalService.open(CartComponent);
-          modalRef.componentInstance.isOpen = true
+          this.showMiniCart();
         }, error => {
           this.spinnerService.hide();
-          let modalRef = this.modalService.open(CartComponent);
-          modalRef.componentInstance.isOpen = true
+          this.showMiniCart();
         });
 
     } else {
+      let param = { "product": result.id, "quantity": 1 }
       this.appService.postMethod(action, param)
         .subscribe(data => {
           console.log(data);
           this.cookieService.set('shopizer-cart-id', data.code);
           this.spinnerService.hide();
-          let modalRef = this.modalService.open(CartComponent);
-          modalRef.componentInstance.isOpen = true;
+          this.showMiniCart();
         }, error => {
           this.spinnerService.hide();
         });
     }
 
 
+  }
+  showMiniCart() {
+    if (this.dataSharingService.modelRef.getValue()) {
+      this.dataSharingService.modelRef.getValue().close()
+      let modalRef = this.modalService.open(CartComponent);
+      modalRef.componentInstance.isOpen = true;
+      this.dataSharingService.modelRef.next(modalRef);
+    } else {
+      let modalRef = this.modalService.open(CartComponent);
+      modalRef.componentInstance.isOpen = true;
+      this.dataSharingService.modelRef.next(modalRef);
+    }
   }
   filterFeaturedItem(val) {
     console.log(val);

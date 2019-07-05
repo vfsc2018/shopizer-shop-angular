@@ -4,4 +4,5 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class DataSharingService {
     public count: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+    public modelRef: BehaviorSubject<any> = new BehaviorSubject<any>('');
 }

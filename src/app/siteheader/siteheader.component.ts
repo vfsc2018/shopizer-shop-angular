@@ -31,7 +31,6 @@ export class SiteheaderComponent implements OnInit {
         private dataSharingService: DataSharingService
     ) {
         this.dataSharingService.count.subscribe(value => {
-            localStorage.setItem('itemCount', JSON.stringify(value))
             this.count = value;
         });
         this.count = JSON.parse(localStorage.getItem('itemCount'));
@@ -85,7 +84,16 @@ export class SiteheaderComponent implements OnInit {
         this.active = this.active == '' ? 'active' : ''
     }
     toggleSearch() {
-        let modalRef = this.modalService.open(CartComponent);
-        modalRef.componentInstance.isOpen = true;
+        if (this.dataSharingService.modelRef.getValue()) {
+            this.dataSharingService.modelRef.getValue().close()
+            let modalRef = this.modalService.open(CartComponent);
+            modalRef.componentInstance.isOpen = true;
+            this.dataSharingService.modelRef.next(modalRef);
+        } else {
+            let modalRef = this.modalService.open(CartComponent);
+            modalRef.componentInstance.isOpen = true;
+            this.dataSharingService.modelRef.next(modalRef);
+        }
+
     }
 }
