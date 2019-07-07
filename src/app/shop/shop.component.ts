@@ -29,11 +29,11 @@ export class ShopComponent implements OnInit {
   limit: any = 12;
   page: any = 1;
   totalRecord: Number = 0;
-  //sellerData: Array<any> = [
-  //  { 'name': 'Crackle Plates', 'price': 22.99 },
-  //  { 'name': 'floor lamp', 'price': 48.05 },
-  //  { 'name': 'wooden fan', 'price': 25.54 }
-  //];
+  sellerData: Array<any> = [
+    { 'name': 'Crackle Plates', 'price': 22.99 },
+    { 'name': 'floor lamp', 'price': 48.05 },
+    { 'name': 'wooden fan', 'price': 25.54 }
+  ];
 
   categoriesData: Array<any> = [];
   sizeData: Array<any> = [];
