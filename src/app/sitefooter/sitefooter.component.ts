@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
+import { SafeHtml } from '../shared/utility/safe-html'
 
 @Component({
   selector: 'sitefooter',

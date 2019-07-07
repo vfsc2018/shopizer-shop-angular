@@ -12,16 +12,16 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-  itemData = [
-    { itemName: 'Ignacio Chairs', price: '39.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-    { itemName: 'Diamond Lamp', price: '23.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-    { itemName: 'High Table', price: '15.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-    { itemName: 'Pendant Shade', price: '20.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-    { itemName: 'Aslesha Basket', price: '27.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-    { itemName: 'Driva Table Lamp', price: '56.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-    { itemName: 'Hanging Sphere', price: '18.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-    { itemName: 'Portable Speaker', price: '42.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' }
-  ]
+  //itemData = [
+  //  { itemName: 'Ignacio Chairs', price: '39.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
+  //  { itemName: 'Diamond Lamp', price: '23.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
+  //  { itemName: 'High Table', price: '15.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
+  //  { itemName: 'Pendant Shade', price: '20.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
+  //  { itemName: 'Aslesha Basket', price: '27.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
+  //  { itemName: 'Driva Table Lamp', price: '56.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
+  //  { itemName: 'Hanging Sphere', price: '18.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
+  //  { itemName: 'Portable Speaker', price: '42.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' }
+  //]
   productData: Array<any> = [];
   showGrid: Boolean = false;
   show_product: any = 10;
@@ -29,11 +29,11 @@ export class ShopComponent implements OnInit {
   limit: any = 12;
   page: any = 1;
   totalRecord: Number = 0;
-  sellerData: Array<any> = [
-    { 'name': 'Crackle Plates', 'price': 22.99 },
-    { 'name': 'floor lamp', 'price': 48.05 },
-    { 'name': 'wooden fan', 'price': 25.54 }
-  ];
+  //sellerData: Array<any> = [
+  //  { 'name': 'Crackle Plates', 'price': 22.99 },
+  //  { 'name': 'floor lamp', 'price': 48.05 },
+  //  { 'name': 'wooden fan', 'price': 25.54 }
+  //];
 
   categoriesData: Array<any> = [];
   sizeData: Array<any> = [];
@@ -54,14 +54,17 @@ export class ShopComponent implements OnInit {
     public router: Router,
     private route: ActivatedRoute,
     private spinnerService: Ng4LoadingSpinnerService
-  ) {
-    this.route.queryParams.subscribe(params => {
-      // console.log(params.categoryId)
-      if (params.categoryId == undefined) {
-        this.categoryID = '';
-      } else {
-        this.categoryID = params.categoryId;
-      }
+  ) 
+  {
+    //console.log('Get category object' + this.router.getCurrentNavigation().extras.state.category.id);
+    this.route.paramMap.subscribe(
+        params => {
+        //console.log(params.get('id'))
+        //if (params.categoryId == undefined) {
+        //  this.categoryID = '';
+        //} else {
+        //  this.categoryID = params.categoryId;
+       //}
       this.getProductList();
     })
   }

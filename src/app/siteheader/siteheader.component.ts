@@ -65,16 +65,14 @@ export class SiteheaderComponent implements OnInit {
         let action = Action.CONTENT + Action.PAGES + '?' + Action.STORE + '=' + Action.DEFAULT;
         this.appService.getMethod(action)
             .subscribe(data => {
-                // console.log(data)
                 this.content = data;
             }, error => {
             });
     }
-    onClickCategory(data) {
-        // console.log(data)
-        // localStorage.setItem('category_id', data.id);
+    onClickCategory(category) {
+        console.log(category)
+        this.router.navigate(['/category/' + category.description.friendlyUrl], { state: { category: category } });
 
-        this.router.navigate(['/shop'], { queryParams: { categoryId: data.id } });
         this.subclick = this.subclick == '' ? 'active' : ''
     }
     onClickMenu() {

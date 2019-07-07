@@ -67,6 +67,7 @@ import { CountDown } from "./component/countdown/countdown";
 import { AutocompleteComponent } from './component/autocomplete/autocomplete.component';
 import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 import { NoDataComponent } from './component/no-data/no-data.component';
+import { SafeHtml } from './shared/utility/safe-html';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -101,6 +102,10 @@ const routes: Routes = [
     component: AccountComponent
   },
   {
+    path: "category/:id",
+    component: ShopComponent
+  },
+  {
     path: "shop",
     component: ShopComponent
   },
@@ -132,7 +137,6 @@ const routes: Routes = [
 
 
 export function createTranslateLoader(http: HttpClient) {
-
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 @NgModule({
@@ -179,7 +183,8 @@ export function createTranslateLoader(http: HttpClient) {
     CountDown,
     AutocompleteComponent,
     ShopSizeComponent,
-    NoDataComponent
+    NoDataComponent,
+    SafeHtml
   ],
   entryComponents: [
     CartComponent

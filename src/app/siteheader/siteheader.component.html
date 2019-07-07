@@ -18,16 +18,15 @@
                 <a routerLink="/">Home</a>
               </li>
               <li *ngFor="let category of category" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-                <a (click)="onClickCategory(category)">
+                <a (click)="onClickCategory(category)" [routerLink]="'/category/' + category.description.friendlyUrl">
                   {{category.description.name.toUpperCase() }}</a>
                 <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
                   <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
                 </ul>
               </li>
-
               <ng-container *ngFor="let content of content">
                 <ng-container *ngIf="content.displayedInMenu">
-                  <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }"><a>{{content.name}}</a></li>
+                  <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }"><a [routerLink]="'/content/' + content.slug">{{content.name}}</a></li>
                 </ng-container>
               </ng-container>
 
@@ -44,7 +43,7 @@
               <li class="header-shop-cart">
                 <button class="shop-cart-button" (click)="toggleSearch()">
                   <span class="icon-cart"></span>
-                  <span class="amount">{{count}}</span>
+                  <span *ngIf="count > 0" class="amount">{{count}}</span>
                 </button>
               </li>
             </ul>

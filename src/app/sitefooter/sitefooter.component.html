@@ -11,19 +11,10 @@
                   <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
                   </custom-img>
                 </a>
-
-                <!-- {{merchant.name}} -->
-                <!-- <a href="#">
-                  <img
-                    src="assets/images/icon/logo_03.png"
-                    alt="Lyrae"
-                    title="Lyrae"
-                  />
-                </a> -->
               </div>
             </div>
             <div class="footer-item-content" *ngIf="pitchContent">
-              <p class="m-t-25" [innerHTML]="pitchContent.boxContent"></p>
+              <p class="m-t-10" [innerHTML]="pitchContent.boxContent  | safeHtml"></p>
             </div>
           </div>
           <div class="footer-item">
