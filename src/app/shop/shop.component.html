@@ -8,13 +8,13 @@
       <div class="col-md-9">
         <div class="shop-list-heading">
           <div class="number-product" *ngIf="productData.length > 0">
-            Showing
+            {{ 'Showing' | translate }}
             <span>{{show_product}}</span> -
             <span>{{page}}</span> of
-            <span>{{totalRecord}}</span> results
+            <span>{{totalRecord}}</span> {{ 'results' | translate }}
           </div>
           <div class="shop-view-layout">
-            <span>Show</span>
+            <span>{{ 'Show' | translate }}</span>
             <span id="layout_grid" class="icon-grid" (click)="onHideShowGrid()">
             </span>
             <span id="layout_list" class="icon-list" (click)="onHideShowGrid()">
@@ -23,23 +23,18 @@
         </div>
         <div class="grid" *ngIf="showGrid == false">
           <product-grid [Large]="'4'" [productData]="productData | paginate: { itemsPerPage: show_product, currentPage: page }"
-            (onClickCart)="addToCart($event)" (onClickDetail)="goToDetailsPage($event)">
-            <div *ngIf="loadmore" class="no-more-data">Loading...</div>
-            <div class="no-more-data" *ngIf="totalRecord == productData.length && productData.length > 0">No More Data</div>
-            <no-data *ngIf="productData.length == 0" [message]="'No items in your shopping cart'"></no-data>
+            (onClickCart)="addToCart($event)" (onClickDetail)="goToDetailsPage($event)" (onPagination)="onRefresh($event)">
           </product-grid>
-
         </div>
 
         <div class="shop-list" *ngIf="showGrid == true">
           <product-list [productData]="productData | paginate: { itemsPerPage: show_product, currentPage: page }"
             (onClickCart)="addToCart($event)" (onClickDetail)="goToDetailsPage($event)" (onPagination)="onRefresh($event)">
-            <div *ngIf="loadmore" class="no-more-data">Loading...</div>
-            <div class="no-more-data" *ngIf="totalRecord == productData.length && productData.length > 0">No More Data</div>
-            <no-data *ngIf="productData.length == 0" [message]="'No items in your shopping cart'"></no-data>
           </product-list>
         </div>
-
+        <div *ngIf="loadmore" class="no-more-data">Loading...</div>
+        <div class="no-more-data" *ngIf="totalRecord == productData.length && productData.length > 0">No More Data</div>
+        <no-data *ngIf="productData.length == 0" [message]="'No items in your shopping cart'"></no-data>
 
       </div>
       <div class="col-md-3">

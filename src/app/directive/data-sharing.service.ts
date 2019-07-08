@@ -5,4 +5,5 @@ import { BehaviorSubject } from 'rxjs';
 export class DataSharingService {
     public count: BehaviorSubject<number> = new BehaviorSubject<number>(0);
     public modelRef: BehaviorSubject<any> = new BehaviorSubject<any>('');
+    public categoryData: BehaviorSubject<any> = new BehaviorSubject<any>('');
 }

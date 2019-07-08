@@ -32611,7 +32611,7 @@ nav.social-media.style-2 li a.google-plus {
 }
 
 .port-title .title {
-    font-size: 35px;
+    /* font-size: 35px; */
     text-transform: uppercase;
     margin-bottom: 1rem;
 }
@@ -33415,7 +33415,7 @@ nav.social-media.style-2 li a.google-plus {
     border: none;
 }
 
-.signup-form form button {
+/* .signup-form form button {
     width: 114px;
     background-color: #333;
     border: none;
@@ -33428,7 +33428,7 @@ nav.social-media.style-2 li a.google-plus {
 
 .signup-form form button:hover {
     color: #e4c7a2;
-}
+} */
 
 .signup-form nav.social-media {
     margin-bottom: 28px;

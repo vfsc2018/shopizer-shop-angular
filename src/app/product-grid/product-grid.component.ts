@@ -1,12 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IPageInfo } from 'ngx-virtual-scroller';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 @Component({
   selector: 'product-grid',
   templateUrl: './product-grid.component.html',
   styleUrls: ['./product-grid.component.scss']
 })
 export class ProductGridComponent implements OnInit {
-
+  @HostListener('scroll', ['$event'])
   @Input() productData: any[];
   @Input() Large: any;
   @Input() Hide: any;
@@ -17,14 +16,17 @@ export class ProductGridComponent implements OnInit {
   constructor() { }
   ngOnInit() {
   }
+
   onClickAddCart(result) {
     this.onClickCart.emit(result);
   }
   onClickName(result) {
     this.onClickDetail.emit(result);
   }
-  fetchMore(event: IPageInfo) {
-    if (event.endIndex !== this.productData.length - 1 || event.endIndex == -1) return;
-    this.onPagination.emit(this.productData.length);
+  onScroll(event: any) {
+    if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
+      console.log("End");
+      this.onPagination.emit(this.productData.length);
+    }
   }
 }

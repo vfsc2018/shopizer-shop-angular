@@ -15,23 +15,24 @@
           <nav class="header__navbar">
             <ul class="navbar-menu">
               <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-                <a routerLink="/">Home</a>
+                <a routerLink="/">{{'Home' | translate}}</a>
               </li>
               <li *ngFor="let category of category" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
                 <a (click)="onClickCategory(category)" [routerLink]="'/category/' + category.description.friendlyUrl">
-                  {{category.description.name.toUpperCase() }}</a>
+                  {{category.description.name | translate}}</a>
                 <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
                   <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
                 </ul>
               </li>
               <ng-container *ngFor="let content of content">
                 <ng-container *ngIf="content.displayedInMenu">
-                  <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }"><a [routerLink]="'/content/' + content.slug">{{content.name}}</a></li>
+                  <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                    <a [routerLink]="'/content/' + content.slug">{{content.name | translate}}</a></li>
                 </ng-container>
               </ng-container>
 
               <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-                <a routerLink="/contact">Contact</a>
+                <a routerLink="/contact">{{ 'Contact' | translate }}</a>
               </li>
             </ul>
           </nav>
@@ -72,20 +73,20 @@
       <nav class="header-mobile__navbar {{active}}">
         <ul>
           <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-            <a routerLink="/">Home</a>
+            <a routerLink="/"> {{ 'Home' | translate }}</a>
           </li>
           <li *ngFor="let category of category" class={{subclick}} routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-            <a routerLink="/shop" (click)="onClickCategory(category)">
-              {{category.description.name}}</a><span class="icon-right"></span>
+            <a (click)="onClickCategory(category)" [routerLink]="'/category/' + category.description.friendlyUrl">
+              {{category.description.name | translate}}</a><span class="icon-right"></span>
             <ul class="sub-menu {{subclick}}" *ngIf="category.children && category.children.length > 0">
               <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
             </ul>
           </li>
           <li *ngFor="let content of content" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-            <a *ngIf="content.displayedInMenu">{{content.name}}</a>
+            <a *ngIf="content.displayedInMenu" [routerLink]="'/content/' + content.slug">{{content.name | translate }}</a>
           </li>
           <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-            <a routerLink="/contact">Contact</a>
+            <a routerLink="/contact">{{ 'Contact' | translate }}</a>
           </li>
         </ul>
       </nav>

@@ -30,7 +30,8 @@
               "src/styles.scss",
               "src/assets/css/fontawesome.css",
               "src/assets/css/theme.css",
-              "src/assets/css/boostrap/app.scss"
+              "src/assets/css/boostrap/app.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true

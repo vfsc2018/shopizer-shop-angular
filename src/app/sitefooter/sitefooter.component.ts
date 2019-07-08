@@ -3,6 +3,7 @@ import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
 import { SafeHtml } from '../shared/utility/safe-html'
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'sitefooter',
@@ -15,8 +16,11 @@ export class SitefooterComponent implements OnInit {
   category: any;
   content: any;
   pitchContent: any;
-  constructor(private appService: AppService, private cookieService: CookieService) {
+  lan: any;
+  constructor(private appService: AppService, private cookieService: CookieService, private translate: TranslateService) {
     this.getStore();
+    this.lan = localStorage.getItem('langulage');
+    console.log(this.lan)
   }
 
   ngOnInit() {
@@ -65,6 +69,15 @@ export class SitefooterComponent implements OnInit {
   getYear(date) {
     // console.log(date);
     return new Date(date).getFullYear();
+  }
+  changeLang(language: string, lan) {
+    if (localStorage.getItem('langulage') == 'en') {
+      localStorage.setItem('langulage', 'fr');
+      this.translate.use('fr');
+    } else {
+      localStorage.setItem('langulage', 'en');
+      this.translate.use('en');
+    }
   }
 
 }

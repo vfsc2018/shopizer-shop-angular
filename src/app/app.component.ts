@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+// import { TranslateService } from '@ngx-translate/core';
 import { Router } from "@angular/router";
 @Component({
   selector: 'app-root',
@@ -8,8 +8,8 @@ import { Router } from "@angular/router";
 })
 export class AppComponent {
   title = 'shopizer';
-  constructor(private translate: TranslateService, private router: Router) {
-    translate.setDefaultLang('en');
+  constructor(private router: Router) {
+    // translate.setDefaultLang('en');
     // this.router.navigate(['/home']);
   }
 }

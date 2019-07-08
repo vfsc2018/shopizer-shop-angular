@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 
+import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -28,7 +29,8 @@ export class SiteheaderComponent implements OnInit {
         private cookieService: CookieService,
         public router: Router,
         private modalService: NgbModal,
-        private dataSharingService: DataSharingService
+        private dataSharingService: DataSharingService,
+        private translate: TranslateService
     ) {
         this.dataSharingService.count.subscribe(value => {
             this.count = value;
@@ -47,6 +49,13 @@ export class SiteheaderComponent implements OnInit {
         this.appService.getMethod(action)
             .subscribe(data => {
                 this.merchant = data;
+                if (localStorage.getItem('langulage')) {
+                    this.translate.setDefaultLang(localStorage.getItem('langulage'));
+                } else {
+                    localStorage.setItem('langulage', data.defaultLanguage);
+                    this.translate.setDefaultLang(data.defaultLanguage);
+                }
+
                 this.cookieService.set('store-data', JSON.stringify(data))
             }, error => {
             });
@@ -70,8 +79,9 @@ export class SiteheaderComponent implements OnInit {
             });
     }
     onClickCategory(category) {
-        console.log(category)
-        this.router.navigate(['/category/' + category.description.friendlyUrl], { state: { category: category } });
+        // console.log(category)
+        this.dataSharingService.categoryData.next(category);
+        this.router.navigate(['/category/' + category.description.friendlyUrl]);
 
         this.subclick = this.subclick == '' ? 'active' : ''
     }

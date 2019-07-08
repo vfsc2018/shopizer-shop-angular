@@ -1,6 +1,6 @@
 <!-- <virtual-scroller #scroll *ngIf="withScroll == 'true'" [items]="productData" (vsEnd)="fetchMore($event)" -->
 <!-- [enableUnequalChildrenSizes]="true"> -->
-<div class="grid-body row" data-layout="fitRows">
+<div class="grid-body row" data-layout="fitRows" (scroll)="onScroll($event)">
   <div class="col-lg-{{Large}} col-md-6 col-sm-6" *ngFor="let result of productData; let i = index">
     <div class="grid-product">
       <div class="image bg-lightblue">
@@ -9,7 +9,7 @@
           </custom-img>
         </a>
         <div class="addcart">
-          <a href="javascript::void()" (click)="onClickAddCart(result)">Add to cart</a>
+          <a href="javascript::void()" (click)="onClickAddCart(result)">{{ 'Add to cart' | translate}}</a>
         </div>
       </div>
       <a href="javascript::void()" class="name" (click)="onClickName(result)">{{result.description.name}}</a>
@@ -17,5 +17,4 @@
     </div>
   </div>
 </div>
-<ng-content></ng-content>
 <!-- </virtual-scroller> -->

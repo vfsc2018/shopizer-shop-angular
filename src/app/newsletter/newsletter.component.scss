@@ -1,76 +1,76 @@
 .signup-form {
-  form {
-    margin: 70px 0 50px 0;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
+    form {
+        margin: 70px 0 50px 0;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
 
 
-    /deep/ input-field {
-      width: -webkit-fill-available;
+        /deep/ input-field {
+            width: -webkit-fill-available;
 
-      .custom-input {
-        label {
-          display: unset;
-        }
+            .custom-input {
+                label {
+                    display: unset;
+                }
 
-        input {
-          -webkit-box-flex: 1;
-          -webkit-flex: 1;
-          -moz-box-flex: 1;
-          -ms-flex: 1;
-          flex: 1;
-          height: 54px;
-          padding: 0 20px;
-          font-size: 12px;
-          line-height: 54px;
-          color: #999;
-          border: none;
-        }
-      }
-
-    }
-
-    /deep/ btn {
-      button {
-        width: 114px;
-        background-color: #333;
-        border: none;
-        color: #fff;
-        font-size: 15px;
-        text-transform: uppercase;
-        font-weight: 600;
-        cursor: pointer;
-        height: 54px;
-
-        &:hover {
-          color: #e4c7a2;
-        }
-      }
-    }
-  }
-
-  nav {
-    &.social-media {
-      margin-bottom: 28px;
-
-      ul {
-        line-height: 1;
-
-        li {
-          a {
-            background-color: #e4c7a2;
-            border: none;
-
-            &:hover {
-              background-color: #333;
-              color: #e4c7a2;
+                input {
+                    -webkit-box-flex: 1;
+                    -webkit-flex: 1;
+                    -moz-box-flex: 1;
+                    -ms-flex: 1;
+                    flex: 1;
+                    height: 54px;
+                    padding: 0 20px;
+                    font-size: 12px;
+                    line-height: 54px;
+                    color: #999;
+                    border: none;
+                }
             }
-          }
+
         }
-      }
+
+        /deep/ btn {
+            button {
+                // width: 114px;
+                background-color: #333;
+                border: none;
+                color: #fff;
+                font-size: 15px;
+                text-transform: uppercase;
+                font-weight: 600;
+                cursor: pointer;
+                height: 54px;
+
+                &:hover {
+                    color: #e4c7a2;
+                }
+            }
+        }
     }
-  }
+
+    nav {
+        &.social-media {
+            margin-bottom: 28px;
+
+            ul {
+                line-height: 1;
+
+                li {
+                    a {
+                        background-color: #e4c7a2;
+                        border: none;
+
+                        &:hover {
+                            background-color: #333;
+                            color: #e4c7a2;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

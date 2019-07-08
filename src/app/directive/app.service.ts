@@ -46,11 +46,11 @@ export class AppService {
         return body
     }
     private handleErrorObservable(error: Response | any) {
-        // console.error(error.status);
+
         return Observable.throw(error.message || error);
     }
     private handleErrorPromise(error: Response | any) {
-        // console.error(error.message || error);
+        console.error(error);
         return Promise.reject(error.message || error);
     }
 } 

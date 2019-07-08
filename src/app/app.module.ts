@@ -65,9 +65,10 @@ import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { CountDown } from "./component/countdown/countdown";
 import { AutocompleteComponent } from './component/autocomplete/autocomplete.component';
-import { VirtualScrollerModule } from 'ngx-virtual-scroller';
+
 import { NoDataComponent } from './component/no-data/no-data.component';
 import { SafeHtml } from './shared/utility/safe-html';
+import { ToastrModule } from 'ngx-toastr';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -207,14 +208,16 @@ export function createTranslateLoader(http: HttpClient) {
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC2tK2itcy8Pfykl2X2rcyOpoJcBDl-5pU'
     }),
+    ToastrModule.forRoot({
+      progressBar: true
+    }),
     HttpModule,
     Ng5SliderModule,
     NgxPaginationModule,
     // FormValidationModule,
     NgxGalleryModule,
     CarouselModule,
-    Ng4LoadingSpinnerModule,
-    VirtualScrollerModule
+    Ng4LoadingSpinnerModule
   ],
   providers: [
     /** load merchant and configurations */
