@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Options } from 'ng5-slider';
 
 import { AppService } from '../directive/app.service';
+import { Helper } from '../directive/helper';
 import { Action, AppConstants } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-
-import { CartComponent } from '../cart/cart.component';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DataSharingService } from '../directive/data-sharing.service';
 @Component({
   selector: 'shop',
@@ -59,9 +57,7 @@ export class ShopComponent implements OnInit {
     private route: ActivatedRoute,
     private spinnerService: Ng4LoadingSpinnerService,
     private dataSharingService: DataSharingService,
-
-
-    private modalService: NgbModal
+    private Helper: Helper
   ) {
     this.dataSharingService.categoryData.subscribe(value => {
       console.log(value);
@@ -144,25 +140,15 @@ export class ShopComponent implements OnInit {
       let param = { "product": result.id, "quantity": 1 }
       this.appService.postMethod(action, param)
         .subscribe(data => {
-          // console.log(data);
+          this.cookieService.set('shopizer-cart-id', data.code);
           this.showMiniCart();
-          this.cookieService.set('shopizer-cart-id', data.code)
         }, error => {
         });
       this.spinnerService.hide();
     }
   }
   showMiniCart() {
-    if (this.dataSharingService.modelRef.getValue()) {
-      this.dataSharingService.modelRef.getValue().close()
-      let modalRef = this.modalService.open(CartComponent);
-      modalRef.componentInstance.isOpen = true;
-      this.dataSharingService.modelRef.next(modalRef);
-    } else {
-      let modalRef = this.modalService.open(CartComponent);
-      modalRef.componentInstance.isOpen = true;
-      this.dataSharingService.modelRef.next(modalRef);
-    }
+    this.Helper.showMiniCart();
   }
   goToDetailsPage(result) {
     this.router.navigate(['/product-detail'], { queryParams: { productId: result.id } });

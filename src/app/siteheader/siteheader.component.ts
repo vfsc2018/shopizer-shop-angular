@@ -4,9 +4,7 @@ import { Action } from '../directive/app.constants';
 
 import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
-
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { CartComponent } from '../cart/cart.component';
+import { Helper } from '../directive/helper';
 import { DataSharingService } from '../directive/data-sharing.service';
 import { Router } from '@angular/router';
 
@@ -28,7 +26,7 @@ export class SiteheaderComponent implements OnInit {
         private appService: AppService,
         private cookieService: CookieService,
         public router: Router,
-        private modalService: NgbModal,
+        private Helper: Helper,
         private dataSharingService: DataSharingService,
         private translate: TranslateService
     ) {
@@ -92,16 +90,6 @@ export class SiteheaderComponent implements OnInit {
         this.active = this.active == '' ? 'active' : ''
     }
     toggleSearch() {
-        if (this.dataSharingService.modelRef.getValue()) {
-            this.dataSharingService.modelRef.getValue().close()
-            let modalRef = this.modalService.open(CartComponent);
-            modalRef.componentInstance.isOpen = true;
-            this.dataSharingService.modelRef.next(modalRef);
-        } else {
-            let modalRef = this.modalService.open(CartComponent);
-            modalRef.componentInstance.isOpen = true;
-            this.dataSharingService.modelRef.next(modalRef);
-        }
-
+        this.Helper.showMiniCart();
     }
 }

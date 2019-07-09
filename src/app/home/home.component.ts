@@ -2,10 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
-import { CartComponent } from '../cart/cart.component';
-import { DataSharingService } from '../directive/data-sharing.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Helper } from '../directive/helper';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -17,9 +15,7 @@ export class HomeComponent implements OnInit {
     private appService: AppService,
     private cookieService: CookieService,
     private spinnerService: Ng4LoadingSpinnerService,
-    private dataSharingService: DataSharingService,
-
-    private modalService: NgbModal
+    private Helper: Helper
   ) { }
   productData: Array<any> = [];
   filterData: Array<any> = [];
@@ -100,19 +96,9 @@ export class HomeComponent implements OnInit {
 
   }
   showMiniCart() {
-    if (this.dataSharingService.modelRef.getValue()) {
-      this.dataSharingService.modelRef.getValue().close()
-      let modalRef = this.modalService.open(CartComponent);
-      modalRef.componentInstance.isOpen = true;
-      this.dataSharingService.modelRef.next(modalRef);
-    } else {
-      let modalRef = this.modalService.open(CartComponent);
-      modalRef.componentInstance.isOpen = true;
-      this.dataSharingService.modelRef.next(modalRef);
-    }
+    this.Helper.showMiniCart();
   }
   filterFeaturedItem(val) {
-    console.log(val);
     if (val != '') {
       this.filterData = [];
       this.productData.map(item => {

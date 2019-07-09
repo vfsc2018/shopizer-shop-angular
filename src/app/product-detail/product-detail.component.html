@@ -5,66 +5,8 @@
     <div class="col-md-12 col-sm-12">
       <div class="product-detail" *ngIf="productDetail">
         <div class="shop-product p-t-25">
-          <div class="slide100-01" id="slide100-01">
-            <div class="main-wrap-pic">
-              <div class="main-frame">
-                <div class="wrap-main-pic">
-                  <div class="main-pic">
-                    <img src="../assets/images/pro-detail-01.jpg" alt="image">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="wrap-thumb-100 d-flex justify-content-between p-t-10">
-              <div class="wrap-arrow-slide-100 s-full ab-t-l trans-04">
-                <span class="my-arrow back prev-slide-100">
-                  <img src="../assets/images/icon/pro-left-black.png" alt="Prev">
-                </span>
-                <span class="my-arrow next next-slide-100">
-                  <img src="../assets/images/icon/pro-right-black.png" alt="Next">
-                </span>
-              </div>
-              <div class="thum-100">
-                <div class="sub-frame sub-1">
-                  <div class="wrap-main-pic">
-                    <div class="main-pic">
-                      <img src="../assets/images/pro-detail-thumb-01.jpg" alt="image">
-                    </div>
-                  </div>
-                  <div class="btn-sub-frame"></div>
-                </div>
-              </div>
-              <div class="thum-100">
-                <div class="sub-frame sub-2">
-                  <div class="wrap-main-pic">
-                    <div class="main-pic">
-                      <img src="../assets/images/pro-detail-thumb-02.jpg" alt="image">
-                    </div>
-                  </div>
-                  <div class="btn-sub-frame"></div>
-                </div>
-              </div>
-              <div class="thum-100">
-                <div class="sub-frame sub-3">
-                  <div class="wrap-main-pic">
-                    <div class="main-pic">
-                      <img src="../assets/images/pro-detail-thumb-03.jpg" alt="image">
-                    </div>
-                  </div>
-                  <div class="btn-sub-frame"></div>
-                </div>
-              </div>
-              <div class="thum-100">
-                <div class="sub-frame sub-4">
-                  <div class="wrap-main-pic">
-                    <div class="main-pic">
-                      <img src="../assets/images/pro-detail-thumb-04.jpg" alt="image">
-                    </div>
-                  </div>
-                  <div class="btn-sub-frame"></div>
-                </div>
-              </div>
-            </div>
+          <div class="slide100-01" id="slide100-01" *ngIf="galleryImages.length > 0">
+            <img-slider [galleryImages]="galleryImages"></img-slider>
           </div>
           <div class="product-body">
             <div class="first">
@@ -79,7 +21,9 @@
                     <input type="radio" id="red_{{color.id}}" name="color" value="{{color.name}}" [checked]="color.defaultValue"
                       (change)="handleChange($event, color, productDetail.id, option)">
                     <label for="red_{{color.id}}"><span [style.background-color]="color.name"></span></label>
+
                   </div>
+
                 </div>
               </div>
             </div>

@@ -20,10 +20,10 @@
             </li>
         </ul>
         <div class="checkout m-t-26">
-            <p>Subtotal
+            <p> {{ 'subtotal' | translate}}
                 <span class="sub-total">${{cartData.subtotal}}</span>
             </p>
-            <p>Total
+            <p>{{ 'total' | translate}}
                 <span class="total">{{cartData.displayTotal}}</span>
             </p>
             <btn [text]="'Checkout'" (onClick)="goShopingCart()"></btn>

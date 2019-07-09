@@ -7,6 +7,7 @@ import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Helper } from '../directive/helper';
 @Component({
   selector: 'product-detail',
   templateUrl: './product-detail.component.html',
@@ -60,12 +61,14 @@ export class ProductDetailComponent implements OnInit {
     nav: false
   }
   productId: any;
+  galleryImages: Array<any> = [];
   constructor(
     config: NgbRatingConfig,
     private route: ActivatedRoute,
     private appService: AppService,
     private cookieService: CookieService,
-    private spinnerService: Ng4LoadingSpinnerService
+    private spinnerService: Ng4LoadingSpinnerService,
+    private Helper: Helper
   ) {
     config.max = 5;
     // config.readonly = true;
@@ -87,11 +90,11 @@ export class ProductDetailComponent implements OnInit {
 
     this.appService.getMethod(action + this.productId + '?lang=en')
       .subscribe(data => {
-        console.log(data);
+        data.images.map((image) => {
+          this.galleryImages.push({ 'small': image.imageUrl, 'medium': image.imageUrl, 'big': image.imageUrl })
+        })
         this.productDetail = data;
-        // this.spinnerService.hide();
       }, error => {
-        // this.spinnerService.hide();
       });
     this.getRelatedProduct()
   }
@@ -127,6 +130,7 @@ export class ProductDetailComponent implements OnInit {
       this.appService.putMethod(action, id, param)
         .subscribe(data => {
           this.spinnerService.hide();
+          this.Helper.showMiniCart();
         }, error => {
           this.spinnerService.hide();
         });
@@ -136,6 +140,7 @@ export class ProductDetailComponent implements OnInit {
           console.log(data);
           this.cookieService.set('shopizer-cart-id', data.code);
           this.spinnerService.hide();
+          this.Helper.showMiniCart();
         }, error => {
           this.spinnerService.hide();
         });

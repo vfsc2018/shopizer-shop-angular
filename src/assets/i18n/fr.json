@@ -25,6 +25,12 @@
     "Showing": "Montrant",
     "results": "résultats",
     "Show": "Spectacle",
+    "search": "chercher",
+    "Filter by price": "Filtrer par prix",
+    "categories": "catégories",
+    "shop by color": "magasiner par couleur",
+    "shop by size": "magasiner par taille",
+    "best seller": "Best-seller",
     "**************************************************************************": "Button text",
     "Clear Shopping Cart": "Effacer le panier",
     "Update Continue Shopping": "Mettre à jour Continuer les achats",
@@ -33,6 +39,9 @@
     "Shop now": "Achetez maintenant",
     "Add to cart": "Ajouter au panier",
     "Submit": "Soumettre",
+    "No More Data": "Pas plus de données",
+    "Checkout": "Check-out",
+    "Proceed to Checkout": "Passer à la caisse",
     "***************************************************************************": "placeholder",
     "Enter your coupon code if you have one": "Entrez votre code de coupon si vous en avez un.",
     "Your email address": "Votre adresse email",
@@ -42,5 +51,8 @@
     "Password": "Mot de passe",
     "Email address": "Adresse électronique",
     "Remember me": "Souviens-toi de moi",
-    "Lost your password": "Mot de passe perdu?"
+    "Lost your password": "Mot de passe perdu?",
+    "****************************************************************************": "No Data",
+    "No items in your shopping cart": "Aucun article dans votre panier",
+    "No Product Found": "Aucun produit trouvé"
 }

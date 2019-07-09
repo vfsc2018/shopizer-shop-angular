@@ -14,6 +14,7 @@ import { AgmCoreModule } from '@agm/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from './directive/app.service';
 import { DataSharingService } from './directive/data-sharing.service';
+import { Helper } from './directive/helper';
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxGalleryModule } from 'ngx-gallery';
@@ -36,6 +37,7 @@ import { NewsletterComponent } from "./newsletter/newsletter.component";
 import { SitefooterComponent } from "./sitefooter/sitefooter.component";
 import { CheckoutComponent } from "./checkout/checkout.component";
 import { HomeComponent } from "./home/home.component";
+
 import { BannerComponent } from './component/banner/banner.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ButtonComponent } from './component/button/button.component';
@@ -232,7 +234,8 @@ export function createTranslateLoader(http: HttpClient) {
     TranslateModule,
     AppService,
     CookieService,
-    DataSharingService
+    DataSharingService,
+    Helper
   ],
   bootstrap: [AppComponent]
 })

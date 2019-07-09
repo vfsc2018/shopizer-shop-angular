@@ -9,7 +9,7 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 export class ImgSliderComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   // galleryImages: NgxGalleryImage[];
-  @Input() galleryImages: NgxGalleryImage[];
+  @Input() galleryImages: any = [];
   constructor() { }
 
   ngOnInit(): void {
@@ -25,32 +25,44 @@ export class ImgSliderComponent implements OnInit {
         width: '620px',
         height: '630px',
         thumbnailsColumns: 4,
+        preview: false,
+        thumbnails: this.galleryImages.length > 1 ? true : false,
         imageAnimation: NgxGalleryAnimation.Slide
       }
     ];
 
-    this.galleryImages = [
-      {
-        small: 'https://s3.ca-central-1.amazonaws.com/shopizer-demo/products/DEFAULT/xyzabc/SMALL/kit-shelve-2i.jpg',
-        medium: 'https://s3.ca-central-1.amazonaws.com/shopizer-demo/products/DEFAULT/xyzabc/SMALL/kit-shelve-2i.jpg',
-        big: 'https://s3.ca-central-1.amazonaws.com/shopizer-demo/products/DEFAULT/xyzabc/SMALL/kit-shelve-2i.jpg'
-      },
-      {
-        small: 'https://cdn.pixabay.com/photo/2016/11/19/17/25/furniture-1840463__340.jpg',
-        medium: 'https://cdn.pixabay.com/photo/2016/11/19/17/25/furniture-1840463__340.jpg',
-        big: 'https://cdn.pixabay.com/photo/2016/11/19/17/25/furniture-1840463__340.jpg'
-      },
-      {
-        small: 'https://cdn.pixabay.com/photo/2015/06/08/15/21/furniture-802031__340.jpg',
-        medium: 'https://cdn.pixabay.com/photo/2015/06/08/15/21/furniture-802031__340.jpg',
-        big: 'https://cdn.pixabay.com/photo/2015/06/08/15/21/furniture-802031__340.jpg'
-      },
-      {
-        small: 'https://cdn.pixabay.com/photo/2017/03/28/12/11/chairs-2181960__340.jpg',
-        medium: 'https://cdn.pixabay.com/photo/2017/03/28/12/11/chairs-2181960__340.jpg',
-        big: 'https://cdn.pixabay.com/photo/2017/03/28/12/11/chairs-2181960__340.jpg'
-      }
-    ];
+    // this.galleryImages = [
+    //   {
+    //     small: 'https://s3.ca-central-1.amazonaws.com/shopizer-demo/products/DEFAULT/xyzabc/SMALL/kit-shelve-2i.jpg',
+    //     medium: 'https://s3.ca-central-1.amazonaws.com/shopizer-demo/products/DEFAULT/xyzabc/SMALL/kit-shelve-2i.jpg',
+    //     big: 'https://s3.ca-central-1.amazonaws.com/shopizer-demo/products/DEFAULT/xyzabc/SMALL/kit-shelve-2i.jpg'
+    //   },
+    //   {
+    //     small: 'https://cdn.pixabay.com/photo/2016/11/19/17/25/furniture-1840463__340.jpg',
+    //     medium: 'https://cdn.pixabay.com/photo/2016/11/19/17/25/furniture-1840463__340.jpg',
+    //     big: 'https://cdn.pixabay.com/photo/2016/11/19/17/25/furniture-1840463__340.jpg'
+    //   },
+    //   {
+    //     small: 'https://cdn.pixabay.com/photo/2015/06/08/15/21/furniture-802031__340.jpg',
+    //     medium: 'https://cdn.pixabay.com/photo/2015/06/08/15/21/furniture-802031__340.jpg',
+    //     big: 'https://cdn.pixabay.com/photo/2015/06/08/15/21/furniture-802031__340.jpg'
+    //   },
+    //   {
+    //     small: 'https://cdn.pixabay.com/photo/2017/03/28/12/11/chairs-2181960__340.jpg',
+    //     medium: 'https://cdn.pixabay.com/photo/2017/03/28/12/11/chairs-2181960__340.jpg',
+    //     big: 'https://cdn.pixabay.com/photo/2017/03/28/12/11/chairs-2181960__340.jpg'
+    //   },
+    //   {
+    //     small: 'https://cdn.pixabay.com/photo/2017/03/28/12/11/chairs-2181960__340.jpg',
+    //     medium: 'https://cdn.pixabay.com/photo/2017/03/28/12/11/chairs-2181960__340.jpg',
+    //     big: 'https://cdn.pixabay.com/photo/2017/03/28/12/11/chairs-2181960__340.jpg'
+    //   },
+    //   {
+    //     small: 'https://cdn.pixabay.com/photo/2017/03/28/12/11/chairs-2181960__340.jpg',
+    //     medium: 'https://cdn.pixabay.com/photo/2017/03/28/12/11/chairs-2181960__340.jpg',
+    //     big: 'https://cdn.pixabay.com/photo/2017/03/28/12/11/chairs-2181960__340.jpg'
+    //   }
+    // ];
 
   }
 

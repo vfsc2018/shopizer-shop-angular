@@ -16,8 +16,8 @@
         </div>
         <div class="signup-form">
           <form #newsletterForm="ngForm" role="form">
-            <input-field type="email" [(ngModel)]="news.email" name="email" placeHolder="{{ 'Your email address' | translate}}"
-              required #email="ngModel" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z0-9-.]{2,}">
+            <input-field type="email" [(ngModel)]="news.email" name="email" placeHolder="Your email address" required
+              #email="ngModel" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z0-9-.]{2,}">
               <err-required message="Valid email required" [isValid]="email.valid || (email.pristine)">
               </err-required>
             </input-field>
