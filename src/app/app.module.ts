@@ -208,7 +208,8 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC2tK2itcy8Pfykl2X2rcyOpoJcBDl-5pU'
+      apiKey: "AIzaSyCOWHYbCCs9_t8g7oOozjTR75wNx5_xpb4",
+      libraries: ["places"]
     }),
     ToastrModule.forRoot({
       progressBar: true

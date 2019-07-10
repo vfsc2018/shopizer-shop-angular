@@ -26,7 +26,7 @@ export class NewsletterComponent implements OnInit {
 
         this.spinnerService.hide();
       }, error => {
-        this.toastr.success('Newsletter has been sent successfully');
+        this.toastr.success('Newsletter has been sent');
         this.spinnerService.hide();
       });
   }

@@ -1,314 +1,330 @@
 agm-map {
-  height: 808px;
+    height: 808px;
 }
 
 .contact-info-wrapper {
-  width: 100%;
-  position: relative;
-  height: 89px;
-
-  .contact-info {
     width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -moz-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    padding: 38px 50px;
-    -webkit-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.15);
-    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.15);
-    background-color: #fff;
-    position: absolute;
-    top: -63px;
-    z-index: 100;
+    position: relative;
+    height: 89px;
 
-    .contact-item {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: flex;
+    .contact-info {
+        width: 100%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -moz-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 38px 50px;
+        -webkit-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.15);
+        background-color: #fff;
+        position: absolute;
+        top: -63px;
+        z-index: 100;
 
-      .contact-icon {
-        margin-top: 0px;
-        font-size: 35px;
-        color: #e4c6a2;
-      }
+        .contact-item {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
 
-      .contact-text {
-        padding-left: 20px;
-        line-height: 25px;
-      }
+            .contact-icon {
+                margin-top: 0px;
+                font-size: 35px;
+                color: #e4c6a2;
+            }
+
+            .contact-text {
+                padding-left: 20px;
+                line-height: 25px;
+            }
+        }
     }
-  }
 }
 
 .contact-form {
-  form {
-    .au-form {
-      padding: 15px 0;
-      margin-bottom: 0;
+    form {
+        .au-form {
+            padding: 15px 0;
+            margin-bottom: 0;
 
-      input {
-        margin-bottom: 0;
-        -webkit-transition: all 0.35s;
-        -o-transition: all 0.35s;
-        -moz-transition: all 0.35s;
-        transition: all 0.35s;
-      }
+            input {
+                margin-bottom: 0;
+                -webkit-transition: all 0.35s;
+                -o-transition: all 0.35s;
+                -moz-transition: all 0.35s;
+                transition: all 0.35s;
+            }
 
-      button[type="submit"] {
-        margin-top: 10px;
-      }
+            button[type="submit"] {
+                margin-top: 10px;
+            }
+        }
     }
-  }
 }
 
 .contact-form form .au-form input:focus,
 .contact-form form .au-form textarea:focus {
-  border: 1px solid #e4c7a2;
+    border: 1px solid #e4c7a2;
 }
 
 .container {
-  .port-title {
-    .title {
-      font-size: 35px;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      color: #333;
-      font-family: inherit;
-      font-weight: normal;
-      line-height: 1.1;
+    .port-title {
+        .title {
+            font-size: 35px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: #333;
+            font-family: inherit;
+            font-weight: normal;
+            line-height: 1.1;
+        }
+
+        .sub-title {
+            font-size: 25px;
+        }
+
+        .title-detail {
+            line-height: 1.6;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
     }
 
-    .sub-title {
-      font-size: 25px;
+    .port-body {
+        .contact-form {
+            .form-group {
+                #name {
+                    width: 100%;
+                }
+            }
+
+            .au-form {
+                padding: 0px !important;
+
+                .name {
+                    margin-bottom: -15px;
+                    padding-right: 10px;
+                }
+
+                .mail {
+                    margin-bottom: -15px;
+                    // padding-left: 10px;
+                }
+
+                .phone {
+                    margin-bottom: 15px;
+                    padding-left: 10px;
+                }
+
+                .address {
+                    margin-bottom: 15px;
+                    padding-right: 10px;
+                }
+
+                .txtarea {
+                    margin-top: -25px;
+                }
+
+                .contactBtn {
+                    top: 50%;
+                    text-align: center;
+                    width: 100%;
+                }
+            }
+        }
     }
-
-    .title-detail {
-      line-height: 1.6;
-      font-size: 15px;
-      margin-bottom: 20px;
-    }
-  }
-
-  .port-body {
-    .contact-form {
-      .form-group {
-        #name {
-          width: 100%;
-        }
-      }
-
-      .au-form {
-        padding: 0px !important;
-
-        .name {
-          margin-bottom: -15px;
-          padding-right: 10px;
-        }
-
-        .mail {
-          margin-bottom: -15px;
-          padding-left: 10px;
-        }
-
-        .phone {
-          margin-bottom: 15px;
-          padding-left: 10px;
-        }
-
-        .address {
-          margin-bottom: 15px;
-          padding-right: 10px;
-        }
-
-        .txtarea {
-          margin-top: -25px;
-        }
-
-        .contactBtn {
-          top: 50%;
-          text-align: center;
-          width: 100%;
-        }
-      }
-    }
-  }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  agm-map {
-    height: 600px;
-  }
+    agm-map {
+        height: 600px;
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  agm-map {
-    height: 500px;
-  }
-  .container {
-    .contact-info {
-      padding: 20px 10px;
-      width: 700px;
-      .contact-item {
-        flex: 1;
-        .contact-icon {
-          font-size: 30px;
-        }
-        .contact-text {
-          font-size: 14px;
-          padding-left: 10px;
-          padding-right: 10px;
-        }
-      }
+    agm-map {
+        height: 500px;
     }
-  }
+
+    .container {
+        .contact-info {
+            padding: 20px 10px;
+            width: 700px;
+
+            .contact-item {
+                flex: 1;
+
+                .contact-icon {
+                    font-size: 30px;
+                }
+
+                .contact-text {
+                    font-size: 14px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 767px) and (min-width: 576px) {
-  agm-map {
-    height: 500px;
-  }
-
-  .container {
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-    .contact-info {
-      width: 100%;
-      padding: 25px 15px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 10px;
-      .contact-item {
-        flex: 1;
-        .contact-icon {
-          font-size: 30px;
-        }
-        .contact-text {
-          font-size: 14px;
-          padding-left: 20px;
-          padding-right: 10px;
-        }
-      }
+    agm-map {
+        height: 500px;
     }
-    .port-body {
-      .contact-form {
-        .form-group {
-          #name {
+
+    .container {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+
+        .contact-info {
             width: 100%;
-          }
+            padding: 25px 15px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+
+            .contact-item {
+                flex: 1;
+
+                .contact-icon {
+                    font-size: 30px;
+                }
+
+                .contact-text {
+                    font-size: 14px;
+                    padding-left: 20px;
+                    padding-right: 10px;
+                }
+            }
         }
 
-        .au-form {
-          padding: 0px !important;
+        .port-body {
+            .contact-form {
+                .form-group {
+                    #name {
+                        width: 100%;
+                    }
+                }
 
-          .name {
-            margin-bottom: -15px;
-            padding-right: 0px;
-          }
+                .au-form {
+                    padding: 0px !important;
 
-          .mail {
-            margin-bottom: -15px;
-            padding-left: 0px;
-          }
+                    .name {
+                        margin-bottom: -15px;
+                        padding-right: 0px;
+                    }
 
-          .phone {
-            margin-bottom: 15px;
-            padding-left: 0px;
-          }
+                    .mail {
+                        margin-bottom: -15px;
+                        padding-left: 0px;
+                    }
 
-          .address {
-            margin-bottom: -15px;
-            padding-right: 0px;
-          }
+                    .phone {
+                        margin-bottom: 15px;
+                        padding-left: 0px;
+                    }
+
+                    .address {
+                        margin-bottom: -15px;
+                        padding-right: 0px;
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
 
 @media screen and (max-width: 575px) {
-  agm-map {
-    height: 400px;
-  }
-  .mtop {
-    margin-top: 80px;
-  }
-  .container {
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-    .contact-info {
-      width: 100%;
-      padding: 10px 15px;
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      grid-gap: 10px;
-      .contact-item {
-        flex: 1;
-        .contact-icon {
-          font-size: 30px;
-        }
-        .contact-text {
-          font-size: 14px;
-          padding-left: 20px;
-          padding-right: 10px;
-        }
-      }
+    agm-map {
+        height: 400px;
     }
-    .port-body {
-      .contact-form {
-        .form-group {
-          #name {
+
+    .mtop {
+        margin-top: 80px;
+    }
+
+    .container {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+
+        .contact-info {
             width: 100%;
-          }
+            padding: 10px 15px;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 10px;
+
+            .contact-item {
+                flex: 1;
+
+                .contact-icon {
+                    font-size: 30px;
+                }
+
+                .contact-text {
+                    font-size: 14px;
+                    padding-left: 20px;
+                    padding-right: 10px;
+                }
+            }
         }
 
-        .au-form {
-          padding: 0px !important;
-          justify-content: center;
+        .port-body {
+            .contact-form {
+                .form-group {
+                    #name {
+                        width: 100%;
+                    }
+                }
 
-          button[type="submit"] {
-            margin-top: 10px;
-          }
+                .au-form {
+                    padding: 0px !important;
+                    justify-content: center;
 
-          .name {
-            margin-bottom: -15px;
-            padding-right: 0px;
-          }
+                    button[type="submit"] {
+                        margin-top: 10px;
+                    }
 
-          .mail {
-            margin-bottom: -15px;
-            padding-left: 0px;
-          }
+                    .name {
+                        margin-bottom: -15px;
+                        padding-right: 0px;
+                    }
 
-          .phone {
-            margin-bottom: 15px;
-            padding-left: 0px;
-          }
+                    .mail {
+                        margin-bottom: -15px;
+                        padding-left: 0px;
+                    }
 
-          .address {
-            margin-bottom: -15px;
-            padding-right: 0px;
-          }
+                    .phone {
+                        margin-bottom: 15px;
+                        padding-left: 0px;
+                    }
 
-          .contactBtn {
-            text-align: center;
-          }
+                    .address {
+                        margin-bottom: -15px;
+                        padding-right: 0px;
+                    }
+
+                    .contactBtn {
+                        text-align: center;
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }

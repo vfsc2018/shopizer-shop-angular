@@ -1,7 +1,6 @@
 export class AppConstants {
     public static API_URL = 'http://99.79.1.102:8080/api/v1/';
     public static API_URL_AUTH = 'http://99.79.1.102:8080/api/v1/auth/';
-
 }
 
 export class Action {
@@ -27,5 +26,6 @@ export class Action {
     public static AUTOCOMPLETE = 'autocomplete/'
     public static VARIANTS = 'variants/'
     public static PAYMENT = 'payment/'
+    public static CONTACT = 'contact/'
 
 }
