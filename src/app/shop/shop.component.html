@@ -52,13 +52,23 @@
               <span id="filter-price-value-lower"> ${{minValue}}</span>
               <span> - </span>
               <span id="filter-price-value-upper">${{maxValue}}</span>
-              <btn [text]="'filter'"></btn>
+              <!-- <btn [text]="'filter'"></btn> -->
             </div>
           </div>
         </div>
-        <div class="categories-list">
+        <div class="categories-list" *ngIf="isArray(categoriesData)">
           <custom-label [label]="'categories'" [className]="'cart-border'"></custom-label>
           <categories [data]="categoriesData" (onClick)="onFilter($event, '0')"></categories>
+        </div>
+        <div *ngIf="categoriesData">
+          <div class="categories-list" *ngIf="!isArray(categoriesData) && categoriesData.children.length > 0">
+            <custom-label [label]="'categories'" [className]="'cart-border'"></custom-label>
+            <categories [data]="categoriesData" (onClick)="onFilter($event, '0')"></categories>
+          </div>
+        </div>
+        <div class="categories-list" *ngIf="manufactureData">
+          <custom-label [label]="'manufacture'" [className]="'cart-border'"></custom-label>
+          <manufacture [data]="manufactureData"></manufacture>
         </div>
         <div class="shop-color" *ngIf="colorData.length > 0">
           <custom-label [label]="'shop by color'" [className]="'cart-border'"></custom-label>

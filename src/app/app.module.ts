@@ -71,6 +71,7 @@ import { AutocompleteComponent } from './component/autocomplete/autocomplete.com
 import { NoDataComponent } from './component/no-data/no-data.component';
 import { SafeHtml } from './shared/utility/safe-html';
 import { ToastrModule } from 'ngx-toastr';
+import { ManufactureComponent } from './component/manufacture/manufacture.component';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -187,7 +188,8 @@ export function createTranslateLoader(http: HttpClient) {
     AutocompleteComponent,
     ShopSizeComponent,
     NoDataComponent,
-    SafeHtml
+    SafeHtml,
+    ManufactureComponent
   ],
   entryComponents: [
     CartComponent

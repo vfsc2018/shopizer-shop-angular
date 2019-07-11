@@ -17,5 +17,7 @@ export class CategoriesComponent implements OnInit {
     console.log(value)
     this.onClick.emit(value);
   }
-
+  isArray(obj: any) {
+    return Array.isArray(obj)
+  }
 }

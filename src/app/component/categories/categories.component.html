@@ -1,16 +1,36 @@
-<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" class="custom-category" *ngFor="let result of data; let i = index">
-  <ngb-panel (click)="onCategoryClick(result)" title="{{ result.description ? result.description.name: ''}}">
-    <ng-template ngbPanelContent>
+<div *ngIf="isArray(data)">
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" class="custom-category" *ngFor="let result of data; let i = index">
+    <ngb-panel (click)="onCategoryClick(result)" title="{{ result.description ? result.description.name: ''}}">
+      <ng-template ngbPanelContent>
 
-      <div *ngIf="result.children != ''" class="child-category">
+        <div *ngIf="result.children != ''" class="child-category">
 
-        <ul *ngFor="let child of result.children; let i = index">
-          <li>
-            <a (click)="onCategoryClick(child)">{{child.description ? child.description.name : ''}}</a>
-            <span class="number">{{result.quantity}}</span>
-          </li>
-        </ul>
-      </div>
-    </ng-template>
-  </ngb-panel>
-</ngb-accordion>
+          <ul *ngFor="let child of result.children; let i = index">
+            <li>
+              <a (click)="onCategoryClick(child)">{{child.description ? child.description.name : ''}}</a>
+              <span class="number">{{result.quantity}}</span>
+            </li>
+          </ul>
+        </div>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</div>
+<div *ngIf="!isArray(data) && data">
+  <!-- <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" class="custom-category">
+    <ngb-panel (click)="onCategoryClick(result)" title="{{ data.description ? data.description.name: ''}}">
+      <ng-template ngbPanelContent> -->
+
+  <div *ngIf="data.children != ''" class="child-category">
+
+    <ul *ngFor="let child of data.children; let i = index">
+      <li>
+        <a (click)="onCategoryClick(child)">{{child.description ? child.description.name : ''}}</a>
+        <span class="number">{{data.productCount}}</span>
+      </li>
+    </ul>
+  </div>
+  <!-- </ng-template>
+    </ngb-panel>
+  </ngb-accordion> -->
+</div>

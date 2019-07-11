@@ -79,6 +79,7 @@ export class SiteheaderComponent implements OnInit {
     onClickCategory(category) {
         // console.log(category)
         this.dataSharingService.categoryData.next(category);
+        localStorage.setItem('category_id', JSON.stringify(category))
         this.router.navigate(['/category/' + category.description.friendlyUrl]);
 
         this.subclick = this.subclick == '' ? 'active' : ''

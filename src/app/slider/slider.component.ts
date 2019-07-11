@@ -12,6 +12,7 @@ export class SliderComponent implements OnInit {
   ngOnInit() { }
 
   goToShop() {
+    localStorage.setItem('category_id', '')
     this.router.navigate(['/shop']);
   }
 

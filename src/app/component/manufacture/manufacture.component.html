@@ -1,0 +1,15 @@
+<div *ngIf="isArray(data)">
+  <ul *ngFor="let result of data; let i = index">
+    <li>
+      <a>{{result.description.name}}</a>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="!isArray(data) && data">
+  <ul>
+    <li>
+      <a>{{data.description.name}}</a>
+    </li>
+  </ul>
+</div>

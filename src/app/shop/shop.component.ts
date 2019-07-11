@@ -14,16 +14,7 @@ import { DataSharingService } from '../directive/data-sharing.service';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-  //itemData = [
-  //  { itemName: 'Ignacio Chairs', price: '39.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-  //  { itemName: 'Diamond Lamp', price: '23.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-  //  { itemName: 'High Table', price: '15.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-  //  { itemName: 'Pendant Shade', price: '20.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-  //  { itemName: 'Aslesha Basket', price: '27.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-  //  { itemName: 'Driva Table Lamp', price: '56.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-  //  { itemName: 'Hanging Sphere', price: '18.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' },
-  //  { itemName: 'Portable Speaker', price: '42.00', description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.' }
-  //]
+
   productData: Array<any> = [];
   showGrid: Boolean = false;
   show_product: any = 10;
@@ -37,7 +28,8 @@ export class ShopComponent implements OnInit {
     { 'name': 'wooden fan', 'price': 25.54 }
   ];
 
-  categoriesData: Array<any> = [];
+  categoriesData: any;
+  manufactureData: any;
   sizeData: Array<any> = [];
   colorData: Array<any> = [];
   minValue: number = 22;
@@ -60,14 +52,19 @@ export class ShopComponent implements OnInit {
     private Helper: Helper
   ) {
     this.dataSharingService.categoryData.subscribe(value => {
-      console.log(value);
+      // console.log(value, '123456789');
       this.productData = [];
       if (value == '') {
-        this.categoryID = '';
+        if (localStorage.getItem('category_id') == '') {
+          this.categoryID = '';
+        } else {
+          this.categoryID = JSON.parse(localStorage.getItem('category_id')).id;
+        }
       } else {
         this.categoryID = value.id;
       }
       this.getProductList();
+      this.getCategory();
     });
     //console.log('Get category object' + this.router.getCurrentNavigation().extras.state.category.id);
     // this.route.paramMap.subscribe(
@@ -83,14 +80,23 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCategory();
+
   }
   getCategory() {
-    let action = Action.CATEGORY;
+    let action = Action.CATEGORY + this.categoryID
     this.appService.getMethod(action)
       .subscribe(data => {
         // console.log(data);
         this.categoriesData = data;
+      }, error => {
+      });
+    this.getManufacturers();
+  }
+  getManufacturers() {
+    let action = Action.MANUFACTURERS + this.categoryID
+    this.appService.getMethod(action)
+      .subscribe(data => {
+        this.manufactureData = data;
       }, error => {
       });
   }
@@ -120,7 +126,9 @@ export class ShopComponent implements OnInit {
     if (status == 0) {
       this.categoryID = result.id;
     }
-    this.getProductList()
+    this.productData = [];
+    this.getProductList();
+    this.getCategory();
   }
   addToCart(result) {
     this.spinnerService.show();
@@ -156,7 +164,7 @@ export class ShopComponent implements OnInit {
   }
   public ngOnDestroy() {
     this.dataSharingService.categoryData.next('');
-    // localStorage.setItem('category_id', '')
+    localStorage.setItem('category_id', '')
   }
   onRefresh(value) {
     if (this.productData.length != this.totalRecord) {
@@ -182,5 +190,8 @@ export class ShopComponent implements OnInit {
         this.spinnerService.hide();
       });
 
+  }
+  isArray(obj: any) {
+    return Array.isArray(obj)
   }
 }
