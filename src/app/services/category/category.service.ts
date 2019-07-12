@@ -13,7 +13,7 @@ export class CategoryService {
   constructor(private httpClient: HttpClient) { }
 
   getCategoryHierarchy() : Observable<Category[]> {
-      let apiURL = environment.baseUrl + '/api/v1/category/?store=' + environment.merchant;
+      let apiURL = environment.baseUrl + '/api/v1/category/?store=' + environment.merchant + '&filter=[visible]';
        console.log('loading category hierarchy');
       return this.httpClient.get(apiURL)
         .pipe(

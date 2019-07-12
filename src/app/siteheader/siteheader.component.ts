@@ -60,7 +60,8 @@ export class SiteheaderComponent implements OnInit {
     }
     getCategoryHierarchy() {
 
-        let action = Action.CATEGORY + '?' + Action.FILTER + '=' + Action.FEATURED;
+        let action = Action.CATEGORY + '?' + Action.FILTER + '=' + Action.VISIBLE;
+        console.log(action);
         this.appService.getMethod(action)
             .subscribe(data => {
                 // console.log(data);

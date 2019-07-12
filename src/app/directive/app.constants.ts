@@ -5,12 +5,13 @@ export class AppConstants {
 
 export class Action {
 
-    public static FEATURED = 'FEATURED/'
+    public static FEATURED = 'featured'
+    public static VISIBLE = 'visible'
     public static DEFAULT = 'DEFAULT/'
 
     public static STORE = 'store/'
     public static CONTENT = 'content/'
-    public static FILTER = 'filter/'
+    public static FILTER = 'filter'
     public static PAGES = 'pages/'
     public static CART = 'cart/'
     public static PRODUCT_GROUP = 'products/group/'
