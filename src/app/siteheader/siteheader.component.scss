@@ -28,7 +28,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 999;
+    z-index: 1;
 
     .shop-cart-button {
         background-color: transparent;
@@ -59,7 +59,7 @@ header {
         .header {
             background-color: #fff;
             position: fixed;
-            top: 0;
+            top: 50px;
             left: 0;
             width: 100%;
             z-index: 999;
@@ -222,7 +222,7 @@ header {
                                         position: fixed;
                                         width: 100%;
                                         background-color: transparent;
-                                        top: 0;
+                                        top: 50px;
                                         right: 0;
                                         z-index: 998;
 
@@ -337,7 +337,7 @@ header {
 
             .header-mobile__button {
                 position: relative;
-                width: 20px;
+                width: 50px;
                 height: 16px;
 
                 .humburger-box {

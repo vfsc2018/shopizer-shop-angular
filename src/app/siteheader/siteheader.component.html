@@ -1,4 +1,5 @@
 <!-- Header -->
+<settings> </settings>
 <header>
   <div class="header-wrapper" *ngIf="merchant">
     <!-- Desktop Menu -->
@@ -43,10 +44,16 @@
               </li>
               <li class="header-shop-cart">
                 <button class="shop-cart-button" (click)="toggleSearch()">
-                  <span class="icon-cart"></span>
+                  <img src="assets/images/icon/header-cart.png" alt="Search">
                   <span *ngIf="count > 0" class="amount">{{count}}</span>
                 </button>
               </li>
+              <!-- <li>
+                <button class="shop-cart-button" (click)="onSetting()">
+                  <img src="assets/images/icon/header-bar.png" alt="Search">
+                </button>
+                <settings [isOpen]="settingShow" [languageData]="merchant.supportedLanguages"></settings>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -64,11 +71,18 @@
             </custom-img>
           </a>
         </div>
-        <button class="header-mobile__button" (click)="onClickMenu()">
-          <span class="humburger-box {{active}}">
-            <span class="hamburger__inner"></span>
-          </span>
-        </button>
+        <div>
+          <button class="header-mobile__button" (click)="onClickMenu()">
+            <span class="humburger-box {{active}}">
+              <span class="hamburger__inner"></span>
+            </span>
+          </button>
+          <button class="shop-cart-button" (click)="toggleSearch()">
+            <span class="humburger-box {{active}}">
+              <img src="assets/images/icon/header-bar.png" alt="Search">
+            </span>
+          </button>
+        </div>
       </div>
       <nav class="header-mobile__navbar {{active}}">
         <ul>

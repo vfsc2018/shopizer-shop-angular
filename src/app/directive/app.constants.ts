@@ -29,5 +29,6 @@ export class Action {
     public static PAYMENT = 'payment/'
     public static CONTACT = 'contact/'
     public static MANUFACTURERS = 'manufacturers/'
+    public static SHIPPING = 'shipping/'
 
 }

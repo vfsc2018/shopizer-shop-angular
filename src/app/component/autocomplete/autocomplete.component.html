@@ -1,7 +1,7 @@
 <div class="autocomplete">
   <input [type]="type" [placeholder]="placeHolder" [(ngModel)]="value" [name]="name" (keyup)="onValueChange($event.target.value)"
     class="form-control" (ngModelChange)="inputModelChange.emit(inputModel)" (blur)="onBlur()">
-  <a href="#" (click)="onClickClose()"></a>
+  <a (click)="onClickClose()"></a>
 </div>
 <div class="autosuggestion" *ngIf="data.length > 0">
   <div class="autoscroll">

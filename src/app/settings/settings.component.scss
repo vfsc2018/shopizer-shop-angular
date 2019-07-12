@@ -1,0 +1,23 @@
+.settings {
+    background-color: #f2f2f2;
+    position: fixed;
+    height: 6%;
+    padding-top: 12px;
+    padding-left: 20%;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+
+    .submenu {
+        color: #333;
+        font-size: 15px;
+        font-size: inherit;
+        padding-left: 35px;
+    }
+
+    .contact-us {
+        color: #333;
+        font-size: 15px;
+        font-size: inherit;
+    }
+}

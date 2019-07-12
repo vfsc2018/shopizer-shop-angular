@@ -72,6 +72,8 @@ import { NoDataComponent } from './component/no-data/no-data.component';
 import { SafeHtml } from './shared/utility/safe-html';
 import { ToastrModule } from 'ngx-toastr';
 import { ManufactureComponent } from './component/manufacture/manufacture.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { SettingsComponent } from './settings/settings.component';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -108,6 +110,10 @@ const routes: Routes = [
   {
     path: "category/:id",
     component: ShopComponent
+  },
+  {
+    path: "search/:id",
+    component: SearchResultComponent
   },
   {
     path: "shop",
@@ -189,7 +195,9 @@ export function createTranslateLoader(http: HttpClient) {
     ShopSizeComponent,
     NoDataComponent,
     SafeHtml,
-    ManufactureComponent
+    ManufactureComponent,
+    SearchResultComponent,
+    SettingsComponent
   ],
   entryComponents: [
     CartComponent

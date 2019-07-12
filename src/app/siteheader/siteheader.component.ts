@@ -22,6 +22,7 @@ export class SiteheaderComponent implements OnInit {
     active: any;
     subclick: any;
     count: number = 0;
+
     constructor(
         private appService: AppService,
         private cookieService: CookieService,
@@ -46,6 +47,7 @@ export class SiteheaderComponent implements OnInit {
         let action = Action.STORE + Action.DEFAULT;
         this.appService.getMethod(action)
             .subscribe(data => {
+                // console.log(data);
                 this.merchant = data;
                 if (localStorage.getItem('langulage')) {
                     this.translate.setDefaultLang(localStorage.getItem('langulage'));

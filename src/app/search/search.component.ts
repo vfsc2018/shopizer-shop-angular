@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
+import { Router } from '@angular/router';
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
@@ -8,7 +9,7 @@ import { Action } from '../directive/app.constants';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, public router: Router) { }
   search_text: string = '';
   isOpen: boolean = false;
   autoCompleteData: Array<any> = [];
@@ -32,14 +33,15 @@ export class SearchComponent implements OnInit {
       });
   }
   selectEvent(value) {
+    this.search_text = value;
+    this.autoCompleteData = [];
+  }
+  keyDownFunction(event) {
+    if (event.keyCode == 13) {
 
-    let action = Action.SEARCH;
-    let param = { "count": 100, query: value, "start": 0 }
-    this.appService.postMethod(action, param)
-      .subscribe(data => {
-        console.log(data);
+      this.router.navigate(['/search/' + this.search_text]);
+      this.toggleSearch();
 
-      }, error => {
-      });
+    }
   }
 }

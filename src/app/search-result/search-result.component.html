@@ -1,0 +1,52 @@
+<div class="shop">
+
+  <banner [title]="'Search'"></banner>
+
+  <div class="container p-t-100 p-b-70 own-grid">
+    <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
+    <div class="row" *ngIf="searchResult.length > 0">
+      <div class="col-md-9">
+        <div class="shop-list-heading">
+          <div class="number-product">
+            {{ 'Showing' | translate }}
+            <span>{{show_product}}</span> -
+            <span>{{page}}</span> of
+            <span>{{totalRecord}}</span> {{ 'results' | translate }}
+          </div>
+          <div class="shop-view-layout">
+            <span>{{ 'Show' | translate }}</span>
+            <span id="layout_grid" class="icon-grid" (click)="onHideShowGrid()">
+            </span>
+            <span id="layout_list" class="icon-list" (click)="onHideShowGrid()">
+            </span>
+          </div>
+        </div>
+        <div class="grid" *ngIf="showGrid == false">
+          <product-grid [Large]="'4'" [productData]="searchResult" (onClickCart)="addToCart($event)" (onClickDetail)="goToDetailsPage($event)"
+            (onPagination)="onRefresh($event)">
+          </product-grid>
+        </div>
+
+        <div class="shop-list" *ngIf="showGrid == true">
+          <product-list [productData]="searchResult" (onClickCart)="addToCart($event)" (onClickDetail)="goToDetailsPage($event)"
+            (onPagination)="onRefresh($event)">
+          </product-list>
+        </div>
+        <!-- <no-data *ngIf="searchResult.length == 0" [message]="'No Record Found'"></no-data> -->
+
+      </div>
+      <div class="col-md-3">
+        <div class="categories-list">
+          <custom-label [label]="'categories'" [className]="'cart-border'"></custom-label>
+          <categories [data]="categoryFactes" (onClick)="onFilter($event)"></categories>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="searchResult.length == 0">
+      <div class="col-md-12">
+        <no-data [message]="'No Record Found'"></no-data>
+      </div>
+    </div>
+  </div>
+
+</div>

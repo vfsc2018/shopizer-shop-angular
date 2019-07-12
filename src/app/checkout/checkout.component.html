@@ -18,12 +18,12 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <input-field type="text" label="First Name" labelAfter="true" [(ngModel)]="checkout.firstname"
-                                    name="firstname" placeHolder="" bottom="24">
+                                    name="firstname" placeHolder="" bottom="24" required>
                                 </input-field>
                             </div>
                             <div class="col-sm-6">
                                 <input-field type="txt" label="Last Name" labelAfter="true" [(ngModel)]="checkout.lastname"
-                                    name="lastname" placeHolder="" bottom="24">
+                                    name="lastname" placeHolder="" bottom="24" required>
                                 </input-field>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                         </input-field>
                         <div class='address-class'>
                             <input-field type="text" label="Address" labelAfter="true" [(ngModel)]="checkout.address"
-                                name="address" placeHolder="Street address">
+                                name="address" placeHolder="Street address" required>
                             </input-field>
                         </div>
 
@@ -40,23 +40,31 @@
                             bottom="24">
                         </input-field>
                         <input-field type="text" label="Town/City" [(ngModel)]="checkout.city" name="city" placeHolder=""
-                            labelAfter="true" bottom="24">
+                            labelAfter="true" bottom="24" required>
                         </input-field>
                         <custom-select label="Country" labelAfter="true" bottom="24" [(ngModel)]="checkout.country"
-                            name="country" [data]="countyData">
+                            name="country" [data]="countyData" required (onSelectChange)="onCountrySelect($event)">
+                        </custom-select>
+                        <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="checkout.state" name="state"
+                            [data]="stateData" required>
                         </custom-select>
                         <input-field type="text" label="Postcode / Zip" [(ngModel)]="checkout.postcode" name="postcode"
-                            placeHolder="" labelAfter="true" bottom="24">
+                            placeHolder="" labelAfter="true" bottom="24" (onInputChange)="onShippingChange()" required>
                         </input-field>
                         <div class="row">
                             <div class="col-sm-6">
                                 <input-field type="text" label="Phone" labelAfter="true" [(ngModel)]="checkout.phone"
-                                    name="phone" placeHolder="" bottom="24">
+                                    name="phone" placeHolder="" bottom="24" #phone="ngModel" pattern="[0-9]+" minlength="10"
+                                    maxlength="10" required>
+                                    <err-required message="Enter a 10-digit number" [isValid]="phone.valid || (phone.pristine)"></err-required>
+
                                 </input-field>
                             </div>
                             <div class="col-sm-6">
                                 <input-field type="text" label="Email Address" labelAfter="true" [(ngModel)]="checkout.email"
-                                    name="email" placeHolder="" bottom="24">
+                                    name="email" placeHolder="" bottom="24" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z0-9-.]{2,}"
+                                    required>
+                                    <err-required message="Valid email required " [isValid]="phone.valid || (phone.pristine)"></err-required>
                                 </input-field>
                             </div>
                         </div>

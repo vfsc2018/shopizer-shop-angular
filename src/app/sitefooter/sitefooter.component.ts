@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
+import { Helper } from '../directive/helper';
 import { CookieService } from 'ngx-cookie-service';
 import { SafeHtml } from '../shared/utility/safe-html'
 import { TranslateService } from '@ngx-translate/core';
@@ -17,7 +18,12 @@ export class SitefooterComponent implements OnInit {
   content: any;
   pitchContent: any;
   lan: any;
-  constructor(private appService: AppService, private cookieService: CookieService, private translate: TranslateService) {
+  constructor(
+    private appService: AppService,
+    private cookieService: CookieService,
+    private translate: TranslateService,
+    private helper: Helper
+  ) {
     this.getStore();
     this.lan = localStorage.getItem('langulage');
     console.log(this.lan)
@@ -39,7 +45,7 @@ export class SitefooterComponent implements OnInit {
   }
   getCategoryHierarchy() {
 
-    let action = Action.CATEGORY + '?' + Action.FILTER + '=' + Action.FEATURED;
+    let action = Action.CATEGORY + '?' + Action.FILTER + '=' + Action.VISIBLE;
     this.appService.getMethod(action)
       .subscribe(data => {
         // console.log(data);
@@ -70,14 +76,15 @@ export class SitefooterComponent implements OnInit {
     // console.log(date);
     return new Date(date).getFullYear();
   }
-  changeLang(language: string, lan) {
-    if (localStorage.getItem('langulage') == 'en') {
-      localStorage.setItem('langulage', 'fr');
-      this.translate.use('fr');
-    } else {
-      localStorage.setItem('langulage', 'en');
-      this.translate.use('en');
-    }
+  changeLang() {
+    this.helper.languageChange();
+    // if (localStorage.getItem('langulage') == 'en') {
+    //   localStorage.setItem('langulage', 'fr');
+    //   this.translate.use('fr');
+    // } else {
+    //   localStorage.setItem('langulage', 'en');
+    //   this.translate.use('en');
+    // }
   }
 
 }
