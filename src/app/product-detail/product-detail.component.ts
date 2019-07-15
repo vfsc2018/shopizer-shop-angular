@@ -130,7 +130,7 @@ export class ProductDetailComponent implements OnInit {
       this.appService.putMethod(action, id, param)
         .subscribe(data => {
           this.spinnerService.hide();
-          this.Helper.showMiniCart();
+          this.Helper.showMiniCart(1);
         }, error => {
           this.spinnerService.hide();
         });
@@ -140,7 +140,7 @@ export class ProductDetailComponent implements OnInit {
           console.log(data);
           this.cookieService.set('shopizer-cart-id', data.code);
           this.spinnerService.hide();
-          this.Helper.showMiniCart();
+          this.Helper.showMiniCart(1);
         }, error => {
           this.spinnerService.hide();
         });

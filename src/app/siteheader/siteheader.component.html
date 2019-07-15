@@ -1,5 +1,5 @@
 <!-- Header -->
-<settings> </settings>
+<!-- <settings> </settings> -->
 <header>
   <div class="header-wrapper" *ngIf="merchant">
     <!-- Desktop Menu -->
@@ -48,12 +48,12 @@
                   <span *ngIf="count > 0" class="amount">{{count}}</span>
                 </button>
               </li>
-              <!-- <li>
+              <li>
                 <button class="shop-cart-button" (click)="onSetting()">
                   <img src="assets/images/icon/header-bar.png" alt="Search">
                 </button>
                 <settings [isOpen]="settingShow" [languageData]="merchant.supportedLanguages"></settings>
-              </li> -->
+              </li>
             </ul>
           </div>
         </div>

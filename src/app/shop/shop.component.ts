@@ -156,7 +156,7 @@ export class ShopComponent implements OnInit {
     }
   }
   showMiniCart() {
-    this.Helper.showMiniCart();
+    this.Helper.showMiniCart(1);
   }
   goToDetailsPage(result) {
     this.router.navigate(['/product-detail'], { queryParams: { productId: result.id } });

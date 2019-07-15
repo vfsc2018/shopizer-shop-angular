@@ -96,7 +96,7 @@ export class HomeComponent implements OnInit {
 
   }
   showMiniCart() {
-    this.Helper.showMiniCart();
+    this.Helper.showMiniCart(1);
   }
   filterFeaturedItem(val) {
     if (val != '') {

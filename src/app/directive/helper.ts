@@ -13,14 +13,24 @@ export class Helper {
     ) { }
 
 
-    showMiniCart() {
+    showMiniCart(value) {
+        console.log(value);
         if (this.dataSharingService.modelRef.getValue()) {
             this.dataSharingService.modelRef.getValue().close()
-            let modalRef = this.modalService.open(CartComponent);
-            modalRef.componentInstance.isOpen = true;
-            this.dataSharingService.modelRef.next(modalRef);
+            if (value == 1) {
+                let modalRef = this.modalService.open(CartComponent, {
+                    backdrop: false
+                });
+                modalRef.componentInstance.isOpen = true;
+                this.dataSharingService.modelRef.next(modalRef);
+            } else {
+                this.dataSharingService.modelRef.next('');
+            }
+
         } else {
-            let modalRef = this.modalService.open(CartComponent);
+            let modalRef = this.modalService.open(CartComponent, {
+                backdrop: false
+            });
             modalRef.componentInstance.isOpen = true;
             this.dataSharingService.modelRef.next(modalRef);
         }

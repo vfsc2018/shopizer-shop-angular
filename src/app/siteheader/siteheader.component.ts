@@ -23,6 +23,8 @@ export class SiteheaderComponent implements OnInit {
     subclick: any;
     count: number = 0;
 
+    settingShow: boolean = false;
+
     constructor(
         private appService: AppService,
         private cookieService: CookieService,
@@ -58,6 +60,8 @@ export class SiteheaderComponent implements OnInit {
 
                 this.cookieService.set('store-data', JSON.stringify(data))
             }, error => {
+                this.router.navigate(['/error']);
+                console.log('jaiminiininininin')
             });
     }
     getCategoryHierarchy() {
@@ -94,6 +98,10 @@ export class SiteheaderComponent implements OnInit {
         this.active = this.active == '' ? 'active' : ''
     }
     toggleSearch() {
-        this.Helper.showMiniCart();
+        this.Helper.showMiniCart(0);
+        this.settingShow = false;
+    }
+    onSetting() {
+        this.settingShow = !this.settingShow;
     }
 }
