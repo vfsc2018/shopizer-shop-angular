@@ -1,0 +1,14 @@
+<ul>
+  <li routerLinkActive="active">
+    <span class="icon-right"></span><a routerLink="/contact">{{ 'Billing & shipping Information' | translate}}</a>
+  </li>
+  <li routerLinkActive="active">
+    <span class="icon-right"></span><a routerLink="/contact">{{ 'Recent Orders' | translate}}</a>
+  </li>
+  <li routerLinkActive="active">
+    <span class="icon-right"></span><a routerLink="/password">{{ 'Change Password' | translate}}</a>
+  </li>
+  <li>
+    <span class="icon-right"></span><a (click)="logout()">{{ 'Logout' | translate}}</a>
+  </li>
+</ul>

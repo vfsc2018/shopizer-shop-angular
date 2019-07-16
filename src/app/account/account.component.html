@@ -1,5 +1,6 @@
 <div class="account">
   <banner [title]="'My Account'"></banner>
+  <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
   <div class="container py-70 py-tn-40">
     <div class="row">
       <div class="col-lg-6 ">
@@ -17,7 +18,7 @@
                 <err-required message="Password is required" [isValid]="password.valid || (password.pristine)"></err-required>
               </input-field>
 
-              <div class="form-group au-form">
+              <div class="form-group au-form" (keyup.enter)="onEnterLogin($event)">
                 <btn [text]="'Login'" (onClick)="onLogin()" [isDisabled]="!loginForm.form.valid"></btn>
                 <div class="m-l-18 m-t-8">
                   <custom-checkbox [label]="'Remember me'"></custom-checkbox>

@@ -74,6 +74,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { ManufactureComponent } from './component/manufacture/manufacture.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { LoginMenuComponent } from './component/login-menu/login-menu.component';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -142,6 +144,10 @@ const routes: Routes = [
   {
     path: "coming-soon",
     component: ComingSoonComponent
+  },
+  {
+    path: "password",
+    component: ChangePasswordComponent
   }
 ];
 
@@ -197,7 +203,9 @@ export function createTranslateLoader(http: HttpClient) {
     SafeHtml,
     ManufactureComponent,
     SearchResultComponent,
-    SettingsComponent
+    SettingsComponent,
+    ChangePasswordComponent,
+    LoginMenuComponent
   ],
   entryComponents: [
     CartComponent

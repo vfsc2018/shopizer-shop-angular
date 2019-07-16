@@ -183,3 +183,16 @@
         }
     }
 }
+
+.alert-danger {
+    background-color: transparent !important;
+    border-color: #d43f3a !important;
+    color: #d43f3a !important;
+}
+
+.alert {
+    padding: 0.2rem 1.25rem !important;
+    margin-bottom: 1rem !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+}
