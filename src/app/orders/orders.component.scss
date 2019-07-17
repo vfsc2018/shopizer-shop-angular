@@ -28,6 +28,40 @@
             border-bottom: none;
           }
 
+          &.orderdetail {
+            padding: 10px 15px;
+            display: block;
+
+            .orderdate {
+              display: initial;
+
+              .orderon {
+                color: #878787;
+                padding-right: 8px;
+              }
+
+              .date {
+                text-align: left;
+                color: #000;
+              }
+            }
+
+            .ordertotal {
+              display: initial;
+              float: right;
+
+              .orderon {
+                color: #878787;
+                padding-right: 8px;
+              }
+
+              .total {
+                color: #000;
+                font-weight: 500;
+              }
+            }
+          }
+
           td {
             padding: 20px 10px;
             font-size: 16px;
@@ -46,7 +80,7 @@
               .image {
                 width: 150px;
                 height: 110px;
-                min-width: 150px;
+                min-width: 115px;
                 background-color: #eef1f8;
                 position: relative;
 

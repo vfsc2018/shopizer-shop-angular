@@ -59,6 +59,7 @@ import { CustomTextareaComponent } from './component/custom-textarea/custom-text
 import { CustomSelectComponent } from './component/custom-select/custom-select.component';
 import { ImgSliderComponent } from './component/img-slider/img-slider.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component'
 import { ContactComponent } from './contact/contact.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ErrorComponent } from './error/error.component';
@@ -155,6 +156,10 @@ const routes: Routes = [
   {
     path: "orders",
     component: OrdersComponent
+  },
+  {
+    path: "order-detail",
+    component: OrderDetailComponent
   }
 ];
 
@@ -213,7 +218,8 @@ export function createTranslateLoader(http: HttpClient) {
     SettingsComponent,
     ChangePasswordComponent,
     LoginMenuComponent,
-    OrdersComponent
+    OrdersComponent,
+    OrderDetailComponent
   ],
   entryComponents: [
     CartComponent

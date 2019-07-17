@@ -776,8 +776,13 @@ header .header-wrapper-mobile.mobile-style-2 .header-mobile__bar .header-mobile_
                     }
 
                     .header__button {
+                        width: 132px;
                         ul {
-                            display: flex;
+                            display: block;
+                            margin-bottom: 0px;
+                            li{
+                                padding-right: 7px;
+                            }
                         }
                     }
                 }
