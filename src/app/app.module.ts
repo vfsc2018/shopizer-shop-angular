@@ -76,6 +76,9 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginMenuComponent } from './component/login-menu/login-menu.component';
+import { OrdersComponent } from './orders/orders.component';
+
+
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -148,6 +151,10 @@ const routes: Routes = [
   {
     path: "password",
     component: ChangePasswordComponent
+  },
+  {
+    path: "orders",
+    component: OrdersComponent
   }
 ];
 
@@ -205,7 +212,8 @@ export function createTranslateLoader(http: HttpClient) {
     SearchResultComponent,
     SettingsComponent,
     ChangePasswordComponent,
-    LoginMenuComponent
+    LoginMenuComponent,
+    OrdersComponent
   ],
   entryComponents: [
     CartComponent
