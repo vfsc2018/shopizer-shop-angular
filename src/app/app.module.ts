@@ -45,6 +45,7 @@ import { CartListComponent, ListComponent } from './component/cart-list/cart-lis
 import { CustomLabelComponent } from './component/custom-label/custom-label.component';
 import { InputFieldComponent } from './component/input-field/input-field.component';
 import { AccountComponent } from './account/account.component';
+import { ShippingDetailComponent } from './shipping-detail/shipping-detail.component';
 import { CustomCheckboxComponent } from './component/custom-checkbox/custom-checkbox.component';
 import { ImgComponent } from './component/img/img.component';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -160,6 +161,10 @@ const routes: Routes = [
   {
     path: "order-detail",
     component: OrderDetailComponent
+  },
+  {
+    path: "shipping-detail",
+    component: ShippingDetailComponent
   }
 ];
 
@@ -219,7 +224,8 @@ export function createTranslateLoader(http: HttpClient) {
     ChangePasswordComponent,
     LoginMenuComponent,
     OrdersComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    ShippingDetailComponent
   ],
   entryComponents: [
     CartComponent

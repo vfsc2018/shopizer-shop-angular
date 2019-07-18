@@ -1,10 +1,16 @@
 <!-- <banner [title]="'Shop'"></banner> -->
-<div class="container p-b-90 p-t-100 m-t-40 own-grid">
+<div class="container own-grid">
   <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
   <div class="row">
     <div class="col-md-12 col-sm-12">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Order Details</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div class="au-form-body p-r-lg-15 p-r-xl-15">
-        <custom-label [label]="'Order Details'" [className]="'cart-border'"></custom-label>
+
         <table class="table-shop m-b-30">
           <tbody>
             <!-- <tr class="order-id">Order-Id: OD114145735456545000</tr> -->
@@ -14,6 +20,11 @@
                 <div class="orderid">Order-Id: <span class="id">OD1141457355000</span></div>
                 <div class="orderdate">Order Date: <span class="date">Sat, Jan 5th '19</span></div>
                 <div class="ordertotal">Order Total: <span class="total">$456</span></div>
+              </div>
+              <div class="address">
+                <span class="addtitle">Billing Address</span>
+                <span class="fulladdress"><span>813 Hart Ridge Road,</span><span>Saginaw,</span><span> Michigan,
+                    48607</span></span>
               </div>
               <div class="address">
                 <span class="addtitle">Shipping Address</span>
@@ -34,7 +45,7 @@
                 </div>
               </td>
               <td class="width20">
-                <span class="quantity">x 1</span>
+                <span class="quantity">1 x</span>
                 <span class="price">$156</span>
 
               </td>
@@ -55,7 +66,7 @@
                 </div>
               </td>
               <td class="width20">
-                <span class="quantity">x 1</span>
+                <span class="quantity">1 x</span>
                 <span class="price">$156</span>
 
               </td>
@@ -76,7 +87,7 @@
                 </div>
               </td>
               <td class="width20">
-                <span class="quantity">x 1</span>
+                <span class="quantity">1 x</span>
                 <span class="price">$156</span>
 
               </td>
@@ -84,11 +95,6 @@
                 <span class="arriving"><a href="#">Rate This Product</a></span>
               </td>
             </tr>
-            <!-- <tr class="orderdetail">
-              <div class="orderdate"><span class="orderon">Ordered On</span><span class="date">Sat, Jan 5th '19</span>
-              </div>
-              <div class="ordertotal"><span class="orderon">Order Total</span><span class="total">$456</span></div>
-            </tr> -->
             <tr class="pricedetail bor-top">
               <div class="detail">Subtotal: <span class="price">$450</span></div>
               <div class="detail">Promotions: <span class="price">FREE</span></div>
@@ -104,7 +110,3 @@
     </div>
   </div>
 </div>
-
-<body id="body_7bc9_0">
-
-</body>

@@ -19,7 +19,8 @@ export class Helper {
             this.dataSharingService.modelRef.getValue().close()
             if (value == 1) {
                 let modalRef = this.modalService.open(CartComponent, {
-                    backdrop: false
+                    backdrop: false,
+                    windowClass: 'cart'
                 });
                 modalRef.componentInstance.isOpen = true;
                 this.dataSharingService.modelRef.next(modalRef);
@@ -29,7 +30,8 @@ export class Helper {
 
         } else {
             let modalRef = this.modalService.open(CartComponent, {
-                backdrop: false
+                backdrop: false,
+                windowClass: 'cart'
             });
             modalRef.componentInstance.isOpen = true;
             this.dataSharingService.modelRef.next(modalRef);

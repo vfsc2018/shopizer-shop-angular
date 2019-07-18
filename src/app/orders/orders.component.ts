@@ -4,6 +4,9 @@ import { Action } from '../directive/app.constants';
 
 import { ToastrService } from 'ngx-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { OrderDetailComponent } from '../order-detail/order-detail.component';
+
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'orders',
   templateUrl: './orders.component.html',
@@ -19,22 +22,16 @@ export class OrdersComponent implements OnInit {
     private appService: AppService,
     private spinnerService: Ng4LoadingSpinnerService,
     private toastr: ToastrService,
+
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
   }
-  onChangePassword() {
-    // this.spinnerService.show();
-    // let action = Action.LOGIN;
-    // let param = { "changePassword": this.password.new, "password": this.password.current }
-    // this.appService.putMethod(action, param)
-    //   .subscribe(data => {
-    //     this.spinnerService.hide();
-    //     this.toastr.success('You successfully logged in to this website', 'Well done!');
-    //   }, error => {
-    //     this.spinnerService.hide();
-    //     // this.toastr.error('Incorrect username or password');
-    //   });
+  onShowOrderDetails(content) {
+    let modalRef = this.modalService.open(OrderDetailComponent, {
+      windowClass: 'order-detail'
+    });
   }
 
 
