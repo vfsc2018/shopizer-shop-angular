@@ -28,7 +28,7 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
   }
-  onShowOrderDetails(content) {
+  onShowOrderDetails() {
     let modalRef = this.modalService.open(OrderDetailComponent, {
       windowClass: 'order-detail'
     });
