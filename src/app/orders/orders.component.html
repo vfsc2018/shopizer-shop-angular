@@ -3,82 +3,43 @@
   <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
   <div class="container p-t-100 p-b-70 m-t-40 own-grid">
     <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
-    <div class="row">
+    <div class="row" *ngIf="OrdersData">
       <div class="col-md-9">
         <div class="au-form-body p-r-lg-15 p-r-xl-15">
           <custom-label [label]="'My Orders'" [className]="'cart-border'"></custom-label>
-          <table class="table-shop m-b-30">
+          <table class="table-shop m-b-30" *ngFor="let order of OrdersData.orders">
             <tbody>
               <tr class="tab-header">
-                <td class="order-id"><span>Order-Id: OD114145735456545000</span></td>
+                <td class="order-id"><span>Order Id : {{order.id}}</span></td>
                 <td></td>
-                <td class="width20"><span (click)="onShowOrderDetails()" class="floatR">View Details</span></td>
+                <td class="width20"><span (click)="onShowOrderDetails(order)" class="floatR">View Details</span></td>
               </tr>
-              <tr>
+              <tr *ngFor="let product of order.products">
                 <td class="width40">
                   <div class="table-shop-product">
                     <div class="image">
-                      <custom-img [src]="'../../assets/images/slide1.jpg'" [alt]="'Product 1'">
+                      <custom-img [src]="product.product.image.imageUrl" [alt]="'Product 1'">
                       </custom-img>
                     </div>
                     <div class="name">
-                      Denver Hamilton Deodorant Body Spray
-                      <span class="skuid">SKU: 1545642</span></div>
+                      {{product.product.description.title}}
+                      <span class="skuid">SKU: {{product.sku}}</span></div>
                   </div>
                 </td>
                 <td class="width20">
-                  <span class="quantity">1 x</span>
-                  <span class="price">$156</span>
+                  <span class="quantity">{{product.orderedQuantity}} x</span>
+                  <span class="price">{{product.price}}</span>
                 </td>
                 <td class="width10">
-                  <span class="arriving">arriving</span>
+                  <span class="delivered">{{order.orderStatus}}</span>
+                  <!-- <span class="arriving">{{order.orderStatus}}</span> -->
                 </td>
               </tr>
-              <tr>
-                <td class="width40">
-                  <div class="table-shop-product">
-                    <div class="image">
-                      <custom-img [src]="'../../assets/images/slide1.jpg'" [alt]="'Product 1'">
-                      </custom-img>
-                    </div>
-                    <div class="name">
-                      Denver Hamilton Deodorant Body Spray
-                      <span class="skuid">SKU: 1545642</span></div>
-                  </div>
-                </td>
-                <td class="width20">
-                  <span class="quantity">1 x</span>
-                  <span class="price">$156</span>
-                </td>
-                <td class="width10">
-                  <span class="arriving">arriving</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="width40">
-                  <div class="table-shop-product">
-                    <div class="image">
-                      <custom-img [src]="'../../assets/images/slide1.jpg'" [alt]="'Product 1'">
-                      </custom-img>
-                    </div>
-                    <div class="name">
-                      Denver Hamilton Deodorant Body Spray
-                      <span class="skuid">SKU: 1545642</span></div>
-                  </div>
-                </td>
-                <td class="width20">
-                  <span class="quantity">1 x</span>
-                  <span class="price">$156</span>
-                </td>
-                <td class="width10">
-                  <span class="delivered">delivered</span>
-                </td>
-              </tr>
+
               <tr class="tab-header detail">
-                <td class="orderdate"><span class="orderon">Ordered On</span><span class="date">Sat, Jan 5th
-                    '19</span></td>
+                <td class="orderdate"><span class="orderon">Ordered On</span><span class="date">{{dateFormat(order.datePurchased)}}</span></td>
                 <td></td>
-                <td class="width20"><span class="orderon">Order Total</span><span class="total">$456</span></td>
+                <td class="width20"><span class="orderon">Order Total</span><span class="total">${{order.total.value}}</span></td>
               </tr>
             </tbody>
           </table>

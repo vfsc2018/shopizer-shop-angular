@@ -22,6 +22,10 @@ export class AccountComponent implements OnInit {
     username: '',
     password: ''
   }
+  register = {
+    username: '',
+    password: ''
+  }
   ngOnInit() {
   }
   onEnterLogin(event) {
@@ -37,7 +41,7 @@ export class AccountComponent implements OnInit {
     this.appService.postMethod(action, param)
       .subscribe(data => {
         this.spinnerService.hide();
-        this.router.navigate(['/password']);
+        this.router.navigate(['/orders']);
         localStorage.setItem('userData', JSON.stringify(data));
         this.toastr.success('You successfully logged in to this website', 'Well done!');
       }, error => {

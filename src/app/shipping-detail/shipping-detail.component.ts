@@ -18,20 +18,56 @@ export class ShippingDetailComponent implements OnInit {
     private toastr: ToastrService,
     public router: Router
   ) { }
-  user = {
-    username: '',
-    password: ''
+  shipping = {
+    firstName: '',
+    lastName: '',
+    company: '',
+    address: '',
+    city: '',
+    stateProvince: '',
+    country: '',
+    postalCode: '',
+    phone: '',
+    email: ''
+  }
+  billing = {
+    firstName: '',
+    lastName: '',
+    company: '',
+    address: '',
+    city: '',
+    stateProvince: '',
+    country: '',
+    postalCode: '',
+    phone: '',
+    email: ''
   }
   ngOnInit() {
-  }
-  keyPress(event) {
-    const pattern = /[0-9\+\-\ ]/;
 
-    let inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode != 8 && !pattern.test(inputChar)) {
-      event.preventDefault();
-    }
+    this.getProfile();
   }
+
+  getProfile() {
+    let action = Action.AUTH + Action.CUSTOMER + Action.PROFILE;
+    this.appService.getMethod(action)
+      .subscribe(data => {
+        console.log(data);
+        this.billing = data.billing;
+        this.shipping = data.delivery;
+      }, error => {
+      });
+  }
+  // keyPress(event) {
+  //   const pattern = /[0-9\+\-\ ]/;
+
+  //   let inputChar = String.fromCharCode(event.charCode);
+  //   if (event.keyCode != 8 && !pattern.test(inputChar)) {
+  //     event.preventDefault();
+  //   }
+  // }
+
+
+
   // onEnterLogin(event) {
   //   console.log('ffdfdsfsdfsd');
   //   if (event.keyCode == 13) {

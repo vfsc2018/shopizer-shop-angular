@@ -10,71 +10,66 @@
             <form>
               <div class="row">
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="First Name">
+                  <input-field type="name" placeHolder="" label="First Name" [(ngModel)]="shipping.firstName" name="firstName"
+                    required #firstName="ngModel">
                   </input-field>
                 </div>
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="Last Name">
+                  <input-field type="name" placeHolder="" label="Last Name" [(ngModel)]="shipping.lastName" name="lastName"
+                    required #lastName="ngModel">
                   </input-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <input-field type="name" placeHolder="" label="Company Name">
+                  <input-field type="name" placeHolder="" label="Company Name" [(ngModel)]="shipping.company" name="company">
                   </input-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <custom-textarea label="Address" name="note" placeHolder=""></custom-textarea>
+                  <custom-textarea label="Address" name="note" placeHolder="" [(ngModel)]="shipping.address" name="address"
+                    required #address="ngModel"></custom-textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="Town / City">
+                  <input-field type="name" placeHolder="" label="Town / City" [(ngModel)]="shipping.city" name="city"
+                    required #city="ngModel">
                   </input-field>
                 </div>
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="State">
-                  </input-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="Country">
-                  </input-field>
-                </div>
-                <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="Postal Code">
+                  <input-field type="name" placeHolder="" label="State" [(ngModel)]="shipping.stateProvince" name="stateProvince"
+                    required #stateProvince="ngModel">
                   </input-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <input-field type="text" placeHolder="" label="Phone Number (Optional)" (keypress)="keyPress($event)"
-                    minlength=10 maxlength=10>
+                  <input-field type="name" placeHolder="" label="Country" [(ngModel)]="shipping.country" name="country"
+                    required #country="ngModel">
                   </input-field>
                 </div>
                 <div class="col-md-6">
-                  <input-field type="email" placeHolder="" label="Email (Optional)">
+                  <input-field type="name" placeHolder="" label="Postal Code" [(ngModel)]="shipping.postalCode" name="postalCode"
+                    required #postalCode="ngModel">
                   </input-field>
                 </div>
               </div>
-              <!-- <input-field type="password" label="Password" labelAfter="true" [(ngModel)]="user.password"
-                name="password" placeHolder="" bottom="25" required #password="ngModel">
-                <err-required message="Password is required" [isValid]="password.valid || (password.pristine)">
-                </err-required>
-              </input-field> -->
-
+              <div class="row">
+                <div class="col-md-6">
+                  <input-field type="text" placeHolder="" label="Phone Number (Optional)" [(ngModel)]="shipping.phone"
+                    name="phone" required #phone="ngModel" minlength=10 maxlength=10>
+                  </input-field>
+                </div>
+                <div class="col-md-6">
+                  <input-field type="email" placeHolder="" label="Email (Optional)" [(ngModel)]="shipping.email" name="email"
+                    required #email="ngModel">
+                  </input-field>
+                </div>
+              </div>
               <div class="form-group au-form">
                 <btn [text]="'Update Address'"></btn>
-                <!-- <div class="m-l-18 m-t-8 m-b-8">
-
-                  <custom-checkbox [label]="'Use as this my billing info & address'"></custom-checkbox>
-                </div> -->
-                <!-- <div class="form-forgot w-100 m-t-10">
-                  <a href="/forgot-password">Lost your password?</a>
-                </div> -->
               </div>
 
             </form>
@@ -86,70 +81,69 @@
         <div class="au-form-body p-r-lg-15 p-r-xl-15">
           <custom-label [label]="'billing address'" [className]="'cart-border'"></custom-label>
           <fieldset class="m-t-40" class="account-box">
-            <form #loginForm="ngForm" role="form">
+            <form>
               <div class="row">
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="First Name">
+                  <input-field type="name" placeHolder="" label="First Name" [(ngModel)]="shipping.firstName" name="firstName"
+                    required #firstName="ngModel">
                   </input-field>
                 </div>
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="Last Name">
+                  <input-field type="name" placeHolder="" label="Last Name" [(ngModel)]="shipping.lastName" name="lastName"
+                    required #lastName="ngModel">
                   </input-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <input-field type="name" placeHolder="" label="Company Name">
+                  <input-field type="name" placeHolder="" label="Company Name" [(ngModel)]="shipping.company" name="company">
                   </input-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <custom-textarea label="Address" name="note" placeHolder=""></custom-textarea>
+                  <custom-textarea label="Address" name="note" placeHolder="" [(ngModel)]="shipping.address" name="address"
+                    required #address="ngModel"></custom-textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="Town / City">
+                  <input-field type="name" placeHolder="" label="Town / City" [(ngModel)]="shipping.city" name="city"
+                    required #city="ngModel">
                   </input-field>
                 </div>
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="State">
-                  </input-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="Country">
-                  </input-field>
-                </div>
-                <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="Postal Code">
+                  <input-field type="name" placeHolder="" label="State" [(ngModel)]="shipping.stateProvince" name="stateProvince"
+                    required #stateProvince="ngModel">
                   </input-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <input-field type="text" placeHolder="" label="Phone Number (Optional)" (keypress)="keyPress($event)"
-                    minlength=10 maxlength=10>
+                  <input-field type="name" placeHolder="" label="Country" [(ngModel)]="shipping.country" name="country"
+                    required #country="ngModel">
                   </input-field>
                 </div>
                 <div class="col-md-6">
-                  <input-field type="email" placeHolder="" label="Email (Optional)">
+                  <input-field type="name" placeHolder="" label="Postal Code" [(ngModel)]="shipping.postalCode" name="postalCode"
+                    required #postalCode="ngModel">
                   </input-field>
                 </div>
               </div>
-              <!-- <input-field type="password" label="Password" labelAfter="true" [(ngModel)]="user.password"
-                  name="password" placeHolder="" bottom="25" required #password="ngModel">
-                  <err-required message="Password is required" [isValid]="password.valid || (password.pristine)">
-                  </err-required>
-                </input-field> -->
-
+              <div class="row">
+                <div class="col-md-6">
+                  <input-field type="text" placeHolder="" label="Phone Number (Optional)" [(ngModel)]="shipping.phone"
+                    name="phone" required #phone="ngModel" minlength=10 maxlength=10>
+                  </input-field>
+                </div>
+                <div class="col-md-6">
+                  <input-field type="email" placeHolder="" label="Email (Optional)" [(ngModel)]="shipping.email" name="email"
+                    required #email="ngModel">
+                  </input-field>
+                </div>
+              </div>
               <div class="form-group au-form">
                 <btn [text]="'Update Address'"></btn>
-                <!-- <div class="form-forgot w-100 m-t-10">
-                    <a href="/forgot-password">Lost your password?</a>
-                  </div> -->
               </div>
 
             </form>

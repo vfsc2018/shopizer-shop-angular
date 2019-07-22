@@ -1,6 +1,5 @@
 export class AppConstants {
     public static API_URL = 'http://99.79.1.102:8080/api/v1/';
-    public static API_URL_AUTH = 'http://99.79.1.102:8080/api/v1/auth/';
 }
 
 export class Action {
@@ -8,6 +7,7 @@ export class Action {
     public static FEATURED = 'featured'
     public static VISIBLE = 'visible'
     public static DEFAULT = 'DEFAULT/'
+    public static AUTH = 'auth/'
 
     public static STORE = 'store/'
     public static CONTENT = 'content/'
@@ -30,5 +30,8 @@ export class Action {
     public static CONTACT = 'contact/'
     public static MANUFACTURERS = 'manufacturers/'
     public static SHIPPING = 'shipping/'
+    public static CUSTOMER = 'customers/'
+    public static PROFILE = 'profile/'
+    public static ORDERS = 'orders/'
 
 }

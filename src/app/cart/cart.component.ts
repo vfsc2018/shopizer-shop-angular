@@ -52,8 +52,14 @@ export class CartComponent {
   }
   getCart() {
     this.spinnerService.show();
-    let action = Action.CART;
-    this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
+    let userData = JSON.parse(localStorage.getItem('userData'));
+    let action;
+    if (userData) {
+      action = Action.CUSTOMER + userData.id + '/' + Action.CART;
+    } else {
+      action = Action.CART + this.cookieService.get('shopizer-cart-id');
+    }
+    this.appService.getMethod(action)
       .subscribe(data => {
         this.cartData = data;
         this.refreshCount(data.quantity);

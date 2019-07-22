@@ -19,8 +19,19 @@ export class AppService {
                 catchError(this.handleErrorObservable)
             );
     }
+    createAuthorizationHeader(headers: Headers) {
+        let userData = JSON.parse(localStorage.getItem('userData'))
+        if (userData) {
+            headers.append('Authorization', 'Bearer ' + userData.token);
+        }
+        headers.append('Content-Type', 'application/json');
+    }
     getMethod(action) {
-        return this.http.get(this.url + action)
+        let headers = new Headers();
+        this.createAuthorizationHeader(headers);
+        return this.http.get(this.url + action, {
+            headers: headers
+        })
             .pipe(
                 map(this.extractData),
                 catchError(this.handleErrorObservable)

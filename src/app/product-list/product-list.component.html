@@ -3,7 +3,7 @@
     <!-- <virtual-scroller #scroll [items]="productData" (vsEnd)="fetchMore($event)" [enableUnequalChildrenSizes]="true"> -->
     <div class="shop-product" *ngFor="let result of productData; let i = index">
       <div class=" product-image">
-        <a href="#">
+        <a href="#" *ngIf="result.image">
           <custom-img [src]="result.image.imageUrl" [alt]="'About Us'">
           </custom-img>
         </a>

@@ -4,7 +4,7 @@
   <div class="col-lg-{{Large}} col-md-6 col-sm-6" *ngFor="let result of productData; let i = index">
     <div class="grid-product">
       <div class="image bg-lightblue">
-        <a href="javascript::void()">
+        <a href="javascript::void()" *ngIf="result.image">
           <custom-img [src]="result.image.imageUrl" [alt]="'About Us'">
           </custom-img>
         </a>

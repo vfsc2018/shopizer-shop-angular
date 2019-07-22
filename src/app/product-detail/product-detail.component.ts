@@ -5,6 +5,7 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from "@angular/router";
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Helper } from '../directive/helper';
@@ -65,6 +66,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     config: NgbRatingConfig,
     private route: ActivatedRoute,
+    public router: Router,
     private appService: AppService,
     private cookieService: CookieService,
     private spinnerService: Ng4LoadingSpinnerService,
@@ -95,6 +97,7 @@ export class ProductDetailComponent implements OnInit {
         })
         this.productDetail = data;
       }, error => {
+        this.router.navigate(['/error']);
       });
     this.getRelatedProduct()
   }
