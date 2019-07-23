@@ -30,6 +30,11 @@ header {
     width: 100%;
     z-index: 1;
 
+    .merchant-logo-title {
+        font-size: xx-large;
+        font-weight: 500;
+    }
+
     .shop-cart-button {
         background-color: transparent;
         border: none;
@@ -777,10 +782,12 @@ header .header-wrapper-mobile.mobile-style-2 .header-mobile__bar .header-mobile_
 
                     .header__button {
                         width: 132px;
+
                         ul {
                             display: block;
                             margin-bottom: 0px;
-                            li{
+
+                            li {
                                 padding-right: 7px;
                             }
                         }

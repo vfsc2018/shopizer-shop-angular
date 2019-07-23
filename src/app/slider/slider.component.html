@@ -1,7 +1,7 @@
 <ngb-carousel *ngIf="slideData" class="silde-container" [showNavigationArrows]="false">
   <ng-template ngbSlide *ngFor="let item of slideData">
     <div class="item">
-      <custom-img [src]="item.img" [alt]="'Random first slide'">
+      <custom-img [src]="item.path + item.name" [alt]="'Random first slide'">
       </custom-img>
     </div>
 

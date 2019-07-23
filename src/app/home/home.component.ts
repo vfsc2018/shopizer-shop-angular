@@ -22,25 +22,26 @@ export class HomeComponent implements OnInit {
   categoryData: Array<any> = [];
   public loading = false;
   isOpen: boolean;
-  sliderItems = [
-    {
-      title: "title1",
-      description: "lorem ipsum",
-      img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/slider2.jpg"
-    },
-    {
-      title: "title2",
-      description: "lorem ipsum",
-      img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/slider3.jpg"
-    },
-    {
-      title: "title3",
-      description: "lorem ipsum",
-      img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/banner.jpg"
-    }
-  ];
+  sliderItems: Array<any> = [];
+  //   {
+  //     title: "title1",
+  //     description: "lorem ipsum",
+  //     img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/slider2.jpg"
+  //   },
+  //   {
+  //     title: "title2",
+  //     description: "lorem ipsum",
+  //     img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/slider3.jpg"
+  //   },
+  //   {
+  //     title: "title3",
+  //     description: "lorem ipsum",
+  //     img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/banner.jpg"
+  //   }
+  // ];
   ngOnInit() {
     this.getProductList()
+    this.ContentImage()
   }
   getProductList() {
     let action = Action.PRODUCT_GROUP;
@@ -59,6 +60,14 @@ export class HomeComponent implements OnInit {
         // console.log(this.categoryData)
         this.productData = data.products;
         this.filterData = data.products;
+      }, error => {
+      });
+  }
+  ContentImage() {
+    let action = Action.DEFAULT + Action.CONTENT + Action.IMAGES;
+    this.appService.getMethod(action)
+      .subscribe(data => {
+        this.sliderItems = data.content;
       }, error => {
       });
   }

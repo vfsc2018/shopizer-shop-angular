@@ -7,7 +7,7 @@
       <div class="header header-style-1">
         <div class="header-main">
           <div class="header__logo">
-            <span *ngIf="merchant.logo == null">{{merchant.name}}</span>
+            <span *ngIf="merchant.logo == null" class="merchant-logo-title">{{merchant.name}}</span>
             <a href="" *ngIf="merchant.logo != null">
               <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
               </custom-img>

@@ -1,34 +1,20 @@
-<!-- <header> -->
-<!-- <div class="settings">
-    <span ngbDropdown class="submenu">
-        <span id="dropdownBasic1" ngbDropdownToggle>Language</span>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <a ngbDropdownItem class="" style="border-bottom: 1px solid #e5e5e5;" (click)="onChangeLanguage()">English</a>
-            <a ngbDropdownItem (click)="onChangeLanguage()">French</a>
-        </div>
-    </span>
-    <span ngbDropdown class="submenu">
-        <span id="dropdownBasic1" ngbDropdownToggle>My Account</span>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <a routerLink="/account" ngbDropdownItem style="border-bottom: 1px solid #e5e5e5;">Sign In</a>
-            <a routerLink="/account" ngbDropdownItem>Register</a>
-        </div>
-    </span>
-    <span class="submenu">
-        <a routerLink="/contact" class="contact-us">Contact us</a>
-    </span>
-</div> -->
-
-<!-- </header> -->
-
 <div [ngClass]="isOpen ? 'shop-cart open' : 'shop-cart'">
-    <span ngbDropdown class="submenu">
-        <span id="dropdownBasic1" ngbDropdownToggle>{{language}}</span>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <a ngbDropdownItem class="" (click)="onChangeLanguage('English')">English</a>
-            <a ngbDropdownItem (click)="onChangeLanguage('French')">French</a>
+    <div *ngIf="userDataFlag && userData">
+        <div class="user-name">
+            Howdy {{userData.firstName}} {{userData.lastName}}
         </div>
-    </span>
+        <span class="user-email">{{userData.emailAddress}}</span>
+    </div>
+    <li class="border-line" *ngIf="userDataFlag"></li>
+    <div [ngClass]="userDataFlag ? 'm_nav_item' : ''">
+        <span ngbDropdown class="submenu">
+            <span id="dropdownBasic1" ngbDropdownToggle>{{language}}</span>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <a ngbDropdownItem class="" (click)="onChangeLanguage('English')">English</a>
+                <a ngbDropdownItem (click)="onChangeLanguage('French')">French</a>
+            </div>
+        </span>
+    </div>
     <li class="border-line"></li>
     <div class="m_nav_item" *ngIf="!userDataFlag">
         <div class="m-nav__link">

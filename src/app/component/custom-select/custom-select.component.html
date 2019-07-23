@@ -1,6 +1,6 @@
 <div class="form-group custom-select-fields  m-b-{{bottom}}">
   <label [ngClass]="labelAfter ? 'label-after' : ''">{{label | translate}}</label>
   <select [(ngModel)]="value" [name]="name" (change)="onChange($event.target.value)">
-    <option *ngFor="let i of data" [value]="i">{{i}}</option>
+    <option *ngFor="let i of data" [value]="i.code">{{i.name}}</option>
   </select>
 </div>

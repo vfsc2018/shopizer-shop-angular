@@ -79,6 +79,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginMenuComponent } from './component/login-menu/login-menu.component';
 import { OrdersComponent } from './orders/orders.component';
+import { TermandconditionComponent } from './termandcondition/termandcondition.component';
 
 
 /** load this at startup */
@@ -165,6 +166,10 @@ const routes: Routes = [
   {
     path: "shipping-detail",
     component: ShippingDetailComponent
+  },
+  {
+    path: "content/:id",
+    component: TermandconditionComponent
   }
 ];
 
@@ -225,7 +230,8 @@ export function createTranslateLoader(http: HttpClient) {
     LoginMenuComponent,
     OrdersComponent,
     OrderDetailComponent,
-    ShippingDetailComponent
+    ShippingDetailComponent,
+    TermandconditionComponent
   ],
   entryComponents: [
     CartComponent
