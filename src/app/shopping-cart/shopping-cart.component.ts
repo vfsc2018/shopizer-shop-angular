@@ -36,7 +36,8 @@ export class ShoppingCartComponent implements OnInit {
         this.subtotal = data.subtotal;
         this.total = data.displayTotal;
       }, error => {
-        this.router.navigate(['/']);
+        this.cartData = [];
+        // this.router.navigate(['/']);
         this.cookieService.delete('shopizer-cart-id')
         this.spinnerService.hide();
       });
@@ -91,6 +92,36 @@ export class ShoppingCartComponent implements OnInit {
   }
   onCheckOut() {
     this.router.navigate(['/checkout']);
+  }
+  clearShoppingCard() {
+    this.spinnerService.show();
+    let start = 0;
+    let me = this;
+    let doThing = function (start) {
+      for (let i = start; i < me.cartData.length; i++) {
+        let action = Action.CART;
+        let param = { "product": me.cartData[i].id, "quantity": 0 }
+        me.appService.putMethod(action, me.cookieService.get('shopizer-cart-id'), param)
+          .subscribe(data => {
+
+            console.log(i)
+            console.log(me.cartData.length - 1, 'me.cartData.length')
+            if (me.cartData.length - 2 == i) {
+              me.getCart();
+              me.spinnerService.hide();
+            }
+            doThing(i + 1)
+          }, error => {
+            me.getCart();
+            me.spinnerService.hide();
+          });
+        break;
+      }
+    }
+    doThing(start)
+  }
+  onClickContinueButton() {
+    this.router.navigate(['/']);
   }
 
 }

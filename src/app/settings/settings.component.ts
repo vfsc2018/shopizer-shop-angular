@@ -22,7 +22,7 @@ export class SettingsComponent {
     private appService: AppService
   ) {
     this.userDataFlag = localStorage.getItem('userData') ? true : false;
-    this.language = localStorage.getItem('langulage') == 'en' ? 'English' : 'French'
+    this.language = 'Language'
     this.getProfile();
   }
   getProfile() {

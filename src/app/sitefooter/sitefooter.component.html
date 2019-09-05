@@ -55,7 +55,33 @@
             </div>
             <div class="footer-item-content">
               <ul class="footer-latest-post">
-                <li>
+                <li class="post-item" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                  <a routerLink="/">{{'Home' | translate}}</a>
+                </li>
+                <li class="post-item" *ngFor="let category of category" routerLinkActive="active"
+                  routerLinkActiveOptions="{ exact: true }">
+                  <a (click)="onClickCategory(category)" [routerLink]="'/category/' + category.description.friendlyUrl">
+                    {{category.description.name | translate}}</a>
+                  <!-- <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
+                      <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
+                    </ul> -->
+                </li>
+                <ng-container *ngFor="let content of content">
+                  <ng-container *ngIf="content.displayedInMenu">
+                    <li class="post-item" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                      <a [routerLink]="'/content/' + content.slug">{{content.name | translate}}</a></li>
+                  </ng-container>
+                </ng-container>
+                <li class="post-item" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                  <a routerLink="/contact">{{ 'Contact' | translate }}</a>
+                </li>
+                <li class="post-item" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                  <a routerLink="/account">{{ 'Register' | translate }}</a>
+                </li>
+                <li class="post-item" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                  <a routerLink="/account">{{ 'Sign In' | translate }}</a>
+                </li>
+                <!-- <li>
                   <div class="post-item">
                     <a href="/">Home</a>
                     <span class="post-time"></span>
@@ -78,7 +104,7 @@
                   <div class="post-item">
                     <a href="/account">Sign In</a>
                   </div>
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>

@@ -13,6 +13,9 @@
         </div>
       </div>
       <a href="javascript::void()" class="name" (click)="onClickName(result)">{{result.description.name}}</a>
+      <div class="product-rating" data-star="4">
+        <ngb-rating [rate]="result.rate"></ngb-rating>
+      </div>
       <div class="price">${{result.price}}</div>
     </div>
   </div>

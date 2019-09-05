@@ -102,6 +102,7 @@ export class SiteheaderComponent implements OnInit {
         this.settingShow = false;
     }
     onSetting() {
+        // this.Helper.showMiniCart(1);
         this.settingShow = !this.settingShow;
     }
 }

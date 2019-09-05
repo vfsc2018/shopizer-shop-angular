@@ -4,5 +4,5 @@
 <div [ngClass]="isOpen ? 'search-input open' : 'search-input'">
   <ng-autocomplete [data]="autoCompleteData" type="text" placeHolder="Start typing here..." [(ngModel)]="search_text"
     name="search_text" (keydown)="keyDownFunction($event)" (onInputChange)="onSearch()" (onClickCross)="toggleSearch()"
-    (onClickValue)="selectEvent($event)"></ng-autocomplete>
+    (onClickValue)="selectEvent($event)" (onSearchIcon)="onClickSearchIcon()"></ng-autocomplete>
 </div>

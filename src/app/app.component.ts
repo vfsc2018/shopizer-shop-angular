@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 // import { TranslateService } from '@ngx-translate/core';
-import { Router } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,5 +12,13 @@ export class AppComponent {
   constructor(private router: Router) {
     // translate.setDefaultLang('en');
     // this.router.navigate(['/home']);
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0)
+    });
+
   }
+
 }

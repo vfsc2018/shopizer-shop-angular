@@ -33,8 +33,8 @@
           </product-list>
         </div>
         <div *ngIf="loadmore" class="no-more-data">Loading...</div>
-        <div class="no-more-data" *ngIf="totalRecord == productData.length && productData.length > 0">{{ 'No More Data'
-          | translate}}</div>
+        <!-- <div class="no-more-data" *ngIf="totalRecord == productData.length && productData.length > 0">{{ 'No More Data'
+          | translate}}</div> -->
         <no-data *ngIf="productData.length == 0" [message]="'No Product Found'"></no-data>
 
       </div>

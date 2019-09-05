@@ -1,6 +1,7 @@
 <div class="autocomplete">
   <input [type]="type" [placeholder]="placeHolder" [(ngModel)]="value" [name]="name" (keyup)="onValueChange($event.target.value)"
     class="form-control" (ngModelChange)="inputModelChange.emit(inputModel)" (blur)="onBlur()">
+  <i class="icon-search" (click)="onClickSearchIcon()"></i>
   <a (click)="onClickClose()"></a>
 </div>
 <div class="autosuggestion" *ngIf="data.length > 0">

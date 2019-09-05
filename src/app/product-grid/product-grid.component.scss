@@ -64,6 +64,10 @@
         padding-bottom: 25px;
         background-color: #fff;
 
+        .product-rating {
+            color: #ffcc66;
+        }
+
         .image {
             width: 100%;
             display: -webkit-box;
@@ -82,7 +86,7 @@
             -ms-flex-align: center;
             align-items: center;
             height: 340px;
-            margin-bottom: 18px;
+            // margin-bottom: 18px;
             position: relative;
             overflow: hidden;
             cursor: pointer;

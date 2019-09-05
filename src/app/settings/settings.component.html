@@ -6,7 +6,7 @@
         <span class="user-email">{{userData.emailAddress}}</span>
     </div>
     <li class="border-line" *ngIf="userDataFlag"></li>
-    <div [ngClass]="userDataFlag ? 'm_nav_item' : ''">
+    <div [ngClass]="userDataFlag ? 'm_nav_item' : 'witout_login'">
         <span ngbDropdown class="submenu">
             <span id="dropdownBasic1" ngbDropdownToggle>{{language}}</span>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">

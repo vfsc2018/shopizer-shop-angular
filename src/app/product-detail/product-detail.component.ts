@@ -97,7 +97,7 @@ export class ProductDetailComponent implements OnInit {
         })
         this.productDetail = data;
       }, error => {
-        this.router.navigate(['/error']);
+        // this.router.navigate(['/error']);
       });
     this.getRelatedProduct()
   }

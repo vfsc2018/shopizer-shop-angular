@@ -36,6 +36,7 @@ export class AutocompleteComponent implements OnInit {
   @Output() onInputChange: EventEmitter<any> = new EventEmitter();
   @Output() onClickCross: EventEmitter<any> = new EventEmitter();
   @Output() onClickValue: EventEmitter<any> = new EventEmitter();
+  @Output() onSearchIcon: EventEmitter<any> = new EventEmitter();
   @Output() inputModelChange = new EventEmitter<string>();
 
   private _required: any;
@@ -100,6 +101,9 @@ export class AutocompleteComponent implements OnInit {
   }
   onClickItem(value) {
     this.onClickValue.emit(value)
+  }
+  onClickSearchIcon() {
+    this.onSearchIcon.emit()
   }
 
 

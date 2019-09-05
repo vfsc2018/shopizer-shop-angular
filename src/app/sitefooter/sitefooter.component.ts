@@ -5,7 +5,8 @@ import { Helper } from '../directive/helper';
 import { CookieService } from 'ngx-cookie-service';
 import { SafeHtml } from '../shared/utility/safe-html'
 import { TranslateService } from '@ngx-translate/core';
-
+import { DataSharingService } from '../directive/data-sharing.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'sitefooter',
   templateUrl: './sitefooter.component.html',
@@ -22,7 +23,9 @@ export class SitefooterComponent implements OnInit {
     private appService: AppService,
     private cookieService: CookieService,
     private translate: TranslateService,
-    private helper: Helper
+    private helper: Helper,
+    public router: Router,
+    private dataSharingService: DataSharingService,
   ) {
     this.getStore();
     this.lan = localStorage.getItem('langulage');
@@ -75,6 +78,12 @@ export class SitefooterComponent implements OnInit {
   getYear(date) {
     // console.log(date);
     return new Date(date).getFullYear();
+  }
+  onClickCategory(category) {
+    this.dataSharingService.categoryData.next(category);
+    localStorage.setItem('category_id', JSON.stringify(category))
+    this.router.navigate(['/category/' + category.description.friendlyUrl]);
+
   }
   changeLang() {
     this.helper.languageChange();

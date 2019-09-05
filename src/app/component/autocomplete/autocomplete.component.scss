@@ -11,6 +11,17 @@
         border-radius: 0;
     }
 
+    .icon-search {
+        position: absolute;
+        top: 62px;
+        right: 200px;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        height: 12px;
+        width: 12px;
+        display: block;
+        transition: all 0.35s;
+    }
 
 }
 

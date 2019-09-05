@@ -44,4 +44,8 @@ export class SearchComponent implements OnInit {
 
     }
   }
+  onClickSearchIcon() {
+    this.router.navigate(['/search/' + this.search_text]);
+    this.toggleSearch();
+  }
 }

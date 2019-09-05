@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'product-grid',
   templateUrl: './product-grid.component.html',
@@ -13,7 +14,10 @@ export class ProductGridComponent implements OnInit {
   @Output() onClickCart: EventEmitter<any> = new EventEmitter();
   @Output() onClickDetail: EventEmitter<any> = new EventEmitter();
   @Output() onPagination: EventEmitter<any> = new EventEmitter();
-  constructor() { }
+  constructor(config: NgbRatingConfig) {
+    config.max = 5;
+    config.readonly = true;
+  }
   ngOnInit() {
   }
 

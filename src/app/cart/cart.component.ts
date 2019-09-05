@@ -84,6 +84,7 @@ export class CartComponent {
     localStorage.setItem('itemCount', JSON.stringify(value))
   }
   removecartData(result) {
+    console.log(result);
     this.spinnerService.show();
     let action = Action.CART;
     let param = { "product": result.id, "quantity": 0 }

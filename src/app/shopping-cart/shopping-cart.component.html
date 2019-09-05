@@ -4,26 +4,30 @@
     <div>
         <div class="container p-t-100 py-tn-30">
             <div class="row m-t-20">
-                <div class="col-md-12">
+                <div class="col-md-12" *ngIf="cartData.length > 0">
                     <list-header [data]="header_data"></list-header>
 
                     <list [data]="cartData" (onCrossButtonClick)="removeCartData($event)" (onDownButtonClick)="updateQuantity($event, 0)"
                         (onQtyChange)="updateQuantity($event, '')" (onUpButtonClick)="updateQuantity($event, 1)"
                         [showGrid]="'1'"></list>
                 </div>
+                <div class="col-md-12" *ngIf="cartData.length == 0">
+                    <no-data [message]="'No items in your shopping cart'"></no-data>
+                </div>
+
             </div>
         </div>
     </div>
     <div class="container p-b-30 py-tn-30">
         <div class="row m-t-20">
             <div class="main-button">
-                <btn [text]="'Clear Shopping Cart'" [className]="'white'"></btn>
-                <btn [text]="'Update Continue Shopping'" [className]="'white'"></btn>
-                <btn [text]="'Continue Shopping'"></btn>
+                <btn *ngIf="cartData.length > 0" [text]="'Clear Shopping Cart'" [className]="'white'" (click)="clearShoppingCard()"></btn>
+                <!-- <btn [text]="'Update Continue Shopping'" [className]="'white'"></btn> -->
+                <btn [text]="'Continue Shopping'" (click)="onClickContinueButton()"></btn>
             </div>
         </div>
     </div>
-    <div class="container p-b-100">
+    <div class="container p-b-100" *ngIf="cartData.length > 0">
         <div class="row">
             <div class="col-md-6 p-r-lg--30  m-t-30 m-b-30">
                 <div class="shop-total">

@@ -86,12 +86,15 @@
             width: 0;
             height: 0;
             color: #999999;
-            margin-left: 11.5em;
+            margin-left: 0;
+            margin-top: 10px;
             vertical-align: middle;
             content: "";
             border-top: 0.3em solid;
             border-right: 0.3em solid transparent;
             border-left: 0.3em solid transparent;
+            position: absolute;
+            right: 0;
         }
     }
 
@@ -116,8 +119,23 @@
         }
     }
 
+    .witout_login {
+        position: relative;
+
+        .dropdown {
+            position: unset !important;
+        }
+    }
+
+
     .m_nav_item {
         padding-top: 25px;
+        position: relative;
+
+        .dropdown {
+            position: unset !important;
+        }
+
 
         .m-nav__link {
             margin-bottom: 16px;
