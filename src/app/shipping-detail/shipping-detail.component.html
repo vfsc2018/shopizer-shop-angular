@@ -5,65 +5,65 @@
     <div class="row">
       <div class="col-lg-6 ">
         <div class="au-form-body p-r-lg-15 p-r-xl-15">
-          <custom-label [label]="'shipping address'" [className]="'cart-border'"></custom-label>
+          <custom-label [label]="'billing address'" [className]="'cart-border'"></custom-label>
           <fieldset class="m-t-40" class="account-box">
             <form>
               <div class="row">
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="First Name" [(ngModel)]="shipping.firstName" name="firstName"
+                  <input-field type="name" placeHolder="" label="First Name" [(ngModel)]="billing.firstName" name="firstName"
                     required #firstName="ngModel">
                   </input-field>
                 </div>
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="Last Name" [(ngModel)]="shipping.lastName" name="lastName"
+                  <input-field type="name" placeHolder="" label="Last Name" [(ngModel)]="billing.lastName" name="lastName"
                     required #lastName="ngModel">
                   </input-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <input-field type="name" placeHolder="" label="Company Name" [(ngModel)]="shipping.company" name="company">
+                  <input-field type="name" placeHolder="" label="Company Name" [(ngModel)]="billing.company" name="company">
                   </input-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <custom-textarea label="Address" name="note" placeHolder="" [(ngModel)]="shipping.address" name="address"
+                  <custom-textarea label="Address" name="note" placeHolder="" [(ngModel)]="billing.address" name="address"
                     required #address="ngModel"></custom-textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="Town / City" [(ngModel)]="shipping.city" name="city"
+                  <input-field type="name" placeHolder="" label="Town / City" [(ngModel)]="billing.city" name="city"
                     required #city="ngModel">
                   </input-field>
                 </div>
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="State" [(ngModel)]="shipping.stateProvince" name="stateProvince"
+                  <input-field type="name" placeHolder="" label="State" [(ngModel)]="billing.stateProvince" name="stateProvince"
                     required #stateProvince="ngModel">
                   </input-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="Country" [(ngModel)]="shipping.country" name="country"
+                  <input-field type="name" placeHolder="" label="Country" [(ngModel)]="billing.country" name="country"
                     required #country="ngModel">
                   </input-field>
                 </div>
                 <div class="col-md-6">
-                  <input-field type="name" placeHolder="" label="Postal Code" [(ngModel)]="shipping.postalCode" name="postalCode"
+                  <input-field type="name" placeHolder="" label="Postal Code" [(ngModel)]="billing.postalCode" name="postalCode"
                     required #postalCode="ngModel">
                   </input-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <input-field type="text" placeHolder="" label="Phone Number (Optional)" [(ngModel)]="shipping.phone"
+                  <input-field type="text" placeHolder="" label="Phone Number (Optional)" [(ngModel)]="billing.phone"
                     name="phone" required #phone="ngModel" minlength=10 maxlength=10>
                   </input-field>
                 </div>
                 <div class="col-md-6">
-                  <input-field type="email" placeHolder="" label="Email (Optional)" [(ngModel)]="shipping.email" name="email"
+                  <input-field type="email" placeHolder="" label="Email (Optional)" [(ngModel)]="billing.email" name="email"
                     required #email="ngModel">
                   </input-field>
                 </div>
@@ -79,7 +79,7 @@
       </div>
       <div class="col-lg-6">
         <div class="au-form-body p-r-lg-15 p-r-xl-15">
-          <custom-label [label]="'billing address'" [className]="'cart-border'"></custom-label>
+          <custom-label [label]="'Delivery Address'" [className]="'cart-border'"></custom-label>
           <fieldset class="m-t-40" class="account-box">
             <form>
               <div class="row">

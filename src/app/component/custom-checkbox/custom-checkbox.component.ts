@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'custom-checkbox',
@@ -6,10 +6,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./custom-checkbox.component.scss']
 })
 export class CustomCheckboxComponent implements OnInit {
-  @Input() label: string
+  @Input() label: string;
+  @Output() onChange: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
   }
-
+  onChangeCheckBox(event) {
+    this.onChange.emit(event);
+  }
 }

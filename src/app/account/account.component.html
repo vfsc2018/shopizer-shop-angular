@@ -3,14 +3,14 @@
   <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
   <div class="container py-70 py-tn-40">
     <div class="row">
-      <div class="col-lg-6 ">
+      <div class="col-lg-12 ">
         <div class="au-form-body p-r-lg-15 p-r-xl-15">
           <custom-label [label]="'Login'" [className]="'cart-border'"></custom-label>
           <fieldset class="m-t-40" class="account-box">
             <form #loginForm="ngForm" role="form">
-              <input-field type="email" label="Username or email address" [(ngModel)]="user.username" name="username"
-                placeHolder="" labelAfter="true" required #username="ngModel" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z0-9-.]{2,}">
-                <err-required message="Valid email required" [isValid]="username.valid || (username.pristine)"></err-required>
+              <input-field type="text" label="Username or email address" [(ngModel)]="user.username" name="username"
+                placeHolder="" labelAfter="true" required #username="ngModel">
+                <!-- <err-required message="Valid email required" [isValid]="username.valid || (username.pristine)"></err-required> -->
               </input-field>
 
               <input-field type="password" label="Password" labelAfter="true" [(ngModel)]="user.password" name="password"
@@ -25,7 +25,10 @@
                 </div>
 
                 <div class="form-forgot w-100 m-t-10">
-                  <a href="/forgot-password">Lost your password?</a>
+                  <a routerLink="/forgot-password">Lost your password?</a>
+                </div>
+                <div class="form-forgot w-100 m-t-10">
+                  <span>New to shopizer? <a routerLink="/register"> Create an account</a></span>
                 </div>
               </div>
 
@@ -34,7 +37,7 @@
         </div>
 
       </div>
-      <div class="col-lg-6">
+      <!-- <div class="col-lg-6">
         <div class="au-form-body p-r-lg-15 p-r-xl-15">
           <custom-label [label]="'register'" [className]="'cart-border'"></custom-label>
           <fieldset class="m-t-40" class="account-box">
@@ -52,7 +55,7 @@
             </form>
           </fieldset>
         </div>
-      </div>
+      </div> -->
     </div>
 
   </div>

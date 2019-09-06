@@ -18,6 +18,10 @@ export class ShippingDetailComponent implements OnInit {
     private toastr: ToastrService,
     public router: Router
   ) { }
+  register = {
+    username: '',
+    password: ''
+  }
   shipping = {
     firstName: '',
     lastName: '',

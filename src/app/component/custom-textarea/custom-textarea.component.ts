@@ -18,6 +18,7 @@ export class CustomTextareaComponent implements ControlValueAccessor {
   @Input() bottom: string;
   @Input() type: string;
   @Input() name: string;
+  @Input() row: string;
   @Input() inputModel: string;
   @Input() placeHolder: string;
 

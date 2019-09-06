@@ -1,0 +1,172 @@
+<div class="account">
+  <banner [title]="'register'"></banner>
+  <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
+  <div class="container py-70 py-tn-40">
+    <div class="row">
+
+
+      <fieldset class="m-t-40" class="account-box">
+        <form #registerForm="ngForm" role="form">
+          <div class="col-lg-12">
+            <custom-label [label]="'Login Information'" [className]="'cart-border'"></custom-label>
+
+            <input-field type="email" label="Username or email address" [(ngModel)]="register.username" name="username"
+              placeHolder="" labelAfter="true" required #usernameone="ngModel" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z0-9-.]{2,}">
+              <err-required message="Valid email required" [isValid]="usernameone.valid || (usernameone.pristine)"></err-required>
+            </input-field>
+
+            <input-field type="password" label="Password" labelAfter="true" [(ngModel)]="register.password" name="password"
+              placeHolder="" bottom="25" required #passwordone="ngModel">
+              <err-required message="Password is required" [isValid]="passwordone.valid || (passwordone.pristine)"></err-required>
+            </input-field>
+            <!-- <btn [text]="'Register'" (onClick)="onRegister()" [isDisabled]="!registerForm.form.valid"></btn> -->
+
+          </div>
+          <div class="row">
+            <div class="col-lg-6 ">
+              <div class="au-form-body p-r-lg-15 p-r-xl-15">
+                <custom-label [label]="'billing address'" [className]="'cart-border'"></custom-label>
+                <fieldset class="m-t-40" class="account-box">
+                  <!-- <form> -->
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input-field type="name" placeHolder="" labelAfter="true" label="First Name" [(ngModel)]="billing.firstName"
+                        name="firstName" required #firstName="ngModel">
+                      </input-field>
+                    </div>
+                    <div class="col-md-6">
+                      <input-field type="name" placeHolder="" labelAfter="true" label="Last Name" [(ngModel)]="billing.lastName"
+                        name="lastName" required #lastName="ngModel">
+                      </input-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <input-field type="name" placeHolder="" label="Company Name" [(ngModel)]="billing.company" name="company">
+                      </input-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <custom-textarea label="Address" labelAfter="true" row="9" name="note" placeHolder="" [(ngModel)]="billing.address"
+                        name="address" required #address="ngModel"></custom-textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <custom-select label="Country" labelAfter="true" bottom="24" [(ngModel)]="billing.country" name="billing.country"
+                        [data]="countryData" required (onSelectChange)="onCountrySelect($event)">
+                      </custom-select>
+                    </div>
+                    <div class="col-md-6">
+                      <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="billing.state" name="billing.state"
+                        [data]="stateData" required>
+                      </custom-select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input-field type="name" placeHolder="" labelAfter="true" label="Town / City" [(ngModel)]="billing.city"
+                        name="city" required #city="ngModel">
+                      </input-field>
+                    </div>
+                    <div class="col-md-6">
+                      <input-field type="name" placeHolder="" labelAfter="true" label="Postal Code" [(ngModel)]="billing.postalCode"
+                        name="postalCode" required #postal="ngModel" minlength=6>
+                        <err-required message="Please enter min 6 char postal code" [isValid]="postal.valid || (postal.pristine)"></err-required>
+                      </input-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input-field type="text" placeHolder="" label="Phone Number (Optional)" [(ngModel)]="billing.phone"
+                        name="phone" #mobile="ngModel" minlength=10 maxlength=13>
+                        <err-required message="Please enter min 10 & max 13 digit mobile number" [isValid]="mobile.valid || (mobile.pristine)"></err-required>
+                      </input-field>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+            </div>
+            <div class="col-lg-6">
+              <div class="au-form-body p-r-lg-15 p-r-xl-15">
+                <custom-label [label]="'Delivery  Address'" [className]="'cart-border'"></custom-label>
+
+                <fieldset class="m-t-40" class="account-box">
+                  <div class="row" style="margin: 16px 0px 7px -8px;">
+                    <div class="col-md-12">
+                      <custom-checkbox [label]="'Same as billing address'" (onChange)="onChangeDeliveryAddress($event)"></custom-checkbox>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input-field type="name" placeHolder="" label="First Name" [(ngModel)]="shipping.firstName" name="shipping.firstName"
+                        #firstName="ngModel">
+                      </input-field>
+                    </div>
+                    <div class="col-md-6">
+                      <input-field type="name" placeHolder="" label="Last Name" [(ngModel)]="shipping.lastName" name="shipping.lastName"
+                        #lastName="ngModel">
+                      </input-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <input-field type="name" placeHolder="" label="Company Name" [(ngModel)]="shipping.company" name="shipping.company">
+                      </input-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <custom-textarea label="Address" name="note" row="6" placeHolder="" [(ngModel)]="shipping.address"
+                        name="shipping.address" #address="ngModel"></custom-textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <custom-select label="Country" bottom="24" [(ngModel)]="shipping.country" name="shipping.country"
+                        [data]="countryData" (onSelectChange)="onCountrySelect($event)">
+                      </custom-select>
+                    </div>
+                    <div class="col-md-6">
+                      <custom-select label="State" bottom="24" [(ngModel)]="shipping.state" name="shipping.state"
+                        [data]="stateData">
+                      </custom-select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input-field type="name" placeHolder="" label="Town / City" [(ngModel)]="shipping.city" name="shipping.city"
+                        #city="ngModel">
+                      </input-field>
+                    </div>
+                    <div class="col-md-6">
+                      <input-field type="name" placeHolder="" label="Postal Code" [(ngModel)]="shipping.postalCode"
+                        name="shipping.postalCode" #postalCode="ngModel" minlength=6>
+                        <err-required message="Please enter min 6 char postal code" [isValid]="postalCode.valid || (postalCode.pristine)"></err-required>
+                      </input-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input-field type="number" placeHolder="" label="Phone Number (Optional)" [(ngModel)]="shipping.phone"
+                        name="shipping.phone" #phone="ngModel" minlength=10 maxlength=13>
+                        <err-required message="Please enter min 10 & max 13 digit mobile number" [isValid]="phone.valid || (phone.pristine)"></err-required>
+                      </input-field>
+                    </div>
+                  </div>
+
+                </fieldset>
+              </div>
+            </div>
+          </div>
+          <div class="button-register">
+            <btn [text]="'Register'" [isDisabled]="!registerForm.form.valid" (onClick)="onRegister()"></btn>
+          </div>
+        </form>
+      </fieldset>
+    </div>
+  </div>
+</div>

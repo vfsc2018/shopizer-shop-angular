@@ -45,6 +45,7 @@ import { CartListComponent, ListComponent } from './component/cart-list/cart-lis
 import { CustomLabelComponent } from './component/custom-label/custom-label.component';
 import { InputFieldComponent } from './component/input-field/input-field.component';
 import { AccountComponent } from './account/account.component';
+import { RegisterComponent } from './register/register.component';
 import { ShippingDetailComponent } from './shipping-detail/shipping-detail.component';
 import { CustomCheckboxComponent } from './component/custom-checkbox/custom-checkbox.component';
 import { ImgComponent } from './component/img/img.component';
@@ -97,79 +98,103 @@ export function loadConfigurations(configurationService: ConfigurationService) {
 const routes: Routes = [
   {
     path: "",
-    component: HomeComponent
+    component: HomeComponent,
+    data: { title: 'Home' }
   },
   {
     path: "checkout",
-    component: CheckoutComponent
+    component: CheckoutComponent,
+    data: { title: 'Checkout' }
   },
   {
     path: "shoppingcart",
-    component: ShoppingCartComponent
+    component: ShoppingCartComponent,
+    data: { title: 'Shopping Cart' }
   },
   {
     path: "product-detail",
-    component: ProductDetailComponent
+    component: ProductDetailComponent,
+    data: { title: 'Product Detail' }
   },
   {
     path: "account",
-    component: AccountComponent
+    component: AccountComponent,
+    data: { title: 'Login' }
+  },
+  {
+    path: "register",
+    component: RegisterComponent,
+    data: { title: 'Register' }
   },
   {
     path: "category/:id",
-    component: ShopComponent
+    component: ShopComponent,
+    data: { title: 'Category' }
   },
   {
     path: "search/:id",
-    component: SearchResultComponent
+    component: SearchResultComponent,
+    data: { title: 'Search' }
   },
   {
     path: "shop",
-    component: ShopComponent
+    component: ShopComponent,
+    data: { title: 'Shop' }
   },
   {
     path: "wishlist",
-    component: WishListComponent
+    component: WishListComponent,
+    data: { title: 'Wish List' }
   },
   {
     path: "contact",
-    component: ContactComponent
+    component: ContactComponent,
+    data: { title: 'Contact' }
   },
   {
     path: "forgot-password",
-    component: ForgotPasswordComponent
+    component: ForgotPasswordComponent,
+    data: { title: 'Forgot Password' }
   },
   {
     path: "error",
-    component: ErrorComponent
+    component: ErrorComponent,
+    data: { title: 'Error' }
   },
   {
     path: "blog-detail",
-    component: BlogDetailComponent
+    component: BlogDetailComponent,
+    data: { title: 'Blog Detail' }
   },
   {
     path: "coming-soon",
-    component: ComingSoonComponent
+    component: ComingSoonComponent,
+    data: { title: 'Comming Soon' }
   },
   {
     path: "password",
-    component: ChangePasswordComponent
+    component: ChangePasswordComponent,
+    data: { title: 'Change Password' }
   },
   {
     path: "orders",
-    component: OrdersComponent
+    component: OrdersComponent,
+    data: { title: 'Orders' }
   },
   {
     path: "order-detail",
-    component: OrderDetailComponent
+    component: OrderDetailComponent,
+    data: { title: 'Order Detail' }
   },
   {
     path: "shipping-detail",
-    component: ShippingDetailComponent
+    component: ShippingDetailComponent,
+    data: { title: 'Shipping Detail' }
   },
   {
     path: "content/:id",
-    component: TermandconditionComponent
+    component: TermandconditionComponent,
+    data: { title: 'Content' }
   }
 ];
 
@@ -200,6 +225,7 @@ export function createTranslateLoader(http: HttpClient) {
     InputFieldComponent,
     ListComponent,
     AccountComponent,
+    RegisterComponent,
     CustomCheckboxComponent,
     ImgComponent,
     ProductListComponent,

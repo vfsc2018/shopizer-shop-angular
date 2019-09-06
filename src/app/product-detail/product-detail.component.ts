@@ -88,7 +88,7 @@ export class ProductDetailComponent implements OnInit {
   }
   getProductDetails() {
     this.spinnerService.show();
-    let action = Action.PRODUCTS;
+    let action = Action.PRODUCT;
 
     this.appService.getMethod(action + this.productId + '?lang=en')
       .subscribe(data => {

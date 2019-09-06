@@ -1,6 +1,6 @@
 <div class="form-group custom-textarea m-b-{{bottom}}">
   <label [ngClass]="labelAfter ? 'label-after' : ''">{{label | translate}}</label>
-  <textarea [placeholder]="placeHolder" [cols]="30" [rows]="9" [(ngModel)]="value" [name]="name" (keyup)="onValueChange($event.target.value)"
+  <textarea [placeholder]="placeHolder" [cols]="30" [rows]="row" [(ngModel)]="value" [name]="name" (keyup)="onValueChange($event.target.value)"
     class="form-control" (ngModelChange)="inputModelChange.emit(inputModel)" (blur)="onBlur()" [required]="required"></textarea>
   <ng-content></ng-content>
 </div>

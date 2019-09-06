@@ -43,25 +43,25 @@ export class AccountComponent implements OnInit {
         this.spinnerService.hide();
         this.router.navigate(['/orders']);
         localStorage.setItem('userData', JSON.stringify(data));
-        this.toastr.success('You successfully logged in to this website', 'Well done!');
+        this.toastr.success('You have successfully logged in to this website', 'Well done!');
       }, error => {
         this.spinnerService.hide();
         this.toastr.error('Incorrect username or password');
         console.log('user')
       });
   }
-  onRegister() {
-    // console.log('-----------')
-    let action = Action.REGISTER;
-    let param = {
-      "encodedPassword": "nimble",
-      "emailAddress": "jaimin@nimblechapps.com",
-      "userName": "Jaimin",
-    }
-    this.appService.postMethod(action, param)
-      .subscribe(data => {
-        console.log(data);
-      }, error => {
-      });
-  }
+  // onRegister() {
+  //   // console.log('-----------')
+  //   let action = Action.REGISTER;
+  //   let param = {
+  //     "encodedPassword": "nimble",
+  //     "emailAddress": "jaimin@nimblechapps.com",
+  //     "userName": "Jaimin",
+  //   }
+  //   this.appService.postMethod(action, param)
+  //     .subscribe(data => {
+  //       console.log(data);
+  //     }, error => {
+  //     });
+  // }
 }
