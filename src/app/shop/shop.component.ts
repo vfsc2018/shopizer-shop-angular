@@ -132,7 +132,15 @@ export class ShopComponent implements OnInit {
   }
   addToCart(result) {
     this.spinnerService.show();
-    let action = Action.CART;
+
+    let userData = JSON.parse(localStorage.getItem('userData'));
+    let action;
+    if (userData) {
+      action = Action.CUSTOMER + userData.id + '/' + Action.CART;
+    } else {
+      action = Action.CART
+    }
+    // let action = Action.CART;
     if (this.cookieService.get('shopizer-cart-id')) {
       let cartData = JSON.parse(this.cookieService.get('localCart'));
       let index = cartData.findIndex(order => order.id === result.id);

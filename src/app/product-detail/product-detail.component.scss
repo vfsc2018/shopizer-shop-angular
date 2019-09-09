@@ -4,7 +4,7 @@
         .col-md-12 {
             .shop-product {
                 .slide100-01 {
-                    z-index: 99;
+                    z-index: 0;
                 }
 
                 .product-body {
@@ -242,12 +242,13 @@
                     }
 
                     .comment-rating {
-                        margin-bottom: 35px;
+                        // margin-bottom: 35px;
                         color: #ffcc66;
 
                         .au-rating {
                             margin-left: 10px;
                             width: 10%;
+                            cursor: pointer;
                         }
                     }
                 }

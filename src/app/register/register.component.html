@@ -60,8 +60,8 @@
                       </custom-select>
                     </div>
                     <div class="col-md-6">
-                      <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="billing.state" name="billing.state"
-                        [data]="stateData" required>
+                      <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="billing.stateProvince"
+                        name="billing.stateProvince" [data]="stateData" required>
                       </custom-select>
                     </div>
                   </div>
@@ -131,7 +131,7 @@
                       </custom-select>
                     </div>
                     <div class="col-md-6">
-                      <custom-select label="State" bottom="24" [(ngModel)]="shipping.state" name="shipping.state"
+                      <custom-select label="State" bottom="24" [(ngModel)]="shipping.stateProvince" name="shipping.stateProvince"
                         [data]="stateData">
                       </custom-select>
                     </div>

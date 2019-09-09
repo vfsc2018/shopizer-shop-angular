@@ -100,99 +100,52 @@
                 </table>
               </ng-template>
             </ngb-tab>
-            <ngb-tab title="review (0)">
+            <ngb-tab title="review ({{productDetail.ratingCount}})">
               <ng-template ngbTabContent>
                 <div class="review">
                   <h5 class="title">REVIEWS</h5>
                   <div class="review-outer">
                     <div class="review-inner">
-                      <p>There are no reviews yet.</p>
-
-                      <div class="single-review">
-                        <div class="au-rating" data-star="4">
-                          <ngb-rating [(rate)]="review.rate" required></ngb-rating>
-                        </div>
-                        <div class="review-div">
-                          <div class="review-inside">
-                            <p class="review-text">this product is very genuine and i m using this sice 2 months i
-                              thught
-                              this is value of money.but this isnt working properly since few days even customer care
-                              not
-                              respondinf from them side.</p>
-
+                      <p *ngIf="reviews.length == 0">There are no reviews yet.</p>
+                      <div *ngIf="reviews.length > 0">
+                        <div class="single-review" *ngFor="let review of reviews">
+                          <div class="au-rating" data-star="4">
+                            <ngb-rating [rate]="review.rating" required></ngb-rating>
                           </div>
-                          <p class="review-date">-Test Test 2018-09-20</p>
-                        </div>
-                      </div>
-                      <div class="single-review">
-                        <div class="au-rating" data-star="4">
-                          <ngb-rating [(rate)]="review.rate" required></ngb-rating>
-                        </div>
-                        <div class="review-div">
-                          <div class="review-inside">
-                            <p class="review-text">this product is very genuine and i m using this sice 2 months i
-                              thught
-                              this is value of money.but this isnt working properly since few days even customer care
-                              not
-                              respondinf from them side.</p>
+                          <div class="review-div">
+                            <div class="review-inside">
+                              <p class="review-text">
+                                {{review.description}}</p>
 
+                            </div>
+                            <p class="review-date">-- {{review.customer.firstName}} {{review.customer.lastName}}
+                              {{review.date}}</p>
                           </div>
-                          <p class="review-date">-Test Test 2018-09-20</p>
-                        </div>
-                      </div>
-                      <div class="single-review">
-                        <div class="au-rating" data-star="4">
-                          <ngb-rating [(rate)]="review.rate" required></ngb-rating>
-                        </div>
-                        <div class="review-div">
-                          <div class="review-inside">
-                            <p class="review-text">this product is very genuine and i m using this sice 2 months i
-                              thught
-                              this is value of money.but this isnt working properly since few days even customer care
-                              not
-                              respondinf from them side.</p>
-
-                          </div>
-                          <p class="review-date">-Test Test 2018-09-20</p>
-                        </div>
-                      </div>
-                      <div class="single-review">
-                        <div class="au-rating" data-star="4">
-                          <ngb-rating [(rate)]="review.rate" required></ngb-rating>
-                        </div>
-                        <div class="review-div">
-                          <div class="review-inside">
-                            <p class="review-text">this product is very genuine and i m using this sice 2 months i
-                              thught
-                              this is value of money.but this isnt working properly since few days even customer care
-                              not
-                              respondinf from them side.</p>
-
-                          </div>
-                          <p class="review-date">-Test Test 2018-09-20</p>
                         </div>
                       </div>
                     </div>
 
                   </div>
-                  <p class="text-bigger">Be the first to review “Cloud Wall Clock”</p>
-                  <div class="comment-rating" *ngIf="auth">
-                    <strong>Your Rating </strong>
-                    <div class="au-rating" data-star="4">
-                      <ngb-rating [(rate)]="review.rate" required></ngb-rating>
-                    </div>
+                  <p class="text-bigger" *ngIf="reviews.length == 0">Be the first to review
+                    “{{productDetail.description.name}}”</p>
 
-                  </div>
                   <div *ngIf="!auth">
                     <p class="text-bigger">Please <a href="/account"><u>signin</u></a> for writing a new review</p>
                   </div>
                   <div class="comment-place" *ngIf="auth">
                     <form #reviewForm="ngForm" role="form">
+                      <div class="comment-rating" *ngIf="auth">
+                        <strong>Your Rating </strong>
+
+                        <div class="au-rating" data-star="4">
+                          <ngb-rating [rate]="review.rate"></ngb-rating>
+                        </div>
+
+                      </div>
                       <div class="row">
                         <div class="col-md-12 plr-15">
-                          <custom-textarea placeHolder="Your Message" [(ngModel)]="review.description" name="description"
+                          <custom-textarea placeHolder="Your Message" [(ngModel)]="review.description" [row]="6" name="description"
                             required></custom-textarea>
-
                         </div>
                         <!-- <div class="col-md-6 plr-15">
                           <input-field type="text" name="ng-template" placeHolder="Your Name">
@@ -214,15 +167,13 @@
               </ng-template>
             </ngb-tab>
           </ngb-tabset>
-
         </div>
+
         <div class="port-title justify-content-center text-center">
           <h2 class="title">related products</h2>
           <div class="title-border mx-auto m-b-70"></div>
         </div>
         <div class="related-products">
-
-
           <owl-carousel-o [options]="customOptions">
             <ng-template carouselSlide>
               <product-grid [Large]="'4'" [productData]="reletedProduct" (onClickCart)="addToCart($event)"

@@ -22,6 +22,7 @@ export class ProductDetailComponent implements OnInit {
 
   productDetail: any;
   reletedProduct: Array<any> = [];
+  reviews: Array<any> = [];
   auth: any;
 
   qty: any = 1;
@@ -77,8 +78,15 @@ export class ProductDetailComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       console.log(params)
       this.productId = params.productId;
-      this.auth = this.cookieService.get('auth');
-      console.log(this.auth);
+
+      let userData = JSON.parse(localStorage.getItem('userData'));
+      if (userData) {
+        this.auth = true
+      } else {
+        this.auth = false
+      }
+      // this.auth = this.cookieService.get('auth');
+      // console.log(this.auth);
       // console.log(params.get("id"))
     })
   }
@@ -100,6 +108,7 @@ export class ProductDetailComponent implements OnInit {
         // this.router.navigate(['/error']);
       });
     this.getRelatedProduct()
+    this.getReview();
   }
   getRelatedProduct() {
     let action = Action.PRODUCTS;
@@ -157,6 +166,16 @@ export class ProductDetailComponent implements OnInit {
         this.qty = this.qty - 1;
       }
     }
+  }
+  getReview() {
+    let action = Action.PRODUCTS + this.productId + '/reviews';
+    this.appService.getMethod(action)
+      .subscribe(data => {
+        console.log(data);
+        this.reviews = data;
+      }, error => {
+        this.spinnerService.hide();
+      });
   }
   onSubmitReview(productID) {
     // let action = 'auth/' + Action.PRODUCTS + productID + '/reviews'
