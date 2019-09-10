@@ -13,11 +13,14 @@ export class AppService {
     url = AppConstants.API_URL;
     constructor(private http: Http) { }
     postMethod(action, requestJSON) {
-        return this.http.post(this.url + action, requestJSON)
-            .pipe(
-                map(this.extractData),
-                catchError(this.handleErrorObservable)
-            );
+        let headers = new Headers();
+        this.createAuthorizationHeader(headers);
+        return this.http.post(this.url + action, requestJSON, {
+            headers: headers
+        }).pipe(
+            map(this.extractData),
+            catchError(this.handleErrorObservable)
+        );
     }
     createAuthorizationHeader(headers: Headers) {
         let userData = JSON.parse(localStorage.getItem('userData'))

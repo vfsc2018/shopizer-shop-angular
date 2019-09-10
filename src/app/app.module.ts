@@ -81,6 +81,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { LoginMenuComponent } from './component/login-menu/login-menu.component';
 import { OrdersComponent } from './orders/orders.component';
 import { TermandconditionComponent } from './termandcondition/termandcondition.component';
+import { RatingComponent } from './component/rating/rating.component';
 
 
 /** load this at startup */
@@ -257,7 +258,8 @@ export function createTranslateLoader(http: HttpClient) {
     OrdersComponent,
     OrderDetailComponent,
     ShippingDetailComponent,
-    TermandconditionComponent
+    TermandconditionComponent,
+    RatingComponent
   ],
   entryComponents: [
     CartComponent

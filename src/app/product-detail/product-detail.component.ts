@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Helper } from '../directive/helper';
+import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
 @Component({
   selector: 'product-detail',
   templateUrl: './product-detail.component.html',
@@ -71,7 +73,8 @@ export class ProductDetailComponent implements OnInit {
     private appService: AppService,
     private cookieService: CookieService,
     private spinnerService: Ng4LoadingSpinnerService,
-    private Helper: Helper
+    private Helper: Helper,
+    private toastr: ToastrService,
   ) {
     config.max = 5;
     // config.readonly = true;
@@ -177,15 +180,34 @@ export class ProductDetailComponent implements OnInit {
         this.spinnerService.hide();
       });
   }
-  onSubmitReview(productID) {
-    // let action = 'auth/' + Action.PRODUCTS + productID + '/reviews'
-    // let param = { "customerId": '', "date": '2019-06-20', "description": this.review.description, 'language': 'en', 'productId': productID, 'rating': this.review.rate }
-    // this.appService.postMethod('auth/' + action, param)
-    //   .subscribe(data => {
-    //     console.log(data);
-    //     this.cookieService.set('shopizer-cart-id', data.code)
-    //   }, error => {
-    //   });
+  ratingComponentClick(clickObj: any): void {
+
+    this.review.rate = clickObj.rating;
+
   }
+  onSubmitReview(productID) {
+    this.spinnerService.show();
+    let userData = JSON.parse(localStorage.getItem('userData'));
+    let action = Action.AUTH + Action.PRODUCTS + productID + '/reviews'
+    let param = { "customerId": userData.id, "date": moment().format('YYYY-MM-DD'), "description": this.review.description, 'language': 'en', 'productId': productID, 'rating': this.review.rate }
+    this.appService.postMethod(action, param)
+      .subscribe(data => {
+        this.toastr.success('Your review has been posted', 'Well done!');
+        this.review = {
+          description: '',
+          rate: 0
+        }
+        this.spinnerService.hide();
+        this.getReview()
+      }, error => {
+        this.review = {
+          description: '',
+          rate: 0
+        }
+        this.spinnerService.hide();
+        this.toastr.error("A review already exist for this customer and product", "")
+      });
+  }
+
 
 }
