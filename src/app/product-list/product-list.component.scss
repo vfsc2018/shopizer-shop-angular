@@ -2,6 +2,7 @@
     .shop-list-body {
         max-height: 1000px;
         overflow-y: scroll;
+        scrollbar-width: none;
 
         .content {
             padding: 30px 0;

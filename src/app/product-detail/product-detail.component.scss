@@ -195,6 +195,7 @@
                         .review-inner {
                             max-height: 400px;
                             overflow: auto;
+                            scrollbar-width: none;
 
                             .single-review {
                                 margin-bottom: 14px;

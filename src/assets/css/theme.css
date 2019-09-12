@@ -41332,5 +41332,7 @@ button.disabled {
 }
 
 ::-webkit-scrollbar {
-  background-color: transparent;
+  background-color: transparent;  
+  display: none
+  
 }
