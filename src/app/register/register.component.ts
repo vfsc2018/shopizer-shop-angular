@@ -22,17 +22,17 @@ export class RegisterComponent implements OnInit {
     username: '',
     password: ''
   }
-  shipping = {
-    firstName: '',
-    lastName: '',
-    company: '',
-    address: '',
-    city: '',
-    stateProvince: '',
-    country: '',
-    postalCode: '',
-    phone: ''
-  }
+  // shipping = {
+  //   firstName: '',
+  //   lastName: '',
+  //   company: '',
+  //   address: '',
+  //   city: '',
+  //   stateProvince: '',
+  //   country: '',
+  //   postalCode: '',
+  //   phone: ''
+  // }
   billing = {
     firstName: '',
     lastName: '',
@@ -49,34 +49,34 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.getCountry()
   }
-  onChangeDeliveryAddress(event) {
-    console.log(event.target.checked)
-    if (event.target.checked) {
-      this.shipping = {
-        firstName: this.billing.firstName,
-        lastName: this.billing.lastName,
-        company: this.billing.company,
-        address: this.billing.address,
-        city: this.billing.city,
-        stateProvince: this.billing.stateProvince,
-        country: this.billing.country,
-        postalCode: this.billing.postalCode,
-        phone: this.billing.phone
-      }
-    } else {
-      this.shipping = {
-        firstName: '',
-        lastName: '',
-        company: '',
-        address: '',
-        city: '',
-        stateProvince: '',
-        country: '',
-        postalCode: '',
-        phone: ''
-      }
-    }
-  }
+  // onChangeDeliveryAddress(event) {
+  //   console.log(event.target.checked)
+  //   if (event.target.checked) {
+  //     this.shipping = {
+  //       firstName: this.billing.firstName,
+  //       lastName: this.billing.lastName,
+  //       company: this.billing.company,
+  //       address: this.billing.address,
+  //       city: this.billing.city,
+  //       stateProvince: this.billing.stateProvince,
+  //       country: this.billing.country,
+  //       postalCode: this.billing.postalCode,
+  //       phone: this.billing.phone
+  //     }
+  //   } else {
+  //     this.shipping = {
+  //       firstName: '',
+  //       lastName: '',
+  //       company: '',
+  //       address: '',
+  //       city: '',
+  //       stateProvince: '',
+  //       country: '',
+  //       postalCode: '',
+  //       phone: ''
+  //     }
+  //   }
+  // }
   getCountry() {
     let action = Action.COUNTRY;
     this.appService.getMethod(action)
@@ -118,19 +118,19 @@ export class RegisterComponent implements OnInit {
         "firstName": this.billing.firstName,
         "lastName": this.billing.lastName,
         "phone": this.billing.phone
-      },
-      "delivery": {
-        "company": this.shipping.company,
-        "address": this.shipping.address,
-        "city": this.shipping.city,
-        "postalCode": this.shipping.postalCode,
-        "stateProvince": this.shipping.stateProvince,
-        "country": this.shipping.country,
-        "zone": "No",
-        "firstName": this.shipping.firstName,
-        "lastName": this.shipping.lastName,
-        "phone": this.shipping.phone
       }
+      // "delivery": {
+      //   "company": this.shipping.company,
+      //   "address": this.shipping.address,
+      //   "city": this.shipping.city,
+      //   "postalCode": this.shipping.postalCode,
+      //   "stateProvince": this.shipping.stateProvince,
+      //   "country": this.shipping.country,
+      //   "zone": "No",
+      //   "firstName": this.shipping.firstName,
+      //   "lastName": this.shipping.lastName,
+      //   "phone": this.shipping.phone
+      // }
     }
     // console.log(param); 
     this.appService.postMethod(action, param)

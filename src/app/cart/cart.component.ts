@@ -49,6 +49,7 @@ export class CartComponent {
 
   goShopingCart() {
     this.router.navigate(['/shoppingcart']);
+    this.dataSharingService.modelRef.getValue().close()
   }
   getCart() {
     this.spinnerService.show();

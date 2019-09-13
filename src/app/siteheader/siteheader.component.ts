@@ -103,6 +103,9 @@ export class SiteheaderComponent implements OnInit {
     }
     onSetting() {
         // this.Helper.showMiniCart(1);
+        if (this.dataSharingService.modelRef.getValue()) {
+            this.dataSharingService.modelRef.getValue().close()
+        }
         this.settingShow = !this.settingShow;
     }
 }

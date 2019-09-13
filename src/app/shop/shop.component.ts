@@ -66,28 +66,24 @@ export class ShopComponent implements OnInit {
       this.getProductList();
       this.getCategory();
     });
-    //console.log('Get category object' + this.router.getCurrentNavigation().extras.state.category.id);
-    // this.route.paramMap.subscribe(
-    //   params => {
-    //     //console.log(params.get('id'))
-    //     //if (params.categoryId == undefined) {
-    //     //  this.categoryID = '';
-    //     //} else {
-    //     //  this.categoryID = params.categoryId;
-    //     //}
-    //     this.getProductList();
-    //   })
+
   }
 
   ngOnInit() {
 
   }
   getCategory() {
-    let action = Action.CATEGORY + this.categoryID
+    let action = Action.CATEGORY
     this.appService.getMethod(action)
       .subscribe(data => {
         // console.log(data);
-        this.categoriesData = data;
+        if (this.categoryID != '') {
+          let index = data.findIndex((value => value.id === this.categoryID))
+          this.categoriesData = data[index];
+        } else {
+          this.categoriesData = data;
+        }
+
       }, error => {
       });
     this.getManufacturers();
@@ -98,6 +94,7 @@ export class ShopComponent implements OnInit {
       .subscribe(data => {
         this.manufactureData = data;
       }, error => {
+        this.manufactureData = null;
       });
   }
   getProductList() {
@@ -105,6 +102,7 @@ export class ShopComponent implements OnInit {
     this.spinnerService.show();
     let action = Action.PRODUCTS;
     let filter = '&category=' + this.categoryID;
+    // let manufacture = '&manufacturers=' + 500;
     this.appService.getMethod(action + '?lang=' + language + '&start=' + this.skip + '&count=' + this.limit + '' + filter)
       .subscribe(data => {
         this.totalRecord = data.totalCount;
@@ -127,8 +125,11 @@ export class ShopComponent implements OnInit {
       this.categoryID = result.id;
     }
     this.productData = [];
-    this.getProductList();
-    this.getCategory();
+    this.dataSharingService.categoryData.next(result);
+    // localStorage.setItem('category_id', JSON.stringify(result))
+    // this.router.navigate(['/category/' + result.description.friendlyUrl]);
+    // this.getProductList();
+    // this.getCategory();
   }
   addToCart(result) {
     this.spinnerService.show();
@@ -195,6 +196,8 @@ export class ShopComponent implements OnInit {
 
         this.spinnerService.hide();
       }, error => {
+        this.colorData = [];
+        this.sizeData = [];
         this.spinnerService.hide();
       });
 
