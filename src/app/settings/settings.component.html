@@ -8,10 +8,10 @@
     <li class="border-line" *ngIf="userDataFlag"></li>
     <div [ngClass]="userDataFlag ? 'm_nav_item' : 'witout_login'">
         <span ngbDropdown class="submenu">
-            <span id="dropdownBasic1" ngbDropdownToggle>{{language}}</span>
+            <span id="dropdownBasic1" ngbDropdownToggle>{{language | translate}}</span>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <a ngbDropdownItem class="" (click)="onChangeLanguage('English')">English</a>
-                <a ngbDropdownItem (click)="onChangeLanguage('French')">French</a>
+                <a ngbDropdownItem class="" (click)="onChangeLanguage('English')">{{ 'English' | translate}}</a>
+                <a ngbDropdownItem (click)="onChangeLanguage('French')">{{ 'French' | translate}}</a>
             </div>
         </span>
     </div>

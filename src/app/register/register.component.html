@@ -107,8 +107,8 @@
             <div class="col-lg-6 ">
               <div class="au-form-body p-r-lg-15 p-r-xl-15">
                 <custom-label [label]="'Why register?'" [className]="'cart-border'"></custom-label>
-                <p>Simplify a checkout process by having your information filed in, re-order an item from one click and
-                  get access to premium information.</p>
+                <p>{{'Simplify a checkout process by having your information filed in, re-order an item from one click
+                  and get access to premium information.' | translate}}</p>
               </div>
             </div>
             <!-- <div class="col-lg-6">
@@ -188,7 +188,7 @@
             </div> -->
           </div>
           <div class="button-register">
-            <btn [text]="'Create An Account'" [isDisabled]="!registerForm.form.valid" (onClick)="onRegister()"></btn>
+            <btn [text]="'Create an account'" [isDisabled]="!registerForm.form.valid" (onClick)="onRegister()"></btn>
           </div>
         </form>
       </fieldset>

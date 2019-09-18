@@ -20,6 +20,7 @@ export class InputFieldComponent implements ControlValueAccessor {
   @Input() type: string;
   @Input() name: string;
   @Input() inputModel: string;
+  @Input() readonly: boolean;
   @Input() placeHolder: string;
 
   @Output() onInputChange: EventEmitter<any> = new EventEmitter();

@@ -37,5 +37,8 @@ export class Action {
     public static COUNTRY = 'country/'
     public static ZONES = 'zones/'
     public static IMAGES = 'images/'
+    public static TOTAL = 'total/'
+    public static CONFIG = 'config/'
+
 
 }

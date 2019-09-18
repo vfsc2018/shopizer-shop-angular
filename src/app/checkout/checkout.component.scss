@@ -17,6 +17,75 @@
         margin-bottom: 24px;
     }
 
+    // .checkout-bill {
+
+
+    .total-show {
+        display: none;
+    }
+
+
+    .shipping-key {
+        width: 36%;
+    }
+
+    .shipping {
+        float: right;
+        width: 88%;
+        padding: 12px;
+
+
+
+        .shipping-note {
+            font-size: 16px;
+            line-height: 1.2em;
+            text-transform: none;
+            text-align: center;
+            color: #e4c7a2;
+            margin-bottom: 40px;
+
+        }
+
+        .shipping-option {
+            text-align: center;
+            font-size: 15px;
+            line-height: 42px;
+
+            label {
+                font-size: 14px;
+                word-break: break-word;
+                float: left;
+                // font-weight: 300;
+                width: 260px;
+                padding: 0 0 30px 10px;
+                margin: 0;
+                line-height: 24px;
+                margin-top: -6px;
+                text-align: left;
+                text-transform: none;
+            }
+
+            input {
+                float: left;
+            }
+        }
+
+        .shipping-descripton {
+            font-size: 12px;
+            line-height: 1.2em;
+            font-weight: 300;
+            text-transform: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+    }
+
+
+
+    // }
+
+
+
     .au-form-body {
         .process-button {
             padding: 0px;

@@ -43,6 +43,10 @@ export class CheckoutComponent implements OnInit {
     email: '',
     note: ''
   }
+  cartData: any;
+  config: any;
+  shippingData: any;
+  shippingQuateID: any;
   stateData: Array<any> = [];
   countryData: Array<any> = [];
   // countyData: Array<any> = ['Belarus', 'Canada', 'Romania', 'United State'];
@@ -53,6 +57,7 @@ export class CheckoutComponent implements OnInit {
     private spinnerService: Ng4LoadingSpinnerService,
   ) {
     this.getCountry();
+    this.getCart();
 
   }
   onSameBillingAddress(event) {
@@ -106,18 +111,49 @@ export class CheckoutComponent implements OnInit {
       }, error => {
       });
   }
-  ngOnInit() {
+  getCart() {
     this.spinnerService.show();
-    let action = Action.CART + this.cookieService.get('shopizer-cart-id') + '/' + Action.PAYMENT;
+    let action = Action.CART;
+    this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
+      .subscribe(data => {
+        this.spinnerService.hide();
+        this.cartData = data;
+        this.getOrderTotal('')
+      }, error => {
+        this.spinnerService.hide();
+      });
+
+  }
+  getOrderTotal(quoteID) {
+    console.log(this.cartData)
+    // this.spinnerService.show();
+    let action;
+    if (quoteID) {
+      action = Action.CART + this.cartData.id + '/' + Action.TOTAL + '?quote=' + quoteID;
+    } else {
+      action = Action.CART + this.cartData.id + '/' + Action.TOTAL;
+    }
     this.appService.getMethod(action)
       .subscribe(data => {
         this.summeryOrder = data;
-        console.log(data)
         this.spinnerService.hide();
       }, error => {
 
         this.spinnerService.hide();
       });
+    this.getConfig();
+
+  }
+  getConfig() {
+    let action = Action.CONFIG;
+    this.appService.getMethod(action)
+      .subscribe(data => {
+        this.config = data;
+        // this.summeryOrder = data;
+      }, error => {
+      });
+  }
+  ngOnInit() {
 
   }
   onPayment() {
@@ -132,15 +168,21 @@ export class CheckoutComponent implements OnInit {
   }
   onShippingChange() {
     this.spinnerService.show();
-    let action = Action.CART + this.cookieService.get('shopizer-cart-id') + '/' + Action.SHIPPING;
-    let param = { 'postalCode': this.checkout.postcode }
+    let action = Action.CART + this.cartData.id + '/' + Action.SHIPPING;
+    let param = { 'postalCode': this.checkout.postcode, 'countryCode': this.checkout.country }
     this.appService.postMethod(action, param)
       .subscribe(data => {
         console.log(data)
+        this.shippingData = data;
         this.spinnerService.hide();
       }, error => {
 
         this.spinnerService.hide();
       });
+  }
+  shippingQuoteChange(value) {
+    console.log(value);
+    // this.shippingQuateID = value.shippingQuoteOptionId
+    this.getOrderTotal(value.shippingQuoteOptionId)
   }
 }
