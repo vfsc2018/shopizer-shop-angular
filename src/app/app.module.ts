@@ -13,6 +13,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AgmCoreModule } from '@agm/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from './directive/app.service';
+import { EqualValidator } from './directive/validator';
 import { DataSharingService } from './directive/data-sharing.service';
 import { Helper } from './directive/helper';
 import { Ng5SliderModule } from 'ng5-slider';
@@ -259,7 +260,8 @@ export function createTranslateLoader(http: HttpClient) {
     OrderDetailComponent,
     ShippingDetailComponent,
     TermandconditionComponent,
-    RatingComponent
+    RatingComponent,
+    EqualValidator
   ],
   entryComponents: [
     CartComponent

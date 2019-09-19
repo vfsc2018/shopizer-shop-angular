@@ -29,6 +29,7 @@ export class SettingsComponent {
     let action = Action.AUTH + Action.CUSTOMER + Action.PROFILE;
     this.appService.getMethod(action)
       .subscribe(data => {
+        console.log(data)
         this.userData = data;
       }, error => {
       });
@@ -41,6 +42,7 @@ export class SettingsComponent {
     this.userDataFlag = false;
     this.router.navigate(['/account']);
     localStorage.removeItem('userData');
+    this.menuHide();
   }
   menuHide() {
     this.isOpen = false;

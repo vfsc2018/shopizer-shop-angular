@@ -33,7 +33,6 @@ export class OrdersComponent implements OnInit {
     let action = Action.AUTH + Action.ORDERS;
     this.appService.getMethod(action)
       .subscribe(data => {
-        // console.log(data);
         this.OrdersData = data;
       }, error => {
       });

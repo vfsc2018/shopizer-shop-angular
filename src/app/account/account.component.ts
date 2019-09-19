@@ -37,7 +37,7 @@ export class AccountComponent implements OnInit {
   }
   onLogin() {
     this.spinnerService.show();
-    let action = Action.LOGIN;
+    let action = Action.CUSTOMER + Action.LOGIN;
     let param = { "username": this.user.username, "password": this.user.password }
     this.appService.postMethod(action, param)
       .subscribe(data => {

@@ -18,19 +18,38 @@
                 <custom-label [label]="'Summary'" [className]="'cart-border'"></custom-label>
                 <div class="orderid">Order Id: <span class="id">{{data.id}}</span></div>
                 <div class="orderdate">Order Date: <span class="date">{{dateFormat(data.datePurchased)}}</span></div>
-                <div class="ordertotal">Order Total: <span class="total">${{data.total.value}}</span></div>
+                <div class="orderdate">Order Status: <span class="status">{{data.orderStatus}}</span></div>
+                <!-- <div class="ordertotal">Order Status: <span class="total">${{data.total.value}}</span></div> -->
               </div>
               <div class="address">
                 <custom-label [label]="'Billing Address'" [className]="'cart-border'"></custom-label>
-                <span class="fulladdress"><span>{{data.billing.address}},</span><span>{{data.billing.city}},</span><span>
+                <span class="fulladdress">
+                  <span><b>{{data.billing.firstName}} {{data.billing.lastName}}</b></span>
+                  <span>{{data.billing.address}},</span>
+                  <span>{{data.billing.city}}, {{data.billing.zone}}</span>
+                  <span>
                     {{data.billing.country}},
-                    {{data.billing.postalCode}}</span></span>
+                    {{data.billing.postalCode}}
+                  </span>
+                  <span>
+                    <b>{{data.billing.phone}}</b>
+                  </span>
+                </span>
               </div>
               <div class="address">
                 <custom-label [label]="'Delivery Address'" [className]="'cart-border'"></custom-label>
-                <span class="fulladdress"><span>{{data.delivery.address}},</span><span>{{data.delivery.city}},</span><span>
+                <span class="fulladdress">
+                  <span><b>{{data.delivery.firstName}} {{data.delivery.lastName}}</b></span>
+                  <span>{{data.delivery.address}},</span>
+                  <span>{{data.delivery.city}}, {{data.delivery.zone}}</span>
+                  <span>
                     {{data.delivery.country}},
-                    {{data.delivery.postalCode}}</span></span>
+                    {{data.delivery.postalCode}}
+                  </span>
+                  <span>
+                    <b>{{data.delivery.phone}}</b>
+                  </span>
+                </span>
               </div>
             </tr>
             <tr class="product" *ngFor="let product of data.products">
@@ -47,17 +66,18 @@
               </td>
               <td class="width15">
                 <span class="quantity">{{product.orderedQuantity}} x</span>
-                <span class="price">${{product.price}}</span>
+                <span class="price">{{product.subTotal}}</span>
 
               </td>
               <td class="width25">
-                <span class="arriving"><a href="#">Reivew This Product</a></span>
+                <span class="price">{{product.price}}</span>
               </td>
             </tr>
-            <tr class="pricedetail bor-top">
-              <div class="detail">Subtotal: <span class="price">${{data.totals[0].value}}</span></div>
-              <div class="detail">Discount: <span class="price">0</span></div>
-              <div class="detail">Tax Total: <span class="price">0</span></div>
+            <tr class="pricedetail bor-top" *ngIf="data">
+              <div *ngFor="let totals of data.totals" [ngClass]="totals.module != 'total' ? 'detail' : 'hide'">
+                {{totals.module}} <span class="price">${{totals.value}}</span></div>
+              <!-- <div class="detail">Discount: <span class="price">0</span></div>
+              <div class="detail">Tax Total: <span class="price">0</span></div> -->
             </tr>
             <tr class="pricedetail">
               <div class="final">Total: <span class="totalprice">${{data.total.value}}</span></div>

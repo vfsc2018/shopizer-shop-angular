@@ -109,7 +109,13 @@
 
                                     .orderdate {
                                         .date {
-                                            padding-left: 40px;
+                                            padding-left: 38px;
+                                        }
+                                    }
+
+                                    .orderdate {
+                                        .status {
+                                            padding-left: 26px;
                                         }
                                     }
                                 }
@@ -139,9 +145,15 @@
                                 padding: 20px 40px;
                                 display: block;
 
+                                .hide {
+                                    display: none;
+                                }
 
                                 .detail {
                                     line-height: 2;
+                                    text-transform: capitalize;
+
+
 
                                     .price {
                                         float: right;

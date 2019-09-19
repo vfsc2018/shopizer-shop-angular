@@ -6,7 +6,7 @@
 
 
       <fieldset class="m-t-40" class="account-box">
-        <form #registerForm="ngForm" role="form">
+        <form #registerForm="ngForm" role="form" novalidate>
           <div class="col-lg-12">
             <custom-label [label]="'Login Information'" [className]="'cart-border'"></custom-label>
 
@@ -17,13 +17,13 @@
             </input-field>
 
             <input-field type="password" label="Password" labelAfter="true" [(ngModel)]="register.password" name="password"
-              placeHolder="" bottom="25" required #passwordone="ngModel">
-              <err-required message="Password is required" [isValid]="passwordone.valid || (passwordone.pristine)">
+              placeHolder="" bottom="25" required #password="ngModel">
+              <err-required message="Password is required" [isValid]="password.valid || (password.pristine)">
               </err-required>
             </input-field>
-            <input-field type="password" label="Repeat Password" labelAfter="true" [(ngModel)]="register.password" name="password"
-              placeHolder="" bottom="25" required #passwordone="ngModel">
-              <err-required message="Password is required" [isValid]="passwordone.valid || (passwordone.pristine)">
+            <input-field type="password" label="Repeat Password" labelAfter="true" name="confirmPassword" [(ngModel)]="register.confirmPassword"
+              placeHolder="" bottom="25" validateEqual="password" #confirmpasswordone="ngModel" required>
+              <err-required message="Passwords do not match." [isValid]="confirmpasswordone.valid || (confirmpasswordone.pristine)">
               </err-required>
             </input-field>
             <!-- <btn [text]="'Register'" (onClick)="onRegister()" [isDisabled]="!registerForm.form.valid"></btn> -->

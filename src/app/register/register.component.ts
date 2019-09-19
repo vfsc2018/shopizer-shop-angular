@@ -20,7 +20,8 @@ export class RegisterComponent implements OnInit {
   ) { }
   register = {
     username: '',
-    password: ''
+    password: '',
+    confirmPassword: ''
   }
   // shipping = {
   //   firstName: '',
@@ -100,7 +101,7 @@ export class RegisterComponent implements OnInit {
   }
   onRegister() {
     this.spinnerService.show();
-    let action = Action.REGISTER;
+    let action = Action.CUSTOMER + Action.REGISTER;
     let param = {
       "userName": this.register.username,
       "password": this.register.password,
@@ -108,16 +109,16 @@ export class RegisterComponent implements OnInit {
       "gender": "F",
       "language": "en",
       "billing": {
-        "company": this.billing.company,
-        "address": this.billing.address,
-        "city": this.billing.city,
-        "postalCode": this.billing.postalCode,
-        "stateProvince": this.billing.stateProvince,
+        // "company": this.billing.company,
+        // "address": this.billing.address,
+        // "city": this.billing.city,
+        // "postalCode": this.billing.postalCode,
+        // "stateProvince": this.billing.stateProvince,
         "country": this.billing.country,
-        "zone": "No",
+        "zone": this.billing.stateProvince,
         "firstName": this.billing.firstName,
         "lastName": this.billing.lastName,
-        "phone": this.billing.phone
+        // "phone": this.billing.phone
       }
       // "delivery": {
       //   "company": this.shipping.company,
