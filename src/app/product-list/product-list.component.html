@@ -3,14 +3,14 @@
     <!-- <virtual-scroller #scroll [items]="productData" (vsEnd)="fetchMore($event)" [enableUnequalChildrenSizes]="true"> -->
     <div class="shop-product" *ngFor="let result of productData; let i = index">
       <div class=" product-image">
-        <a href="#" *ngIf="result.image">
+        <a *ngIf="result.image" (click)="onClickName(result)">
           <custom-img [src]="result.image.imageUrl" [alt]="'About Us'">
           </custom-img>
         </a>
       </div>
       <div class="product-body">
         <div class="first">
-          <a href="javascript::void()" class="name" (click)="onClickName(result)">{{result.description.name}}</a>
+          <a class="name" (click)="onClickName(result)">{{result.description.name}}</a>
           <p class="price">${{result.price}}</p>
           <div class="product-rating" data-star="4">
             <ngb-rating [rate]="result.rating"></ngb-rating>

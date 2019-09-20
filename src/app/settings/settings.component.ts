@@ -22,7 +22,12 @@ export class SettingsComponent {
     private appService: AppService
   ) {
     this.userDataFlag = localStorage.getItem('userData') ? true : false;
-    this.language = 'Language'
+    if (localStorage.getItem('langulage')) {
+      this.language = localStorage.getItem('langulage') == 'en' ? 'English' : 'Francais';
+    } else {
+      this.language = 'Language'
+    }
+
     this.getProfile();
   }
   getProfile() {
@@ -35,8 +40,13 @@ export class SettingsComponent {
       });
   }
   onChangeLanguage(value) {
+
+    console.log(this.language)
+    console.log(value)
+    if (this.language != value) {
+      this.helper.languageChange();
+    }
     this.language = value;
-    this.helper.languageChange();
   }
   logout() {
     this.userDataFlag = false;

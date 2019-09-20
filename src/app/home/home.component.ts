@@ -73,7 +73,15 @@ export class HomeComponent implements OnInit {
   }
   addCart(result) {
     this.spinnerService.show();
-    let action = Action.CART;
+
+
+    let userData = JSON.parse(localStorage.getItem('userData'));
+    let action;
+    if (userData) {
+      action = Action.CUSTOMERS + userData.id + '/' + Action.CARTS;
+    } else {
+      action = Action.CART
+    }
 
     if (this.cookieService.get('shopizer-cart-id')) {
       let cartData = JSON.parse(this.cookieService.get('localCart'));

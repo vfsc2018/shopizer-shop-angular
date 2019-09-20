@@ -53,18 +53,20 @@ export class AccountComponent implements OnInit {
       });
   }
   addtoCart() {
-    let userData = JSON.parse(localStorage.getItem('userData'));
-    let data = JSON.parse(this.cookieService.get('localCart'));
-    let action = Action.CUSTOMER + userData.id + '/' + Action.CART;
-    data.map((value) => {
-      console.log(value);
-      let param = { "product": value.id, "quantity": value.quantity }
-      this.appService.postMethod(action, param)
-        .subscribe(data => {
+    if (this.cookieService.get('localCart')) {
+      let userData = JSON.parse(localStorage.getItem('userData'));
+      let data = JSON.parse(this.cookieService.get('localCart'));
+      let action = Action.CUSTOMERS + userData.id + '/' + Action.CARTS;
+      data.map((value) => {
+        console.log(value);
+        let param = { "product": value.id, "quantity": value.quantity }
+        this.appService.postMethod(action, param)
+          .subscribe(data => {
 
-        }, error => {
-        });
-    });
+          }, error => {
+          });
+      });
+    }
   }
   // onRegister() {
   //   // console.log('-----------')

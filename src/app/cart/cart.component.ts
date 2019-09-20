@@ -56,7 +56,7 @@ export class CartComponent {
     let userData = JSON.parse(localStorage.getItem('userData'));
     let action;
     if (userData) {
-      action = Action.CUSTOMER + userData.id + '/' + Action.CART;
+      action = Action.CUSTOMERS + userData.id + '/' + Action.CARTS;
     } else {
       action = Action.CART + this.cookieService.get('shopizer-cart-id');
     }
@@ -79,6 +79,7 @@ export class CartComponent {
       localCart.push({ 'id': value.id, 'quantity': value.quantity })
     });
     this.cookieService.set('localCart', JSON.stringify(localCart));
+    console.log(this.cookieService.get('localCart'))
   }
   refreshCount(value) {
     this.dataSharingService.count.next(value);

@@ -137,7 +137,7 @@ export class ShopComponent implements OnInit {
     let userData = JSON.parse(localStorage.getItem('userData'));
     let action;
     if (userData) {
-      action = Action.CUSTOMER + userData.id + '/' + Action.CART;
+      action = Action.CUSTOMERS + userData.id + '/' + Action.CARTS;
     } else {
       action = Action.CART
     }

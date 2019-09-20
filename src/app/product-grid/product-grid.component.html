@@ -4,15 +4,15 @@
   <div class="col-lg-{{Large}} col-md-6 col-sm-6" *ngFor="let result of productData; let i = index">
     <div class="grid-product">
       <div class="image bg-lightblue">
-        <a href="javascript::void()" *ngIf="result.image">
+        <a *ngIf="result.image" (click)="onClickName(result)">
           <custom-img [src]="result.image.imageUrl" [alt]="'About Us'">
           </custom-img>
         </a>
         <div class="addcart">
-          <a href="javascript::void()" (click)="onClickAddCart(result)">{{ 'Add to cart' | translate}}</a>
+          <a (click)="onClickAddCart(result)">{{ 'Add to cart' | translate}}</a>
         </div>
       </div>
-      <a href="javascript::void()" class="name" (click)="onClickName(result)">{{result.description.name}}</a>
+      <a class="name" (click)="onClickName(result)">{{result.description.name}}</a>
       <div class="product-rating" data-star="4">
         <ngb-rating [rate]="result.rating"></ngb-rating>
       </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'login-menu',
   templateUrl: './login-menu.component.html',
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
 export class LoginMenuComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit() {
@@ -16,5 +18,8 @@ export class LoginMenuComponent implements OnInit {
   logout() {
     this.router.navigate(['/account']);
     localStorage.removeItem('userData');
+    this.cookieService.delete('shopizer-cart-id');
+    this.cookieService.delete('localCart');
+
   }
 }
