@@ -27,7 +27,7 @@ export class SettingsComponent {
     } else {
       this.language = 'Language'
     }
-
+    console.log('*********************')
     this.getProfile();
   }
   getProfile() {
@@ -52,6 +52,8 @@ export class SettingsComponent {
     this.userDataFlag = false;
     this.router.navigate(['/account']);
     localStorage.removeItem('userData');
+    this.cookieService.delete('shopizer-cart-id');
+    this.cookieService.delete('localCart');
     this.menuHide();
   }
   menuHide() {

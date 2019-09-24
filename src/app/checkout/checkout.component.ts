@@ -14,6 +14,8 @@ import { error } from '@angular/compiler/src/util';
 export class CheckoutComponent implements OnInit {
 
   summeryOrder: any;
+  isShipping: Boolean = false;
+  isAccount: Boolean = false;
   // countyData: Array<any> = [];
   checkout = {
     firstname: '',
@@ -27,7 +29,8 @@ export class CheckoutComponent implements OnInit {
     postcode: '',
     phone: '',
     email: '',
-    note: ''
+    note: '',
+    password: ''
   }
   shipping = {
     firstname: '',
@@ -100,6 +103,7 @@ export class CheckoutComponent implements OnInit {
     this.appService.getMethod(action)
       .subscribe(data => {
         this.countryData = data;
+        this.getCurrentLocation();
       }, error => {
       });
   }
@@ -110,6 +114,22 @@ export class CheckoutComponent implements OnInit {
         this.stateData = data;
       }, error => {
       });
+  }
+  getCurrentLocation() {
+    let me = this;
+    this.helper.getLocation(function (result, error) {
+      if (error) {
+        console.log(error)
+      } else {
+        me.helper.getIPAddress(function (result, error) {
+          console.log(result)
+        });
+        console.log(result)
+        // me.checkout.country = result.find(i => i.types.some(i => i == "country")).short_name;
+        // console.log(me.checkout.country);
+      }
+    })
+
   }
   getCart() {
     this.spinnerService.show();
@@ -184,5 +204,11 @@ export class CheckoutComponent implements OnInit {
     console.log(value);
     // this.shippingQuateID = value.shippingQuoteOptionId
     this.getOrderTotal(value.shippingQuoteOptionId)
+  }
+  onShipDiffrent() {
+    this.isShipping = !this.isShipping;
+  }
+  onCreateAccount() {
+    this.isAccount = !this.isAccount;
   }
 }

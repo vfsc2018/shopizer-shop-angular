@@ -63,6 +63,7 @@ export class CartComponent {
     this.appService.getMethod(action)
       .subscribe(data => {
         this.cartData = data;
+        this.cookieService.set('shopizer-cart-id', data.code);
         this.refreshCount(data.quantity);
         this.addCartLocal(data.products);
         this.spinnerService.hide();

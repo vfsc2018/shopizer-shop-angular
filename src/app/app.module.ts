@@ -10,7 +10,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { RouterModule, Routes } from "@angular/router";
 
-import { AgmCoreModule } from '@agm/core';
+// import { AgmCoreModule } from '@agm/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from './directive/app.service';
 import { EqualValidator } from './directive/validator';
@@ -71,6 +71,7 @@ import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { CountDown } from "./component/countdown/countdown";
 import { AutocompleteComponent } from './component/autocomplete/autocomplete.component';
+import { AgmCoreModule } from '@agm/core';
 
 import { NoDataComponent } from './component/no-data/no-data.component';
 import { SafeHtml } from './shared/utility/safe-html';
@@ -283,7 +284,8 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyCOWHYbCCs9_t8g7oOozjTR75wNx5_xpb4",
-      libraries: ["places"]
+      libraries: ["places"],
+      language: 'en'
     }),
     ToastrModule.forRoot({
       progressBar: true

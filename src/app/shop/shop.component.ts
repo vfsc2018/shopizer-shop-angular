@@ -136,13 +136,14 @@ export class ShopComponent implements OnInit {
 
     let userData = JSON.parse(localStorage.getItem('userData'));
     let action;
-    if (userData) {
-      action = Action.CUSTOMERS + userData.id + '/' + Action.CARTS;
-    } else {
-      action = Action.CART
-    }
+    // if (userData) {
+    //   action = Action.CUSTOMERS + userData.id + '/' + Action.CARTS;
+    // } else {
+    //   action = Action.CART
+    // }
     // let action = Action.CART;
     if (this.cookieService.get('shopizer-cart-id')) {
+      action = Action.CART
       let cartData = JSON.parse(this.cookieService.get('localCart'));
       let index = cartData.findIndex(order => order.id === result.id);
       let param = { "product": result.id, "quantity": index == -1 ? 1 : cartData[index].quantity + 1 }
@@ -154,6 +155,11 @@ export class ShopComponent implements OnInit {
         });
       this.spinnerService.hide();
     } else {
+      if (userData) {
+        action = Action.CUSTOMERS + userData.id + '/' + Action.CARTS;
+      } else {
+        action = Action.CART
+      }
       let param = { "product": result.id, "quantity": 1 }
       this.appService.postMethod(action, param)
         .subscribe(data => {

@@ -45,13 +45,19 @@
                         <custom-select label="Country" labelAfter="true" bottom="24" [(ngModel)]="checkout.country"
                             name="country" [data]="countryData" required (onSelectChange)="onCountrySelect($event)">
                         </custom-select>
-                        <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="checkout.state" name="state"
-                            [data]="stateData" required>
-                        </custom-select>
-                        <input-field type="text" label="Postcode / Zip" [(ngModel)]="checkout.postcode" name="postcode"
-                            placeHolder="" labelAfter="true" bottom="24" (onInputChange)="onShippingChange()"
-                            [readonly]="checkout.state == ''" required>
-                        </input-field>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="checkout.state"
+                                    name="state" [data]="stateData" required>
+                                </custom-select>
+                            </div>
+                            <div class="col-sm-6">
+                                <input-field type="text" label="Postcode / Zip" [(ngModel)]="checkout.postcode" name="postcode"
+                                    placeHolder="" labelAfter="true" bottom="24" (onInputChange)="onShippingChange()"
+                                    [readonly]="checkout.state == ''" required>
+                                </input-field>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <input-field type="text" label="Phone" labelAfter="true" [(ngModel)]="checkout.phone"
@@ -70,57 +76,76 @@
                             </div>
                         </div>
                         <div class="account-create">
-                            <custom-checkbox [label]="'Create an account'"></custom-checkbox>
+                            <custom-checkbox [label]="'Create an account'" (onChange)="onCreateAccount()"></custom-checkbox>
                         </div>
-
+                        <div *ngIf="isAccount">
+                            <a class="pass-info">Create an account by entering the information below. If you are a
+                                returning customer
+                                please login using the link at the top of the page.</a>
+                            <input-field type="password" label="Account password" labelAfter="true" [(ngModel)]="checkout.password"
+                                name="password" placeHolder="" bottom="30" required>
+                                <!-- <err-required message="Valid email required " [isValid]="phone.valid || (phone.pristine)"></err-required> -->
+                            </input-field>
+                        </div>
                     </form>
                 </div>
-                <div class="au-form-body p-b-0">
-                    <custom-label [label]="'Shipping Details'" [className]="'cart-border'"></custom-label>
-                    <div class="account-create">
+                <div class="is-shipping">
+                    <custom-checkbox [label]="'SHIP TO A DIFFERENT ADDRESS?'" (onChange)="onShipDiffrent()">
+                    </custom-checkbox>
+                </div>
+                <div [ngClass]="isShipping ? 'au-form-body p-b-0 open' : 'au-form-body p-b-0' " *ngIf="isShipping">
+                    <!-- <custom-label [label]="'Shipping Details'" [className]="'cart-border'"></custom-label> -->
+                    <!-- <div class="account-create">
                         <custom-checkbox [label]="'Same as Billing Details'" (onChange)="onSameBillingAddress($event)">
                         </custom-checkbox>
-                    </div>
+                    </div> -->
                     <form #checkoutForm="ngForm" role="form">
                         <div class="row">
                             <div class="col-sm-6">
-                                <input-field type="text" label="First Name" labelAfter="true" [(ngModel)]="shipping.firstname"
+                                <input-field type="text" label="Shipping First Name" labelAfter="true" [(ngModel)]="shipping.firstname"
                                     name="firstname" placeHolder="" bottom="24" required>
                                 </input-field>
                             </div>
                             <div class="col-sm-6">
-                                <input-field type="txt" label="Last Name" labelAfter="true" [(ngModel)]="shipping.lastname"
+                                <input-field type="txt" label="Shipping Last Name" labelAfter="true" [(ngModel)]="shipping.lastname"
                                     name="lastname" placeHolder="" bottom="24" required>
                                 </input-field>
                             </div>
                         </div>
-                        <input-field type="text" label="Company Name" [(ngModel)]="shipping.companyName" name="companyName"
+                        <input-field type="text" label="Shipping Company Name" [(ngModel)]="shipping.companyName" name="companyName"
                             placeHolder="" bottom="24">
                         </input-field>
                         <div class='address-class'>
-                            <input-field type="text" label="Address" labelAfter="true" [(ngModel)]="shipping.address"
-                                name="address" placeHolder="Street address" required>
+                            <input-field type="text" label="Shipping Address" labelAfter="true" [(ngModel)]="shipping.address"
+                                name="address" placeHolder="Shipping Street address" required>
                             </input-field>
                         </div>
 
                         <input-field type="text" label="" [(ngModel)]="shipping.address1" name="address1" placeHolder="Apartment, suite, unit etc. (optional)"
                             bottom="24">
                         </input-field>
-                        <input-field type="text" label="Town/City" [(ngModel)]="shipping.city" name="city" placeHolder=""
-                            labelAfter="true" bottom="24" required>
+                        <input-field type="text" label="Shipping Town/City" [(ngModel)]="shipping.city" name="city"
+                            placeHolder="" labelAfter="true" bottom="24" required>
                         </input-field>
-                        <custom-select label="Country" labelAfter="true" bottom="24" [(ngModel)]="shipping.country"
+                        <custom-select label="Shipping Country" labelAfter="true" bottom="24" [(ngModel)]="shipping.country"
                             name="country" [data]="countryData" required (onSelectChange)="onCountrySelect($event)">
                         </custom-select>
-                        <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="shipping.state" name="state"
-                            [data]="stateData" required>
-                        </custom-select>
-                        <input-field type="text" label="Postcode / Zip" [(ngModel)]="shipping.postcode" name="postcode"
-                            placeHolder="" labelAfter="true" bottom="24" (onInputChange)="onShippingChange()" required>
-                        </input-field>
                         <div class="row">
                             <div class="col-sm-6">
-                                <input-field type="text" label="Phone" labelAfter="true" [(ngModel)]="shipping.phone"
+                                <custom-select label="Shipping State" labelAfter="true" bottom="24" [(ngModel)]="shipping.state"
+                                    name="state" [data]="stateData" required>
+                                </custom-select>
+                            </div>
+                            <div class="col-sm-6">
+                                <input-field type="text" label="Shipping Postcode / Zip" [(ngModel)]="shipping.postcode"
+                                    name="postcode" placeHolder="" labelAfter="true" bottom="24" (onInputChange)="onShippingChange()"
+                                    required>
+                                </input-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input-field type="text" label="Shipping Phone" labelAfter="true" [(ngModel)]="shipping.phone"
                                     name="phone" placeHolder="" bottom="24" #phone="ngModel" pattern="[0-9]+" minlength="10"
                                     maxlength="10" required>
                                     <err-required message="Enter a 10-digit number" [isValid]="phone.valid || (phone.pristine)"></err-required>
@@ -128,7 +153,7 @@
                                 </input-field>
                             </div>
                             <div class="col-sm-6">
-                                <input-field type="text" label="Email Address" labelAfter="true" [(ngModel)]="shipping.email"
+                                <input-field type="text" label="Shipping Email Address" labelAfter="true" [(ngModel)]="shipping.email"
                                     name="email" placeHolder="" bottom="24" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z0-9-.]{2,}"
                                     required>
                                     <err-required message="Valid email required " [isValid]="phone.valid || (phone.pristine)"></err-required>
@@ -139,6 +164,7 @@
 
                     </form>
                 </div>
+
                 <div class="au-form-body">
                     <custom-label [label]="'Additional Information'" [className]="'cart-border'"></custom-label>
                     <custom-textarea label="Order notes" [(ngModel)]="checkout.note" name="note" placeHolder="">
