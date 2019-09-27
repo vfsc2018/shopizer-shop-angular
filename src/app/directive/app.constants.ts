@@ -41,6 +41,7 @@ export class Action {
     public static IMAGES = 'images/'
     public static TOTAL = 'total/'
     public static CONFIG = 'config/'
+    public static ADDRESS = 'address'
 
 
 }

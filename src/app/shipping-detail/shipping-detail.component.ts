@@ -18,10 +18,7 @@ export class ShippingDetailComponent implements OnInit {
     private toastr: ToastrService,
     public router: Router
   ) { }
-  register = {
-    username: '',
-    password: ''
-  }
+
   shipping = {
     firstName: '',
     lastName: '',
@@ -46,11 +43,33 @@ export class ShippingDetailComponent implements OnInit {
     phone: '',
     email: ''
   }
+  stateData: Array<any> = [];
+  countryData: Array<any> = [];
   ngOnInit() {
-
-    this.getProfile();
+    this.getCountry();
   }
+  getCountry() {
+    let action = Action.COUNTRY;
+    this.appService.getMethod(action)
+      .subscribe(data => {
+        this.countryData = data;
+        this.getProfile();
+      }, error => {
+      });
+  }
+  onCountrySelect(value) {
+    console.log(value);
+    this.getState(value);
 
+  }
+  getState(code) {
+    let action = Action.ZONES;
+    this.appService.getMethod(action + '?code=' + code)
+      .subscribe(data => {
+        this.stateData = data;
+      }, error => {
+      });
+  }
   getProfile() {
     let action = Action.AUTH + Action.CUSTOMER + Action.PROFILE;
     this.appService.getMethod(action)
@@ -61,51 +80,47 @@ export class ShippingDetailComponent implements OnInit {
       }, error => {
       });
   }
-  // keyPress(event) {
-  //   const pattern = /[0-9\+\-\ ]/;
-
-  //   let inputChar = String.fromCharCode(event.charCode);
-  //   if (event.keyCode != 8 && !pattern.test(inputChar)) {
-  //     event.preventDefault();
-  //   }
-  // }
-
-
-
-  // onEnterLogin(event) {
-  //   console.log('ffdfdsfsdfsd');
-  //   if (event.keyCode == 13) {
-  //     this.onLogin();
-  //   }
-  // }
-  // onLogin() {
-  //   this.spinnerService.show();
-  //   let action = Action.LOGIN;
-  //   let param = { "username": this.user.username, "password": this.user.password }
-  //   this.appService.postMethod(action, param)
-  //     .subscribe(data => {
-  //       this.spinnerService.hide();
-  //       this.router.navigate(['/password']);
-  //       localStorage.setItem('userData', JSON.stringify(data));
-  //       this.toastr.success('You successfully logged in to this website', 'Well done!');
-  //     }, error => {
-  //       this.spinnerService.hide();
-  //       this.toastr.error('Incorrect username or password');
-  //       console.log('user')
-  //     });
-  // }
-  // onRegister() {
-  //   // console.log('-----------')
-  //   let action = Action.REGISTER;
-  //   let param = {
-  //     "encodedPassword": "nimble",
-  //     "emailAddress": "jaimin@nimblechapps.com",
-  //     "userName": "Jaimin",
-  //   }
-  //   this.appService.postMethod(action, param)
-  //     .subscribe(data => {
-  //       console.log(data);
-  //     }, error => {
-  //     });
-  // }
+  onUpdateAddress() {
+    let userData = JSON.parse(localStorage.getItem('userData'));
+    this.spinnerService.show();
+    let action = 'private/  ' + Action.CUSTOMER + userData.id + '/' + Action.ADDRESS;
+    let param = {
+      "id": userData.id,
+      "billing": {
+        "company": this.billing.company,
+        "address": this.billing.address,
+        "city": this.billing.city,
+        "postalCode": this.billing.postalCode,
+        "stateProvince": this.billing.stateProvince,
+        "country": this.billing.country,
+        "zone": this.billing.stateProvince,
+        "firstName": this.billing.firstName,
+        "lastName": this.billing.lastName,
+        "phone": this.billing.phone
+      },
+      "delivery": {
+        "company": this.shipping.company,
+        "address": this.shipping.address,
+        "city": this.shipping.city,
+        "postalCode": this.shipping.postalCode,
+        "stateProvince": this.shipping.stateProvince,
+        "country": this.shipping.country,
+        "zone": "No",
+        "firstName": this.shipping.firstName,
+        "lastName": this.shipping.lastName,
+        "phone": this.shipping.phone
+      }
+    }
+    // console.log(param); 
+    this.appService.patchMethod(action, param)
+      .subscribe(data => {
+        console.log(data);
+        this.spinnerService.hide();
+        this.toastr.success('Your address has been updated successfully.', 'Congratulation');
+      }, error => {
+        console.log(error);
+        this.spinnerService.hide();
+        this.toastr.error('Registering customer user already exist');
+      });
+  }
 }

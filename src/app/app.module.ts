@@ -85,7 +85,6 @@ import { OrdersComponent } from './orders/orders.component';
 import { TermandconditionComponent } from './termandcondition/termandcondition.component';
 import { RatingComponent } from './component/rating/rating.component';
 
-
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();

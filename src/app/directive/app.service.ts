@@ -47,6 +47,17 @@ export class AppService {
                 catchError(this.handleErrorObservable)
             );
     }
+    patchMethod(action, requestJSON) {
+        let headers = new Headers();
+        this.createAuthorizationHeader(headers);
+        return this.http.patch(this.url + action, requestJSON, {
+            headers: headers
+        })
+            .pipe(
+                map(this.extractData),
+                catchError(this.handleErrorObservable)
+            );
+    }
     deleteMethod(action, requestJSON) {
         return this.http.delete(this.url + action + requestJSON)
             .pipe(
