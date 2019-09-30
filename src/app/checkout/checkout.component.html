@@ -43,12 +43,12 @@
                             labelAfter="true" bottom="24" required>
                         </input-field>
                         <custom-select label="Country" labelAfter="true" bottom="24" [(ngModel)]="checkout.country"
-                            name="country" [data]="countryData" required (onSelectChange)="onCountrySelect($event)">
+                            name="country" [options]="countryData" required (onSelectChange)="onCountrySelect($event)">
                         </custom-select>
                         <div class="row">
                             <div class="col-sm-6">
                                 <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="checkout.state"
-                                    name="state" [data]="stateData" required>
+                                    name="state" [options]="stateData" required>
                                 </custom-select>
                             </div>
                             <div class="col-sm-6">
@@ -128,12 +128,12 @@
                             placeHolder="" labelAfter="true" bottom="24" required>
                         </input-field>
                         <custom-select label="Shipping Country" labelAfter="true" bottom="24" [(ngModel)]="shipping.country"
-                            name="country" [data]="countryData" required (onSelectChange)="onCountrySelect($event)">
+                            name="country" [options]="countryData" required (onSelectChange)="onCountrySelect($event)">
                         </custom-select>
                         <div class="row">
                             <div class="col-sm-6">
                                 <custom-select label="Shipping State" labelAfter="true" bottom="24" [(ngModel)]="shipping.state"
-                                    name="state" [data]="stateData" required>
+                                    name="state" [options]="stateData" required>
                                 </custom-select>
                             </div>
                             <div class="col-sm-6">

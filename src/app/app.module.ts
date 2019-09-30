@@ -84,7 +84,7 @@ import { LoginMenuComponent } from './component/login-menu/login-menu.component'
 import { OrdersComponent } from './orders/orders.component';
 import { TermandconditionComponent } from './termandcondition/termandcondition.component';
 import { RatingComponent } from './component/rating/rating.component';
-
+import { ArrayFilterPipe, LimitToPipe } from './component/custom-select/pipes/index';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -261,7 +261,9 @@ export function createTranslateLoader(http: HttpClient) {
     ShippingDetailComponent,
     TermandconditionComponent,
     RatingComponent,
-    EqualValidator
+    EqualValidator,
+    ArrayFilterPipe,
+    LimitToPipe
   ],
   entryComponents: [
     CartComponent

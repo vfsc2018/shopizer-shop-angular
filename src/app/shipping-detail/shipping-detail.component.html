@@ -35,7 +35,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <custom-select label="Country" labelAfter="true" bottom="24" [(ngModel)]="billing.country" name="country"
-                    [data]="countryData" required (onSelectChange)="onCountrySelect($event)">
+                    [options]="countryData" [config]="config" required (change)="onBillingCountrySelect($event)">
                   </custom-select>
 
                   <!-- <input-field type="name" placeHolder="" label="Town / City" [(ngModel)]="billing.city" name="city"
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-6">
                   <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="billing.stateProvince" name="stateProvince"
-                    [data]="stateData" required>
+                    [options]="stateData" [config]="config" required (change)="onBillingStateSelect($event)">
                   </custom-select>
 
                   <!-- <input-field type="name" placeHolder="" label="State" [(ngModel)]="billing.stateProvince" name="stateProvince"
@@ -120,7 +120,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <custom-select label="Country" labelAfter="true" bottom="24" [(ngModel)]="shipping.country" name="country"
-                    [data]="countryData" required (onSelectChange)="onCountrySelect($event)">
+                    [options]="shippingCountryData" required (change)="onShippingCountrySelect($event)" [config]="config">
                   </custom-select>
 
                   <!-- <input-field type="name" placeHolder="" label="Town / City" [(ngModel)]="shipping.city" name="city"
@@ -129,7 +129,7 @@
                 </div>
                 <div class="col-md-6">
                   <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="shipping.stateProvince" name="stateProvince"
-                    [data]="stateData" required>
+                    [options]="shippingStateData" [config]="config" required (change)="onShippingStateSelect($event)">
                   </custom-select>
                   <!-- <input-field type="name" placeHolder="" label="State" [(ngModel)]="shipping.stateProvince" name="stateProvince"
                     #stateProvince="ngModel">

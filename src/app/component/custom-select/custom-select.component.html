@@ -1,6 +1,35 @@
-<div class="form-group custom-select-fields  m-b-{{bottom}}">
+<!-- <div class="form-group custom-select-fields  m-b-{{bottom}}">
   <label [ngClass]="labelAfter ? 'label-after' : ''">{{label | translate}}</label>
   <select [(ngModel)]="value" [name]="name" (change)="onChange($event.target.value)">
     <option *ngFor="let i of data" [value]="i.code">{{i.name}}</option>
   </select>
+</div> -->
+
+
+<div class="ngx-dropdown-container m-b-{{bottom}}" tabindex="0">
+  <label [ngClass]="labelAfter ? 'label-after' : ''">{{label | translate}}</label>
+  <button type="button" class="ngx-dropdown-button" [ngClass]="{'disabled':disabled}" [disabled]="disabled" (click)="toggleSelectDropdown()">
+    <span>{{selectedDisplayText}} </span>
+    <span class="icon-down"></span>
+  </button>
+  <div class="ngx-dropdown-list-container" *ngIf="toggleDropdown" [style.maxHeight]="config.height">
+    <div class="search-container" *ngIf="config.search">
+      <input name="search-text" [(ngModel)]="searchText" autocomplete="off" />
+      <label [ngClass]="{'active': searchText}">
+        <span class="icon-search"></span> {{config.searchPlaceholder}}</label>
+    </div>
+    <ul class="selected-items">
+      <li tabindex="-1" *ngFor="let selected of selectedItems;let i = index" (click)="deselectItem(selected,i)">
+        <span class="nsdicon-close"></span>
+        <span> {{selected[config.displayKey] || selected}}</span>
+      </li>
+    </ul>
+    <hr *ngIf="selectedItems.length > 0 && availableItems.length > 0" />
+    <ul class="available-items">
+      <li #availableOption *ngFor="let item of availableItems| filterBy: searchText : config.searchOnKey | limitTo : config.limitTo;let i = index"
+        tabindex="-1" [ngClass]="{'active': focusedItemIndex == i}" (click)="selectItem(item,i)">
+        {{item[config.displayKey] || item}}</li>
+      <li *ngIf="showNotFound">{{config.noResultsFound}}</li>
+    </ul>
+  </div>
 </div>

@@ -23,17 +23,11 @@ export class RegisterComponent implements OnInit {
     password: '',
     confirmPassword: ''
   }
-  // shipping = {
-  //   firstName: '',
-  //   lastName: '',
-  //   company: '',
-  //   address: '',
-  //   city: '',
-  //   stateProvince: '',
-  //   country: '',
-  //   postalCode: '',
-  //   phone: ''
-  // }
+  config = {
+    displayKey: "name", //if objects array passed which key to be displayed defaults to description
+    search: false,
+    height: '300px',
+  };
   billing = {
     firstName: '',
     lastName: '',
@@ -43,41 +37,16 @@ export class RegisterComponent implements OnInit {
     stateProvince: '',
     country: '',
     postalCode: '',
-    phone: ''
+    phone: '',
+    countryCode: '',
+    zone: ''
   }
   stateData: Array<any> = [];
   countryData: Array<any> = [];
   ngOnInit() {
     this.getCountry()
   }
-  // onChangeDeliveryAddress(event) {
-  //   console.log(event.target.checked)
-  //   if (event.target.checked) {
-  //     this.shipping = {
-  //       firstName: this.billing.firstName,
-  //       lastName: this.billing.lastName,
-  //       company: this.billing.company,
-  //       address: this.billing.address,
-  //       city: this.billing.city,
-  //       stateProvince: this.billing.stateProvince,
-  //       country: this.billing.country,
-  //       postalCode: this.billing.postalCode,
-  //       phone: this.billing.phone
-  //     }
-  //   } else {
-  //     this.shipping = {
-  //       firstName: '',
-  //       lastName: '',
-  //       company: '',
-  //       address: '',
-  //       city: '',
-  //       stateProvince: '',
-  //       country: '',
-  //       postalCode: '',
-  //       phone: ''
-  //     }
-  //   }
-  // }
+
   getCountry() {
     let action = Action.COUNTRY;
     this.appService.getMethod(action)
@@ -87,18 +56,26 @@ export class RegisterComponent implements OnInit {
       });
   }
   onCountrySelect(value) {
-    console.log(value);
-    this.getState(value);
-
+    // console.log(value);
+    // this.getState(value);
+    if (value.value) {
+      this.billing.country = value.value.name;
+      this.billing.countryCode = value.value.code;
+      this.stateData = value.value.zones;
+    }
   }
-  getState(code) {
-    let action = Action.ZONES;
-    this.appService.getMethod(action + '?code=' + code)
-      .subscribe(data => {
-        this.stateData = data;
-      }, error => {
-      });
+  onStateSelect(value) {
+    this.billing.zone = value.value.code;
+    this.billing.stateProvince = value.value.name;
   }
+  // getState(code) {
+  //   let action = Action.ZONES;
+  //   this.appService.getMethod(action + '?code=' + code)
+  //     .subscribe(data => {
+  //       this.stateData = data;
+  //     }, error => {
+  //     });
+  // }
   onRegister() {
     this.spinnerService.show();
     let action = Action.CUSTOMER + Action.REGISTER;
@@ -109,31 +86,13 @@ export class RegisterComponent implements OnInit {
       "gender": "F",
       "language": "en",
       "billing": {
-        // "company": this.billing.company,
-        // "address": this.billing.address,
-        // "city": this.billing.city,
-        // "postalCode": this.billing.postalCode,
-        // "stateProvince": this.billing.stateProvince,
-        "country": this.billing.country,
-        "zone": this.billing.stateProvince,
+        "country": this.billing.countryCode,
+        "zone": this.billing.zone,
+        "stateProvince": this.billing.zone,
         "firstName": this.billing.firstName,
         "lastName": this.billing.lastName,
-        // "phone": this.billing.phone
       }
-      // "delivery": {
-      //   "company": this.shipping.company,
-      //   "address": this.shipping.address,
-      //   "city": this.shipping.city,
-      //   "postalCode": this.shipping.postalCode,
-      //   "stateProvince": this.shipping.stateProvince,
-      //   "country": this.shipping.country,
-      //   "zone": "No",
-      //   "firstName": this.shipping.firstName,
-      //   "lastName": this.shipping.lastName,
-      //   "phone": this.shipping.phone
-      // }
     }
-    // console.log(param); 
     this.appService.postMethod(action, param)
       .subscribe(data => {
         console.log(data);
