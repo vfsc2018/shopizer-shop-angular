@@ -5,6 +5,7 @@ import { Action } from '../directive/app.constants';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Helper } from '../directive/helper';
 @Component({
   selector: 'account',
   templateUrl: './account.component.html',
@@ -17,7 +18,8 @@ export class AccountComponent implements OnInit {
     private spinnerService: Ng4LoadingSpinnerService,
     private toastr: ToastrService,
     public router: Router,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private Helper: Helper
   ) { }
   user = {
     username: '',
@@ -67,6 +69,7 @@ export class AccountComponent implements OnInit {
           });
       });
     }
+    this.Helper.showMiniCart(1);
   }
   // onRegister() {
   //   // console.log('-----------')
