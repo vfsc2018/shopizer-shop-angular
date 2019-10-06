@@ -2,16 +2,19 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 
+
 import { map, catchError } from "rxjs/operators";
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/catch';
 // import 'rxjs/add/operator/toPromise';
-import { AppConstants } from './app.constants';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AppService {
-    url = AppConstants.API_URL;
-    constructor(private http: Http) { }
+    url = '';
+    constructor(private http: Http) { 
+        this.url = environment.baseUrl + environment.apiVersion;
+    }
     postMethod(action, requestJSON) {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);

@@ -1,5 +1,5 @@
 export class AppConstants {
-    public static API_URL = 'http://99.79.1.102:8080/api/v1/';
+    
 }
 
 export class Action {

@@ -4,6 +4,7 @@ import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Helper } from '../directive/helper';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -12,6 +13,7 @@ import { Helper } from '../directive/helper';
 export class HomeComponent implements OnInit {
   // @ViewChild("CartComponent") CartComponent: CartComponent;
   constructor(
+    private titleService: Title,
     private appService: AppService,
     private cookieService: CookieService,
     private spinnerService: Ng4LoadingSpinnerService,
@@ -42,6 +44,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getProductList()
     this.ContentImage()
+    this.titleService.setTitle('Importa');
   }
   getProductList() {
     let action = Action.PRODUCT_GROUP;

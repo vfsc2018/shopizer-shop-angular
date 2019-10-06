@@ -720,3 +720,225 @@
 .icon-up:before {
     content: "\e908";
 }
+
+/* loading effect */
+//variables
+$bg-color: #fff; //container background-color;
+$accent-font-color: #FD5200; //accent font color;
+$spinner-dimensions: 50px; //width and height of spinner block
+$spinner-2-bg: #FE4E00; //spinner-4 background-color
+$spinner-4-bg: #F51AA4; //spinner-2 background-color
+
+//mixins
+
+//position absolute mixin
+@mixin position-absolute ($top: null, $left: null, $right: null, $bottom: null) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  right: $right;
+  bottom: $bottom;
+}
+
+.spinners-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 70px;
+    
+    .spinner-block {
+      width: $spinner-dimensions;
+      text-align: center;
+      margin-right: 83px;
+        
+      &:nth-child(5n) {
+        margin-right: 0px;
+      }
+    }
+  }
+
+/* spinner style */
+.spinner-eff {
+    position: relative;
+    width: $spinner-dimensions;
+    height: $spinner-dimensions;
+    
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+    }
+    
+    .spinner-bar {
+      
+      &:before,
+      &:after {
+        content: "";
+        display: block;
+      }
+    }
+  }  
+
+/* spinner-4 styles */
+.spinner-eff.spinner-eff-4 {
+  
+    $bar-width: 7px; //width of bars
+    animation: rotation 12.8s steps(1) 0s infinite;
+    
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      
+      25% {
+        transform: rotate(90deg);
+      }
+      
+      50% {
+        transform: rotate(180deg);
+      }
+      
+      75% {
+        transform: rotate(270deg);
+      }
+      
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    
+    @keyframes bar-top {
+      0% {
+        transform: scale(0,1);
+      }
+      
+      12.5% {
+        transform: scale(1,1);
+      }
+      
+      87.5% {
+        transform: scale(1,1);
+      }
+      
+      100% {
+        transform: scale(0,1);
+      }
+    }
+    
+    @keyframes bar-right {
+      0% {
+        transform: scale(1,0);
+      }
+      
+      12.5% {
+        transform: scale(1,0);
+      }
+      
+      25% {
+        transform: scale(1,1);
+      }
+      
+      75% {
+        transform: scale(1,1);
+      }
+      
+      87.5% {
+        transform: scale(1,0);
+      }
+      
+      100% {
+        transform: scale(1,0);
+      }
+    }
+    
+    @keyframes bar-bottom {
+      0% {
+        transform: scale(0,1);
+      }
+      
+      25% {
+        transform: scale(0,1);
+      }
+      
+      37.5% {
+        transform: scale(1,1);
+      }
+      
+      62.5% {
+        transform: scale(1,1);
+      }
+      
+      75% {
+        transform: scale(0,1);
+      }
+      
+      100% {
+        transform: scale(0,1);
+      }
+    }
+    
+    @keyframes bar-left {
+      0% {
+        transform: scale(1,0);
+      }
+      
+      37.5% {
+        transform: scale(1,0);
+      }
+      
+      50% {
+        transform: scale(1,1);
+      }
+      
+      62.5% {
+        transform: scale(1,0);
+      }
+      
+      100% {
+        transform: scale(1,0);
+      }
+    }
+    
+    .bar {
+      background-color: $spinner-2-bg;
+      
+      &-top {
+        width: 100%;
+        height: $bar-width;
+        @include position-absolute($top: 0, $left: 0);
+        transform-origin: left top;
+        transform: scale(0,1);
+        animation: bar-top 3.2s linear 0s infinite;
+      }
+      
+      &-right {
+        width: $bar-width;
+        height: 100%;
+        @include position-absolute($top: 0, $right: 0);
+        transform-origin: left top;
+        transform: scale(1,0);
+        animation: bar-right 3.2s linear 0s infinite;
+      }
+      
+      &-bottom {
+        width: 100%;
+        height: $bar-width;
+        @include position-absolute($bottom: 0, $right: 0);
+        transform-origin: right top;
+        transform: scale(0,1);
+        animation: bar-bottom 3.2s linear 0s infinite;
+      }
+      
+      &-left {
+        width: $bar-width;
+        height: 100%;
+        @include position-absolute($bottom: 0, $left: 0);
+        transform-origin: left bottom;
+        transform: scale(1,0);
+        animation: bar-left 3.2s linear 0s infinite;
+      }
+    }
+  }
+  
