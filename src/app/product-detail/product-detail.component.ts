@@ -21,12 +21,19 @@ export class ProductDetailComponent implements OnInit {
   //@Input() productDetails: any[];
 
 
-
+  config = {
+    displayKey: "name", //if objects array passed which key to be displayed defaults to description
+    search: false,
+    // limitTo: 5,
+    height: '135px',
+  };
   productDetail: any;
   reletedProduct: Array<any> = [];
   reviews: Array<any> = [];
   auth: any;
-
+  selectedSize: any;
+  selectedColor: any;
+  selectedSizeID: any;
   qty: any = 1;
   review = {
     description: '',
@@ -103,15 +110,40 @@ export class ProductDetailComponent implements OnInit {
 
     this.appService.getMethod(action + this.productId + '?lang=en')
       .subscribe(data => {
+        this.productDetail = data;
         data.images.map((image) => {
           this.galleryImages.push({ 'small': image.imageUrl, 'medium': image.imageUrl, 'big': image.imageUrl })
         })
-        this.productDetail = data;
+        data.options.map((value) => {
+          if (value.code == 'SIZE') {
+            value.optionValues.map((size) => {
+              if (size.defaultValue) {
+                // console.log(size)
+                this.selectedSize = size.name;
+                this.selectedSizeID = size.id;
+
+              }
+            })
+          } else if (value.code == 'COLOR') {
+            value.optionValues.map((size) => {
+              if (size.defaultValue) {
+                // console.log(size)
+                this.selectedColor = size.id;
+
+              }
+            })
+          }
+        });
+
       }, error => {
         // this.router.navigate(['/error']);
       });
     this.getRelatedProduct()
     this.getReview();
+  }
+  onChangeSize(event) {
+    this.selectedSize = event.value.name
+    this.selectedSizeID = event.value.id
   }
   getRelatedProduct() {
     let action = Action.PRODUCTS;
@@ -127,6 +159,7 @@ export class ProductDetailComponent implements OnInit {
   }
   handleChange(event, color, productID, option) {
     // console.log(event);
+    this.selectedColor = color.id
     let action = Action.PRODUCTS + productID + '/variant';
     let param = { "options": [{ "option": option.id, "value": color.id }] }
     this.appService.postMethod(action, param)
@@ -139,7 +172,15 @@ export class ProductDetailComponent implements OnInit {
   addToCart(product) {
     this.spinnerService.show();
     let action = Action.CART;
-    let param = { "product": product.id, "quantity": this.qty, "attributes": [{ "id": 3 }] }
+    let param = {
+      "product": product.id,
+      "quantity": this.qty,
+      "attributes": [
+        { "id": this.selectedColor },
+        { "id": this.selectedSizeID }
+      ],
+
+    }
     if (this.cookieService.get('shopizer-cart-id')) {
       let id = this.cookieService.get('shopizer-cart-id');
       this.appService.putMethod(action, id, param)

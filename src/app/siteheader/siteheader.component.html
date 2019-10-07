@@ -28,7 +28,8 @@
               <ng-container *ngFor="let content of content">
                 <ng-container *ngIf="content.displayedInMenu">
                   <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-                    <a [routerLink]="'/content/' + content.slug">{{content.name | translate}}</a></li>
+                    <a [routerLink]="'/content/' + content.slug" (click)="onClickContent(content)">{{content.name |
+                      translate}}</a></li>
                 </ng-container>
               </ng-container>
 

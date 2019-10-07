@@ -67,7 +67,8 @@ export class HomeComponent implements OnInit {
       });
   }
   ContentImage() {
-    let action = Action.DEFAULT + Action.CONTENT + Action.IMAGES;
+    let action = Action.CONTENT + Action.IMAGES;
+    // let action = Action.DEFAULT + Action.CONTENT + Action.IMAGES;
     this.appService.getMethod(action)
       .subscribe(data => {
         this.sliderItems = data.content;

@@ -91,6 +91,10 @@ export class SiteheaderComponent implements OnInit {
 
         this.subclick = this.subclick == '' ? 'active' : ''
     }
+    onClickContent(content) {
+        // console.log(content)
+        localStorage.setItem('content_id', JSON.stringify(content))
+    }
     onClickMenu() {
         this.active = this.active == '' ? 'active' : ''
     }
