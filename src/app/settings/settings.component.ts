@@ -27,22 +27,22 @@ export class SettingsComponent {
     } else {
       this.language = 'Language'
     }
-    console.log('*********************')
+    //console.log('*********************')
     this.getProfile();
   }
   getProfile() {
     let action = Action.AUTH + Action.CUSTOMER + Action.PROFILE;
     this.appService.getMethod(action)
       .subscribe(data => {
-        console.log(data)
+        //console.log(data)
         this.userData = data;
       }, error => {
       });
   }
   onChangeLanguage(value) {
 
-    console.log(this.language)
-    console.log(value)
+    //console.log(this.language)
+    //console.log(value)
     if (this.language != value) {
       this.helper.languageChange();
     }

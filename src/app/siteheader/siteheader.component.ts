@@ -70,8 +70,7 @@ export class SiteheaderComponent implements OnInit {
         console.log(action);
         this.appService.getMethod(action)
             .subscribe(data => {
-                // console.log(data);
-                this.category = data;
+                this.category = data.categories;
             }, error => {
             });
     }

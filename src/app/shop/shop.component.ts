@@ -78,10 +78,10 @@ export class ShopComponent implements OnInit {
       .subscribe(data => {
         // console.log(data);
         if (this.categoryID != '') {
-          let index = data.findIndex((value => value.id === this.categoryID))
-          this.categoriesData = data[index];
+          let index = data.categories.findIndex((value => value.id === this.categoryID))
+          this.categoriesData = data.categories[index];
         } else {
-          this.categoriesData = data;
+          this.categoriesData = data.categories;
         }
 
       }, error => {

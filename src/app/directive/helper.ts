@@ -7,7 +7,6 @@ import { MapsAPILoader } from '@agm/core';
 import { HttpClient } from '@angular/common/http';
 declare let google: any;
 
-
 @Injectable()
 export class Helper {
     loading: any;
@@ -106,5 +105,4 @@ export class Helper {
                 callback(data)
             })
     }
-
 }
