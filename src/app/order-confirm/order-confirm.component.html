@@ -1,0 +1,35 @@
+<!-- <banner [title]="'Shop'"></banner> -->
+<div class="container1 own-grid">
+  <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Order Completed</h4>
+        <button type="button" class="close" aria-label="Close" (click)="passBack()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="au-form-body p-r-lg-15 p-r-xl-15">
+
+        <table class="table-shop">
+          <tbody>
+            <tr class="add-summary">
+              <div class="summary">
+                <!-- <custom-label [label]="'Summary'" [className]="'cart-border'"></custom-label> -->
+                <div class="first-row">Thank you for ordering from <b>importa</b></div>
+                <div class="second-row"><b>Your
+                    order id is 160</b></div>
+                <div class="third-row">An email with you order details has been sent to test@test.com</div>
+                <div></div>
+                <div class="orderid">If you have any comments or suggestions for us. please send us an email with your
+                  order id. We value your feedback </div>
+
+              </div>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

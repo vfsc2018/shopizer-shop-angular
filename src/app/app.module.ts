@@ -85,6 +85,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { TermandconditionComponent } from './termandcondition/termandcondition.component';
 import { RatingComponent } from './component/rating/rating.component';
 import { ArrayFilterPipe, LimitToPipe } from './component/custom-select/pipes/index';
+import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -263,10 +264,12 @@ export function createTranslateLoader(http: HttpClient) {
     RatingComponent,
     EqualValidator,
     ArrayFilterPipe,
-    LimitToPipe
+    LimitToPipe,
+    OrderConfirmComponent
   ],
   entryComponents: [
-    CartComponent
+    CartComponent,
+    OrderConfirmComponent
   ],
   imports: [
     NgbModule,

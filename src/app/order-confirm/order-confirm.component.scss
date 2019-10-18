@@ -1,0 +1,233 @@
+.container1 {
+    width: 700px;
+
+    .row {
+        .col-md-12 {
+            .modal-header {
+                .close {
+                    outline: none;
+                }
+
+                .modal-title {
+                    color: #666;
+                    font-size: 20px;
+                    line-height: 24px;
+                    font-weight: normal;
+                    text-transform: uppercase;
+                }
+            }
+
+            .au-form-body {
+                font-family: 'Montserrat', 'Lato', sans-serif;
+
+                .table-shop {
+                    width: 100%;
+
+                    tbody {
+
+                        tr {
+
+
+                            &:last-child {
+                                border-bottom: none;
+                            }
+
+
+                            &.add-summary {
+                                padding: 20px 56px;
+                                display: flex;
+
+
+
+                                .summary {
+                                    width: 100%;
+                                    display: table-cell;
+
+                                    .first-row {
+                                        font-size: 16px;
+                                        margin-bottom: 15px;
+
+                                    }
+
+                                    .second-row {
+                                        font-size: 20px;
+                                        margin-bottom: 20px;
+                                    }
+
+                                    .third-row {
+                                        font-size: 13px;
+                                        margin-bottom: 10px;
+                                    }
+
+                                    .orderid {
+                                        font-size: 13px;
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .container {
+        margin-top: 00px !important;
+        padding-top: 80px !important;
+
+        .row {
+            .col-md-12 {
+                .au-form-body {
+                    .table-shop {
+                        td {
+                            padding: 20px 40px !important;
+                        }
+
+                        .add-summary {
+                            padding: 20px 40px !important;
+
+                            .summary {
+                                width: 50% !important;
+
+                                .orderid {
+                                    .id {
+                                        padding-left: 6px !important;
+                                    }
+                                }
+
+                                .orderdate {
+                                    .date {
+                                        padding-left: 10px !important;
+                                    }
+                                }
+
+                                .ordertotal {
+                                    .total {
+                                        padding-left: 10px !important;
+                                    }
+                                }
+                            }
+
+                            .address {
+                                width: 50% !important;
+                            }
+                        }
+
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .container {
+        margin-top: 00px !important;
+        padding-top: 80px !important;
+
+        .row {
+            .col-md-12 {
+                .au-form-body {
+                    .table-shop {
+                        td {
+                            padding: 20px 20px !important;
+                        }
+
+                        .add-summary {
+                            padding: 20px 20px !important;
+
+                            .summary {
+                                width: 50% !important;
+
+                                .orderid {
+                                    .id {
+                                        padding-left: 6px !important;
+                                    }
+                                }
+
+                                .orderdate {
+                                    .date {
+                                        padding-left: 10px !important;
+                                    }
+                                }
+
+                                .ordertotal {
+                                    .total {
+                                        padding-left: 10px !important;
+                                    }
+                                }
+                            }
+
+                            .address {
+                                width: 50% !important;
+                            }
+                        }
+
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:575px) {
+    .container {
+        margin-top: 00px !important;
+        padding-top: 80px !important;
+
+        .row {
+            .au-form-body {
+                .table-shop {
+                    .add-summary {
+                        padding: 20px 10px !important;
+
+                        .summary {
+                            font-size: 12px !important;
+                            width: 65% !important;
+
+                            .sumtitle {
+                                font-size: 18px !important;
+                            }
+
+                            .orderid {
+                                .id {
+                                    padding-left: 2px !important;
+                                }
+                            }
+
+                            .orderdate {
+                                .date {
+                                    padding-left: 4px !important;
+                                }
+                            }
+
+                            .ordertotal {
+                                .total {
+                                    padding-left: 4px !important;
+                                }
+                            }
+                        }
+
+                        .address {
+                            font-size: 12px !important;
+                            width: 35% !important;
+
+                            .addtitle {
+                                font-size: 18px !important;
+                            }
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+
+}

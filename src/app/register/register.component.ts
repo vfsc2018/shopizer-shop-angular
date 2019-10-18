@@ -5,6 +5,7 @@ import { Action } from '../directive/app.constants';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Helper } from '../directive/helper';
 @Component({
   selector: 'register',
   templateUrl: './register.component.html',
@@ -16,8 +17,11 @@ export class RegisterComponent implements OnInit {
     private appService: AppService,
     private spinnerService: Ng4LoadingSpinnerService,
     private toastr: ToastrService,
-    public router: Router
-  ) { }
+    public router: Router,
+    private helper: Helper
+  ) {
+    this.getCurrentLocation();
+  }
   register = {
     username: '',
     password: '',
@@ -106,6 +110,22 @@ export class RegisterComponent implements OnInit {
         this.toastr.error('Registering customer user already exist');
         console.log('user')
       });
+  }
+  getCurrentLocation() {
+    let me = this;
+    this.helper.getLocation(function (result, error) {
+      if (error) {
+        //console.log(error)
+      } else {
+        // console.log(result)
+        me.billing.countryCode = result.find(i => i.types.some(i => i == "country")).short_name;
+        me.billing.country = result.find(i => i.types.some(i => i == "country")).long_name;
+        me.billing.stateProvince = result.find(i => i.types.some(i => i == "administrative_area_level_1")).long_name;
+        me.billing.zone = result.find(i => i.types.some(i => i == "administrative_area_level_1")).short_name;
+        // console.log(me.checkout.country);
+      }
+    })
+
   }
 
 }

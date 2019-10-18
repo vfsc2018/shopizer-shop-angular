@@ -1,5 +1,5 @@
 export class AppConstants {
-    
+
 }
 
 export class Action {
@@ -31,7 +31,7 @@ export class Action {
     public static PAYMENT = 'payment/'
     public static CONTACT = 'contact/'
     public static MANUFACTURERS = 'manufacturers/'
-    public static SHIPPING = 'shipping/'
+    public static SHIPPING = 'shipping'
     public static CUSTOMER = 'customer/'
     public static CUSTOMERS = 'customers/'
     public static PROFILE = 'profile'
@@ -42,6 +42,8 @@ export class Action {
     public static TOTAL = 'total/'
     public static CONFIG = 'config/'
     public static ADDRESS = 'address'
+    public static PASSWORD = 'password/'
+    public static RESET = 'reset'
 
 
 }
