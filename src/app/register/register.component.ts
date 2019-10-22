@@ -66,6 +66,8 @@ export class RegisterComponent implements OnInit {
       this.billing.country = value.value.name;
       this.billing.countryCode = value.value.code;
       this.stateData = value.value.zones;
+      this.billing.zone = '';
+      this.billing.stateProvince = '';
     }
   }
   onStateSelect(value) {
@@ -92,7 +94,7 @@ export class RegisterComponent implements OnInit {
       "billing": {
         "country": this.billing.countryCode,
         "zone": this.billing.zone,
-        "stateProvince": this.billing.zone,
+        "stateProvince": this.billing.stateProvince,
         "firstName": this.billing.firstName,
         "lastName": this.billing.lastName,
       }

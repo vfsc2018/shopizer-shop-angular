@@ -4,6 +4,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
+
+import { DataSharingService } from '../directive/data-sharing.service';
 @Component({
   selector: 'settings',
   templateUrl: './settings.component.html',
@@ -19,14 +21,26 @@ export class SettingsComponent {
     private helper: Helper,
     private cookieService: CookieService,
     private router: Router,
-    private appService: AppService
+    private appService: AppService,
+    private dataSharingService: DataSharingService
   ) {
+    console.log('12345646546565')
     this.userDataFlag = localStorage.getItem('userData') ? true : false;
     if (localStorage.getItem('langulage')) {
       this.language = localStorage.getItem('langulage') == 'en' ? 'English' : 'Francais';
     } else {
       this.language = 'Language'
     }
+    this.dataSharingService.isLogin.subscribe(value => {
+      console.log(value)
+      this.userDataFlag = localStorage.getItem('userData') ? true : false;
+      if (localStorage.getItem('langulage')) {
+        this.language = localStorage.getItem('langulage') == 'en' ? 'English' : 'Francais';
+      } else {
+        this.language = 'Language'
+      }
+      this.getProfile();
+    });
     //console.log('*********************')
     this.getProfile();
   }

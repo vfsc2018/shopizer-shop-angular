@@ -74,6 +74,8 @@ export class ShippingDetailComponent implements OnInit {
       this.billing.country = value.value.name;
       this.billing.countryCode = value.value.code;
       this.stateData = value.value.zones;
+      this.billing.stateProvince = '';
+      this.billing.zone = '';
     }
   }
   onBillingStateSelect(value) {
@@ -84,7 +86,10 @@ export class ShippingDetailComponent implements OnInit {
   onShippingCountrySelect(value) {
     this.shipping.country = value.value.name;
     this.shipping.countryCode = value.value.code;
+
     this.shippingStateData = value.value.zones;
+    this.shipping.stateProvince = '';
+    this.shipping.zone = '';
   }
   onShippingStateSelect(value) {
     this.shipping.stateProvince = value.value.name;
@@ -128,10 +133,22 @@ export class ShippingDetailComponent implements OnInit {
           this.billing.country = this.countryData[index].name;
           this.billing.countryCode = this.countryData[index].code;
           this.stateData = this.countryData[index].zones;
+          if (!data.delivery) {
+            this.shipping.country = this.countryData[index].name;
+            this.shipping.countryCode = this.countryData[index].code;
+            this.shippingStateData = this.countryData[index].zones;
+          }
+
+
           let index1 = this.stateData.findIndex(order => order.code === data.billing.zone);
           if (index != 1) {
             this.billing.stateProvince = this.stateData[index1].name;
             this.billing.zone = this.stateData[index1].code;
+
+            if (!data.delivery) {
+              this.shipping.stateProvince = this.stateData[index1].name;
+              this.shipping.zone = this.stateData[index1].zone;
+            }
           }
         }
 
@@ -151,7 +168,7 @@ export class ShippingDetailComponent implements OnInit {
         "address": this.billing.address,
         "city": this.billing.city,
         "postalCode": this.billing.postalCode,
-        "stateProvince": this.billing.zone,
+        "stateProvince": this.billing.stateProvince,
         "country": this.billing.countryCode,
         "zone": this.billing.zone,
         "firstName": this.billing.firstName,
@@ -163,7 +180,7 @@ export class ShippingDetailComponent implements OnInit {
         "address": this.shipping.address,
         "city": this.shipping.city,
         "postalCode": this.shipping.postalCode,
-        "stateProvince": this.shipping.zone,
+        "stateProvince": this.shipping.stateProvince,
         "country": this.shipping.countryCode,
         "zone": this.shipping.zone,
         "firstName": this.shipping.firstName,

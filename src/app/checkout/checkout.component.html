@@ -52,11 +52,16 @@
                             [options]="countryData" [config]="selectConfig" required (change)="onBillingCountrySelect($event)">
                         </custom-select>
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-6" *ngIf="stateData.length > 0">
                                 <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="billing.stateProvince"
                                     name="stateProvince" [options]="stateData" [config]="selectConfig" (change)="onBillingStateSelect($event)"
                                     required>
                                 </custom-select>
+                            </div>
+                            <div class="col-sm-6" *ngIf="stateData.length == 0">
+                                <input-field type="text" label="State" labelAfter="true" placeHolder="Enter State"
+                                    [(ngModel)]="billing.stateProvince" name="stateProvince" required>
+                                </input-field>
                             </div>
                             <div class="col-sm-6">
                                 <input-field type="text" label="Postcode / Zip" [(ngModel)]="billing.postalCode" name="postalCode"
@@ -143,12 +148,23 @@
                             name="country" [options]="shippingCountryData" [config]="selectConfig" required (change)="onShippingCountrySelect($event)">
                         </custom-select>
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-6" *ngIf="shippingStateData.length > 0">
                                 <custom-select label="Shipping State" labelAfter="true" bottom="24" [(ngModel)]="shipping.stateProvince"
                                     name="stateProvince" [options]="shippingStateData" [config]="selectConfig" (change)="onShippingStateSelect($event)"
                                     required>
                                 </custom-select>
                             </div>
+                            <div class="col-sm-6" *ngIf="shippingStateData.length == 0">
+                                <input-field type="text" labelAfter="true" placeHolder="Enter State" label="State"
+                                    [(ngModel)]="shipping.stateProvince" name="stateProvince" required>
+                                </input-field>
+                            </div>
+                            <!-- <div class="col-sm-6">
+                                <custom-select label="Shipping State" labelAfter="true" bottom="24" [(ngModel)]="shipping.stateProvince"
+                                    name="stateProvince" [options]="shippingStateData" [config]="selectConfig" (change)="onShippingStateSelect($event)"
+                                    required>
+                                </custom-select>
+                            </div> -->
                             <div class="col-sm-6">
                                 <input-field type="text" label="Shipping Postcode / Zip" [(ngModel)]="shipping.postalCode"
                                     name="postalCode" placeHolder="" labelAfter="true" bottom="24" required>

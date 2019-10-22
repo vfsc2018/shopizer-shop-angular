@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Helper } from '../directive/helper';
+import { DataSharingService } from '../directive/data-sharing.service';
 @Component({
   selector: 'account',
   templateUrl: './account.component.html',
@@ -19,7 +20,8 @@ export class AccountComponent implements OnInit {
     private toastr: ToastrService,
     public router: Router,
     private cookieService: CookieService,
-    private Helper: Helper
+    private Helper: Helper,
+    private dataSharingService: DataSharingService
   ) { }
   user = {
     username: '',
@@ -46,6 +48,7 @@ export class AccountComponent implements OnInit {
         this.spinnerService.hide();
         this.router.navigate(['/orders']);
         localStorage.setItem('userData', JSON.stringify(data));
+        this.dataSharingService.isLogin.next(0);
         this.toastr.success('You have successfully logged in to this website', 'Well done!');
         this.addtoCart();
       }, error => {

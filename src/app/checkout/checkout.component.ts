@@ -90,7 +90,31 @@ export class CheckoutComponent implements OnInit {
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          let p = autocomplete.getPlace();
+          this.billing.countryCode = p.address_components.find(i => i.types.some(i => i == "country")).short_name;
+          this.billing.country = p.address_components.find(i => i.types.some(i => i == "country")).long_name;
+          this.billing.stateProvince = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).long_name;
+          this.billing.zone = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).short_name;
+          this.billing.city = p.address_components.find(i => i.types.some(i => i == "locality")).long_name;
+          let poCode = p.address_components.find(i => i.types.some(i => i == "postal_code"));
+          if (poCode != undefined) {
+            this.billing.postalCode = poCode.long_name
+          }
+          var componentForm = {
+            street_number: 'short_name',
+            route: 'long_name',
+            sublocality: 'sublocality'
+          };
+          let array = [];
+          for (var i = 0; i < p.address_components.length; i++) {
+            var addressType = p.address_components[i].types[0];
+            if (componentForm[addressType]) {
+              var val = p.address_components[i][componentForm[addressType]];
+              array.push(val);
+
+            }
+          }
+          this.billing.address = array.toString();
         });
       });
     });
@@ -116,6 +140,8 @@ export class CheckoutComponent implements OnInit {
       this.billing.country = value.value.name;
       this.billing.countryCode = value.value.code;
       this.stateData = value.value.zones;
+      this.billing.stateProvince = '';
+      this.billing.zone = '';
     }
   }
   onBillingStateSelect(value) {
@@ -126,8 +152,10 @@ export class CheckoutComponent implements OnInit {
   onShippingCountrySelect(value) {
     this.shipping.country = value.value.name;
     this.shipping.countryCode = value.value.code;
-    console.log(value)
+    // console.log(value)
     this.shippingStateData = value.value.zones;
+    this.shipping.stateProvince = '';
+    this.shipping.zone = '';
   }
   onShippingStateSelect(value) {
     this.shipping.stateProvince = value.value.name;
