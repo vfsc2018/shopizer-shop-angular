@@ -86,6 +86,7 @@ import { TermandconditionComponent } from './termandcondition/termandcondition.c
 import { RatingComponent } from './component/rating/rating.component';
 import { ArrayFilterPipe, LimitToPipe } from './component/custom-select/pipes/index';
 import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
+import { StripeComponent } from './component/stripe/stripe.component';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -265,7 +266,8 @@ export function createTranslateLoader(http: HttpClient) {
     EqualValidator,
     ArrayFilterPipe,
     LimitToPipe,
-    OrderConfirmComponent
+    OrderConfirmComponent,
+    StripeComponent
   ],
   entryComponents: [
     CartComponent,
