@@ -1,5 +1,6 @@
 
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { environment } from '../../../environments/environment';
 declare var Stripe;
 @Component({
   selector: 'stripe',
@@ -25,7 +26,7 @@ export class StripeComponent implements OnInit {
   loading = false;
   confirmation;
   ngOnInit() {
-    this.stripe = Stripe('pk_test_eSZ2nnLY1wLLGdXfDGloFbVS00HQrqVhc8');
+    this.stripe = Stripe(environment.stripeKey);
     console.log(this.stripe)
     const elements = this.stripe.elements();
 
@@ -50,23 +51,24 @@ export class StripeComponent implements OnInit {
       this.cardCvcErrors = error && error.message;
     });
   }
-  // async handleForm(e) {
-  //   e.preventDefault();
+  async submitOrder() {
+    //   e.preventDefault();
 
-  //   const { source, error } = await this.stripe.createSource(this.card);
+    const { source, error } = await this.stripe.createToken(this.cardNumber);
 
-  //   if (error) {
-  //     // Inform the customer that there was an error.
-  //     const cardErrors = error.message;
-  //   } else {
-  //     // Send the token to your server.
-  //     // this.loading = true;
-  //     // const user = await this.auth.getUser();
-  //     // const fun = this.functions.httpsCallable('stripeCreateCharge');
-  //     // this.confirmation = await fun({ source: source.id, uid: user.uid, amount: this.amount }).toPromise();
-  //     // this.loading = false;
+    if (error) {
+      // Inform the customer that there was an error.
+      const cardErrors = error.message;
+    } else {
+      console.log(source)
+      // Send the token to your server.
+      // this.loading = true;
+      // const user = await this.auth.getUser();
+      // const fun = this.functions.httpsCallable('stripeCreateCharge');
+      // this.confirmation = await fun({ source: source.id, uid: user.uid, amount: this.amount }).toPromise();
+      // this.loading = false;
 
-  //   }
-  // }
+    }
+  }
 }
 

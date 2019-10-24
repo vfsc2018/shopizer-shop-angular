@@ -20,6 +20,7 @@ export class CheckoutComponent implements OnInit {
   summeryOrder: any;
   isShipping: Boolean = false;
   isAccount: Boolean = false;
+  public scrollbarOptions = { axis: 'y', theme: 'light' };
   // countyData: Array<any> = [];
   billing = {
     firstName: '',

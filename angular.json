@@ -24,16 +24,20 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
             ],
             "styles": [
               "src/styles.scss",
               "src/assets/css/fontawesome.css",
               "src/assets/css/theme.css",
               "src/assets/css/boostrap/app.scss",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

@@ -87,6 +87,7 @@ import { RatingComponent } from './component/rating/rating.component';
 import { ArrayFilterPipe, LimitToPipe } from './component/custom-select/pipes/index';
 import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 import { StripeComponent } from './component/stripe/stripe.component';
+import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -302,7 +303,8 @@ export function createTranslateLoader(http: HttpClient) {
     // FormValidationModule,
     NgxGalleryModule,
     CarouselModule,
-    Ng4LoadingSpinnerModule
+    Ng4LoadingSpinnerModule,
+    MalihuScrollbarModule.forRoot()
   ],
   providers: [
     /** load merchant and configurations */

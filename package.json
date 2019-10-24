@@ -39,6 +39,7 @@
     "ngx-cookie-service": "^2.2.0",
     "ngx-gallery": "^5.10.0",
     "ngx-loading": "^3.0.1",
+    "ngx-malihu-scrollbar": "^8.0.0",
     "ngx-owl-carousel-o": "^1.1.5",
     "ngx-pagination": "^4.0.0",
     "ngx-toastr": "^10.0.4",

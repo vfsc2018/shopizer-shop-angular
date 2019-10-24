@@ -1,23 +1,103 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+declare let google: any;
+import { MapsAPILoader } from '@agm/core';
 @Component({
   selector: 'shipping-detail',
   templateUrl: './shipping-detail.component.html',
   styleUrls: ['./shipping-detail.component.scss']
 })
 export class ShippingDetailComponent implements OnInit {
-
+  @ViewChild("search") public searchElementRef: ElementRef;
+  @ViewChild("searchShipping") public searchShippingElementRef: ElementRef;
   constructor(
     private appService: AppService,
     private spinnerService: Ng4LoadingSpinnerService,
     private toastr: ToastrService,
-    public router: Router
-  ) { }
+    public router: Router,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
+  ) {
+
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let p = autocomplete.getPlace();
+          this.billing.countryCode = p.address_components.find(i => i.types.some(i => i == "country")).short_name;
+          this.billing.country = p.address_components.find(i => i.types.some(i => i == "country")).long_name;
+          this.billing.stateProvince = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).long_name;
+          this.billing.zone = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).short_name;
+          this.billing.city = p.address_components.find(i => i.types.some(i => i == "locality")).long_name;
+          let poCode = p.address_components.find(i => i.types.some(i => i == "postal_code"));
+          if (poCode != undefined) {
+            this.billing.postalCode = poCode.long_name
+          }
+          var componentForm = {
+            street_number: 'short_name',
+            route: 'long_name',
+            sublocality: 'sublocality'
+          };
+          let array = [];
+          for (var i = 0; i < p.address_components.length; i++) {
+            var addressType = p.address_components[i].types[0];
+            if (componentForm[addressType]) {
+              var val = p.address_components[i][componentForm[addressType]];
+              array.push(val);
+
+            }
+          }
+          this.billing.address = array.toString();
+        });
+      });
+    });
+
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchShippingElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let p = autocomplete.getPlace();
+          this.shipping.countryCode = p.address_components.find(i => i.types.some(i => i == "country")).short_name;
+          this.shipping.country = p.address_components.find(i => i.types.some(i => i == "country")).long_name;
+          this.shipping.stateProvince = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).long_name;
+          this.shipping.zone = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).short_name;
+          this.shipping.city = p.address_components.find(i => i.types.some(i => i == "locality")).long_name;
+          let poCode = p.address_components.find(i => i.types.some(i => i == "postal_code"));
+          if (poCode != undefined) {
+            this.shipping.postalCode = poCode.long_name
+          }
+          var componentForm = {
+            street_number: 'short_name',
+            route: 'long_name',
+            sublocality: 'sublocality'
+          };
+          let array = [];
+          for (var i = 0; i < p.address_components.length; i++) {
+            var addressType = p.address_components[i].types[0];
+            if (componentForm[addressType]) {
+              var val = p.address_components[i][componentForm[addressType]];
+              array.push(val);
+
+            }
+          }
+          this.shipping.address = array.toString();
+        });
+      });
+    });
+
+
+  }
   config = {
     displayKey: "name", //if objects array passed which key to be displayed defaults to description
     search: false,
@@ -119,8 +199,8 @@ export class ShippingDetailComponent implements OnInit {
             this.shippingStateData = this.shippingCountryData[shippingIndex].zones;
             let shippingIndex1 = this.shippingStateData.findIndex(order => order.code === data.delivery.zone);
             if (shippingIndex1 != 1) {
-              this.shipping.stateProvince = this.shippingStateData[shippingIndex1].name;
-              this.shipping.zone = this.shippingStateData[shippingIndex1].zone;
+              // this.shipping.stateProvince = this.shippingStateData[shippingIndex1].name;
+              // this.shipping.zone = this.shippingStateData[shippingIndex1].zone;
             }
           }
         }
@@ -139,7 +219,7 @@ export class ShippingDetailComponent implements OnInit {
             this.shippingStateData = this.countryData[index].zones;
           }
 
-
+          console.log(this.stateData)
           let index1 = this.stateData.findIndex(order => order.code === data.billing.zone);
           if (index != 1) {
             this.billing.stateProvince = this.stateData[index1].name;

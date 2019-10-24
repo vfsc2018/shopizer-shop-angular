@@ -11,7 +11,7 @@
                     <a href="#">Have a coupon? Click here to enter your code</a>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
                 <div class="au-form-body p-b-0">
                     <custom-label [label]="'Billing Details'" [className]="'cart-border'"></custom-label>
                     <form #checkoutForm="ngForm" role="form">
@@ -200,7 +200,7 @@
                 </div>
 
             </div>
-            <div class="col-md-6" *ngIf="summeryOrder">
+            <div class="col-md-6" *ngIf="summeryOrder" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
                 <div class="au-form-body">
                     <custom-label [label]="'Your order'" [className]="'cart-border'"></custom-label>
                     <!-- <h2 class="au-form-title form-title-border m-b-37">YOUR ORDER</h2> -->
