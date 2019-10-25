@@ -16,7 +16,8 @@
       <div class="product-rating" data-star="4">
         <ngb-rating [rate]="result.rating"></ngb-rating>
       </div>
-      <div class="price">${{result.price}}</div>
+      <div class="price"><span [ngClass]="result.discounted ? 'discount-price' : ''">{{result.originalPrice}}</span><span
+          *ngIf="result.discounted" class="original-price">{{result.finalPrice}}</span></div>
     </div>
   </div>
 </div>

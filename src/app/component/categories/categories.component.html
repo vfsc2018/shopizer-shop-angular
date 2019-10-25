@@ -1,8 +1,8 @@
 <div *ngIf="isArray(data)">
   <ngb-accordion #acc="ngbAccordion" (panelChange)="onCategoryClick(result)" activeIds="ngb-panel-0" class="custom-category"
     *ngFor="let result of data; let i = index">
-    <ngb-panel (click)="onCategoryClick(result)" title="{{ result.description ? result.description.name: ''}}">
-      <ng-template ngbPanelContent>
+    <ngb-panel *ngIf="result.visible" (click)="onCategoryClick(result)" title="{{ result.description ? result.description.name: ''}}">
+      <ng-template>
 
         <div *ngIf="result.children != ''" class="child-category">
 

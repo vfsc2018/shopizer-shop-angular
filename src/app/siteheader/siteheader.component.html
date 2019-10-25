@@ -13,18 +13,24 @@
               </custom-img>
             </a>
           </div>
-          <nav class="header__navbar">
-            <ul class="navbar-menu">
+          <nav class="header__navbar" style="width:1400px">
+            <ul class="navbar-menu" style="text-align: center;">
               <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
                 <a routerLink="/">{{'Home' | translate}}</a>
               </li>
-              <li *ngFor="let category of category" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
-                <a (click)="onClickCategory(category)" [routerLink]="'/category/' + category.description.friendlyUrl">
-                  {{category.description.name | translate}}</a>
-                <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
-                  <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
-                </ul>
-              </li>
+              <ng-container *ngFor="let category of category">
+                <ng-container *ngIf="category.visible">
+                  <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                    <a (click)="onClickCategory(category)" [routerLink]="'/category/' + category.description.friendlyUrl">
+                      {{category.description.name | translate}}</a>
+                    <ul class="
+                          sub-menu" *ngIf="category.children && category.children.length > 0">
+                      <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
+                    </ul>
+                  </li>
+                </ng-container>
+              </ng-container>
+
               <ng-container *ngFor="let content of content">
                 <ng-container *ngIf="content.displayedInMenu">
                   <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">

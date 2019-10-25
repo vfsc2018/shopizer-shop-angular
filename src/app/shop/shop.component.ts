@@ -73,7 +73,7 @@ export class ShopComponent implements OnInit {
 
   }
   getCategory() {
-    let action = Action.CATEGORY
+    let action = Action.CATEGORY + '?count=20&page=0'
     this.appService.getMethod(action)
       .subscribe(data => {
         // console.log(data);
@@ -92,7 +92,8 @@ export class ShopComponent implements OnInit {
     let action = Action.MANUFACTURERS + this.categoryID
     this.appService.getMethod(action)
       .subscribe(data => {
-        this.manufactureData = data;
+        console.log(data)
+        this.manufactureData = data.manufacturers;
       }, error => {
         this.manufactureData = null;
       });

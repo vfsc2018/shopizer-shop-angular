@@ -11,7 +11,9 @@
           <div class="product-body">
             <div class="first">
               <h3 class="name">{{productDetail.description.name}}</h3>
-              <p class="price">{{productDetail.finalPrice}}</p>
+              <!-- <p class="price">{{productDetail.finalPrice}}</p> -->
+              <p class="price"><span [ngClass]="productDetail.discounted ? 'discount-price' : ''">{{productDetail.originalPrice}}</span><span
+                  *ngIf="productDetail.discounted" class="original-price">{{productDetail.finalPrice}}</span></p>
 
             </div>
             <div class="color-choose" *ngIf="productDetail.options">

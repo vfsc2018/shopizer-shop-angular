@@ -28,7 +28,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 9;
 
     .merchant-logo-title {
         font-size: xx-large;
@@ -85,7 +85,7 @@ header {
                 -moz-box-pack: justify;
                 -ms-flex-pack: justify;
                 justify-content: space-between;
-                padding: 0 50px;
+                padding: 0 20px;
                 -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.05);
                 -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.05);
                 box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.05);
@@ -95,16 +95,21 @@ header {
                 transition: all 0.35s;
 
                 .header__navbar {
+                    padding: 30px 0;
+
                     ul {
+                        margin: 0px;
+                        padding: 0px;
+
                         &.navbar-menu {
                             &>li {
                                 display: inline-block;
                                 position: relative;
-                                padding: 0 20px;
+                                padding: 0 15px;
 
                                 &>a {
-                                    font-size: 15px;
-                                    line-height: 112px;
+                                    font-size: 14px;
+                                    line-height: inherit;
                                     color: #999999;
                                     text-transform: uppercase;
                                     -webkit-transition: all 0.35s;
@@ -119,10 +124,10 @@ header {
                                     width: 194px !important;
                                     border-top: 5px solid #e4c7a2;
                                     position: absolute;
-                                    top: 128px;
+                                    top: 54px;
                                     left: -8px;
                                     width: 100%;
-                                    padding: 25px 0 25px 30px;
+                                    padding: 0;
                                     background-color: #fff;
                                     z-index: 100000;
 
@@ -186,7 +191,13 @@ header {
                 }
 
                 .header__button {
+
+
                     ul {
+                        width: 180px;
+                        margin: 0px;
+                        padding: 0px;
+
                         li {
                             list-style: none;
                             padding-right: 18px;
@@ -202,6 +213,7 @@ header {
                                 .shop-cart-button {
                                     position: relative;
                                     margin-right: 11px;
+                                    top: 2px;
 
                                     .amount {
                                         position: absolute;
@@ -283,7 +295,7 @@ header {
                             &.navbar-menu {
                                 &>li {
                                     &>a {
-                                        line-height: 80px;
+                                        // line-height: 80px;
                                     }
 
                                     .sub-menu {
@@ -762,17 +774,20 @@ header .header-wrapper-mobile.mobile-style-2 .header-mobile__bar .header-mobile_
             .header {
                 .header-main {
                     .header__navbar {
+                        padding-top: 0px;
+                        padding-bottom: 10px;
                         padding-left: 10px;
 
                         ul {
-                            padding-top: 14px;
+                            padding-top: 28px;
+                            padding-bottom: 15px;
 
                             &.navbar-menu {
                                 &>li {
                                     padding: 0 10px;
 
                                     a {
-                                        line-height: 40px;
+                                        line-height: 30px;
                                         font-size: 14px;
                                     }
                                 }
@@ -781,9 +796,10 @@ header .header-wrapper-mobile.mobile-style-2 .header-mobile__bar .header-mobile_
                     }
 
                     .header__button {
-                        width: 132px;
+                        text-align: right;
 
                         ul {
+                            width: 200px;
                             display: block;
                             margin-bottom: 0px;
 

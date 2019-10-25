@@ -168,6 +168,15 @@
             color: #333;
             font-size: 18px;
             font-weight: 500;
+
+            .discount-price {
+                text-decoration: line-through;
+            }
+
+            .original-price {
+                margin-left: 10px;
+                color: red;
+            }
         }
     }
 }

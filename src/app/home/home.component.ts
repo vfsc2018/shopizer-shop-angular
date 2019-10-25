@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
             }
           })
         });
-        // console.log(this.categoryData)
+        // console.log(data.products)
         this.productData = data.products;
         this.filterData = data.products;
       }, error => {

@@ -48,7 +48,8 @@ export class SitefooterComponent implements OnInit {
   }
   getCategoryHierarchy() {
 
-    let action = Action.CATEGORY + '?' + Action.FILTER + '=' + Action.VISIBLE;
+    let action = Action.CATEGORY + '?count=20&page=0';
+    // let action = Action.CATEGORY + '?' + Action.FILTER + '=' + Action.VISIBLE;
     this.appService.getMethod(action)
       .subscribe(data => {
         // console.log(data);

@@ -24,8 +24,18 @@
                     }
 
                     .price {
-                        font-size: 22px;
+                        font-size: 18px;
+                        font-weight: 500;
                         color: #333;
+
+                        .discount-price {
+                            text-decoration: line-through;
+                        }
+
+                        .original-price {
+                            margin-left: 10px;
+                            color: red;
+                        }
                     }
 
                     .first {

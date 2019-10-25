@@ -11,7 +11,9 @@
       <div class="product-body">
         <div class="first">
           <a class="name" (click)="onClickName(result)">{{result.description.name}}</a>
-          <p class="price">${{result.price}}</p>
+          <p class="price"><span [ngClass]="result.discounted ? 'discount-price' : ''">{{result.originalPrice}}</span><span
+              *ngIf="result.discounted" class="original-price">{{result.finalPrice}}</span></p>
+          <!-- <p class="price">${{result.price}}</p> -->
           <div class="product-rating" data-star="4">
             <ngb-rating [rate]="result.rating"></ngb-rating>
           </div>

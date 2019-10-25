@@ -110,6 +110,7 @@ export class ProductDetailComponent implements OnInit {
 
     this.appService.getMethod(action + this.productId + '?lang=en')
       .subscribe(data => {
+        console.log(data);
         this.productDetail = data;
         data.images.map((image) => {
           this.galleryImages.push({ 'small': image.imageUrl, 'medium': image.imageUrl, 'big': image.imageUrl })

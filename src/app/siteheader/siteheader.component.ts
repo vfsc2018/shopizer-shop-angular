@@ -66,7 +66,8 @@ export class SiteheaderComponent implements OnInit {
     }
     getCategoryHierarchy() {
 
-        let action = Action.CATEGORY + '?' + Action.FILTER + '=' + Action.VISIBLE;
+        let action = Action.CATEGORY + '?count=20&page=0'
+        // let action = Action.CATEGORY + '?' + Action.FILTER + '=' + Action.VISIBLE;
         console.log(action);
         this.appService.getMethod(action)
             .subscribe(data => {
