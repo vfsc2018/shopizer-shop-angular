@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { environment } from '../../../environments/environment';
 declare var Stripe;
 @Component({
@@ -9,8 +9,12 @@ declare var Stripe;
 })
 export class StripeComponent implements OnInit {
   constructor() { }
-  @Input() amount: number;
-  @Input() description: string;
+  // @Input() amount: number;
+  // @Input() description: string;
+
+  @Output() onNumberChange: EventEmitter<any> = new EventEmitter();
+  @Output() onDateChange: EventEmitter<any> = new EventEmitter();
+  @Output() onCVCChange: EventEmitter<any> = new EventEmitter();
   @ViewChild('cardNumberElement') cardNumberElement: ElementRef;
   @ViewChild('cardExpiryElement') cardExpiryElement: ElementRef;
   @ViewChild('cardCvcElement') cardCvcElement: ElementRef;
@@ -34,6 +38,11 @@ export class StripeComponent implements OnInit {
     this.cardNumber.mount(this.cardNumberElement.nativeElement);
 
     this.cardNumber.addEventListener('change', ({ error }) => {
+
+      if (error == undefined) {
+        console.log(this.cardNumberElement.nativeElement);
+        this.onNumberChange.emit(this.cardNumber);
+      }
       this.cardNumberErrors = error && error.message;
     });
 
@@ -41,6 +50,9 @@ export class StripeComponent implements OnInit {
     this.cardExpiry.mount(this.cardExpiryElement.nativeElement);
 
     this.cardExpiry.addEventListener('change', ({ error }) => {
+      if (error == undefined) {
+        this.onDateChange.emit(this.cardExpiry);
+      }
       this.cardExpiryErrors = error && error.message;
     });
 
@@ -48,19 +60,22 @@ export class StripeComponent implements OnInit {
     this.cardCvc.mount(this.cardCvcElement.nativeElement);
 
     this.cardCvc.addEventListener('change', ({ error }) => {
+      if (error == undefined) {
+        this.onCVCChange.emit(this.cardCvc);
+      }
       this.cardCvcErrors = error && error.message;
     });
   }
   async submitOrder() {
     //   e.preventDefault();
 
-    const { source, error } = await this.stripe.createToken(this.cardNumber);
+    const { token, error } = await this.stripe.createToken(this.cardNumber);
 
     if (error) {
       // Inform the customer that there was an error.
       const cardErrors = error.message;
     } else {
-      console.log(source)
+      console.log(token)
       // Send the token to your server.
       // this.loading = true;
       // const user = await this.auth.getUser();

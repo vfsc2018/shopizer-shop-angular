@@ -61,7 +61,10 @@
                   </div>
                   <div class="name">
                     {{product.product.description.title}}
-                    <span class="skuid">SKU: {{product.sku}}</span></div>
+                    <span class="skuid">SKU: {{product.sku}}</span>
+                    <a class="reorder" (click)="reorder(product)">Buy it again</a>
+                  </div>
+
                 </div>
               </td>
               <td class="width15">

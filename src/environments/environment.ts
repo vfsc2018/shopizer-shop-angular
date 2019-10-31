@@ -7,7 +7,7 @@ export const environment = {
   baseUrl: 'http://99.79.1.102:8080',
   apiVersion: '/api/v1/',
   merchant: 'DEFAULT',
-  stripeKey: 'pk_test_eSZ2nnLY1wLLGdXfDGloFbVS00HQrqVhc8'
+  stripeKey: 'pk_test_tVMeg9oyMknGF1ZH6R35vMVc'
 };
 
 /*

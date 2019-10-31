@@ -282,24 +282,27 @@ export class CheckoutComponent implements OnInit {
   ngOnInit() {
 
   }
+  onChangeNumber(e) {
+    console.log(e)
+  }
   onPayment() {
 
-    var handler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_aeUUjYYcx4XNfKVW60pmHTtI',
-      locale: 'auto',
-      token: function (token: any) {
-        // You can access the token ID with `token.id`.
-        // Get the token ID to your server-side code for use.
-        console.log(token)
-        alert('Token Created!!');
-      }
-    });
+    // var handler = (<any>window).StripeCheckout.configure({
+    //   key: 'pk_test_tVMeg9oyMknGF1ZH6R35vMVc',
+    //   locale: 'auto',
+    //   token: function (token: any) {
+    //     // You can access the token ID with `token.id`.
+    //     // Get the token ID to your server-side code for use.
+    //     console.log(token)
+    //     alert('Token Created!!');
+    //   }
+    // });
 
-    handler.open({
-      name: 'Shopizer',
-      description: '2 widgets',
-      amount: 20
-    });
+    // handler.open({
+    //   name: 'Shopizer',
+    //   description: '2 widgets',
+    //   amount: 20
+    // });
 
     //console.log(this.billing)
   }

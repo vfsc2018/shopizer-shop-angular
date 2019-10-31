@@ -172,17 +172,24 @@ export class ProductDetailComponent implements OnInit {
   }
   addToCart(product) {
     this.spinnerService.show();
-    let action = Action.CART;
-    let param = {
-      "product": product.id,
-      "quantity": this.qty,
-      "attributes": [
-        { "id": this.selectedColor },
-        { "id": this.selectedSizeID }
-      ],
 
-    }
+    let userData = JSON.parse(localStorage.getItem('userData'));
+    let action;
+    // let action = Action.CART;
+    // let param = {
+    //   "product": product.id,
+    //   "quantity": this.qty,
+    //   "attributes": [
+    //     { "id": this.selectedColor },
+    //     { "id": this.selectedSizeID }
+    //   ],
+
+    // }
     if (this.cookieService.get('shopizer-cart-id')) {
+      action = Action.CART
+      let cartData = JSON.parse(this.cookieService.get('localCart'));
+      let index = cartData.findIndex(order => order.id === product.id);
+      let param = { "product": product.id, "quantity": index == -1 ? 1 : cartData[index].quantity + 1 }
       let id = this.cookieService.get('shopizer-cart-id');
       this.appService.putMethod(action, id, param)
         .subscribe(data => {
@@ -192,6 +199,12 @@ export class ProductDetailComponent implements OnInit {
           this.spinnerService.hide();
         });
     } else {
+      if (userData) {
+        action = Action.CUSTOMERS + userData.id + '/' + Action.CARTS;
+      } else {
+        action = Action.CART
+      }
+      let param = { "product": product.id, "quantity": 1 }
       this.appService.postMethod(action, param)
         .subscribe(data => {
           console.log(data);

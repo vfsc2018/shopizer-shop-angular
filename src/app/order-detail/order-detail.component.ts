@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 
+import { Router } from '@angular/router';
 @Component({
   selector: 'order-detail',
   templateUrl: './order-detail.component.html',
@@ -18,6 +19,7 @@ export class OrderDetailComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private appService: AppService,
+    public router: Router
   ) {
 
   }
@@ -40,6 +42,11 @@ export class OrderDetailComponent implements OnInit {
   }
   passBack() {
     this.passEntry.emit();
+  }
+  reorder(result) {
+    console.log(result);
+    this.router.navigate(['/product-detail'], { queryParams: { productId: result.product.id } });
+    this.passBack()
   }
 
 }
