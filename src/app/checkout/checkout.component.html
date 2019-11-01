@@ -167,7 +167,8 @@
                             </div> -->
                             <div class="col-sm-6">
                                 <input-field type="text" label="Shipping Postcode / Zip" [(ngModel)]="shipping.postalCode"
-                                    name="postalCode" placeHolder="" labelAfter="true" bottom="24" required>
+                                    name="postalCode" placeHolder="" labelAfter="true" (onInputChange)="onShippingChange()"
+                                    bottom="24" required>
                                 </input-field>
                             </div>
                         </div>
@@ -200,11 +201,11 @@
                 </div>
 
             </div>
-            <div class="col-md-6" *ngIf="summeryOrder" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
+            <div class="col-md-6" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
                 <div class="au-form-body">
                     <custom-label [label]="'Your order'" [className]="'cart-border'"></custom-label>
                     <!-- <h2 class="au-form-title form-title-border m-b-37">YOUR ORDER</h2> -->
-                    <table class="checkout-bill">
+                    <table class="checkout-bill" *ngIf="summeryOrder">
                         <tbody>
                             <tr>
                                 <th>{{ 'product' | translate}}</th>
@@ -218,7 +219,7 @@
                                 <td *ngIf="total.title != 'Total'">{{total.title}}</td>
                                 <td *ngIf="total.title != 'Total'">{{total.total}}</td>
                             </tr>
-                            <tr *ngIf="shippingData" class="shipping-data">
+                            <tr *ngIf="shippingData && config.displayShipping" class="shipping-data">
                                 <td class="shipping-key">Shipping Fees</td>
                                 <td class="shipping">
                                     <div class="shipping-note">
@@ -227,7 +228,7 @@
                                     <div class="shipping-option">
                                         <span *ngFor="let shipping of shippingData.shippingOptions">
                                             <input type="radio" name="gender" value="shipping.shippingQuoteOptionId"
-                                                (change)="shippingQuoteChange(shipping)"><label>{{shipping.optionName}}
+                                                (change)="shippingQuoteChange(shipping)" checked><label>{{shipping.optionName}}
                                                 :
                                                 ${{shipping.optionPrice}}</label>
                                         </span>
@@ -241,6 +242,16 @@
 
                                 </td>
                             </tr>
+                            <tr *ngIf="!shippingData && config.displayShipping" class="shipping-data">
+                                <td class="shipping-key">Shipping Fees</td>
+                                <td class="shipping">
+                                    <div class="shipping-option">
+                                        <span>
+                                            Free Shipping!
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
                             <tr class="total">
                                 <td>Total</td>
                                 <td>{{summeryOrder.total}}</td>
@@ -248,26 +259,42 @@
                         </tbody>
 
                     </table>
-                    <form>
-                        <stripe (onNumberChange)="onChangeNumber(event)"></stripe>
-                        <!-- <div class="checkout-payment m-b-16">
+                    <fieldset class="m-t-40" class="account-box">
+                        <form>
+                            <!-- <stripe (onNumberChange)="onChangeNumber($event)"></stripe> -->
+                            <div class="card_number">
+                                <div class="field">
+                                    <label for="example2-card-number" data-tid="elements_examples.form.card_number_label">Card
+                                        number</label>
+                                    <div #cardNumberElement class="input empty"></div>
+                                    <err-required message="{{cardNumberErrors}}"></err-required>
+                                    <div class="baseline"></div>
+                                </div>
+                            </div>
 
-                            <custom-label [label]="'Check payment'"></custom-label>
-                            <p class="simple-text">Please send a check to Store Name, Store Street, Store Town, Store
-                                State / County, Store
-                                Postcode.
-                            </p>
-                        </div>
-                        <div class="checkout-paypal m-t-16">
+                            <div class=" card_cvc">
+                                <div class="field half-width">
+                                    <label for="example2-card-expiry" data-tid="elements_examples.form.card_expiry_label">Expiration</label>
+                                    <div #cardExpiryElement class="input empty"></div>
+                                    <err-required message="{{cardExpiryErrors}}"></err-required>
+                                </div>
+                                <div class="field half-width">
+                                    <label for="example2-card-cvc" data-tid="elements_examples.form.card_cvc_label">CVC</label>
+                                    <div #cardCvcElement class="input empty"></div>
+                                    <err-required message="{{cardCvcErrors}}"></err-required>
+                                </div>
+                            </div>
+                            <div class="icon-container">
+                                <i class="fa fa-cc-visa" style="color:navy;"></i>
+                                <i class="fa fa-cc-amex" style="color:blue;"></i>
+                                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                                <i class="fa fa-cc-discover" style="color:orange;"></i>
+                            </div>
 
-                            <custom-label [label]="'Paypal'"></custom-label>
 
-                            <custom-img [src]="'assets/images/icon/paypal.png'" [alt]="'paypal'"></custom-img>
-                            <a href="#">What is paypal?</a>
-                        </div> -->
-
-                        <!-- <btn [text]="'Proceed to Card'" class="process-button m-t-50 float-right" (onClick)="onPayment()"></btn> -->
-                    </form>
+                        </form>
+                    </fieldset>
+                    <btn [text]="'Proceed to Card'" class="process-button m-t-50 float-right" (onClick)="onPayment()"></btn>
                 </div>
 
             </div>

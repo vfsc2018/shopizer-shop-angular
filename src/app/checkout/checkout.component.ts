@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 
 import { AppService } from '../directive/app.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -7,7 +7,9 @@ import { Action } from '../directive/app.constants';
 import { Helper } from '../directive/helper';
 import { error } from '@angular/compiler/src/util';
 import { parsePhoneNumberFromString, format, AsYouType } from 'libphonenumber-js';
+import { environment } from '../../environments/environment';
 declare let google: any;
+declare var Stripe;
 import { MapsAPILoader } from '@agm/core';
 @Component({
   selector: 'checkout',
@@ -17,7 +19,28 @@ import { MapsAPILoader } from '@agm/core';
 
 export class CheckoutComponent implements OnInit {
   @ViewChild("search") public searchElementRef: ElementRef;
+
+
+
+
+  @Output() onNumberChange: EventEmitter<any> = new EventEmitter();
+  @Output() onDateChange: EventEmitter<any> = new EventEmitter();
+  @Output() onCVCChange: EventEmitter<any> = new EventEmitter();
+  @ViewChild('cardNumberElement') cardNumberElement: ElementRef;
+  @ViewChild('cardExpiryElement') cardExpiryElement: ElementRef;
+  @ViewChild('cardCvcElement') cardCvcElement: ElementRef;
+
+  stripe; // : stripe.Stripe;
+  cardNumber;
+  cardExpiry;
+  cardCvc;
+  cardNumberErrors;
+  cardExpiryErrors;
+  cardCvcErrors;
+
   summeryOrder: any;
+
+
   isShipping: Boolean = false;
   isAccount: Boolean = false;
   public scrollbarOptions = { axis: 'y', theme: 'light' };
@@ -153,7 +176,7 @@ export class CheckoutComponent implements OnInit {
   onShippingCountrySelect(value) {
     this.shipping.country = value.value.name;
     this.shipping.countryCode = value.value.code;
-    // console.log(value)
+    // //console.log(value)
     this.shippingStateData = value.value.zones;
     this.shipping.stateProvince = '';
     this.shipping.zone = '';
@@ -175,7 +198,7 @@ export class CheckoutComponent implements OnInit {
     let action = Action.AUTH + Action.CUSTOMER + Action.PROFILE;
     this.appService.getMethod(action)
       .subscribe(data => {
-        // //console.log(data);
+
         this.billing = data.billing;
         this.billing.email = data.emailAddress;
         if (data.delivery) {
@@ -196,16 +219,16 @@ export class CheckoutComponent implements OnInit {
         if (index != -1) {
           this.billing.country = this.countryData[index].name;
           this.billing.countryCode = this.countryData[index].code;
-          //console.log(this.countryData[index]);
+          ////console.log(this.countryData[index]);
           this.stateData = this.countryData[index].zones;
           let index1 = this.stateData.findIndex(order => order.code === data.billing.zone);
           if (index != 1) {
-            this.billing.stateProvince = this.stateData[index1].name;
-            this.billing.zone = this.stateData[index1].code;
+            // this.billing.stateProvince = this.stateData[index1].name;
+            // this.billing.zone = this.stateData[index1].code;
           }
         }
-
-        // //console.log(index, '***********');
+        this.onShippingChange();
+        // ////console.log(index, '***********');
       }, error => {
       });
   }
@@ -213,15 +236,15 @@ export class CheckoutComponent implements OnInit {
     let me = this;
     this.helper.getLocation(function (result, error) {
       if (error) {
-        //console.log(error)
+        ////console.log(error)
       } else {
-        // console.log(result)
+        // //console.log(result)
         me.billing.countryCode = result.find(i => i.types.some(i => i == "country")).short_name;
         me.billing.country = result.find(i => i.types.some(i => i == "country")).long_name;
         me.billing.stateProvince = result.find(i => i.types.some(i => i == "administrative_area_level_1")).long_name;
         me.billing.zone = result.find(i => i.types.some(i => i == "administrative_area_level_1")).short_name;
         me.billing.city = result.find(i => i.types.some(i => i == "locality")).long_name;
-        // console.log(me.checkout.country);
+        // //console.log(me.checkout.country);
       }
     })
 
@@ -232,7 +255,7 @@ export class CheckoutComponent implements OnInit {
     this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
       .subscribe(data => {
         this.spinnerService.hide();
-        console.log(data)
+        //console.log(data)
         this.cartData = data;
         this.getOrderTotal('')
       }, error => {
@@ -241,26 +264,26 @@ export class CheckoutComponent implements OnInit {
 
   }
   getOrderTotal(quoteID) {
-    //console.log(this.cartData)
+    ////console.log(this.cartData)
     // this.spinnerService.show();
     let action;
-    if (this.userDataFlag) {
-      if (quoteID) {
-        action = Action.AUTH + Action.CART + this.cartData.id + '/' + Action.TOTAL + '?quote=' + quoteID;
-      } else {
-        action = Action.AUTH + Action.CART + this.cartData.id + '/' + Action.TOTAL;
-      }
+    // if (this.userDataFlag) {
+    //   if (quoteID) {
+    //     action = Action.AUTH + Action.CART + this.cartData.id + '/' + Action.TOTAL + '?quote=' + quoteID;
+    //   } else {
+    //     action = Action.AUTH + Action.CART + this.cartData.id + '/' + Action.TOTAL;
+    //   }
+    // } else {
+    if (quoteID) {
+      action = Action.CART + this.cartData.code + '/' + Action.TOTAL + '?quote=' + quoteID;
     } else {
-      if (quoteID) {
-        action = Action.CART + this.cartData.id + '/' + Action.TOTAL + '?quote=' + quoteID;
-      } else {
-        action = Action.CART + this.cartData.id + '/' + Action.TOTAL;
-      }
+      action = Action.CART + this.cartData.code + '/' + Action.TOTAL;
     }
+    // }
 
     this.appService.getMethod(action)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.summeryOrder = data;
         this.spinnerService.hide();
       }, error => {
@@ -274,52 +297,54 @@ export class CheckoutComponent implements OnInit {
     let action = Action.CONFIG;
     this.appService.getMethod(action)
       .subscribe(data => {
+        //console.log(data)
         this.config = data;
         // this.summeryOrder = data;
       }, error => {
       });
   }
   ngOnInit() {
+    this.stripe = Stripe(environment.stripeKey);
+    const elements = this.stripe.elements();
 
+    this.cardNumber = elements.create('cardNumber');
+    this.cardNumber.mount(this.cardNumberElement.nativeElement);
+
+    this.cardNumber.addEventListener('change', ({ error }) => {
+      this.cardNumberErrors = error && error.message;
+    });
+
+    this.cardExpiry = elements.create('cardExpiry');
+    this.cardExpiry.mount(this.cardExpiryElement.nativeElement);
+
+    this.cardExpiry.addEventListener('change', ({ error }) => {
+
+      this.cardExpiryErrors = error && error.message;
+    });
+
+    this.cardCvc = elements.create('cardCvc');
+    this.cardCvc.mount(this.cardCvcElement.nativeElement);
+
+    this.cardCvc.addEventListener('change', ({ error }) => {
+
+      this.cardCvcErrors = error && error.message;
+    });
   }
-  onChangeNumber(e) {
-    console.log(e)
-  }
-  onPayment() {
 
-    // var handler = (<any>window).StripeCheckout.configure({
-    //   key: 'pk_test_tVMeg9oyMknGF1ZH6R35vMVc',
-    //   locale: 'auto',
-    //   token: function (token: any) {
-    //     // You can access the token ID with `token.id`.
-    //     // Get the token ID to your server-side code for use.
-    //     console.log(token)
-    //     alert('Token Created!!');
-    //   }
-    // });
-
-    // handler.open({
-    //   name: 'Shopizer',
-    //   description: '2 widgets',
-    //   amount: 20
-    // });
-
-    //console.log(this.billing)
-  }
-  // onCountrySelect(value) {
-  //   //console.log(value);
-  //   this.getState(value);
-  //   // let index = this.countyStateData.findIndex(order => order.country === value);
-  //   // this.stateData = this.countyStateData[index].states;
-
-  // }
   onShippingChange() {
+    console.log('fdfsdfsfdfsdf')
     this.spinnerService.show();
-    let action = Action.CART + this.cartData.id + '/' + Action.SHIPPING;
-    let param = { 'postalCode': this.billing.postalCode, 'countryCode': this.billing.countryCode }
+    let action = Action.CART + this.cartData.code + '/' + Action.SHIPPING;
+    let param = {}
+    if (this.isShipping) {
+      param = { 'postalCode': this.shipping.postalCode, 'countryCode': this.shipping.countryCode }
+    } else {
+      param = { 'postalCode': this.billing.postalCode, 'countryCode': this.billing.countryCode }
+    }
+    // console.log(param)
     this.appService.postMethod(action, param)
       .subscribe(data => {
-        //console.log(data)
+        console.log(data)
         this.shippingData = data;
         this.spinnerService.hide();
       }, error => {
@@ -350,6 +375,7 @@ export class CheckoutComponent implements OnInit {
         email: this.billing.email
 
       }
+      this.onShippingChange();
     } else {
       this.shipping = {
         firstName: '',
@@ -372,5 +398,16 @@ export class CheckoutComponent implements OnInit {
   }
   onPhoneChange() {
     this.billing.phone = new AsYouType('US').input(this.billing.phone);
+  }
+
+  async onPayment() {
+    console.log(this.cardNumber);
+    const { token, error } = await this.stripe.createToken(this.cardNumber);
+    if (error) {
+      const cardErrors = error.message;
+      console.log(error);
+    } else {
+      console.log(token);
+    }
   }
 }       
