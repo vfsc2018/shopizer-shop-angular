@@ -1,6 +1,6 @@
 <div class="checkout">
     <banner [title]="'Checkout'"></banner>
-
+    <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
     <div class="container p-t-100 p-b-45">
         <div class="row">
             <div class="col-md-12">
@@ -18,12 +18,21 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <input-field type="text" label="First Name" labelAfter="true" [(ngModel)]="billing.firstName"
-                                    name="firstName" placeHolder="" bottom="24" required>
+                                    name="firstName" placeHolder="" bottom="24" required #firstname="ngModel">
+                                    <span *ngIf="isSubmitted">
+                                        <err-required [isValid]="firstname.value" message="
+                                            First name is required"></err-required>
+                                    </span>
+
                                 </input-field>
                             </div>
                             <div class="col-sm-6">
                                 <input-field type="txt" label="Last Name" labelAfter="true" [(ngModel)]="billing.lastName"
-                                    name="lastName" placeHolder="" bottom="24" required>
+                                    name="lastName" placeHolder="" bottom="24" required #lastname="ngModel">
+                                    <span *ngIf="isSubmitted">
+                                        <err-required [isValid]="lastname.value" message="
+                                            Last name is required"></err-required>
+                                    </span>
                                 </input-field>
                             </div>
                         </div>
@@ -34,7 +43,11 @@
                         <div class="form-group custom-input m-b-24">
                             <label class="label-after">{{'Address' | translate}}</label>
                             <input type="text" placeholder="{{'Street address' | translate}}" #search [(ngModel)]="billing.address"
-                                name="address" class="form-control" required>
+                                name="address" class="form-control" required #address="ngModel">
+                            <span *ngIf="isSubmitted">
+                                <err-required [isValid]="address.value" message="
+                                       Address is required"></err-required>
+                            </span>
                         </div>
                         <!-- <input-field type="text" label="Address" #search labelAfter="true" [(ngModel)]="billing.address" name="address"
                             #address="ngModel" placeHolder="Street address" required bottom="24" /> -->
@@ -46,27 +59,49 @@
                                 bottom="24"> -->
                         <!-- </input-field> -->
                         <input-field type="text" label="Town/City" [(ngModel)]="billing.city" name="city" placeHolder=""
-                            labelAfter="true" bottom="24" required>
+                            labelAfter="true" bottom="24" required #city="ngModel">
+                            <span *ngIf="isSubmitted">
+                                <err-required [isValid]="city.value" message="
+                                       City is required"></err-required>
+                            </span>
                         </input-field>
                         <custom-select label="Country" labelAfter="true" bottom="24" [(ngModel)]="billing.country" name="country"
-                            [options]="countryData" [config]="selectConfig" required (change)="onBillingCountrySelect($event)">
+                            [options]="countryData" [config]="selectConfig" required (change)="onBillingCountrySelect($event)"
+                            #country="ngModel">
+                            <span *ngIf="isSubmitted">
+                                <err-required [isValid]="country.value" message="
+                                       Country field is required"></err-required>
+                            </span>
                         </custom-select>
+
                         <div class="row">
                             <div class="col-sm-6" *ngIf="stateData.length > 0">
                                 <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="billing.stateProvince"
                                     name="stateProvince" [options]="stateData" [config]="selectConfig" (change)="onBillingStateSelect($event)"
-                                    required>
+                                    required #state="ngModel">
+                                    <span *ngIf="isSubmitted">
+                                        <err-required [isValid]="state.value" message="
+                                               State is required"></err-required>
+                                    </span>
                                 </custom-select>
                             </div>
                             <div class="col-sm-6" *ngIf="stateData.length == 0">
                                 <input-field type="text" label="State" labelAfter="true" placeHolder="Enter State"
-                                    [(ngModel)]="billing.stateProvince" name="stateProvince" required>
+                                    [(ngModel)]="billing.stateProvince" name="stateProvince" required #state="ngModel">
+                                    <span *ngIf="isSubmitted">
+                                        <err-required [isValid]="state.value" message="
+                                               State is required"></err-required>
+                                    </span>
                                 </input-field>
                             </div>
                             <div class="col-sm-6">
                                 <input-field type="text" label="Postcode / Zip" [(ngModel)]="billing.postalCode" name="postalCode"
                                     placeHolder="" labelAfter="true" bottom="24" (onInputChange)="onShippingChange()"
-                                    [readonly]="billing.stateProvince == ''" required>
+                                    [readonly]="billing.stateProvince == ''" required #postalcode="ngModel">
+                                    <span *ngIf="isSubmitted">
+                                        <err-required [isValid]="postalcode.value" message="
+                                               Postal code  is required"></err-required>
+                                    </span>
                                 </input-field>
                             </div>
                         </div>
@@ -76,6 +111,10 @@
                                     name="phone" placeHolder="" bottom="24" (onInputChange)="onPhoneChange()" minLength="10"
                                     maxLength="10" #phone="ngModel" required>
                                     <err-required message="Enter a 10-digit number" [isValid]="phone.valid || (phone.pristine)"></err-required>
+                                    <span *ngIf="isSubmitted">
+                                        <err-required [isValid]="phone.value" message="
+                                               Phone number  is required"></err-required>
+                                    </span>
                                 </input-field>
                             </div>
                             <div class="col-sm-6">
@@ -83,6 +122,10 @@
                                     name="email" placeHolder="" bottom="24" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z0-9-.]{2,}"
                                     #email="ngModel" required>
                                     <err-required message="Valid email required " [isValid]="email.valid || (email.pristine)"></err-required>
+                                    <span *ngIf="isSubmitted">
+                                        <err-required [isValid]="email.value" message="
+                                               Email address is required"></err-required>
+                                    </span>
                                 </input-field>
                             </div>
                         </div>
@@ -115,12 +158,20 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <input-field type="text" label="Shipping First Name" labelAfter="true" [(ngModel)]="shipping.firstName"
-                                    name="firstName" placeHolder="" bottom="24" required>
+                                    name="firstName" placeHolder="" bottom="24" required #shippingFirstName="ngModel">
+                                    <span *ngIf="isShippingSubmitted">
+                                        <err-required [isValid]="shippingFirstName.value" message="
+                                            Shipping First name is required"></err-required>
+                                    </span>
                                 </input-field>
                             </div>
                             <div class="col-sm-6">
                                 <input-field type="txt" label="Shipping Last Name" labelAfter="true" [(ngModel)]="shipping.lastName"
-                                    name="lastName" placeHolder="" bottom="24" required>
+                                    name="lastName" placeHolder="" bottom="24" required #shippingLastName="ngModel">
+                                    <span *ngIf="isShippingSubmitted">
+                                        <err-required [isValid]="shippingLastName.value" message="
+                                            Shipping Last name is required"></err-required>
+                                    </span>
                                 </input-field>
                             </div>
                         </div>
@@ -130,7 +181,11 @@
                         <div class="form-group custom-input m-b-24">
                             <label class="label-after">{{'Address' | translate}}</label>
                             <input type="text" placeholder="{{'Street address' | translate}}" #search [(ngModel)]="shipping.address"
-                                name="address" class="form-control" required>
+                                name="address" class="form-control" required #shippingAddress="ngModel">
+                            <span *ngIf="isShippingSubmitted">
+                                <err-required [isValid]="shippingAddress.value" message="
+                                        Shipping Address is required"></err-required>
+                            </span>
                         </div>
                         <!-- <div class='address-class'>
                             <input-field type="text" label="Shipping Address" labelAfter="true" [(ngModel)]="shipping.address"
@@ -142,21 +197,39 @@
                             bottom="24"> -->
                         <!-- </input-field> -->
                         <input-field type="text" label="Shipping Town/City" [(ngModel)]="shipping.city" name="city"
-                            placeHolder="" labelAfter="true" bottom="24" required>
+                            placeHolder="" labelAfter="true" bottom="24" required #shippingCity="ngModel">
+                            <span *ngIf="isShippingSubmitted">
+                                <err-required [isValid]="shippingCity.value" message="
+                                    Shipping City is required"></err-required>
+                            </span>
                         </input-field>
                         <custom-select label="Shipping Country" labelAfter="true" bottom="24" [(ngModel)]="shipping.country"
-                            name="country" [options]="shippingCountryData" [config]="selectConfig" required (change)="onShippingCountrySelect($event)">
+                            name="country" [options]="shippingCountryData" [config]="selectConfig" required (change)="onShippingCountrySelect($event)"
+                            #shippingCountry="ngModel">
+                            <span *ngIf="isShippingSubmitted">
+                                <err-required [isValid]="shippingCountry.value" message="
+                                    Shipping Country is required"></err-required>
+                            </span>
                         </custom-select>
+
                         <div class="row">
                             <div class="col-sm-6" *ngIf="shippingStateData.length > 0">
                                 <custom-select label="Shipping State" labelAfter="true" bottom="24" [(ngModel)]="shipping.stateProvince"
                                     name="stateProvince" [options]="shippingStateData" [config]="selectConfig" (change)="onShippingStateSelect($event)"
-                                    required>
+                                    required #shippingState="ngModel">
+                                    <span *ngIf="isShippingSubmitted">
+                                        <err-required [isValid]="shippingState.value" message="
+                                            Shipping State is required"></err-required>
+                                    </span>
                                 </custom-select>
                             </div>
                             <div class="col-sm-6" *ngIf="shippingStateData.length == 0">
                                 <input-field type="text" labelAfter="true" placeHolder="Enter State" label="State"
-                                    [(ngModel)]="shipping.stateProvince" name="stateProvince" required>
+                                    [(ngModel)]="shipping.stateProvince" name="stateProvince" required #shippingState="ngModel">
+                                    <span *ngIf="isShippingSubmitted">
+                                        <err-required [isValid]="shippingState.value" message="
+                                            Shipping State is required"></err-required>
+                                    </span>
                                 </input-field>
                             </div>
                             <!-- <div class="col-sm-6">
@@ -168,11 +241,15 @@
                             <div class="col-sm-6">
                                 <input-field type="text" label="Shipping Postcode / Zip" [(ngModel)]="shipping.postalCode"
                                     name="postalCode" placeHolder="" labelAfter="true" (onInputChange)="onShippingChange()"
-                                    bottom="24" required>
+                                    bottom="24" required #shippingPostalCode="ngModel">
+                                    <span *ngIf="isShippingSubmitted">
+                                        <err-required [isValid]="shippingPostalCode.value" message="
+                                            Shipping Postal code is required"></err-required>
+                                    </span>
                                 </input-field>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-sm-6">
                                 <input-field type="text" label="Shipping Phone" labelAfter="true" [(ngModel)]="shipping.phone"
                                     name="phone" placeHolder="" bottom="24" #phone="ngModel" pattern="[0-9]+" minlength="10"
@@ -188,7 +265,7 @@
                                     <err-required message="Valid email required " [isValid]="phone.valid || (phone.pristine)"></err-required>
                                 </input-field>
                             </div>
-                        </div>
+                        </div> -->
 
 
                     </form>
@@ -294,7 +371,12 @@
 
                         </form>
                     </fieldset>
-                    <btn [text]="'Proceed to Card'" class="process-button m-t-50 float-right" (onClick)="onPayment()"></btn>
+                    <div class="m-t-40 is-shipping">
+                        <custom-checkbox [label]="'I agree with the terms and conditions'" (onChange)="termCondition()"></custom-checkbox>
+                    </div>
+                    <err-required [isValid]="isCondition" message="{{errMessage}}"></err-required>
+
+                    <btn [text]="'Submit Order'" class="process-button m-t-50 float-right" (onClick)="onPayment()"></btn>
                 </div>
 
             </div>

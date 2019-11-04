@@ -44,6 +44,7 @@ export class Action {
     public static ADDRESS = 'address'
     public static PASSWORD = 'password/'
     public static RESET = 'reset'
+    public static CHECKOUT = 'checkout'
 
 
 }

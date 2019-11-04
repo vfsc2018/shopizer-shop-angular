@@ -11,6 +11,11 @@ import { environment } from '../../environments/environment';
 declare let google: any;
 declare var Stripe;
 import { MapsAPILoader } from '@agm/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { OrderConfirmComponent } from '../order-confirm/order-confirm.component';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'checkout',
   templateUrl: './checkout.component.html',
@@ -45,6 +50,7 @@ export class CheckoutComponent implements OnInit {
   isAccount: Boolean = false;
   public scrollbarOptions = { axis: 'y', theme: 'light' };
   // countyData: Array<any> = [];
+  isCondition: boolean = false;
   billing = {
     firstName: '',
     lastName: '',
@@ -100,7 +106,10 @@ export class CheckoutComponent implements OnInit {
     private cookieService: CookieService,
     private spinnerService: Ng4LoadingSpinnerService,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private modalService: NgbModal,
+    private toastr: ToastrService,
+    public router: Router
   ) {
     this.getCountry();
     this.getCart();
@@ -267,13 +276,7 @@ export class CheckoutComponent implements OnInit {
     ////console.log(this.cartData)
     // this.spinnerService.show();
     let action;
-    // if (this.userDataFlag) {
-    //   if (quoteID) {
-    //     action = Action.AUTH + Action.CART + this.cartData.id + '/' + Action.TOTAL + '?quote=' + quoteID;
-    //   } else {
-    //     action = Action.AUTH + Action.CART + this.cartData.id + '/' + Action.TOTAL;
-    //   }
-    // } else {
+
     if (quoteID) {
       action = Action.CART + this.cartData.code + '/' + Action.TOTAL + '?quote=' + quoteID;
     } else {
@@ -399,15 +402,144 @@ export class CheckoutComponent implements OnInit {
   onPhoneChange() {
     this.billing.phone = new AsYouType('US').input(this.billing.phone);
   }
-
+  termCondition() {
+    this.isCondition = !this.isCondition;
+  }
+  errMessage: string;
+  isSubmitted: boolean = false;
+  isShippingSubmitted: boolean = false;
   async onPayment() {
-    console.log(this.cardNumber);
-    const { token, error } = await this.stripe.createToken(this.cardNumber);
-    if (error) {
-      const cardErrors = error.message;
-      console.log(error);
-    } else {
-      console.log(token);
+    let bill = this.billing;
+    let shippingBill = this.shipping;
+    this.isSubmitted = false;
+    this.isShippingSubmitted = false;
+    // console.log(this.isShipping);
+    if (!this.isCondition) {
+      console.log('if')
+      this.errMessage = 'Please agree to our terms and conditions'
+    } else if (bill.firstName == '' || bill.lastName == '' || bill.address == '' || bill.city == '' || bill.countryCode == '' || bill.zone == '' || bill.postalCode == '' || bill.phone == '' || bill.email == '') {
+      console.log('else if')
+      this.isSubmitted = true;
     }
+    else if (this.isShipping) {
+      if (shippingBill.firstName == '' || shippingBill.lastName == '' || shippingBill.address == '' || shippingBill.city == '' || shippingBill.countryCode == '' || shippingBill.zone == '' || shippingBill.postalCode == '') {
+        this.isShippingSubmitted = true
+      }
+    }
+    else {
+      console.log('else')
+      this.spinnerService.show();
+      const { token, error } = await this.stripe.createToken(this.cardNumber);
+      if (error) {
+
+        const cardErrors = error.message;
+        this.spinnerService.hide();
+        // console.log(error);
+      } else {
+        let action;
+        let param = {};
+        if (this.userDataFlag) {
+          action = Action.AUTH + Action.CART + this.cartData.code + '/' + Action.CHECKOUT
+          param = {
+            // "shippingQuote": 1100,
+            "currency": "CAD",
+            "payment": {
+              "paymentType": "CREDITCARD",
+              "transactionType": "CAPTURE",
+              "paymentModule": "stripe",
+              "paymentToken": token.id,
+              // "amount": 799.98
+              "amount": this.summeryOrder.totals[this.summeryOrder.totals.length - 1].value
+            }
+          }
+        } else {
+          action = Action.CART + this.cartData.code + '/' + Action.CHECKOUT
+          let customer = {};
+          if (this.isShipping) {
+            customer = {
+              "emailAddress": this.billing.email,
+              "language": "en",
+              "billing": {
+                "address": this.billing.address,
+                "company": this.billing.company,
+                "city": this.billing.city,
+                "postalCode": this.billing.postalCode,
+                "country": this.billing.countryCode,
+                "stateProvince": this.billing.stateProvince,
+                "zone": this.billing.zone,
+                "firstName": this.billing.firstName,
+                "lastName": this.billing.lastName,
+                "phone": this.billing.phone
+              },
+              "delivery": {
+                "address": this.shipping.address,
+                "company": this.shipping.company,
+                "city": this.shipping.city,
+                "postalCode": this.shipping.postalCode,
+                "country": this.shipping.countryCode,
+                "stateProvince": this.shipping.stateProvince,
+                "zone": this.shipping.zone,
+                "firstName": this.shipping.firstName,
+                "lastName": this.shipping.lastName,
+                // "phone": this.shipping.phone
+              }
+            }
+          } else {
+            customer = {
+              "emailAddress": this.billing.email,
+              "language": "en",
+              "billing": {
+                "address": this.billing.address,
+                "company": this.billing.company,
+                "city": this.billing.city,
+                "postalCode": this.billing.postalCode,
+                "country": this.billing.countryCode,
+                "stateProvince": this.billing.stateProvince,
+                "zone": this.billing.zone,
+                "firstName": this.billing.firstName,
+                "lastName": this.billing.lastName,
+                "phone": this.billing.phone
+              }
+            }
+          }
+
+          param = {
+            // "shippingQuote": 1100,
+            "currency": "CAD",
+            "payment": {
+              "paymentType": "CREDITCARD",
+              "transactionType": "CAPTURE",
+              "paymentModule": "stripe",
+              "paymentToken": token.id,
+              // "amount": 799.98
+              "amount": this.summeryOrder.totals[this.summeryOrder.totals.length - 1].value
+            },
+            "customer": customer
+          }
+        }
+        this.appService.postMethod(action, param)
+          .subscribe(data => {
+            console.log(data)
+            let modalRef = this.modalService.open(OrderConfirmComponent, {
+              windowClass: 'order-detail'
+            });
+            modalRef.componentInstance.orderID = data.id;
+            modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+              console.log(receivedEntry);
+              modalRef.close()
+
+            });
+            this.toastr.success('Your order has been submitted', 'Well done!');
+            this.router.navigate(['/']);
+            this.spinnerService.hide();
+          }, error => {
+            this.spinnerService.hide();
+            this.toastr.error('Your order submission has been failed', 'Error');
+          });
+
+
+      }
+    }
+
   }
 }       
