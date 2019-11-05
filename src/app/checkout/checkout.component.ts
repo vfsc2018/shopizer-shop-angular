@@ -421,8 +421,9 @@ export class CheckoutComponent implements OnInit {
       console.log('else if')
       this.isSubmitted = true;
     }
-    else if (this.isShipping) {
-      if (shippingBill.firstName == '' || shippingBill.lastName == '' || shippingBill.address == '' || shippingBill.city == '' || shippingBill.countryCode == '' || shippingBill.zone == '' || shippingBill.postalCode == '') {
+    else if (shippingBill.firstName == '' || shippingBill.lastName == '' || shippingBill.address == '' || shippingBill.city == '' || shippingBill.countryCode == '' || shippingBill.zone == '' || shippingBill.postalCode == '') {
+      console.log(shippingBill);
+      if (this.isShipping) {
         this.isShippingSubmitted = true
       }
     }

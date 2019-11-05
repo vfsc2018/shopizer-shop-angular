@@ -289,7 +289,8 @@
                                 <th>{{ 'total' | translate}}</th>
                             </tr>
                             <tr *ngFor="let result of cartData.products">
-                                <td>{{result.description.name}} <b>* {{result.quantity}}</b></td>
+                                <td class="summery-item">{{result.description.name}} <b>*
+                                        {{result.quantity}}</b></td>
                                 <td>${{result.price * result.quantity}}</td>
                             </tr>
                             <tr *ngFor="let total of summeryOrder.totals" [ngClass]="total.title != 'Total' ? '' : 'total-show'">
