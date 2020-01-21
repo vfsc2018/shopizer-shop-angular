@@ -68,7 +68,7 @@ export class SiteheaderComponent implements OnInit {
 
         let action = Action.CATEGORY + '?count=20&page=0'
         // let action = Action.CATEGORY + '?' + Action.FILTER + '=' + Action.VISIBLE;
-        console.log(action);
+        //console.log(action);
         this.appService.getMethod(action)
             .subscribe(data => {
                 this.category = data.categories;

@@ -8,7 +8,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <!-- <script src="https://checkout.stripe.com/checkout.js"></script> -->
+  <!-- cookie consent -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
   <script src="https://js.stripe.com/v3/"></script>
 </head>
 
@@ -25,6 +26,25 @@
       </div>
     </div>
   </app-root>
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+	<script>
+      window.cookieconsent.initialise({
+        "palette": {
+          "popup": {
+            "background": "#edeff5",
+            "text": "#5c7291"
+          },
+          "button": {
+            "background": "#555555",
+            "text": "#ffffff"
+          }
+        },
+        "content": {
+            "message": "This website uses cookies to ensure you get the best experience on our website.",
+            "href": "/pages/cookiepolicy"
+         }
+      });
+      </script>
 </body>
 
 </html>

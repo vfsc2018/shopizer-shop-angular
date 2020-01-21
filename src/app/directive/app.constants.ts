@@ -13,6 +13,7 @@ export class Action {
     public static CONTENT = 'content/'
     public static FILTER = 'filter'
     public static PAGES = 'pages/'
+    public static NAME = 'name/'
     public static CART = 'cart/'
     public static CARTS = 'cart'
     public static PRODUCT_GROUP = 'products/group/'

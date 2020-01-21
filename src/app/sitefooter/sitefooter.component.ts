@@ -29,7 +29,6 @@ export class SitefooterComponent implements OnInit {
   ) {
     this.getStore();
     this.lan = localStorage.getItem('langulage');
-    console.log(this.lan)
   }
 
   ngOnInit() {

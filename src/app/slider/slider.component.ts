@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from "@angular/core";
-// import Siema from "siema";
 import { Router } from '@angular/router';
 @Component({
   selector: "slider",

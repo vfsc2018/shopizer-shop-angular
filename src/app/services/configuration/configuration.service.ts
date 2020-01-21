@@ -17,7 +17,7 @@ export class ConfigurationService {
   constructor(private httpClient: HttpClient) {}
 
   loadConfigurations() {
-    console.log('load configs');
+    //console.log('load configs');
   }
 
   /** cached Merchant */

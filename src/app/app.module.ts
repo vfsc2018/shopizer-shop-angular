@@ -82,7 +82,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginMenuComponent } from './component/login-menu/login-menu.component';
 import { OrdersComponent } from './orders/orders.component';
-import { TermandconditionComponent } from './termandcondition/termandcondition.component';
+import { ContentComponent } from './content/content.component';
 import { RatingComponent } from './component/rating/rating.component';
 import { ArrayFilterPipe, LimitToPipe } from './component/custom-select/pipes/index';
 import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
@@ -198,7 +198,7 @@ const routes: Routes = [
   },
   {
     path: "content/:id",
-    component: TermandconditionComponent,
+    component: ContentComponent,
     data: { title: 'Content' }
   }
 ];
@@ -262,7 +262,7 @@ export function createTranslateLoader(http: HttpClient) {
     OrdersComponent,
     OrderDetailComponent,
     ShippingDetailComponent,
-    TermandconditionComponent,
+    ContentComponent,
     RatingComponent,
     EqualValidator,
     ArrayFilterPipe,

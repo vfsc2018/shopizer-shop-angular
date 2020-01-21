@@ -1,20 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TermandconditionComponent } from './termandcondition.component';
+import { ContentComponent } from './content.component';
 
-describe('TermandconditionComponent', () => {
-  let component: TermandconditionComponent;
-  let fixture: ComponentFixture<TermandconditionComponent>;
+/**
+describe('ContentComponent', () => {
+  let component: ContentComponent;
+  let fixture: ComponentFixture<ContentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TermandconditionComponent ]
+      declarations: [ ContentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TermandconditionComponent);
+    fixture = TestBed.createComponent(ContentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,3 +24,4 @@ describe('TermandconditionComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+ **/

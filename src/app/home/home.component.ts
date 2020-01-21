@@ -24,26 +24,22 @@ export class HomeComponent implements OnInit {
   categoryData: Array<any> = [];
   public loading = false;
   isOpen: boolean;
-  sliderItems: Array<any> = [];
-  //   {
-  //     title: "title1",
-  //     description: "lorem ipsum",
-  //     img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/slider2.jpg"
-  //   },
-  //   {
-  //     title: "title2",
-  //     description: "lorem ipsum",
-  //     img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/slider3.jpg"
-  //   },
-  //   {
-  //     title: "title3",
-  //     description: "lorem ipsum",
-  //     img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/banner.jpg"
-  //   }
-  // ];
+  //sliderItems: Array<any> = [];
+  sliderItems: Array<any> = [
+       {
+       title: "title1",
+       description: "lorem ipsum",
+       img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/slider2.jpg"
+     },
+     {
+       title: "title2",
+       description: "lorem ipsum",
+       img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/slider3.jpg"
+     }
+   ];
   ngOnInit() {
     this.getProductList()
-    this.ContentImage()
+    //this.ContentImage()
     this.titleService.setTitle('Importa');
   }
   getProductList() {
