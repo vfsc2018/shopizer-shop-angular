@@ -44,14 +44,33 @@ export class Helper {
         }
     }
 
-    languageChange() {
-        if (localStorage.getItem('langulage') == 'en') {
-            localStorage.setItem('langulage', 'fr');
-            this.translate.use('fr');
-        } else {
+    languageChange(preSelectedLang:string,selectedLang:string) {
+        console.log(preSelectedLang);
+        console.log(selectedLang);
+        switch(selectedLang)
+        {
+          case 'English':
             localStorage.setItem('langulage', 'en');
             this.translate.use('en');
+            break;
+            case 'Vietnamese':
+                localStorage.setItem('langulage', 'vn');
+                this.translate.use('vn');             
+              break;
+              case 'French':
+                localStorage.setItem('langulage', 'fr');
+                this.translate.use('fr');                  
+                break;
         }
+       
+        // this.translate.use(selectedLang);
+        // if (localStorage.getItem('langulage') == 'en') {
+        //     localStorage.setItem('langulage', 'vn');
+        //     this.translate.use('vn');
+        // } else {
+        //     localStorage.setItem('langulage', 'en');
+        //     this.translate.use('en');
+        // }
     }
     getLocation(callback) {
         let self = this;

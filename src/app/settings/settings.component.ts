@@ -24,18 +24,47 @@ export class SettingsComponent {
     private appService: AppService,
     private dataSharingService: DataSharingService
   ) {
-    console.log('12345646546565')
+    //console.log('12345646546565')
     this.userDataFlag = localStorage.getItem('userData') ? true : false;
     if (localStorage.getItem('langulage')) {
-      this.language = localStorage.getItem('langulage') == 'en' ? 'English' : 'Francais';
+      switch(localStorage.getItem('langulage'))
+      {
+        case 'en':
+          this.language =  'English';
+          break;
+          case 'vn':
+            this.language =  'Vietnamese';
+            break;
+            case 'fr':
+              this.language =  'French';
+              break;
+      }
+     
     } else {
       this.language = 'Language'
     }
     this.dataSharingService.isLogin.subscribe(value => {
       console.log(value)
       this.userDataFlag = localStorage.getItem('userData') ? true : false;
+      // if (localStorage.getItem('langulage')) {
+      //   this.language = localStorage.getItem('langulage') == 'en' ? 'English' : 'Vietnamese';
+      // } else {
+      //   this.language = 'Language'
+      // }
       if (localStorage.getItem('langulage')) {
-        this.language = localStorage.getItem('langulage') == 'en' ? 'English' : 'Francais';
+        switch(localStorage.getItem('langulage'))
+        {
+          case 'en':
+            this.language =  'English';
+            break;
+            case 'vn':
+              this.language =  'Vietnamese';
+              break;
+              case 'fr':
+                this.language =  'French';
+                break;
+        }
+       
       } else {
         this.language = 'Language'
       }
@@ -56,9 +85,9 @@ export class SettingsComponent {
   onChangeLanguage(value) {
 
     //console.log(this.language)
-    //console.log(value)
+   // console.log(value)
     if (this.language != value) {
-      this.helper.languageChange();
+      this.helper.languageChange(this.language,value);
     }
     this.language = value;
   }
