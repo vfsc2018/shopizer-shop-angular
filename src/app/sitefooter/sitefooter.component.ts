@@ -86,6 +86,7 @@ export class SitefooterComponent implements OnInit {
 
   }
   changeLang() {
+    console.log(this.lan);
   //  this.helper.languageChange();
     // if (localStorage.getItem('langulage') == 'en') {
     //   localStorage.setItem('langulage', 'fr');

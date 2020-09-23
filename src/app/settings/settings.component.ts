@@ -87,7 +87,7 @@ export class SettingsComponent {
     //console.log(this.language)
    // console.log(value)
     if (this.language != value) {
-      this.helper.languageChange(this.language,value);
+      this.helper.languageChange(value);
     }
     this.language = value;
   }

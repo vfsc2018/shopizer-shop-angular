@@ -44,9 +44,8 @@ export class Helper {
         }
     }
 
-    languageChange(preSelectedLang:string,selectedLang:string) {
-        console.log(preSelectedLang);
-        console.log(selectedLang);
+    languageChange(selectedLang:string) {
+        
         switch(selectedLang)
         {
           case 'English':
