@@ -49,7 +49,7 @@ export class SiteheaderComponent implements OnInit {
         let action = Action.STORE + Action.DEFAULT;
         this.appService.getMethod(action)
             .subscribe(data => {
-                // console.log(data);
+                 //console.log(data);
                 this.merchant = data;
                 if (localStorage.getItem('langulage')) {
                     this.translate.setDefaultLang(localStorage.getItem('langulage'));

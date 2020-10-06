@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'product-list',
   templateUrl: './product-list.component.html',
@@ -7,6 +8,7 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
   providers: [NgbRatingConfig]
 })
 export class ProductListComponent implements OnInit {
+  api_url=environment.baseUrl;
   @HostListener('scroll', ['$event'])
   @Input() productData: any[];
   @Output() onClickCart: EventEmitter<any> = new EventEmitter();
@@ -18,7 +20,7 @@ export class ProductListComponent implements OnInit {
     config.readonly = true;
   }
   p: any = 0;
-  ngOnInit() {
+  ngOnInit() {   
   }
   onClickAddCart(result) {
     this.onClickCart.emit(result);

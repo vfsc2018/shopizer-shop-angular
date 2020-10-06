@@ -8,6 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { DataSharingService } from '../directive/data-sharing.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'shop',
   templateUrl: './shop.component.html',
@@ -15,6 +16,7 @@ import { DataSharingService } from '../directive/data-sharing.service';
 })
 export class ShopComponent implements OnInit {
 
+  api_url=environment.baseUrl;
   productData: Array<any> = [];
   showGrid: Boolean = false;
   show_product: any = 10;
@@ -108,6 +110,12 @@ export class ShopComponent implements OnInit {
       .subscribe(data => {
         this.totalRecord = data.totalCount;
         this.productData = this.productData.concat(data.products);
+        this.productData.map(e=>{
+          if(!e.image.imageUrl.includes(this.api_url))
+          {
+            e.image.imageUrl=this.api_url+ e.image.imageUrl;
+          }     
+        });
         this.spinnerService.hide();
         this.loadmore = false;
       }, error => {

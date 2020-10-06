@@ -29,10 +29,10 @@ export class LatestNewsComponent implements OnInit {
         items: 1
       },
       740: {
-        items: 1
+        items: 2
       },
       940: {
-        items: 2
+        items: 3
       }
     },
     nav: false

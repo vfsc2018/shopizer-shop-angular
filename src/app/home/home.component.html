@@ -1,18 +1,16 @@
 <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
 <!-- <cart #CartComponent></cart> -->
 <slider [slideData]="sliderItems"></slider>
-<featured></featured>
-<div class="port-title">
+<!-- <featured></featured> -->
+<div class="port-title m-t-35">
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
                 <h2 class="title">{{ 'featured items' | translate}} </h2>
-                <p class="title-detail">
-                    But I must explain to you how all this mistaken idea of denouncing
-                    pleasure and praising pain was born and I will give you a complete
-                    account.
-                </p>
+                <!-- <p class="title-detail">
+                    THIS IS A LIST OF OUR FAVORITE FINDINGS
+                </p> -->
                 <div class="title-border mx-auto m-b-35"></div>
             </div>
         </div>
@@ -21,7 +19,7 @@
 <div class="port-body">
     <div class="container">
         <div class="grid">
-            <div class="grid-filter">
+            <!-- <div class="grid-filter">
                 <ul class="text-center">
                     <li class="active">
                         <span (click)="filterFeaturedItem('')">All</span>
@@ -30,10 +28,10 @@
                         <span (click)="filterFeaturedItem(cat)">{{cat.name}}</span>
                     </li>
                 </ul>
-            </div>
-            <product-grid [Large]="'3'" [productData]="filterData" (onClickCart)="addCart($event)"></product-grid>
+            </div> -->
+            <product-grid [Large]="'4'" [productData]="filterData" (onClickCart)="addCart($event)"></product-grid>
         </div>
     </div>
 </div>
 <latest-news></latest-news>
-<newsletter></newsletter>
+<!-- <newsletter></newsletter> -->

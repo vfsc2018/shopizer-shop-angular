@@ -1,11 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'product-grid',
   templateUrl: './product-grid.component.html',
   styleUrls: ['./product-grid.component.scss']
 })
 export class ProductGridComponent implements OnInit {
+  api_url=environment.baseUrl;
   @HostListener('scroll', ['$event'])
   @Input() productData: any[];
   @Input() Large: any;
@@ -18,7 +20,7 @@ export class ProductGridComponent implements OnInit {
     config.max = 5;
     config.readonly = true;
   }
-  ngOnInit() {
+  ngOnInit() {    
   }
 
   onClickAddCart(result) {
