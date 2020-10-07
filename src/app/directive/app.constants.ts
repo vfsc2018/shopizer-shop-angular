@@ -34,6 +34,7 @@ export class Action {
     public static MANUFACTURERS = 'manufacturers/'
     public static SHIPPING = 'shipping'
     public static CUSTOMER = 'customer/'
+    public static USER = 'user/'
     public static CUSTOMERS = 'customers/'
     public static PROFILE = 'profile'
     public static ORDERS = 'orders/'
@@ -46,6 +47,7 @@ export class Action {
     public static PASSWORD = 'password/'
     public static RESET = 'reset'
     public static CHECKOUT = 'checkout'
+    public static PRIVATE = 'private/'
 
 
 }
