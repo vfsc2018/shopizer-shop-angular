@@ -5,12 +5,14 @@ import { CookieService } from 'ngx-cookie-service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Helper } from '../directive/helper';
 import { Title } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  api_url=environment.baseUrl;
   // @ViewChild("CartComponent") CartComponent: CartComponent;
   constructor(
     private titleService: Title,
@@ -47,16 +49,23 @@ export class HomeComponent implements OnInit {
     this.appService.getMethod(action + 'FEATURED_ITEM')
       .subscribe(data => {
         // console.log(data.products);
-        data.products.map(item => {
-          item.categories.map(category => {
-            // console.log(category)
-            let index = this.categoryData.findIndex(value => value.id == category.id);
-            if (index == -1) {
-              this.categoryData.push({ 'id': category.description.id, 'name': category.description.name })
-            }
-          })
-        });
+        // data.products.map(item => {
+        //   item.categories.map(category => {
+        //     // console.log(category)
+        //     let index = this.categoryData.findIndex(value => value.id == category.id);
+        //     if (index == -1) {
+        //       this.categoryData.push({ 'id': category.description.id, 'name': category.description.name })
+        //     }
+        //   })
+        // });
         // console.log(data.products)
+
+        data.products.map(e=>{
+          if(!e.image.imageUrl.includes(this.api_url))
+          {
+            e.image.imageUrl=this.api_url+ e.image.imageUrl;
+          }     
+        });       
         this.productData = data.products;
         this.filterData = data.products;
       }, error => {

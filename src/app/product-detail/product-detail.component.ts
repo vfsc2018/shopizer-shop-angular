@@ -11,6 +11,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Helper } from '../directive/helper';
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'product-detail',
   templateUrl: './product-detail.component.html',
@@ -27,6 +28,7 @@ export class ProductDetailComponent implements OnInit {
     // limitTo: 5,
     height: '135px',
   };
+  api_url=environment.baseUrl;
   productDetail: any;
   reletedProduct: Array<any> = [];
   reviews: Array<any> = [];
@@ -86,7 +88,6 @@ export class ProductDetailComponent implements OnInit {
     config.max = 5;
     // config.readonly = true;
     this.route.queryParams.subscribe(params => {
-      console.log(params)
       this.productId = params.productId;
 
       let userData = JSON.parse(localStorage.getItem('userData'));
@@ -106,35 +107,38 @@ export class ProductDetailComponent implements OnInit {
   }
   getProductDetails() {
     this.spinnerService.show();
-    let action = Action.PRODUCT;
+    let action = Action.PRODUCTS;
 
-    this.appService.getMethod(action + this.productId + '?lang=en')
+    this.appService.getMethod(action + this.productId + '?lang=vn')
       .subscribe(data => {
-        console.log(data);
         this.productDetail = data;
         data.images.map((image) => {
-          this.galleryImages.push({ 'small': image.imageUrl, 'medium': image.imageUrl, 'big': image.imageUrl })
+          this.galleryImages.push({ 'small': this.api_url+ image.imageUrl, 'medium': this.api_url+image.imageUrl, 'big': this.api_url+ image.imageUrl })
         })
-        data.options.map((value) => {
-          if (value.code == 'SIZE') {
-            value.optionValues.map((size) => {
-              if (size.defaultValue) {
-                // console.log(size)
-                this.selectedSize = size.name;
-                this.selectedSizeID = size.id;
-
-              }
-            })
-          } else if (value.code == 'COLOR') {
-            value.optionValues.map((size) => {
-              if (size.defaultValue) {
-                // console.log(size)
-                this.selectedColor = size.id;
-
-              }
-            })
-          }
-        });
+        if(data.options)
+        {
+          data.options.map((value) => {
+            if (value.code == 'SIZE') {
+              value.optionValues.map((size) => {
+                if (size.defaultValue) {
+                  // console.log(size)
+                  this.selectedSize = size.name;
+                  this.selectedSizeID = size.id;
+  
+                }
+              })
+            } else if (value.code == 'COLOR') {
+              value.optionValues.map((size) => {
+                if (size.defaultValue) {
+                  // console.log(size)
+                  this.selectedColor = size.id;
+  
+                }
+              })
+            }
+          });
+        }      
+        
 
       }, error => {
         // this.router.navigate(['/error']);

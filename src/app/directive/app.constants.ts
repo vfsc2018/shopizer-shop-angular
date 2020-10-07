@@ -37,6 +37,7 @@ export class Action {
     public static USER = 'user/'
     public static CUSTOMERS = 'customers/'
     public static PROFILE = 'profile'
+    public static PRIVATE = 'private/'
     public static ORDERS = 'orders/'
     public static COUNTRY = 'country/'
     public static ZONES = 'zones/'

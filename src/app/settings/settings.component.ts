@@ -74,10 +74,11 @@ export class SettingsComponent {
     this.getProfile();
   }
   getProfile() {
-    let action = Action.AUTH + Action.CUSTOMER + Action.PROFILE;
+    //let action = Action.AUTH + Action.CUSTOMER + Action.PROFILE;
+    let action = Action.PRIVATE + Action.CUSTOMER + Action.PROFILE;
     this.appService.getMethod(action)
       .subscribe(data => {
-        //console.log(data)
+        console.log(data)
         this.userData = data;
       }, error => {
       });

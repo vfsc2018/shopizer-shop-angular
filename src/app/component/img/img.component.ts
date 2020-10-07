@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-
 @Component({
   selector: 'custom-img',
   templateUrl: './img.component.html',
