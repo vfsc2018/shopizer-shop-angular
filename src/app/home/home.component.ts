@@ -6,6 +6,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Helper } from '../directive/helper';
 import { Title } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -19,7 +20,8 @@ export class HomeComponent implements OnInit {
     private appService: AppService,
     private cookieService: CookieService,
     private spinnerService: Ng4LoadingSpinnerService,
-    private Helper: Helper
+    private Helper: Helper,
+    public router: Router
   ) { }
   productData: Array<any> = [];
   filterData: Array<any> = [];
@@ -130,6 +132,11 @@ export class HomeComponent implements OnInit {
   showMiniCart() {
     this.Helper.showMiniCart(1);
   }
+  goToDetailsPage(result) {
+    this.router.navigate(['/product-detail'], { queryParams: { productId: result.id } });
+    // this.router.navigate(['/product-detail'], { param: { productid: result.id } });
+  }
+
   filterFeaturedItem(val) {
     if (val != '') {
       this.filterData = [];

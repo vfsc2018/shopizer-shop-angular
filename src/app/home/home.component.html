@@ -29,7 +29,7 @@
                     </li>
                 </ul>
             </div> -->
-            <product-grid [Large]="'4'" [productData]="filterData" (onClickCart)="addCart($event)"></product-grid>
+            <product-grid [Large]="'4'" [productData]="filterData" (onClickCart)="addCart($event)" (onClickDetail)="goToDetailsPage($event)"></product-grid>
         </div>
     </div>
 </div>

@@ -87,11 +87,11 @@ export class RegisterComponent implements OnInit {
     this.spinnerService.show();
     let action = Action.CUSTOMER + Action.REGISTER;
     let param = {
-      "userName": this.register.phone,
+      "userName": this.register.username,
       "password": this.register.password,
-      "emailAddress": this.register.phone+"@gmail.com",
+      "emailAddress": this.register.username,
       "gender": "F",
-      "language": "vn",
+      "language": "en",
       "billing": {
         "country": this.billing.countryCode,
         "zone": this.billing.zone,
@@ -100,7 +100,6 @@ export class RegisterComponent implements OnInit {
         "lastName": this.billing.lastName,
       }
     }
-    console.log(param);
     this.appService.postMethod(action, param)
       .subscribe(data => {
         console.log(data);

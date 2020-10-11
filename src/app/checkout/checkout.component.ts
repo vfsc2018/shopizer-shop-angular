@@ -272,13 +272,14 @@ export class CheckoutComponent implements OnInit {
       });
 
   }
-  getOrderTotal(quoteID) {    
+  getOrderTotal(quoteID) {  
+    this.getConfig();  
     let action;
 
     if (quoteID) {
-      action = Action.CART + this.cartData.id + '/' + Action.TOTAL + '?quote=' + quoteID;
+      action = Action.CART + this.cartData.code+ '/' + Action.TOTAL + '?quote=' + quoteID;
     } else {
-      action = Action.CART + this.cartData.id + '/' + Action.TOTAL;
+      action = Action.CART + this.cartData.code + '/' + Action.TOTAL;
     }
     // }
 
@@ -289,8 +290,7 @@ export class CheckoutComponent implements OnInit {
       }, error => {
 
         this.spinnerService.hide();
-      });
-    this.getConfig();
+      });   
 
   }
   getConfig() {

@@ -209,6 +209,7 @@ export class ProductDetailComponent implements OnInit {
         action = Action.CART
       }
       let param = { "product": product.id, "quantity": 1 }     
+     
       this.appService.postMethod(action, param)
         .subscribe(data => {      
           this.cookieService.set('shopizer-cart-id', data.code);
