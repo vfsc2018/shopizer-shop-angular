@@ -34,7 +34,7 @@ export class SitefooterComponent implements OnInit {
   ngOnInit() {
     this.getCategoryHierarchy();
     this.getContent();
-    this.getPitch();
+    // this.getPitch();
   }
   getStore() {
 

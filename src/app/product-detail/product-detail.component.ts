@@ -247,8 +247,8 @@ export class ProductDetailComponent implements OnInit {
   onSubmitReview(productID) {
     this.spinnerService.show();
     let userData = JSON.parse(localStorage.getItem('userData'));
-    let action = Action.AUTH + Action.PRODUCTS + productID + '/reviews'
-    let param = { "customerId": userData.id, "date": moment().format('YYYY-MM-DD'), "description": this.review.description, 'language': 'vn', 'productId': productID, 'rating': this.review.rate }
+    let action = Action.PRIVATE + Action.PRODUCTS + productID + '/reviews'
+    let param = { "customerId": userData.id, "date": moment().format('DD/MM/YYYY'), "description": this.review.description, 'language': 'vn', 'productId': productID, 'rating': this.review.rate }
     // console.log(action);
     // console.log(param);
     this.appService.postMethod(action, param)
