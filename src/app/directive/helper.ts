@@ -53,7 +53,7 @@ export class Helper {
             this.translate.use('en');
             break;
             case 'Vietnamese':
-                localStorage.setItem('langulage', 'vn');
+                localStorage.setItem('langulage', 'vi');
                 this.translate.use('vn');             
               break;
               case 'French':
