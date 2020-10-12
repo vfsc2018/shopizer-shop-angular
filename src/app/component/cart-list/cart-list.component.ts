@@ -5,6 +5,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'list-header',
   templateUrl: './cart-list.component.html',
@@ -40,6 +41,7 @@ export class CartListComponent implements OnInit {
 })
 export class ListComponent implements OnInit {
 
+  api_url=environment.baseUrl;
   @Input() data: any[];
   @Input() showGrid: any;
   @Output() onCrossButtonClick: EventEmitter<number> = new EventEmitter();
@@ -49,6 +51,12 @@ export class ListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.data.map(e=>{
+      if(!e.image.imageUrl.includes(this.api_url))
+      {
+        e.images[0].imageUrl=this.api_url+ e.images[0].imageUrl;
+      }     
+    });
   }
   removecartData(result) {
     this.onCrossButtonClick.emit(result);

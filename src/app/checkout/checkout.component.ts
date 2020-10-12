@@ -260,11 +260,11 @@ export class CheckoutComponent implements OnInit {
   }
   getCart() {
     this.spinnerService.show();
-    let action = Action.CART;
+    let action = Action.CART;  
     this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
       .subscribe(data => {
         this.spinnerService.hide();
-        //console.log(data)
+        console.log(data)
         this.cartData = data;
         this.getOrderTotal('')
       }, error => {
@@ -272,35 +272,33 @@ export class CheckoutComponent implements OnInit {
       });
 
   }
-  getOrderTotal(quoteID) {
-    ////console.log(this.cartData)
-    // this.spinnerService.show();
+  getOrderTotal(quoteID) {  
+    this.getConfig();  
     let action;
 
     if (quoteID) {
-      action = Action.CART + this.cartData.code + '/' + Action.TOTAL + '?quote=' + quoteID;
+      action = Action.CART + this.cartData.code+ '/' + Action.TOTAL + '?quote=' + quoteID;
     } else {
       action = Action.CART + this.cartData.code + '/' + Action.TOTAL;
     }
     // }
 
     this.appService.getMethod(action)
-      .subscribe(data => {
-        //console.log(data);
+      .subscribe(data => {       
         this.summeryOrder = data;
         this.spinnerService.hide();
       }, error => {
 
         this.spinnerService.hide();
-      });
-    this.getConfig();
+      });   
 
   }
   getConfig() {
     let action = Action.CONFIG;
     this.appService.getMethod(action)
       .subscribe(data => {
-        //console.log(data)
+        console.log('config');
+        console.log(data)
         this.config = data;
         // this.summeryOrder = data;
       }, error => {
@@ -335,16 +333,17 @@ export class CheckoutComponent implements OnInit {
   }
 
   onShippingChange() {
-    console.log('fdfsdfsfdfsdf')
+    console.log('shippingChange')
     this.spinnerService.show();
     let action = Action.CART + this.cartData.code + '/' + Action.SHIPPING;
+    console.log(action)
     let param = {}
     if (this.isShipping) {
       param = { 'postalCode': this.shipping.postalCode, 'countryCode': this.shipping.countryCode }
     } else {
       param = { 'postalCode': this.billing.postalCode, 'countryCode': this.billing.countryCode }
     }
-    // console.log(param)
+     console.log(param)
     this.appService.postMethod(action, param)
       .subscribe(data => {
         console.log(data)

@@ -298,10 +298,10 @@
                                 <td *ngIf="total.title != 'Total'">{{total.total}}</td>
                             </tr>
                             <tr *ngIf="shippingData && config.displayShipping" class="shipping-data">
-                                <td class="shipping-key">Shipping Fees</td>
+                                <td class="shipping-key">{{'Shipping Fees' | translate}}</td>
                                 <td class="shipping">
                                     <div class="shipping-note">
-                                        A Shipping quote will be available after filling the postal code
+                                       {{'A Shipping quote will be available after filling the postal code' | translate}} 
                                     </div>
                                     <div class="shipping-option">
                                         <span *ngFor="let shipping of shippingData.shippingOptions">
@@ -321,17 +321,17 @@
                                 </td>
                             </tr>
                             <tr *ngIf="!shippingData && config.displayShipping" class="shipping-data">
-                                <td class="shipping-key">Shipping Fees</td>
+                                <td class="shipping-key">{{'Shipping Fees' | translate}}</td>
                                 <td class="shipping">
                                     <div class="shipping-option">
                                         <span>
-                                            Free Shipping!
+                                            {{'Free Shipping' | translate}}!
                                         </span>
                                     </div>
                                 </td>
                             </tr>
                             <tr class="total">
-                                <td>Total</td>
+                                <td>{{'total' | translate}}</td>
                                 <td>{{summeryOrder.total}}</td>
                             </tr>
                         </tbody>
@@ -352,7 +352,7 @@
 
                             <div class=" card_cvc">
                                 <div class="field half-width">
-                                    <label for="example2-card-expiry" data-tid="elements_examples.form.card_expiry_label">Expiration</label>
+                                    <label for="example2-card-expiry" data-tid="elements_examples.form.card_expiry_label">{{'Expiration' | translate}}</label>
                                     <div #cardExpiryElement class="input empty"></div>
                                     <err-required message="{{cardExpiryErrors}}"></err-required>
                                 </div>

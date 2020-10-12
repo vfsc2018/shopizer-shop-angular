@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'cart',
@@ -31,7 +32,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
   ]
 })
 export class CartComponent {
-
+  api_url=environment.baseUrl;
   private merchant = null;
   @Input() isOpen: boolean;
   constructor(
@@ -63,6 +64,12 @@ export class CartComponent {
     this.appService.getMethod(action)
       .subscribe(data => {
         this.cartData = data;
+        this.cartData.products.map(e=>{
+          if(!e.image.imageUrl.includes(this.api_url))
+          {
+            e.images[0].imageUrl=this.api_url+ e.images[0].imageUrl;
+          }     
+        });
         this.cookieService.set('shopizer-cart-id', data.code);
         this.refreshCount(data.quantity);
         this.addCartLocal(data.products);

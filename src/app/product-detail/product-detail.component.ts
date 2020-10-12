@@ -208,10 +208,10 @@ export class ProductDetailComponent implements OnInit {
       } else {
         action = Action.CART
       }
-      let param = { "product": product.id, "quantity": 1 }
+      let param = { "product": product.id, "quantity": 1 }     
+     
       this.appService.postMethod(action, param)
-        .subscribe(data => {
-          console.log(data);
+        .subscribe(data => {      
           this.cookieService.set('shopizer-cart-id', data.code);
           this.spinnerService.hide();
           this.Helper.showMiniCart(1);
@@ -233,14 +233,14 @@ export class ProductDetailComponent implements OnInit {
     let action = Action.PRODUCTS + this.productId + '/reviews';
     this.appService.getMethod(action)
       .subscribe(data => {
-        console.log(data);
+      //  console.log(data);
         this.reviews = data;
       }, error => {
         this.spinnerService.hide();
       });
   }
   ratingComponentClick(clickObj: any): void {
-
+    //console.log(clickObj);
     this.review.rate = clickObj.rating;
 
   }
@@ -248,7 +248,9 @@ export class ProductDetailComponent implements OnInit {
     this.spinnerService.show();
     let userData = JSON.parse(localStorage.getItem('userData'));
     let action = Action.AUTH + Action.PRODUCTS + productID + '/reviews'
-    let param = { "customerId": userData.id, "date": moment().format('YYYY-MM-DD'), "description": this.review.description, 'language': 'en', 'productId': productID, 'rating': this.review.rate }
+    let param = { "customerId": userData.id, "date": moment().format('YYYY-MM-DD'), "description": this.review.description, 'language': 'vn', 'productId': productID, 'rating': this.review.rate }
+    // console.log(action);
+    // console.log(param);
     this.appService.postMethod(action, param)
       .subscribe(data => {
         this.toastr.success('Your review has been posted', 'Well done!');

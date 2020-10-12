@@ -50,19 +50,19 @@
               </div>
             </div>
             <div class="product-available">
-              <span>Available : </span>
-              <a> {{productDetail.available ? 'In stock' : 'Not in stock'}} <b>({{productDetail.quantity}})</b></a>
+              <span>{{'Available' |translate}} : </span>
+              <a> {{productDetail.available ? ('In stock' | translate) : ('Not in stock' | translate)}} <b>({{productDetail.quantity}})</b></a>
             </div>
             <div class="product-sku">
-              <span class="text-black">SKU: </span>
+              <span class="text-black">{{'SKU' | translate}}: </span>
               {{productDetail.sku}}
             </div>
             <div class="product-categories">
-              <span class="text-black">Categories: </span>
+              <span class="text-black">{{'Categories' | translate}}: </span>
               <a *ngFor="let result of productDetail.categories ; let i = index">{{result.description.description}}</a>
             </div>
             <div class="product-share">
-              <span class="text-black">Share: </span>
+              <span class="text-black">{{'Share' | translate}}: </span>
 
               <span class="icon-facebook icon"></span>
               <span class="icon-instagram icon"></span>
@@ -86,7 +86,7 @@
         </div>
         <div class="au-tabs">
           <ngb-tabset [justify]="currentJustify" class="tabset">
-            <ngb-tab title="Description">
+            <ngb-tab title="{{'Description' | translate}}">
               <ng-template ngbTabContent>
                 <p class="tab-paragraph" [innerHTML]="productDetail.description.description">
                   {{productDetail.description.description}}</p>
@@ -94,28 +94,28 @@
               </ng-template>
             </ngb-tab>
             <ngb-tab>
-              <ng-template ngbTabTitle>additional information</ng-template>
+              <ng-template ngbTabTitle>{{'additional information' | translate}}</ng-template>
               <ng-template ngbTabContent>
                 <table class="product-additionnal">
                   <tr>
-                    <th>Weight</th>
+                    <th>{{'Weight' | translate}}</th>
                     <td>{{productDetail.productSpecifications.weight}} kg</td>
                   </tr>
                   <tr>
-                    <th>Dimensions</th>
+                    <th>{{'Dimensions' | translate}}</th>
                     <td>{{productDetail.productSpecifications.length}} x {{productDetail.productSpecifications.weight}}
                       x {{productDetail.productSpecifications.height}} cm</td>
                   </tr>
                 </table>
               </ng-template>
             </ngb-tab>
-            <ngb-tab title="review ({{productDetail.ratingCount}})">
+            <ngb-tab title="{{'review' | translate}} ({{productDetail.ratingCount}})">
               <ng-template ngbTabContent>
                 <div class="review">
-                  <h5 class="title">REVIEWS</h5>
+                  <h5 class="title">{{'REVIEWS' | translate}}</h5>
                   <div class="review-outer">
                     <div class="review-inner">
-                      <p *ngIf="reviews.length == 0">There are no reviews yet.</p>
+                      <p *ngIf="reviews.length == 0">{{'There are no reviews yet.' | translate}}</p>
                       <div *ngIf="reviews.length > 0">
                         <div class="single-review" *ngFor="let review of reviews">
                           <div class="au-rating" data-star="4">
@@ -135,17 +135,17 @@
                     </div>
 
                   </div>
-                  <p class="text-bigger" *ngIf="reviews.length == 0">Be the first to review
+                  <p class="text-bigger" *ngIf="reviews.length == 0">{{'Be the first to review' | translate}}
                     “{{productDetail.description.name}}”</p>
 
                   <div *ngIf="!auth">
-                    <p class="text-bigger">Please <a href="/account"><u>signin</u></a> for writing a new review</p>
+                    <p class="text-bigger">{{'Please' | translate}} <a href="/account"><u>{{'signin' | translate}}</u></a> {{'for writing a new review' | translate}}</p>
                   </div>
 
                   <div class="comment-place" *ngIf="auth">
                     <form #reviewForm="ngForm" role="form">
                       <div class="comment-rating" *ngIf="auth">
-                        <strong>Your Rating </strong>
+                        <strong>{{'Your Rating' | translate}}</strong>
 
                         <!-- <div class="au-rating" data-star="4"> -->
                         <app-rating [rating]="review.rate" (ratingClick)='ratingComponentClick($event)'></app-rating>
@@ -154,7 +154,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-12 plr-15">
-                          <custom-textarea placeHolder="Your Message" [(ngModel)]="review.description" [row]="6" name="description"
+                          <custom-textarea placeHolder="{{'Your Message' | translate}}" [(ngModel)]="review.description" [row]="6" name="description"
                             required></custom-textarea>
                         </div>
                         <!-- <div class="col-md-6 plr-15">
@@ -180,7 +180,7 @@
         </div>
 
         <div class="port-title justify-content-center text-center">
-          <h2 class="title">related products</h2>
+          <h2 class="title">{{'related products' | translate}}</h2>
           <div class="title-border mx-auto m-b-70"></div>
         </div>
         <div class="related-products">
