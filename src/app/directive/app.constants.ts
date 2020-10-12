@@ -48,7 +48,6 @@ export class Action {
     public static PASSWORD = 'password/'
     public static RESET = 'reset'
     public static CHECKOUT = 'checkout'
-    public static PRIVATE = 'private/'
 
 
 }

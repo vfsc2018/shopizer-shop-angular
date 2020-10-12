@@ -204,7 +204,7 @@ export class CheckoutComponent implements OnInit {
   //     });
   // }
   getProfile() {
-    let action = Action.AUTH + Action.CUSTOMER + Action.PROFILE;
+    let action = Action.PRIVATE + Action.CUSTOMER + Action.PROFILE;
     this.appService.getMethod(action)
       .subscribe(data => {
 
