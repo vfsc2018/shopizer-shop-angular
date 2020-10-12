@@ -297,7 +297,7 @@
                                 <td *ngIf="total.title != 'Total'">{{total.title}}</td>
                                 <td *ngIf="total.title != 'Total'">{{total.total}}</td>
                             </tr>
-                            <tr *ngIf="shippingData && config.displayShipping" class="shipping-data">
+                            <tr *ngIf="shippingData && config && config.displayShipping" class="shipping-data">
                                 <td class="shipping-key">{{'Shipping Fees' | translate}}</td>
                                 <td class="shipping">
                                     <div class="shipping-note">
@@ -320,7 +320,7 @@
 
                                 </td>
                             </tr>
-                            <tr *ngIf="!shippingData && config.displayShipping" class="shipping-data">
+                            <tr *ngIf="!shippingData && config && config.displayShipping" class="shipping-data">
                                 <td class="shipping-key">{{'Shipping Fees' | translate}}</td>
                                 <td class="shipping">
                                     <div class="shipping-option">
