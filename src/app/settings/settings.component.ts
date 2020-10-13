@@ -32,7 +32,7 @@ export class SettingsComponent {
         case 'en':
           this.language =  'English';
           break;
-          case 'vn':
+          case 'vi':
             this.language =  'Vietnamese';
             break;
             case 'fr':
@@ -57,7 +57,7 @@ export class SettingsComponent {
           case 'en':
             this.language =  'English';
             break;
-            case 'vn':
+            case 'vi':
               this.language =  'Vietnamese';
               break;
               case 'fr':
