@@ -240,15 +240,15 @@ export class ProductDetailComponent implements OnInit {
       });
   }
   ratingComponentClick(clickObj: any): void {
-    //console.log(clickObj);
     this.review.rate = clickObj.rating;
 
   }
   onSubmitReview(productID) {
     this.spinnerService.show();
+    let language = localStorage.getItem('langulage');
     let userData = JSON.parse(localStorage.getItem('userData'));
     let action = Action.PRIVATE + Action.PRODUCTS + productID + '/reviews'
-    let param = { "customerId": userData.id, "date": moment().format('DD/MM/YYYY'), "description": this.review.description, 'language': 'vn', 'productId': productID, 'rating': this.review.rate }
+    let param = { "customerId": userData.id, "date": moment().format('DD/MM/YYYY'), "description": this.review.description, 'language': language, 'productId': productID, 'rating': this.review.rate }
     // console.log(action);
     // console.log(param);
     this.appService.postMethod(action, param)

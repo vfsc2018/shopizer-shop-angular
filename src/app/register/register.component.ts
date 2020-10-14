@@ -39,29 +39,30 @@ export class RegisterComponent implements OnInit {
     company: '',
     address: '',
     city: '',
-    stateProvince: '',
-    country: '',
-    postalCode: '',
+    stateProvince: 'Hà Nội',
+    country: 'Việt Nam',
+    postalCode: '100000',
     phone: '',
-    countryCode: '',
+    countryCode: 'VN',
     zone: ''
   }
   stateData: Array<any> = [];
   countryData: Array<any> = [];
   ngOnInit() {
-    this.getCountry()
+     this.getCountry()
   }
 
   getCountry() {
     let action = Action.COUNTRY;
     this.appService.getMethod(action)
-      .subscribe(data => {
+      .subscribe(data => {  
+        
         this.countryData = data;
       }, error => {
       });
   }
   onCountrySelect(value) {
-    // console.log(value);
+      //console.log(value);
     // this.getState(value);
     if (value.value) {
       this.billing.country = value.value.name;
@@ -84,6 +85,7 @@ export class RegisterComponent implements OnInit {
   //     });
   // }
   onRegister() {
+    let language = localStorage.getItem('langulage');
     this.spinnerService.show();
     let action = Action.CUSTOMER + Action.REGISTER;
     let param = {
@@ -91,7 +93,7 @@ export class RegisterComponent implements OnInit {
       "password": this.register.password,
       "emailAddress": this.register.username,
       "gender": "F",
-      "language": "en",
+      "language": language,
       "billing": {
         "country": this.billing.countryCode,
         "zone": this.billing.zone,

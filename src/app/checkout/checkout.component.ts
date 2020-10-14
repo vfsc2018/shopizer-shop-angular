@@ -58,10 +58,10 @@ export class CheckoutComponent implements OnInit {
     address: '',
     // address1: '',
     city: '',
-    country: '',
-    countryCode: '',
-    stateProvince: '',
-    postalCode: '',
+    country: 'Việt Nam',
+    countryCode: 'VN',
+    stateProvince: 'Hà Nội',
+    postalCode: '100000',
     phone: '',
     email: '',
     zone: ''
@@ -75,10 +75,10 @@ export class CheckoutComponent implements OnInit {
     address: '',
     // address1: '',
     city: '',
-    country: '',
-    countryCode: '',
-    stateProvince: '',
-    postalCode: '',
+    country: 'Việt Nam',
+    countryCode: 'VN',
+    stateProvince: 'Hà Nội',
+    postalCode: '100000',
     phone: '',
     email: '',
     zone: ''
@@ -264,7 +264,6 @@ export class CheckoutComponent implements OnInit {
     this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
       .subscribe(data => {
         this.spinnerService.hide();
-        console.log(data)
         this.cartData = data;
         this.getOrderTotal('')
       }, error => {
@@ -297,8 +296,6 @@ export class CheckoutComponent implements OnInit {
     let action = Action.CONFIG;
     this.appService.getMethod(action)
       .subscribe(data => {
-        console.log('config');
-        console.log(data)
         this.config = data;
         // this.summeryOrder = data;
       }, error => {
@@ -385,11 +382,11 @@ export class CheckoutComponent implements OnInit {
         company: '',
         address: '',
         city: '',
-        stateProvince: '',
+        stateProvince: 'Hà Nội',
         zone: '',
-        country: '',
-        countryCode: '',
-        postalCode: '',
+        country: 'Việt Nam',
+        countryCode: 'VN',
+        postalCode: '100000',
         phone: '',
         email: ''
       }
@@ -408,138 +405,148 @@ export class CheckoutComponent implements OnInit {
   isSubmitted: boolean = false;
   isShippingSubmitted: boolean = false;
   async onPayment() {
+    let language = localStorage.getItem('langulage');
     let bill = this.billing;
     let shippingBill = this.shipping;
+    
     this.isSubmitted = false;
     this.isShippingSubmitted = false;
-    // console.log(this.isShipping);
+     console.log(this.isShipping);
     if (!this.isCondition) {
       console.log('if')
       this.errMessage = 'Please agree to our terms and conditions'
-    } else if (bill.firstName == '' || bill.lastName == '' || bill.address == '' || bill.city == '' || bill.countryCode == '' || bill.zone == '' || bill.postalCode == '' || bill.phone == '' || bill.email == '') {
-      console.log('else if')
-      this.isSubmitted = true;
-    }
-    else if (shippingBill.firstName == '' || shippingBill.lastName == '' || shippingBill.address == '' || shippingBill.city == '' || shippingBill.countryCode == '' || shippingBill.zone == '' || shippingBill.postalCode == '') {
-      console.log(shippingBill);
-      if (this.isShipping) {
-        this.isShippingSubmitted = true
+    } else 
+    {
+      if (bill.firstName == '' || bill.lastName == '' || bill.address == '' || bill.city == '' || bill.countryCode == '' || bill.zone == '' || bill.postalCode == '' || bill.phone == '' || bill.email == '') {
+        console.log('else if')
+        this.isSubmitted = true;
       }
-    }
-    else {
-      console.log('else')
-      this.spinnerService.show();
-      const { token, error } = await this.stripe.createToken(this.cardNumber);
-      if (error) {
-
-        const cardErrors = error.message;
-        this.spinnerService.hide();
-        // console.log(error);
-      } else {
-        let action;
-        let param = {};
-        if (this.userDataFlag) {
-          action = Action.AUTH + Action.CART + this.cartData.code + '/' + Action.CHECKOUT
-          param = {
-            // "shippingQuote": 1100,
-            "currency": "CAD",
-            "payment": {
-              "paymentType": "CREDITCARD",
-              "transactionType": "CAPTURE",
-              "paymentModule": "stripe",
-              "paymentToken": token.id,
-              // "amount": 799.98
-              "amount": this.summeryOrder.totals[this.summeryOrder.totals.length - 1].value
-            }
-          }
-        } else {
-          action = Action.CART + this.cartData.code + '/' + Action.CHECKOUT
-          let customer = {};
-          if (this.isShipping) {
-            customer = {
-              "emailAddress": this.billing.email,
-              "language": "en",
-              "billing": {
-                "address": this.billing.address,
-                "company": this.billing.company,
-                "city": this.billing.city,
-                "postalCode": this.billing.postalCode,
-                "country": this.billing.countryCode,
-                "stateProvince": this.billing.stateProvince,
-                "zone": this.billing.zone,
-                "firstName": this.billing.firstName,
-                "lastName": this.billing.lastName,
-                "phone": this.billing.phone
-              },
-              "delivery": {
-                "address": this.shipping.address,
-                "company": this.shipping.company,
-                "city": this.shipping.city,
-                "postalCode": this.shipping.postalCode,
-                "country": this.shipping.countryCode,
-                "stateProvince": this.shipping.stateProvince,
-                "zone": this.shipping.zone,
-                "firstName": this.shipping.firstName,
-                "lastName": this.shipping.lastName,
-                // "phone": this.shipping.phone
+      // else if (shippingBill.firstName == '' || shippingBill.lastName == '' || shippingBill.address == '' || shippingBill.city == '' || shippingBill.countryCode == '' || shippingBill.zone == '' || shippingBill.postalCode == '') {
+      //   console.log(shippingBill);
+      //   if (this.isShipping) {
+      //     this.isShippingSubmitted = true
+      //   }
+      // }
+      else {
+        console.log('checkout')
+        // this.spinnerService.show();
+        // const { token, error } = await this.stripe.createToken(this.cardNumber);
+        // if (error) {
+  
+        //   const cardErrors = error.message;
+        //   this.spinnerService.hide();
+        //    console.log(error);
+        // } else {
+          let action;
+          let param = {};
+          if (this.userDataFlag) {
+            action = Action.PRIVATE + Action.CART + this.cartData.code + '/' + Action.CHECKOUT
+            param = {
+              // "shippingQuote": 1100,
+              "currency": "CAD",
+              "payment": {
+                "paymentType": "CREDITCARD",
+                "transactionType": "CAPTURE",
+                "paymentModule": "stripe",
+               // "paymentToken": token.id,
+               "paymentToken": "",
+                // "amount": 799.98
+                "amount": this.summeryOrder.totals[this.summeryOrder.totals.length - 1].value
               }
             }
+            
           } else {
-            customer = {
-              "emailAddress": this.billing.email,
-              "language": "en",
-              "billing": {
-                "address": this.billing.address,
-                "company": this.billing.company,
-                "city": this.billing.city,
-                "postalCode": this.billing.postalCode,
-                "country": this.billing.countryCode,
-                "stateProvince": this.billing.stateProvince,
-                "zone": this.billing.zone,
-                "firstName": this.billing.firstName,
-                "lastName": this.billing.lastName,
-                "phone": this.billing.phone
+            action = Action.CART + this.cartData.code + '/' + Action.CHECKOUT
+            let customer = {};
+            if (this.isShipping) {
+              customer = {
+                "emailAddress": this.billing.email,
+                "language": language,
+                "billing": {
+                  "address": this.billing.address,
+                  "company": this.billing.company,
+                  "city": this.billing.city,
+                  "postalCode": this.billing.postalCode,
+                  "country": this.billing.countryCode,
+                  "stateProvince": this.billing.stateProvince,
+                  "zone": this.billing.zone,
+                  "firstName": this.billing.firstName,
+                  "lastName": this.billing.lastName,
+                  "phone": this.billing.phone
+                },
+                "delivery": {
+                  "address": this.shipping.address,
+                  "company": this.shipping.company,
+                  "city": this.shipping.city,
+                  "postalCode": this.shipping.postalCode,
+                  "country": this.shipping.countryCode,
+                  "stateProvince": this.shipping.stateProvince,
+                  "zone": this.shipping.zone,
+                  "firstName": this.shipping.firstName,
+                  "lastName": this.shipping.lastName,
+                  // "phone": this.shipping.phone
+                }
+              }
+            } else {
+              customer = {
+                "emailAddress": this.billing.email,
+                "language": language,
+                "billing": {
+                  "address": this.billing.address,
+                  "company": this.billing.company,
+                  "city": this.billing.city,
+                  "postalCode": this.billing.postalCode,
+                  "country": this.billing.countryCode,
+                  "stateProvince": this.billing.stateProvince,
+                  "zone": this.billing.zone,
+                  "firstName": this.billing.firstName,
+                  "lastName": this.billing.lastName,
+                  "phone": this.billing.phone
+                }
               }
             }
+  
+            param = {
+              // "shippingQuote": 1100,
+              "currency": "CAD",
+              "payment": {
+                "paymentType": "CREDITCARD",
+                "transactionType": "CAPTURE",
+                "paymentModule": "stripe",
+               // "paymentToken": token.id,
+                "paymentToken": "",
+                // "amount": 799.98
+                "amount": this.summeryOrder.totals[this.summeryOrder.totals.length - 1].value
+              },
+              "customer": customer
+            }
           }
-
-          param = {
-            // "shippingQuote": 1100,
-            "currency": "CAD",
-            "payment": {
-              "paymentType": "CREDITCARD",
-              "transactionType": "CAPTURE",
-              "paymentModule": "stripe",
-              "paymentToken": token.id,
-              // "amount": 799.98
-              "amount": this.summeryOrder.totals[this.summeryOrder.totals.length - 1].value
-            },
-            "customer": customer
-          }
-        }
-        this.appService.postMethod(action, param)
-          .subscribe(data => {
-            console.log(data)
-            let modalRef = this.modalService.open(OrderConfirmComponent, {
-              windowClass: 'order-detail'
+          this.appService.postMethod(action, param)
+            .subscribe(data => {
+              console.log(data)
+              let modalRef = this.modalService.open(OrderConfirmComponent, {
+                windowClass: 'order-detail'
+              });
+              modalRef.componentInstance.orderID = data.id;
+              modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+                console.log(receivedEntry);
+                modalRef.close()
+  
+              });
+              this.toastr.success('Your order has been submitted', 'Well done!');
+              this.router.navigate(['/']);
+              this.spinnerService.hide();
+            }, error => {
+              this.spinnerService.hide();
+              this.toastr.error('Your order submission has been failed', 'Error');
             });
-            modalRef.componentInstance.orderID = data.id;
-            modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
-              console.log(receivedEntry);
-              modalRef.close()
-
-            });
-            this.toastr.success('Your order has been submitted', 'Well done!');
-            this.router.navigate(['/']);
-            this.spinnerService.hide();
-          }, error => {
-            this.spinnerService.hide();
-            this.toastr.error('Your order submission has been failed', 'Error');
-          });
-
-
+  
+  
+       // }
       }
     }
+    
+   
 
   }
 }       
