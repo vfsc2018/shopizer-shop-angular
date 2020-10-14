@@ -175,9 +175,9 @@
                                 </input-field>
                             </div>
                         </div>
-                        <input-field type="text" label="Shipping Company Name" [(ngModel)]="shipping.company" name="company"
+                        <!-- <input-field type="text" label="Shipping Company Name" [(ngModel)]="shipping.company" name="company"
                             placeHolder="" bottom="24">
-                        </input-field>
+                        </input-field> -->
                         <div class="form-group custom-input m-b-24">
                             <label class="label-after">{{'Address' | translate}}</label>
                             <input type="text" placeholder="{{'Street address' | translate}}" #search [(ngModel)]="shipping.address"
@@ -338,8 +338,8 @@
 
                     </table>
                     <fieldset class="m-t-40" class="account-box">
-                        <form>
-                            <!-- <stripe (onNumberChange)="onChangeNumber($event)"></stripe> -->
+                        <!-- <form>
+                            <stripe (onNumberChange)="onChangeNumber($event)"></stripe>
                             <div class="card_number">
                                 <div class="field">
                                     <label for="example2-card-number" data-tid="elements_examples.form.card_number_label">Card
@@ -370,7 +370,7 @@
                             </div>
 
 
-                        </form>
+                        </form> -->
                     </fieldset>
                     <div class="m-t-40 is-shipping">
                         <custom-checkbox [label]="'I agree with the terms and conditions'" (onChange)="termCondition()"></custom-checkbox>
