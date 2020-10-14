@@ -292,7 +292,7 @@ export function createTranslateLoader(http: HttpClient) {
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyCOWHYbCCs9_t8g7oOozjTR75wNx5_xpb4",
       libraries: ["places"],
-      language: 'en'
+      language:localStorage.getItem('langulage')
     }),
     ToastrModule.forRoot({
       progressBar: true

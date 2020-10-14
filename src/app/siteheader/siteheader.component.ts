@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Helper } from '../directive/helper';
 import { DataSharingService } from '../directive/data-sharing.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'siteheader',
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class SiteheaderComponent implements OnInit {
     // @ViewChild("CartComponent") CartComponent: CartComponent;
-
+    api_url=environment.baseUrl;
     merchant = null;
     category: Array<any> = [];
     content: Array<any> = [];
@@ -49,8 +50,11 @@ export class SiteheaderComponent implements OnInit {
         let action = Action.STORE + Action.DEFAULT;
         this.appService.getMethod(action)
             .subscribe(data => {
-                 //console.log(data);
                 this.merchant = data;
+                if(this.merchant.logo)
+                {
+                    this.merchant.logo.path=this.api_url+this.merchant.logo.path;
+                }
                 if (localStorage.getItem('langulage')) {
                     this.translate.setDefaultLang(localStorage.getItem('langulage'));
                 } else {

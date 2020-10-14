@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
         // console.log(data.products)
 
         data.products.map(e=>{
-          if(!e.image.imageUrl.includes(this.api_url))
+          if(e.image && !e.image.imageUrl.includes(this.api_url))
           {
             e.image.imageUrl=this.api_url+ e.image.imageUrl;
           }     

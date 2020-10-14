@@ -84,6 +84,7 @@ export class RegisterComponent implements OnInit {
   //     });
   // }
   onRegister() {
+    let language = localStorage.getItem('langulage');
     this.spinnerService.show();
     let action = Action.CUSTOMER + Action.REGISTER;
     let param = {
@@ -91,7 +92,7 @@ export class RegisterComponent implements OnInit {
       "password": this.register.password,
       "emailAddress": this.register.username,
       "gender": "F",
-      "language": "en",
+      "language": language,
       "billing": {
         "country": this.billing.countryCode,
         "zone": this.billing.zone,

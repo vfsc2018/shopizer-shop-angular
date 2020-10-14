@@ -408,6 +408,7 @@ export class CheckoutComponent implements OnInit {
   isSubmitted: boolean = false;
   isShippingSubmitted: boolean = false;
   async onPayment() {
+    let language = localStorage.getItem('langulage');
     let bill = this.billing;
     let shippingBill = this.shipping;
     this.isSubmitted = false;
@@ -458,7 +459,7 @@ export class CheckoutComponent implements OnInit {
           if (this.isShipping) {
             customer = {
               "emailAddress": this.billing.email,
-              "language": "en",
+              "language": language,
               "billing": {
                 "address": this.billing.address,
                 "company": this.billing.company,
@@ -487,7 +488,7 @@ export class CheckoutComponent implements OnInit {
           } else {
             customer = {
               "emailAddress": this.billing.email,
-              "language": "en",
+              "language": language,
               "billing": {
                 "address": this.billing.address,
                 "company": this.billing.company,

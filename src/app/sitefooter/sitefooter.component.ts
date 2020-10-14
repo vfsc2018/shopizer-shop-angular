@@ -7,12 +7,14 @@ import { SafeHtml } from '../shared/utility/safe-html'
 import { TranslateService } from '@ngx-translate/core';
 import { DataSharingService } from '../directive/data-sharing.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'sitefooter',
   templateUrl: './sitefooter.component.html',
   styleUrls: ['./sitefooter.component.scss']
 })
 export class SitefooterComponent implements OnInit {
+  api_url=environment.baseUrl;
   configuration: any;
   merchant: any;
   category: any;
@@ -42,6 +44,10 @@ export class SitefooterComponent implements OnInit {
     this.appService.getMethod(action)
       .subscribe(data => {
         this.merchant = data;
+        if(this.merchant.logo)
+        {
+            this.merchant.logo.path=this.api_url+this.merchant.logo.path;
+        }
       }, error => {
       });
   }
