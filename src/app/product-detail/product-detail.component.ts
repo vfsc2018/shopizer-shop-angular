@@ -109,7 +109,7 @@ export class ProductDetailComponent implements OnInit {
     this.spinnerService.show();
     let action = Action.PRODUCTS;
 
-    this.appService.getMethod(action + this.productId + '?lang=vn')
+    this.appService.getMethod(action + this.productId + '?lang=vi')
       .subscribe(data => {
         this.productDetail = data;
         data.images.map((image) => {

@@ -111,7 +111,7 @@ export class ShopComponent implements OnInit {
         this.totalRecord = data.totalCount;
         this.productData = this.productData.concat(data.products);
         this.productData.map(e=>{
-          if(!e.image.imageUrl.includes(this.api_url))
+          if(e.image && !e.image.imageUrl.includes(this.api_url))
           {
             e.image.imageUrl=this.api_url+ e.image.imageUrl;
           }     
