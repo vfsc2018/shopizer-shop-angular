@@ -54,14 +54,14 @@ export class CheckoutComponent implements OnInit {
   billing = {
     firstName: '',
     lastName: '',
-    company: '',
+    company: 'Home',
     address: '',
     // address1: '',
     city: '',
     country: 'Việt Nam',
     countryCode: 'VN',
     stateProvince: 'Hà Nội',
-    postalCode: '100000',
+    postalCode: '10000',
     phone: '',
     email: '',
     zone: ''
@@ -71,14 +71,14 @@ export class CheckoutComponent implements OnInit {
   shipping = {
     firstName: '',
     lastName: '',
-    company: '',
+    company: 'Home',
     address: '',
     // address1: '',
     city: '',
     country: 'Việt Nam',
     countryCode: 'VN',
     stateProvince: 'Hà Nội',
-    postalCode: '100000',
+    postalCode: '10000',
     phone: '',
     email: '',
     zone: ''

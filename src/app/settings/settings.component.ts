@@ -32,12 +32,9 @@ export class SettingsComponent {
         case 'en':
           this.language =  'English';
           break;
-          case 'vi':
-            this.language =  'Vietnamese';
-            break;
-            case 'fr':
-              this.language =  'French';
-              break;
+        case 'vi':
+          this.language =  'Vietnamese';
+          break;
       }
      
     } else {
@@ -57,12 +54,9 @@ export class SettingsComponent {
           case 'en':
             this.language =  'English';
             break;
-            case 'vi':
-              this.language =  'Vietnamese';
-              break;
-              case 'fr':
-                this.language =  'French';
-                break;
+          case 'vi':
+            this.language =  'Vietnamese';
+            break;
         }
        
       } else {

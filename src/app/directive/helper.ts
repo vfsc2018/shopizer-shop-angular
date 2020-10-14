@@ -48,17 +48,13 @@ export class Helper {
         
         switch(selectedLang)
         {
-          case 'English':
-            localStorage.setItem('langulage', 'en');
-            this.translate.use('en');
-            break;
+            case 'English':
+                localStorage.setItem('langulage', 'en');
+                this.translate.use('en');
+                break;
             case 'Vietnamese':
                 localStorage.setItem('langulage', 'vi');
                 this.translate.use('vi');             
-              break;
-              case 'French':
-                localStorage.setItem('langulage', 'fr');
-                this.translate.use('fr');                  
                 break;
         }
        
