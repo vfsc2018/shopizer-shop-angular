@@ -58,10 +58,10 @@ export class CheckoutComponent implements OnInit {
     address: '',
     // address1: '',
     city: '',
-    country: '',
-    countryCode: '',
-    stateProvince: '',
-    postalCode: '',
+    country: 'Việt Nam',
+    countryCode: 'VN',
+    stateProvince: 'Hà Nội',
+    postalCode: '100000',
     phone: '',
     email: '',
     zone: ''
@@ -75,10 +75,10 @@ export class CheckoutComponent implements OnInit {
     address: '',
     // address1: '',
     city: '',
-    country: '',
-    countryCode: '',
-    stateProvince: '',
-    postalCode: '',
+    country: 'Việt Nam',
+    countryCode: 'VN',
+    stateProvince: 'Hà Nội',
+    postalCode: '100000',
     phone: '',
     email: '',
     zone: ''
@@ -264,7 +264,6 @@ export class CheckoutComponent implements OnInit {
     this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
       .subscribe(data => {
         this.spinnerService.hide();
-        console.log(data)
         this.cartData = data;
         this.getOrderTotal('')
       }, error => {
@@ -297,8 +296,6 @@ export class CheckoutComponent implements OnInit {
     let action = Action.CONFIG;
     this.appService.getMethod(action)
       .subscribe(data => {
-        console.log('config');
-        console.log(data)
         this.config = data;
         // this.summeryOrder = data;
       }, error => {
@@ -385,11 +382,11 @@ export class CheckoutComponent implements OnInit {
         company: '',
         address: '',
         city: '',
-        stateProvince: '',
+        stateProvince: 'Hà Nội',
         zone: '',
-        country: '',
-        countryCode: '',
-        postalCode: '',
+        country: 'Việt Nam',
+        countryCode: 'VN',
+        postalCode: '100000',
         phone: '',
         email: ''
       }

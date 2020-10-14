@@ -39,29 +39,30 @@ export class RegisterComponent implements OnInit {
     company: '',
     address: '',
     city: '',
-    stateProvince: '',
-    country: '',
-    postalCode: '',
+    stateProvince: 'Hà Nội',
+    country: 'Việt Nam',
+    postalCode: '100000',
     phone: '',
-    countryCode: '',
+    countryCode: 'VN',
     zone: ''
   }
   stateData: Array<any> = [];
   countryData: Array<any> = [];
   ngOnInit() {
-    this.getCountry()
+     this.getCountry()
   }
 
   getCountry() {
     let action = Action.COUNTRY;
     this.appService.getMethod(action)
-      .subscribe(data => {
+      .subscribe(data => {  
+        
         this.countryData = data;
       }, error => {
       });
   }
   onCountrySelect(value) {
-    // console.log(value);
+      //console.log(value);
     // this.getState(value);
     if (value.value) {
       this.billing.country = value.value.name;
