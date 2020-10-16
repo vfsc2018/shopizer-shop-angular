@@ -62,7 +62,7 @@
     "Continue Shopping": "Tiếp tục mua hàng",
     "Apply Coupon": "Áp dụng khuyến mại",
     "Shop now": "Mua hàng",
-    "Add to cart": "Thêm vào giỏ hàng",
+    "Add to cart": "Chọn sản phẩm",
     "Submit": "Gửi",
     "No More Data": "Không thêm dữ liệu",
     "Checkout": "Thanh toán",
@@ -126,5 +126,6 @@
     "SHIP TO A DIFFERENT ADDRESS?":"VẬN CHUYỂN ĐẾN ĐỊA CHỈ KHÁC?",
     "I agree with the terms and conditions":"Tôi đồng ý với các điều khoản",
     "Start typing here":"Nhập nội dung tìm kiếm",
-    "Leave your comment":"Nhập nội dung"
+    "Leave your comment":"Nhập nội dung",
+    "Sold out":"Đã bán hết"
 }

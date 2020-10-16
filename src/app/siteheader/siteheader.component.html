@@ -72,8 +72,8 @@
     <div class="header-wrapper-mobile d-block d-lg-none">
       <div class="header-mobile__bar">
         <div class="header__logo">
-         <a  *ngIf="!merchant.logo" class="grey store-name" routerLink="/home"> <span>{{merchant.name}}</span></a>
-          <a routerLink="/home" *ngIf="merchant.logo">
+         <a *ngIf="!merchant.logo" class="grey store-name" routerLink="/"> <span>{{merchant.name}}</span></a>
+          <a routerLink="/" *ngIf="merchant.logo">
             <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
             </custom-img>
           </a>

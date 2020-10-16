@@ -133,8 +133,6 @@ export class ShoppingCartComponent implements OnInit {
         me.appService.putMethod(action, me.cookieService.get('shopizer-cart-id'), param)
           .subscribe(data => {
 
-            console.log(i)
-            console.log(me.cartData.length - 1, 'me.cartData.length')
             if (me.cartData.length - 2 == i) {
               me.getCart();
               me.spinnerService.hide();

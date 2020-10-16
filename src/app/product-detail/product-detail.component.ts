@@ -186,7 +186,7 @@ export class ProductDetailComponent implements OnInit {
   addToCart(product) {
     this.spinnerService.show();
 
-    let userData = JSON.parse(localStorage.getItem('userData'));
+    let userData = JSON.parse(localStorage.getItem('userData')); 
     let action;
     // let action = Action.CART;
     // let param = {
@@ -199,11 +199,11 @@ export class ProductDetailComponent implements OnInit {
 
     // }
     if (this.cookieService.get('shopizer-cart-id')) {
-      action = Action.CART
+      action = Action.CART; 
       let cartData = JSON.parse(this.cookieService.get('localCart'));
-      let index = cartData.findIndex(order => order.id === product.id);
+      let index = cartData.findIndex(order => order.id === product.id); 
       let param = { "product": product.id, "quantity": index == -1 ? 1 : cartData[index].quantity + 1 }
-      let id = this.cookieService.get('shopizer-cart-id');
+      let id = this.cookieService.get('shopizer-cart-id'); 
       this.appService.putMethod(action, id, param)
         .subscribe(data => {
           this.spinnerService.hide();

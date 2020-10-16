@@ -61,6 +61,7 @@ export class CartComponent {
     } else {
       action = Action.CART + this.cookieService.get('shopizer-cart-id');
     }
+    
     this.appService.getMethod(action)
       .subscribe(data => {
         this.cartData = data;
@@ -88,19 +89,19 @@ export class CartComponent {
       });
   }
   addCartLocal(data) {
-    let localCart = [];
+    let localCart = []; 
     data.map((value) => {
       localCart.push({ 'id': value.id, 'quantity': value.quantity })
     });
     this.cookieService.set('localCart', JSON.stringify(localCart));
-    console.log(this.cookieService.get('localCart'))
+    
   }
   refreshCount(value) {
     this.dataSharingService.count.next(value);
     localStorage.setItem('itemCount', JSON.stringify(value))
   }
   removecartData(result) {
-    console.log(result);
+    // console.log(result);Add 
     this.spinnerService.show();
     let action = Action.CART;
     let param = { "product": result.id, "quantity": 0 }

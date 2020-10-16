@@ -41,7 +41,10 @@
                   <i class="icon-up" (click)="qtyUpdate(1)"></i>
                 </span>
               </div>
-              <div class="cart-btn">
+              <div class="cart-btn" *ngIf="!productDetail.quantity">
+                <btn [text]="'Sold out'"></btn>
+              </div>
+              <div class="cart-btn" *ngIf="productDetail.quantity">
                 <btn [text]="'Add to cart'" (onClick)="addToCart(productDetail)"></btn>
               </div>
               <div class="product-favourite">

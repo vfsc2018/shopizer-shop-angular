@@ -3,8 +3,8 @@
       <div class="coming-time">
         <div class="coming-time-body">
           <div class="logo">
-            <span *ngIf="merchant.logo == null">{{merchant.name}}</span>
-            <a href="" *ngIf="merchant.logo != null">
+            <span *ngIf="!merchant.logo">{{merchant.name}}</span>
+            <a href="" *ngIf="merchant.logo">
               <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
               </custom-img>
             </a>

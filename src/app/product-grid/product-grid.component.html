@@ -9,7 +9,8 @@
           </custom-img>
         </a>
         <div class="addcart">
-          <a (click)="onClickAddCart(result)">{{ 'Add to cart' | translate}}</a>
+          <a *ngIf="result.quantity" (click)="onClickAddCart(result)">{{ 'Add to cart' | translate}}</a>
+          <a *ngIf="!result.quantity">{{ 'Sold out' | translate}}</a>
         </div>
       </div>
       <a class="name" (click)="onClickName(result)">{{result.description.name}}</a>
