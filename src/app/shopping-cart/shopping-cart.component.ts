@@ -6,12 +6,15 @@ import { Action } from '../directive/app.constants';
 
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
+  api_url=environment.baseUrl;
   header_data = [{ 'name': 'product', 'width_size': 'width-50' }, { 'name': 'price', 'width_size': 'width-10' }, { 'name': 'quantity', 'width_size': 'width-20' }, { 'name': 'total', 'width_size': 'width-20' }, { 'name': '', 'width_size': '' }];
   cartData: Array<any> = [];
   subtotal: any;
@@ -33,6 +36,18 @@ export class ShoppingCartComponent implements OnInit {
       .subscribe(data => {
         this.spinnerService.hide();
         this.cartData = data.products;
+        this.cartData.map(e=>{
+          if(e.image && e.image.imageUrl.indexOf("http")<0)
+          {
+            e.image.imageUrl=this.api_url+ e.image.imageUrl;
+            e.images.map(ex=>{
+              if(ex.imageUrl.indexOf("http")<0)
+              {
+                ex.imageUrl=this.api_url+ ex.imageUrl;
+              }     
+            });
+          }     
+        });
         this.subtotal = data.subtotal;
         this.total = data.displayTotal;
       }, error => {
@@ -60,8 +75,22 @@ export class ShoppingCartComponent implements OnInit {
     let param = { "product": product, "quantity": quantity }
     this.appService.putMethod(action, this.cookieService.get('shopizer-cart-id'), param)
       .subscribe(data => {
-        console.log(data)
+        // console.log(data)
         this.cartData = data.products;
+        
+        this.cartData.map(e=>{
+          if(e.image && e.image.imageUrl.indexOf("http")<0)
+          {
+            e.image.imageUrl=this.api_url+ e.image.imageUrl;
+            e.images.map(ex=>{
+              if(ex.imageUrl.indexOf("http")<0)
+              {
+                ex.imageUrl=this.api_url+ ex.imageUrl;
+              }     
+            });
+          }     
+        });
+      
         this.subtotal = data.subtotal;
         this.total = data.displayTotal;
         this.spinnerService.hide();

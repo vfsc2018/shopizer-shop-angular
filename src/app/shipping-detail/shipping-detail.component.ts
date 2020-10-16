@@ -188,27 +188,29 @@ export class ShippingDetailComponent implements OnInit {
     let action = Action.PRIVATE + Action.CUSTOMER + Action.PROFILE;
     this.appService.getMethod(action)
       .subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.billing = data.billing;
         if (data.delivery) {
           this.shipping = data.delivery;
           let shippingIndex = this.shippingCountryData.findIndex(order => order.code === data.delivery.country);
+          // console.log("ship--->",shippingIndex, this.shippingCountryData[shippingIndex]);
           if (shippingIndex != -1) {
             this.shipping.country = this.shippingCountryData[shippingIndex].name;
             this.shipping.countryCode = this.shippingCountryData[shippingIndex].code;
             this.shippingStateData = this.shippingCountryData[shippingIndex].zones;
             let shippingIndex1 = this.shippingStateData.findIndex(order => order.code === data.delivery.zone);
-            if (shippingIndex1 != 1) {
-              // this.shipping.stateProvince = this.shippingStateData[shippingIndex1].name;
-              // this.shipping.zone = this.shippingStateData[shippingIndex1].zone;
+            if (shippingIndex1 != -1) {
+              this.shipping.stateProvince = this.shippingStateData[shippingIndex1].name;
+              this.shipping.zone = this.shippingStateData[shippingIndex1].zone;
             }
           }
         }
 
 
 
-        console.log(data.billing);
+        
         let index = this.countryData.findIndex(order => order.code === data.billing.country);
+        // console.log("--->",index, this.countryData[index]);
         if (index != -1) {
           this.billing.country = this.countryData[index].name;
           this.billing.countryCode = this.countryData[index].code;
@@ -219,9 +221,9 @@ export class ShippingDetailComponent implements OnInit {
             this.shippingStateData = this.countryData[index].zones;
           }
 
-          console.log(this.stateData)
+          // console.log(this.stateData)
           let index1 = this.stateData.findIndex(order => order.code === data.billing.zone);
-          if (index != 1) {
+          if (index1 != -1) {
             this.billing.stateProvince = this.stateData[index1].name;
             this.billing.zone = this.stateData[index1].code;
 
@@ -232,7 +234,7 @@ export class ShippingDetailComponent implements OnInit {
           }
         }
 
-        console.log(index, '***********');
+        // console.log(index, '***********');
       }, error => {
       });
   }

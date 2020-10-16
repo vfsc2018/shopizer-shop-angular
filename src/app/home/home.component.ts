@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getProductList()
     //this.ContentImage()
-    this.titleService.setTitle('Importa');
+    this.titleService.setTitle('NFSI food shop');
   }
   getProductList() {
     let action = Action.PRODUCT_GROUP;
@@ -61,15 +61,21 @@ export class HomeComponent implements OnInit {
         //   })
         // });
         // console.log(data.products)
-
-        data.products.map(e=>{
-          if(e.image && !e.image.imageUrl.includes(this.api_url))
+    
+        this.productData = data.products;
+        this.productData.map(e=>{
+          if(e.image && e.image.imageUrl.indexOf("http")<0)
           {
             e.image.imageUrl=this.api_url+ e.image.imageUrl;
+            e.images.map(ex=>{
+              if(ex.imageUrl.indexOf("http")<0)
+              {
+                ex.imageUrl=this.api_url+ ex.imageUrl;
+              }     
+            });
           }     
-        });       
-        this.productData = data.products;
-        this.filterData = data.products;
+        });
+        this.filterData = this.productData;
       }, error => {
       });
   }

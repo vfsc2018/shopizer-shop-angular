@@ -111,9 +111,15 @@ export class ShopComponent implements OnInit {
         this.totalRecord = data.totalCount;
         this.productData = this.productData.concat(data.products);
         this.productData.map(e=>{
-          if(e.image && !e.image.imageUrl.includes(this.api_url))
+          if(e.image && e.image.imageUrl.indexOf("http")<0)
           {
             e.image.imageUrl=this.api_url+ e.image.imageUrl;
+            e.images.map(ex=>{
+              if(ex.imageUrl.indexOf("http")<0)
+              {
+                ex.imageUrl=this.api_url+ ex.imageUrl;
+              }     
+            });
           }     
         });
         this.spinnerService.hide();

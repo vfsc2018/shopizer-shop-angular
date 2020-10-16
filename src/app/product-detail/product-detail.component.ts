@@ -103,14 +103,20 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.router.routeReuseStrategy.shouldReuseRoute=()=>false;
     this.getProductDetails()
+  }
+  goToDetailsPage(result) { 
+    
+    this.router.navigate(['/product-detail'], { queryParams: { productId: result.id, token: new Date().getTime() } });
+   
   }
   getProductDetails() {
     this.spinnerService.show();
     let action = Action.PRODUCTS;
 
     this.appService.getMethod(action + this.productId + '?lang=vi')
-      .subscribe(data => {
+      .subscribe(data => { 
         this.productDetail = data;
         data.images.map((image) => {
           this.galleryImages.push({ 'small': this.api_url+ image.imageUrl, 'medium': this.api_url+image.imageUrl, 'big': this.api_url+ image.imageUrl })
@@ -154,8 +160,11 @@ export class ProductDetailComponent implements OnInit {
     let action = Action.PRODUCTS;
     this.appService.getMethod(action + this.productId + '/related')
       .subscribe(data => {
-        console.log(data);
-        this.productDetail = data;
+        // console.log(data);
+        data.map(e=>{ 
+            e.image.imageUrl=this.api_url+ e.image.imageUrl;   
+        });
+        this.reletedProduct = data;
         this.spinnerService.hide();
       }, error => {
         this.spinnerService.hide();
@@ -169,7 +178,7 @@ export class ProductDetailComponent implements OnInit {
     let param = { "options": [{ "option": option.id, "value": color.id }] }
     this.appService.postMethod(action, param)
       .subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.productDetail.finalPrice = data.finalPrice;
       }, error => {
       });

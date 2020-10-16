@@ -9,7 +9,7 @@
             <img-slider [galleryImages]="galleryImages"></img-slider>
           </div>
           <div class="product-body">
-            <div class="first">
+            <div class="first" *ngIf="productDetail && productDetail.description">
               <h3 class="name">{{productDetail.description.name}}</h3>
               <!-- <p class="price">{{productDetail.finalPrice}}</p> -->
               <p class="price"><span [ngClass]="productDetail.discounted ? 'discount-price' : ''">{{productDetail.originalPrice}}</span><span
@@ -27,7 +27,7 @@
                 </div>
               </div>
             </div>
-            <p class="description" [innerHTML]="productDetail.description.description">
+            <p class="description"  *ngIf="productDetail.description" [innerHTML]="productDetail.description.description">
               {{productDetail.description.description}}</p>
             <div class="product-button">
               <div class="quantity">
@@ -88,7 +88,7 @@
           <ngb-tabset [justify]="currentJustify" class="tabset">
             <ngb-tab title="{{'Description' | translate}}">
               <ng-template ngbTabContent>
-                <p class="tab-paragraph" [innerHTML]="productDetail.description.description">
+                <p class="tab-paragraph" *ngIf="productDetail.description"  [innerHTML]="productDetail.description.description">
                   {{productDetail.description.description}}</p>
 
               </ng-template>
@@ -135,7 +135,7 @@
                     </div>
 
                   </div>
-                  <p class="text-bigger" *ngIf="reviews.length == 0">{{'Be the first to review' | translate}}
+                  <p class="text-bigger" *ngIf="productDetail.description && reviews.length == 0">{{'Be the first to review' | translate}}
                     “{{productDetail.description.name}}”</p>
 
                   <div *ngIf="!auth">

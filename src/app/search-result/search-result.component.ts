@@ -29,6 +29,10 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {
 
   }
+  goToDetailsPage(result) {
+    this.router.navigate(['/product-detail'], { queryParams: { productId: result.id } });
+    // this.router.navigate(['/product-detail'], { param: { productid: result.id } });
+  }
   getSearchResult(query) {
     let action = Action.SEARCH;
     let param = { 'query': query }

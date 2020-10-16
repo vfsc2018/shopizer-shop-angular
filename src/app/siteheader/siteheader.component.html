@@ -7,8 +7,8 @@
       <div class="header header-style-1">
         <div class="header-main">
           <div class="header__logo">
-            <a class="grey store-name" href="/"><span *ngIf="merchant.logo == null" class="merchant-logo-title">{{merchant.name}}</span></a>
-            <a href="/" *ngIf="merchant.logo != null">
+            <a class="grey store-name" routerLink="/" *ngIf="!merchant.logo"><span class="merchant-logo-title">{{merchant.name}}</span></a>
+            <a routerLink="/" *ngIf="merchant.logo">
               <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
               </custom-img>
             </a>
@@ -72,8 +72,8 @@
     <div class="header-wrapper-mobile d-block d-lg-none">
       <div class="header-mobile__bar">
         <div class="header__logo">
-         <a class="grey store-name" href="/home"> <span *ngIf="merchant.logo == null">{{merchant.name}}</span></a>
-          <a href="/home" *ngIf="merchant.logo != null">
+         <a  *ngIf="!merchant.logo" class="grey store-name" routerLink="/home"> <span>{{merchant.name}}</span></a>
+          <a routerLink="/home" *ngIf="merchant.logo">
             <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
             </custom-img>
           </a>

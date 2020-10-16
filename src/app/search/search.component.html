@@ -2,7 +2,7 @@
   <img src="assets/images/icon/header-search.png" alt="Search">
 </button>
 <div [ngClass]="isOpen ? 'search-input open' : 'search-input'">
-  <ng-autocomplete [data]="autoCompleteData" type="text" placeHolder="Start typing here..." [(ngModel)]="search_text"
+  <ng-autocomplete [data]="autoCompleteData" type="text" placeHolder="{{'Start typing here' | translate}} ..." [(ngModel)]="search_text"
     name="search_text" (keydown)="keyDownFunction($event)" (onInputChange)="onSearch()" (onClickCross)="toggleSearch()"
     (onClickValue)="selectEvent($event)" (onSearchIcon)="onClickSearchIcon()"></ng-autocomplete>
 </div>

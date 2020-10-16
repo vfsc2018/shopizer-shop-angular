@@ -6,8 +6,8 @@
           <div class="footer-item">
             <div class="footer-item-heading">
               <div class="logo">
-                <span *ngIf="merchant.logo == null" class="merchant-logo-title">{{merchant.name}}</span>
-                <a href="" *ngIf="merchant.logo != null">
+                <a routerLink="/" *ngIf="!merchant.logo"><span class="merchant-logo-title">{{merchant.name}}</span></a>
+                <a routerLink="/" *ngIf="merchant.logo">
                   <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
                   </custom-img>
                 </a>
