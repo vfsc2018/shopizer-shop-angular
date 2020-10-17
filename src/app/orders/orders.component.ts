@@ -7,7 +7,8 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { OrderDetailComponent } from '../order-detail/order-detail.component';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { format } from 'util';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'orders',
   templateUrl: './orders.component.html',
@@ -16,6 +17,7 @@ import { format } from 'util';
 export class OrdersComponent implements OnInit {
 
   OrdersData: any;
+  api_url=environment.baseUrl;
   constructor(
     private appService: AppService,
     private spinnerService: Ng4LoadingSpinnerService,
@@ -30,7 +32,7 @@ export class OrdersComponent implements OnInit {
   }
 
   getOrders() {
-    let action = Action.AUTH + Action.ORDERS;
+    let action = Action.PRIVATE + Action.CUSTOMER + Action.ORDERS;
     this.appService.getMethod(action)
       .subscribe(data => {
         this.OrdersData = data;

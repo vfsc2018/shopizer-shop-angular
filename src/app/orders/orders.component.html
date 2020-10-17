@@ -17,10 +17,9 @@
               <tr *ngFor="let product of order.products">
                 <td class="width40">
                   <div class="table-shop-product">
-                    <div class="image">
-                      <custom-img [src]="product.product.image.imageUrl" [alt]="'Product 1'">
-                      </custom-img>
-                    </div>
+                    <!-- <div class="image"> -->
+                      <img class="image" src="{{api_url}}{{product.product.image.imageUrl}}" alt="{{product.sku}}">
+                    <!-- </div> -->
                     <div class="name">
                       {{product.product.description.title}}
                       <span class="skuid">SKU: {{product.sku}}</span></div>
@@ -39,7 +38,7 @@
               <tr class="tab-header detail">
                 <td class="orderdate"><span class="orderon">Ordered On</span><span class="date">{{dateFormat(order.datePurchased)}}</span></td>
                 <td></td>
-                <td class="width20"><span class="orderon">Order Total</span><span class="total">${{order.total.value}}</span></td>
+                <td class="width20"><span class="orderon">Order Total</span><span class="total">{{order.total.value}} {{order.currency}}</span></td>
               </tr>
             </tbody>
           </table>
