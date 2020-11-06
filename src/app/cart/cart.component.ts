@@ -53,13 +53,14 @@ export class CartComponent {
     this.dataSharingService.modelRef.getValue().close()
   }
   getCart() {
+    let cardCode = this.cookieService.get('shopizer-cart-id');
     this.spinnerService.show();
     let userData = JSON.parse(localStorage.getItem('userData'));
     let action;
     if (userData) {
-      action = Action.CUSTOMERS + userData.id + '/' + Action.CARTS;
+      action =  Action.PRIVATE + Action.CUSTOMERS + '/' + Action.CARTS;
     } else {
-      action = Action.CART + this.cookieService.get('shopizer-cart-id');
+      action = Action.CART + cardCode;
     }
     
     this.appService.getMethod(action)

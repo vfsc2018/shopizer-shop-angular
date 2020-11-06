@@ -92,13 +92,7 @@ export class HomeComponent implements OnInit {
     this.spinnerService.show();
 
 
-    let userData = JSON.parse(localStorage.getItem('userData'));
     let action;
-    // if (userData) {
-    //   action = Action.CUSTOMERS + userData.id + '/' + Action.CARTS;
-    // } else {
-    //   action = Action.CART
-    // }
 
     if (this.cookieService.get('shopizer-cart-id')) {
       action = Action.CART
@@ -116,8 +110,9 @@ export class HomeComponent implements OnInit {
         });
 
     } else {
+      let userData = JSON.parse(localStorage.getItem('userData'));
       if (userData) {
-        action = Action.CUSTOMERS + userData.id + '/' + Action.CARTS;
+        action =  Action.PRIVATE + Action.CUSTOMERS + '/' + Action.CARTS;
       } else {
         action = Action.CART
       }

@@ -32,7 +32,7 @@ export class OrderDetailComponent implements OnInit {
     let action = Action.AUTH + Action.ORDERS + this.orderID;
     this.appService.getMethod(action)
       .subscribe(data => {
-        // console.log(data);
+        console.log(data);
         this.data = data;
       }, error => {
       });

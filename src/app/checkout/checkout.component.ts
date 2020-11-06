@@ -54,7 +54,7 @@ export class CheckoutComponent implements OnInit {
   billing = {
     firstName: '',
     lastName: '',
-    company: 'Home',
+    company: '',
     address: '',
     // address1: '',
     city: '',
@@ -71,7 +71,7 @@ export class CheckoutComponent implements OnInit {
   shipping = {
     firstName: '',
     lastName: '',
-    company: 'Home',
+    company: '',
     address: '',
     // address1: '',
     city: '',
@@ -259,17 +259,19 @@ export class CheckoutComponent implements OnInit {
 
   }
   getCart() {
-    this.spinnerService.show();
-    let action = Action.CART;  
-    this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
-      .subscribe(data => {
-        this.spinnerService.hide();
-        this.cartData = data;
-        this.getOrderTotal('')
-      }, error => {
-        this.spinnerService.hide();
-      });
-
+    let cardCode = this.cookieService.get('shopizer-cart-id');
+    if(cardCode){
+      this.spinnerService.show();
+      let action = Action.CART;  
+      this.appService.getMethod(action + cardCode)
+        .subscribe(data => {
+          this.spinnerService.hide();
+          this.cartData = data;
+          this.getOrderTotal('')
+        }, error => {
+          this.spinnerService.hide();
+        });
+    }
   }
   getOrderTotal(quoteID) {  
     this.getConfig();  

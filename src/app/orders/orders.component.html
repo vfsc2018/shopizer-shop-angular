@@ -6,17 +6,17 @@
     <div class="row" *ngIf="OrdersData">
       <div class="col-md-9">
         <div class="au-form-body p-r-lg-15 p-r-xl-15">
-          <custom-label [label]="'My Orders'" [className]="'cart-border'"></custom-label>
+          <custom-label [label]="'Recent Orders'" [className]="'cart-border'"></custom-label>
           <table class="table-shop m-b-30" *ngFor="let order of OrdersData.orders">
             <tbody>
               <tr class="tab-header">
-                <td class="order-id"><span>Order Id : {{order.id}}</span></td>
+                <td class="order-id"><span>{{ 'Order Id' | translate}} : {{order.id}}</span></td>
                 <td></td>
-                <td class="width20"><span (click)="onShowOrderDetails(order)" class="floatR">View Details</span></td>
+                <td class="width20"><span (click)="onShowOrderDetails(order)" class="floatR">{{ 'View Details' | translate}}</span></td>
               </tr>
               <tr *ngFor="let product of order.products">
                 <td class="width40">
-                  <div class="table-shop-product">
+                  <div *ngIf="product.product" class="table-shop-product">
                     <!-- <div class="image"> -->
                       <img class="image" src="{{api_url}}{{product.product.image.imageUrl}}" alt="{{product.sku}}">
                     <!-- </div> -->
@@ -30,15 +30,15 @@
                   <span class="price">{{product.price}}</span>
                 </td>
                 <td class="width10">
-                  <span class="delivered">{{order.orderStatus}}</span>
+                  <!-- <span class="delivered">{{order.orderStatus}}</span> -->
                   <!-- <span class="arriving">{{order.orderStatus}}</span> -->
                 </td>
               </tr>
 
               <tr class="tab-header detail">
-                <td class="orderdate"><span class="orderon">Ordered On</span><span class="date">{{dateFormat(order.datePurchased)}}</span></td>
+                <td class="orderdate"><span class="orderon">{{ 'Ordered On' | translate}}</span><span class="date">{{dateFormat(order.datePurchased)}}</span></td>
                 <td></td>
-                <td class="width20"><span class="orderon">Order Total</span><span class="total">{{order.total.value}} {{order.currency}}</span></td>
+                <td class="width20"><span class="orderon">{{ 'Order Total' | translate}}</span><span class="total">{{order.total.value}} {{order.currency}}</span></td>
               </tr>
             </tbody>
           </table>

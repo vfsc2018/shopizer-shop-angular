@@ -68,13 +68,16 @@ export class SettingsComponent {
     this.getProfile();
   }
   getProfile() {
-    //let action = Action.AUTH + Action.CUSTOMER + Action.PROFILE;
-    let action = Action.PRIVATE + Action.CUSTOMER + Action.PROFILE;
-    this.appService.getMethod(action)
-      .subscribe(data => {
-        this.userData = data;
-      }, error => {
+    let userData = JSON.parse(localStorage.getItem('userData'));
+    if(userData){
+      //let action = Action.AUTH + Action.CUSTOMER + Action.PROFILE;
+      let action = Action.PRIVATE + Action.CUSTOMER + Action.PROFILE;
+      this.appService.getMethod(action)
+        .subscribe(data => {
+          this.userData = data;
+        }, error => {
       });
+    }
   }
   onChangeLanguage(value) {
 

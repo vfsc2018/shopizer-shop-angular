@@ -213,10 +213,11 @@ export class ProductDetailComponent implements OnInit {
         });
     } else {
       if (userData) {
-        action = Action.CUSTOMERS + userData.id + '/' + Action.CARTS;
+        action =  Action.PRIVATE + Action.CUSTOMERS + '/' + Action.CARTS;
       } else {
         action = Action.CART
       }
+  
       let param = { "product": product.id, "quantity": 1 }     
      
       this.appService.postMethod(action, param)
