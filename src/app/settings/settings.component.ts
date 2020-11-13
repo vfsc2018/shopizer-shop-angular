@@ -41,7 +41,7 @@ export class SettingsComponent {
       this.language = 'Language'
     }
     this.dataSharingService.isLogin.subscribe(value => {
-      console.log(value)
+      // console.log(value)
       this.userDataFlag = localStorage.getItem('userData') ? true : false;
       // if (localStorage.getItem('langulage')) {
       //   this.language = localStorage.getItem('langulage') == 'en' ? 'English' : 'Vietnamese';

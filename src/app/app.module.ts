@@ -88,6 +88,9 @@ import { ArrayFilterPipe, LimitToPipe } from './component/custom-select/pipes/in
 import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 import { StripeComponent } from './component/stripe/stripe.component';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+ 
+
 /** load this at startup */
 export function loadConfigurations(configurationService: ConfigurationService) {
   return () => configurationService.loadConfigurations();
@@ -269,6 +272,7 @@ export function createTranslateLoader(http: HttpClient) {
     LimitToPipe,
     OrderConfirmComponent,
     StripeComponent
+    
   ],
   entryComponents: [
     CartComponent,
@@ -276,6 +280,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   imports: [
     NgbModule,
+    NgxQRCodeModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -300,7 +305,6 @@ export function createTranslateLoader(http: HttpClient) {
     HttpModule,
     Ng5SliderModule,
     NgxPaginationModule,
-    // FormValidationModule,
     NgxGalleryModule,
     CarouselModule,
     Ng4LoadingSpinnerModule,

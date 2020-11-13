@@ -34,6 +34,7 @@ export class SiteheaderComponent implements OnInit {
         private dataSharingService: DataSharingService,
         private translate: TranslateService
     ) {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false ;
         this.dataSharingService.count.subscribe(value => {
             this.count = value;
         });
@@ -65,7 +66,6 @@ export class SiteheaderComponent implements OnInit {
                 this.cookieService.set('store-data', JSON.stringify(data))
             }, error => {
                 this.router.navigate(['/error']);
-                console.log('jaiminiininininin')
             });
     }
     getCategoryHierarchy() {
@@ -96,8 +96,7 @@ export class SiteheaderComponent implements OnInit {
         this.subclick = this.subclick == '' ? 'active' : ''
     }
     onClickContent(content) {
-        // console.log(content)
-        localStorage.setItem('content_id', JSON.stringify(content))
+        localStorage.setItem('content_id', JSON.stringify(content));
     }
     onClickMenu() {
         this.active = this.active == '' ? 'active' : ''

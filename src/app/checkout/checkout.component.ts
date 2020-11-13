@@ -53,37 +53,36 @@ export class CheckoutComponent implements OnInit {
   isCondition: boolean = false;
   billing = {
     firstName: '',
-    lastName: '',
+    lastName: 'Mr/Ms',
     company: '',
     address: '',
-    // address1: '',
-    city: '',
-    country: 'Việt Nam',
-    countryCode: 'VN',
+    city: 'Hà Nội',
     stateProvince: 'Hà Nội',
+    country: 'Việt Nam',
     postalCode: '10000',
     phone: '',
+    countryCode: 'VN',
+    zone: '',
     email: '',
-    zone: ''
-  }
+  };
+  comments: string = '';
   note: string = '';
   password: string = '';
   shipping = {
     firstName: '',
-    lastName: '',
+    lastName: 'Mr/Ms',
     company: '',
     address: '',
-    // address1: '',
-    city: '',
-    country: 'Việt Nam',
-    countryCode: 'VN',
+    city: 'Hà Nội',
     stateProvince: 'Hà Nội',
+    country: 'Việt Nam',
     postalCode: '10000',
     phone: '',
+    countryCode: 'VN',
+    zone: '',
     email: '',
-    zone: ''
-    // note: ''
-  }
+    note: ''
+  };
   cartData: any;
   config: any;
   shippingData: any;
@@ -116,41 +115,59 @@ export class CheckoutComponent implements OnInit {
     this.userDataFlag = localStorage.getItem('userData') ? true : false;
 
     // let me = this;
-    this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
-      });
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let p = autocomplete.getPlace();
-          this.billing.countryCode = p.address_components.find(i => i.types.some(i => i == "country")).short_name;
-          this.billing.country = p.address_components.find(i => i.types.some(i => i == "country")).long_name;
-          this.billing.stateProvince = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).long_name;
-          this.billing.zone = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).short_name;
-          this.billing.city = p.address_components.find(i => i.types.some(i => i == "locality")).long_name;
-          let poCode = p.address_components.find(i => i.types.some(i => i == "postal_code"));
-          if (poCode != undefined) {
-            this.billing.postalCode = poCode.long_name
-          }
-          var componentForm = {
-            street_number: 'short_name',
-            route: 'long_name',
-            sublocality: 'sublocality'
-          };
-          let array = [];
-          for (var i = 0; i < p.address_components.length; i++) {
-            var addressType = p.address_components[i].types[0];
-            if (componentForm[addressType]) {
-              var val = p.address_components[i][componentForm[addressType]];
-              array.push(val);
+    // this.mapsAPILoader.load().then(() => {
+    //   let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+    //     types: ["address"]
+    //   });
+    //   autocomplete.addListener("place_changed", () => {
+    //     this.ngZone.run(() => {
+    //       //get the place result
+    //       let p = autocomplete.getPlace();
+    //       this.billing.countryCode = p.address_components.find(i => i.types.some(i => i == "country")).short_name;
+    //       this.billing.country = p.address_components.find(i => i.types.some(i => i == "country")).long_name;
+    //       this.billing.stateProvince = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).long_name;
+    //       this.billing.zone = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).short_name;
+    //       this.billing.city = p.address_components.find(i => i.types.some(i => i == "locality")).long_name;
+    //       let poCode = p.address_components.find(i => i.types.some(i => i == "postal_code"));
+    //       if (poCode != undefined) {
+    //         this.billing.postalCode = poCode.long_name
+    //       }
+    //       var componentForm = {
+    //         street_number: 'short_name',
+    //         route: 'long_name',
+    //         sublocality: 'sublocality'
+    //       };
+    //       let array = [];
+    //       for (var i = 0; i < p.address_components.length; i++) {
+    //         var addressType = p.address_components[i].types[0];
+    //         if (componentForm[addressType]) {
+    //           var val = p.address_components[i][componentForm[addressType]];
+    //           array.push(val);
 
-            }
-          }
-          this.billing.address = array.toString();
-        });
-      });
-    });
+    //         }
+    //       }
+    //       this.billing.address = array.toString();
+    //     });
+    //   });
+    // });
+  }
+  private formatMoney(amount:string) {
+    let money = "";
+    let i = 0;
+    
+    while(amount.length>0){
+      if(i>0 && i%3==0) money = "," + money;
+      let last = amount.substr(amount.length - 1); 
+      money = last + money;
+      amount = amount.substr(0,amount.length - 1); 
+      i++;
+    }
+    return money;
+  }
+
+  private getCurrency(amount){
+    let money = amount + "";
+    return this.formatMoney(money) + ".00";
   }
 
   getCountry() {
@@ -210,33 +227,33 @@ export class CheckoutComponent implements OnInit {
 
         this.billing = data.billing;
         this.billing.email = data.emailAddress;
-        if (data.delivery) {
-          this.shipping = data.delivery;
-          let shippingIndex = this.shippingCountryData.findIndex(order => order.code === data.delivery.country);
-          if (shippingIndex != -1) {
-            this.shipping.country = this.shippingCountryData[shippingIndex].name;
-            this.shipping.countryCode = this.shippingCountryData[shippingIndex].code;
-            this.shippingStateData = this.shippingCountryData[shippingIndex].zones;
-            let shippingIndex1 = this.shippingStateData.findIndex(order => order.code === data.delivery.zone);
-            if (shippingIndex1 != 1) {
-              this.shipping.stateProvince = this.shippingStateData[shippingIndex1].name;
-              this.shipping.zone = this.shippingStateData[shippingIndex1].zone;
-            }
-          }
-        }
+        // if (data.delivery) {
+        //   this.shipping = data.delivery;
+        //   let shippingIndex = this.shippingCountryData.findIndex(order => order.code === data.delivery.country);
+        //   if (shippingIndex != -1) {
+        //     this.shipping.country = this.shippingCountryData[shippingIndex].name;
+        //     this.shipping.countryCode = this.shippingCountryData[shippingIndex].code;
+        //     this.shippingStateData = this.shippingCountryData[shippingIndex].zones;
+        //     let shippingIndex1 = this.shippingStateData.findIndex(order => order.code === data.delivery.zone);
+        //     if (shippingIndex1 != 1) {
+        //       this.shipping.stateProvince = this.shippingStateData[shippingIndex1].name;
+        //       this.shipping.zone = this.shippingStateData[shippingIndex1].zone;
+        //     }
+        //   }
+        // }
         let index = this.countryData.findIndex(order => order.code === data.billing.country);
         if (index != -1) {
           this.billing.country = this.countryData[index].name;
           this.billing.countryCode = this.countryData[index].code;
           ////console.log(this.countryData[index]);
           this.stateData = this.countryData[index].zones;
-          let index1 = this.stateData.findIndex(order => order.code === data.billing.zone);
-          if (index != 1) {
+          // let index1 = this.stateData.findIndex(order => order.code === data.billing.zone);
+          // if (index != 1) {
             // this.billing.stateProvince = this.stateData[index1].name;
             // this.billing.zone = this.stateData[index1].code;
-          }
+          // }
         }
-        this.onShippingChange();
+        // this.onShippingChange();
         // ////console.log(index, '***********');
       }, error => {
       });
@@ -259,19 +276,21 @@ export class CheckoutComponent implements OnInit {
 
   }
   getCart() {
-    let cardCode = this.cookieService.get('shopizer-cart-id');
-    if(cardCode){
-      this.spinnerService.show();
-      let action = Action.CART;  
-      this.appService.getMethod(action + cardCode)
-        .subscribe(data => {
-          this.spinnerService.hide();
-          this.cartData = data;
-          this.getOrderTotal('')
-        }, error => {
-          this.spinnerService.hide();
-        });
-    }
+
+    let cartCode = this.cookieService.get('shopizer-cart-id');
+    if(!cartCode) return;
+    
+    this.spinnerService.show();
+    let action = Action.CART;  
+    this.appService.getMethod(action + cartCode)
+      .subscribe(data => {
+        this.spinnerService.hide();
+        this.cartData = data;
+        this.getOrderTotal('')
+      }, error => {
+        this.spinnerService.hide();
+      });
+    
   }
   getOrderTotal(quoteID) {  
     this.getConfig();  
@@ -304,31 +323,31 @@ export class CheckoutComponent implements OnInit {
       });
   }
   ngOnInit() {
-    this.stripe = Stripe(environment.stripeKey);
-    const elements = this.stripe.elements();
+    // this.stripe = Stripe(environment.stripeKey);
+    // const elements = this.stripe.elements();
 
-    this.cardNumber = elements.create('cardNumber');
-    this.cardNumber.mount(this.cardNumberElement.nativeElement);
+    // this.cardNumber = elements.create('cardNumber');
+    // this.cardNumber.mount(this.cardNumberElement.nativeElement);
 
-    this.cardNumber.addEventListener('change', ({ error }) => {
-      this.cardNumberErrors = error && error.message;
-    });
+    // this.cardNumber.addEventListener('change', ({ error }) => {
+    //   this.cardNumberErrors = error && error.message;
+    // });
 
-    this.cardExpiry = elements.create('cardExpiry');
-    this.cardExpiry.mount(this.cardExpiryElement.nativeElement);
+    // this.cardExpiry = elements.create('cardExpiry');
+    // this.cardExpiry.mount(this.cardExpiryElement.nativeElement);
 
-    this.cardExpiry.addEventListener('change', ({ error }) => {
+    // this.cardExpiry.addEventListener('change', ({ error }) => {
 
-      this.cardExpiryErrors = error && error.message;
-    });
+    //   this.cardExpiryErrors = error && error.message;
+    // });
 
-    this.cardCvc = elements.create('cardCvc');
-    this.cardCvc.mount(this.cardCvcElement.nativeElement);
+    // this.cardCvc = elements.create('cardCvc');
+    // this.cardCvc.mount(this.cardCvcElement.nativeElement);
 
-    this.cardCvc.addEventListener('change', ({ error }) => {
+    // this.cardCvc.addEventListener('change', ({ error }) => {
 
-      this.cardCvcErrors = error && error.message;
-    });
+    //   this.cardCvcErrors = error && error.message;
+    // });
   }
 
   onShippingChange() {
@@ -356,44 +375,44 @@ export class CheckoutComponent implements OnInit {
   shippingQuoteChange(value) {
     this.getOrderTotal(value.shippingQuoteOptionId)
   }
-  onShipDiffrent(event) {
-    this.isShipping = !this.isShipping;
-    if (event.target.checked) {
-      this.shipping = {
-        firstName: this.billing.firstName,
-        lastName: this.billing.lastName,
-        company: this.billing.company,
-        address: this.billing.address,
-        // address1: this.checkout.address1,
-        city: this.billing.city,
+  // onShipDiffrent(event) {
+  //   this.isShipping = !this.isShipping;
+  //   if (event.target.checked) {
+  //     this.shipping = {
+  //       firstName: this.billing.firstName,
+  //       lastName: this.billing.lastName,
+  //       company: this.billing.company,
+  //       address: this.billing.address,
+  //       // address1: this.checkout.address1,
+  //       city: this.billing.city,
 
-        stateProvince: this.billing.stateProvince,
-        zone: this.billing.zone,
-        country: this.billing.country,
-        countryCode: this.billing.countryCode,
-        postalCode: this.billing.postalCode,
-        phone: this.billing.phone,
-        email: this.billing.email
+  //       stateProvince: this.billing.stateProvince,
+  //       zone: this.billing.zone,
+  //       country: this.billing.country,
+  //       countryCode: this.billing.countryCode,
+  //       postalCode: this.billing.postalCode,
+  //       phone: this.billing.phone,
+  //       email: this.billing.email
 
-      }
-      this.onShippingChange();
-    } else {
-      this.shipping = {
-        firstName: '',
-        lastName: '',
-        company: '',
-        address: '',
-        city: '',
-        stateProvince: 'Hà Nội',
-        zone: '',
-        country: 'Việt Nam',
-        countryCode: 'VN',
-        postalCode: '100000',
-        phone: '',
-        email: ''
-      }
-    }
-  }
+  //     }
+  //     // this.onShippingChange();
+  //   } else {
+  //     this.shipping = {
+  //       firstName: '',
+  //       lastName: '',
+  //       company: '',
+  //       address: '',
+  //       city: '',
+  //       stateProvince: 'Hà Nội',
+  //       zone: '',
+  //       country: 'Việt Nam',
+  //       countryCode: 'VN',
+  //       postalCode: '10000',
+  //       phone: '',
+  //       email: ''
+  //     }
+  //   }
+  // }
   onCreateAccount() {
     this.isAccount = !this.isAccount;
   }
@@ -419,17 +438,17 @@ export class CheckoutComponent implements OnInit {
       this.errMessage = 'Please agree to our terms and conditions'
     } else 
     {
-      if (bill.firstName == '' || bill.lastName == '' || bill.address == '' || bill.city == '' || bill.countryCode == '' || bill.zone == '' || bill.postalCode == '' || bill.phone == '' || bill.email == '') {
-        console.log('else if')
-        this.isSubmitted = true;
-      }
+      // if (bill.firstName == '' || bill.lastName == '' || bill.address == '' || bill.city == '' || bill.countryCode == '' || bill.zone == '' || bill.postalCode == '' || bill.phone == '' || bill.email == '') {
+        // console.log('else if')
+        // this.isSubmitted = true;
+      // }
       // else if (shippingBill.firstName == '' || shippingBill.lastName == '' || shippingBill.address == '' || shippingBill.city == '' || shippingBill.countryCode == '' || shippingBill.zone == '' || shippingBill.postalCode == '') {
       //   console.log(shippingBill);
       //   if (this.isShipping) {
       //     this.isShippingSubmitted = true
       //   }
       // }
-      else {
+      // else {
         console.log('checkout')
         // this.spinnerService.show();
         // const { token, error } = await this.stripe.createToken(this.cardNumber);
@@ -444,16 +463,15 @@ export class CheckoutComponent implements OnInit {
           if (this.userDataFlag) {
             action = Action.PRIVATE + Action.CART + this.cartData.code + '/' + Action.CHECKOUT
             param = {
-              // "shippingQuote": 1100,
-              "currency": "CAD",
+              "currency": "VND",
+              "comments": this.comments,
+              "customerAgreement": true,
               "payment": {
-                "paymentType": "CREDITCARD",
+                "paymentType": "MONEYORDER",
                 "transactionType": "CAPTURE",
-                "paymentModule": "stripe",
-               // "paymentToken": token.id,
-               "paymentToken": "",
-                // "amount": 799.98
-                "amount": this.summeryOrder.totals[this.summeryOrder.totals.length - 1].value
+                "paymentModule": "moneyorder",
+                "paymentToken": "",
+                "amount": this.getCurrency(this.summeryOrder.totals[this.summeryOrder.totals.length - 1].value)
               }
             }
             
@@ -462,8 +480,10 @@ export class CheckoutComponent implements OnInit {
             let customer = {};
             if (this.isShipping) {
               customer = {
-                "emailAddress": this.billing.email,
+                "emailAddress":  this.billing.phone + "@vfsc.vn",
                 "language": language,
+                "password": this.password,
+                "userName":  this.billing.phone,
                 "billing": {
                   "address": this.billing.address,
                   "company": this.billing.company,
@@ -475,24 +495,14 @@ export class CheckoutComponent implements OnInit {
                   "firstName": this.billing.firstName,
                   "lastName": this.billing.lastName,
                   "phone": this.billing.phone
-                },
-                "delivery": {
-                  "address": this.shipping.address,
-                  "company": this.shipping.company,
-                  "city": this.shipping.city,
-                  "postalCode": this.shipping.postalCode,
-                  "country": this.shipping.countryCode,
-                  "stateProvince": this.shipping.stateProvince,
-                  "zone": this.shipping.zone,
-                  "firstName": this.shipping.firstName,
-                  "lastName": this.shipping.lastName,
-                  // "phone": this.shipping.phone
                 }
               }
             } else {
               customer = {
-                "emailAddress": this.billing.email,
+                "emailAddress": this.billing.phone + "@vfsc.vn",
                 "language": language,
+                "password": this.password,
+                "userName":  this.billing.phone,
                 "billing": {
                   "address": this.billing.address,
                   "company": this.billing.company,
@@ -507,18 +517,17 @@ export class CheckoutComponent implements OnInit {
                 }
               }
             }
-  
+            
             param = {
-              // "shippingQuote": 1100,
-              "currency": "CAD",
+              "currency": "VND",
+              "comments": this.comments,
+              "customerAgreement": true,
               "payment": {
-                "paymentType": "CREDITCARD",
+                "paymentType": "MONEYORDER",
                 "transactionType": "CAPTURE",
-                "paymentModule": "stripe",
-               // "paymentToken": token.id,
+                "paymentModule": "moneyorder",
                 "paymentToken": "",
-                // "amount": 799.98
-                "amount": this.summeryOrder.totals[this.summeryOrder.totals.length - 1].value
+                "amount": this.getCurrency(this.summeryOrder.totals[this.summeryOrder.totals.length - 1].value)
               },
               "customer": customer
             }
@@ -545,7 +554,7 @@ export class CheckoutComponent implements OnInit {
   
   
        // }
-      }
+      // }
     }
     
    

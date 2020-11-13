@@ -20,10 +20,9 @@ export class ContentComponent implements OnInit {
     //console.log(data);
     const code = this.activatedRoute.snapshot.paramMap.get('id');
     let action = Action.CONTENT + Action.PAGES + Action.NAME + code;
-    console.log('Url ' + action);
-    this.appService.getMethod(action)
-      .subscribe(data => {
-        console.log(data);
+    // console.log('Url ' + action);
+    this.appService.getMethod(action).subscribe(data => {
+        // console.log(data);
         this.page = data;
       }, error => {
       });

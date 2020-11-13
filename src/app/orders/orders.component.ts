@@ -31,6 +31,25 @@ export class OrdersComponent implements OnInit {
     this.getOrders()
   }
 
+  private formatMoney(amount:string) {
+    let money = "";
+    let i = 0;
+    
+    while(amount.length>0){
+      if(i>0 && i%3==0) money = "," + money;
+      let last = amount.substr(amount.length - 1); 
+      money = last + money;
+      amount = amount.substr(0,amount.length - 1); 
+      i++;
+    }
+    return money;
+  }
+
+  public getCurrency(amount){
+    let money = amount + "";
+    return this.formatMoney(money);
+  }
+
   getOrders() {
     let action = Action.PRIVATE + Action.CUSTOMER + Action.ORDERS;
     this.appService.getMethod(action)

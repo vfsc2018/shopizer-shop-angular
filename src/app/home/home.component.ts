@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getProductList()
     //this.ContentImage()
-    this.titleService.setTitle('NFSI food shop');
+    this.titleService.setTitle('VFSC food shop');
   }
   getProductList() {
     let action = Action.PRODUCT_GROUP;
@@ -112,14 +112,14 @@ export class HomeComponent implements OnInit {
     } else {
       let userData = JSON.parse(localStorage.getItem('userData'));
       if (userData) {
-        action =  Action.PRIVATE + Action.CUSTOMERS + '/' + Action.CARTS;
+        action =  Action.PRIVATE + Action.CUSTOMER + Action.CARTS;
       } else {
         action = Action.CART
       }
       let param = { "product": result.id, "quantity": 1 }
       this.appService.postMethod(action, param)
         .subscribe(data => {
-          console.log(data);
+          // console.log(data);
           this.cookieService.set('shopizer-cart-id', data.code);
           this.spinnerService.hide();
           this.showMiniCart();
@@ -145,7 +145,7 @@ export class HomeComponent implements OnInit {
         item.categories.map(category => {
           // console.log(category)
           if (val.id == category.description.id) {
-            console.log(item)
+            // console.log(item)
             this.filterData.push(item)
           }
         })

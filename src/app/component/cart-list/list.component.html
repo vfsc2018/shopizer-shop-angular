@@ -11,7 +11,7 @@
         </div>
       </td>
       <td>
-        ${{result.price}}
+        {{result.finalPrice}}
       </td>
       <td *ngIf="showGrid == '1'">
         <div class="quantity">
@@ -27,7 +27,7 @@
         </div>
       </td>
       <td *ngIf="showGrid == '1'">
-        ${{result.price * result.quantity}}
+        {{result.displaySubTotal}}
       </td>
       <td *ngIf="showGrid == '2'">
         <span class="icon-tick">

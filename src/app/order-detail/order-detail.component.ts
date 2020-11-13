@@ -3,8 +3,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
-
+import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'order-detail',
   templateUrl: './order-detail.component.html',
@@ -16,6 +17,7 @@ export class OrderDetailComponent implements OnInit {
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   data: any;
+  api_url=environment.baseUrl;
   constructor(
     private modalService: NgbModal,
     private appService: AppService,
@@ -23,16 +25,31 @@ export class OrderDetailComponent implements OnInit {
   ) {
 
   }
+  private formatMoney(amount:string) {
+    let money = "";
+    let i = 0;
+    
+    while(amount.length>0){
+      if(i>0 && i%3==0) money = "," + money;
+      let last = amount.substr(amount.length - 1); 
+      money = last + money;
+      amount = amount.substr(0,amount.length - 1); 
+      i++;
+    }
+    return money;
+  }
 
+  public getCurrency(amount){
+    let money = amount + "";
+    return this.formatMoney(money);
+  }
   ngOnInit() {
     // consaole.log(this.data)
     this.getOrderDetails()
   }
   getOrderDetails() {
-    let action = Action.AUTH + Action.ORDERS + this.orderID;
-    this.appService.getMethod(action)
-      .subscribe(data => {
-        console.log(data);
+    let action = Action.PRIVATE + Action.CUSTOMER + Action.ORDERS + this.orderID;
+    this.appService.getMethod(action).subscribe(data => {
         this.data = data;
       }, error => {
       });

@@ -20,7 +20,7 @@ export class Helper {
 
 
     showMiniCart(value) {
-        console.log(value);
+        // console.log(value);
         if (this.dataSharingService.modelRef.getValue()) {
             this.dataSharingService.modelRef.getValue().close()
             if (value == 1) {

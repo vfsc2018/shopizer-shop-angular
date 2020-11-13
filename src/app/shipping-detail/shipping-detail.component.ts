@@ -29,72 +29,75 @@ export class ShippingDetailComponent implements OnInit {
         types: ["address"]
       });
       autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
+      //   this.ngZone.run(() => {
           //get the place result
-          let p = autocomplete.getPlace();
-          this.billing.countryCode = p.address_components.find(i => i.types.some(i => i == "country")).short_name;
-          this.billing.country = p.address_components.find(i => i.types.some(i => i == "country")).long_name;
-          this.billing.stateProvince = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).long_name;
-          this.billing.zone = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).short_name;
-          this.billing.city = p.address_components.find(i => i.types.some(i => i == "locality")).long_name;
-          let poCode = p.address_components.find(i => i.types.some(i => i == "postal_code"));
-          if (poCode != undefined) {
-            this.billing.postalCode = poCode.long_name
-          }
-          var componentForm = {
-            street_number: 'short_name',
-            route: 'long_name',
-            sublocality: 'sublocality'
-          };
-          let array = [];
-          for (var i = 0; i < p.address_components.length; i++) {
-            var addressType = p.address_components[i].types[0];
-            if (componentForm[addressType]) {
-              var val = p.address_components[i][componentForm[addressType]];
-              array.push(val);
+          let p = autocomplete.getPlace(); 
+          this.billing.address = p.formatted_address;
+          
 
-            }
-          }
-          this.billing.address = array.toString();
+          // this.billing.countryCode = p.address_components.find(i => i.types.some(i => i == "country")).short_name;
+          // this.billing.country = p.address_components.find(i => i.types.some(i => i == "country")).long_name;
+          // this.billing.stateProvince = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).long_name;
+          // this.billing.zone = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).short_name;
+          // this.billing.city = p.address_components.find(i => i.types.some(i => i == "locality")).long_name;
+          // let poCode = p.address_components.find(i => i.types.some(i => i == "postal_code"));
+          // if (poCode != undefined) {
+          //   this.billing.postalCode = poCode.long_name
+          // }
+          // var componentForm = {
+          //   street_number: 'short_name',
+          //   route: 'long_name',
+          //   sublocality: 'sublocality'
+          // };
+          // let array = [];
+          // for (var i = 0; i < p.address_components.length; i++) {
+          //   var addressType = p.address_components[i].types[0]; console.log(addressType, componentForm[addressType]);
+          //   if (componentForm[addressType]) {
+          //     var val = p.address_components[i][componentForm[addressType]];
+          //     array.push(val);
+
+          //   }
+          // }
+          // this.billing.address = array.toString();
         });
-      });
+      // });
     });
 
-    this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchShippingElementRef.nativeElement, {
-        types: ["address"]
-      });
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let p = autocomplete.getPlace();
-          this.shipping.countryCode = p.address_components.find(i => i.types.some(i => i == "country")).short_name;
-          this.shipping.country = p.address_components.find(i => i.types.some(i => i == "country")).long_name;
-          this.shipping.stateProvince = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).long_name;
-          this.shipping.zone = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).short_name;
-          this.shipping.city = p.address_components.find(i => i.types.some(i => i == "locality")).long_name;
-          let poCode = p.address_components.find(i => i.types.some(i => i == "postal_code"));
-          if (poCode != undefined) {
-            this.shipping.postalCode = poCode.long_name
-          }
-          var componentForm = {
-            street_number: 'short_name',
-            route: 'long_name',
-            sublocality: 'sublocality'
-          };
-          let array = [];
-          for (var i = 0; i < p.address_components.length; i++) {
-            var addressType = p.address_components[i].types[0];
-            if (componentForm[addressType]) {
-              var val = p.address_components[i][componentForm[addressType]];
-              array.push(val);
+    // this.mapsAPILoader.load().then(() => {
+    //   let autocomplete = new google.maps.places.Autocomplete(this.searchShippingElementRef.nativeElement, {
+    //     types: ["address"]
+    //   });
+    //   autocomplete.addListener("place_changed", () => {
+    //     this.ngZone.run(() => {
+    //       //get the place result
+    //       let p = autocomplete.getPlace();
+    //       this.shipping.countryCode = p.address_components.find(i => i.types.some(i => i == "country")).short_name;
+    //       this.shipping.country = p.address_components.find(i => i.types.some(i => i == "country")).long_name;
+    //       this.shipping.stateProvince = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).long_name;
+    //       this.shipping.zone = p.address_components.find(i => i.types.some(i => i == "administrative_area_level_1")).short_name;
+    //       this.shipping.city = p.address_components.find(i => i.types.some(i => i == "locality")).long_name;
+    //       let poCode = p.address_components.find(i => i.types.some(i => i == "postal_code"));
+    //       if (poCode != undefined) {
+    //         this.shipping.postalCode = poCode.long_name
+    //       }
+    //       var componentForm = {
+    //         street_number: 'short_name',
+    //         route: 'long_name',
+    //         sublocality: 'sublocality'
+    //       };
+    //       let array = [];
+    //       for (var i = 0; i < p.address_components.length; i++) {
+    //         var addressType = p.address_components[i].types[0];
+    //         if (componentForm[addressType]) {
+    //           var val = p.address_components[i][componentForm[addressType]];
+    //           array.push(val);
 
-            }
-          }
-          this.shipping.address = array.toString();
-        });
-      });
-    });
+    //         }
+    //       }
+    //       this.shipping.address = array.toString();
+    //     });
+    //   });
+    // });
 
 
   }
@@ -116,21 +119,20 @@ export class ShippingDetailComponent implements OnInit {
     phone: '',
     email: '',
     countryCode: '',
-    zone: ''
+    zone: null
   }
   billing = {
     firstName: '',
-    lastName: '',
+    lastName: 'Mr/Ms',
     company: '',
     address: '',
-    city: '',
-    stateProvince: '',
-    country: '',
-    postalCode: '',
+    city: 'Hà Nội',
+    stateProvince: 'Hà Nội',
+    country: 'Việt Nam',
+    postalCode: '10000',
     phone: '',
-    email: '',
-    countryCode: '',
-    zone: ''
+    countryCode: 'VN',
+    zone: null
   }
   stateData: Array<any> = [];
   countryData: Array<any> = [];
@@ -189,60 +191,63 @@ export class ShippingDetailComponent implements OnInit {
     this.appService.getMethod(action)
       .subscribe(data => {
         // console.log(data);
-        this.billing = data.billing;
-        if (data.delivery) {
-          this.shipping = data.delivery;
-          let shippingIndex = this.shippingCountryData.findIndex(order => order.code === data.delivery.country);
-          // console.log("ship--->",shippingIndex, this.shippingCountryData[shippingIndex]);
-          if (shippingIndex != -1) {
-            this.shipping.country = this.shippingCountryData[shippingIndex].name;
-            this.shipping.countryCode = this.shippingCountryData[shippingIndex].code;
-            this.shippingStateData = this.shippingCountryData[shippingIndex].zones;
-            let shippingIndex1 = this.shippingStateData.findIndex(order => order.code === data.delivery.zone);
-            if (shippingIndex1 != -1) {
-              this.shipping.stateProvince = this.shippingStateData[shippingIndex1].name;
-              this.shipping.zone = this.shippingStateData[shippingIndex1].zone;
-            }
-          }
-        }
+        this.billing.firstName = data.billing.firstName; 
+        this.billing.address = data.billing.address; 
+        this.billing.phone = data.billing.phone; 
+        this.billing.country = this.countryData[0].name;
+        this.billing.countryCode = this.countryData[0].code;
+        // console.log("111--->", this.billing);
 
-
-
+        // if (data.delivery) {
+        //   this.shipping = data.delivery;
+        //   let shippingIndex = this.shippingCountryData.findIndex(order => order.code === data.delivery.country);
+        //   // console.log("ship--->",shippingIndex, this.shippingCountryData[shippingIndex]);
+        //   if (shippingIndex != -1) {
+        //     this.shipping.country = this.shippingCountryData[shippingIndex].name;
+        //     this.shipping.countryCode = this.shippingCountryData[shippingIndex].code;
+        //     this.shippingStateData = this.shippingCountryData[shippingIndex].zones;
+        //     let shippingIndex1 = this.shippingStateData.findIndex(order => order.code === data.delivery.zone);
+        //     if (shippingIndex1 != -1) {
+        //       this.shipping.stateProvince = this.shippingStateData[shippingIndex1].name;
+        //       this.shipping.zone = this.shippingStateData[shippingIndex1].zone;
+        //     }
+        //   }
+        // }
         
-        let index = this.countryData.findIndex(order => order.code === data.billing.country);
-        // console.log("--->",index, this.countryData[index]);
-        if (index != -1) {
-          this.billing.country = this.countryData[index].name;
-          this.billing.countryCode = this.countryData[index].code;
-          this.stateData = this.countryData[index].zones;
-          if (!data.delivery) {
-            this.shipping.country = this.countryData[index].name;
-            this.shipping.countryCode = this.countryData[index].code;
-            this.shippingStateData = this.countryData[index].zones;
-          }
+        // let index = this.countryData.findIndex(order => order.code === data.billing.country);
+        // // console.log("--->",index, this.countryData[index]);
+        // if (index != -1) {
+        //   this.billing.country = this.countryData[index].name;
+        //   this.billing.countryCode = this.countryData[index].code;
+        //   this.stateData = this.countryData[index].zones;
+        //   if (!data.delivery) {
+        //     this.shipping.country = this.countryData[index].name;
+        //     this.shipping.countryCode = this.countryData[index].code;
+        //     this.shippingStateData = this.countryData[index].zones;
+        //   }
 
-          // console.log(this.stateData)
-          let index1 = this.stateData.findIndex(order => order.code === data.billing.zone);
-          if (index1 != -1) {
-            this.billing.stateProvince = this.stateData[index1].name;
-            this.billing.zone = this.stateData[index1].code;
+        //   // console.log(this.stateData)
+        //   let index1 = this.stateData.findIndex(order => order.code === data.billing.zone);
+        //   if (index1 != -1) {
+        //     this.billing.stateProvince = this.stateData[index1].name;
+        //     this.billing.zone = this.stateData[index1].code;
 
-            if (!data.delivery) {
-              this.shipping.stateProvince = this.stateData[index1].name;
-              this.shipping.zone = this.stateData[index1].zone;
-            }
-          }
-        }
+        //     if (!data.delivery) {
+        //       this.shipping.stateProvince = this.stateData[index1].name;
+        //       this.shipping.zone = this.stateData[index1].zone;
+        //     }
+        //   }
+        // }
 
         // console.log(index, '***********');
       }, error => {
       });
   }
   onUpdateAddress() {
-
+    // console.log("222--->", this.billing);
     let userData = JSON.parse(localStorage.getItem('userData'));
     this.spinnerService.show();
-    let action = Action.AUTH + Action.CUSTOMER + Action.ADDRESS;
+    let action = Action.PRIVATE + Action.CUSTOMER + Action.ADDRESS;
     let param = {
       "id": userData.id,
       "billing": {
@@ -251,8 +256,8 @@ export class ShippingDetailComponent implements OnInit {
         "city": this.billing.city,
         "postalCode": this.billing.postalCode,
         "stateProvince": this.billing.stateProvince,
-        "country": this.billing.countryCode,
-        "zone": this.billing.zone,
+        "country": this.billing.country,
+        "countryCode": this.billing.countryCode,
         "firstName": this.billing.firstName,
         "lastName": this.billing.lastName,
         "phone": this.billing.phone
@@ -263,24 +268,26 @@ export class ShippingDetailComponent implements OnInit {
         "city": this.shipping.city,
         "postalCode": this.shipping.postalCode,
         "stateProvince": this.shipping.stateProvince,
-        "country": this.shipping.countryCode,
-        "zone": this.shipping.zone,
+        "country": this.shipping.country,
         "firstName": this.shipping.firstName,
         "lastName": this.shipping.lastName,
         "phone": this.shipping.phone
       }
     }
-    // console.log(param); 
+
+    param.delivery = param.billing;
+    console.log(param); 
+
     this.appService.patchMethod(action, param)
       .subscribe(data => {
         console.log(data);
         this.spinnerService.hide();
         this.toastr.success('Your address has been updated successfully.', 'Congratulation');
       }, error => {
-        console.log(error);
+        // console.log(error);
         this.spinnerService.hide();
         this.toastr.success('Your address has been updated successfully.', 'Congratulation');
-        // this.toastr.error('Registering customer user already exist');
+        // this.toastr.error('Your address has not been updated.', 'Error');
       });
   }
 }

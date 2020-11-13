@@ -183,12 +183,11 @@ export class ProductDetailComponent implements OnInit {
       }, error => {
       });
   }
-  addToCart(product) {
+  addToCart(product: any, quantity: number = 1) {
     this.spinnerService.show();
-
     let userData = JSON.parse(localStorage.getItem('userData')); 
-    let action;
-    // let action = Action.CART;
+    if(!quantity) quantity = 1;
+    let action = Action.CART;
     // let param = {
     //   "product": product.id,
     //   "quantity": this.qty,
@@ -199,43 +198,51 @@ export class ProductDetailComponent implements OnInit {
 
     // }
     if (this.cookieService.get('shopizer-cart-id')) {
-      action = Action.CART; 
-      let cartData = JSON.parse(this.cookieService.get('localCart'));
+      
+      let cartData = JSON.parse(this.cookieService.get('localCart'));      
       let index = cartData.findIndex(order => order.id === product.id); 
-      let param = { "product": product.id, "quantity": index == -1 ? 1 : cartData[index].quantity + 1 }
+      let realQuantity =  quantity + (index == -1 ? 0 : cartData[index].quantity);
+      let param = { "product": product.id, "quantity": realQuantity };
       let id = this.cookieService.get('shopizer-cart-id'); 
       this.appService.putMethod(action, id, param)
         .subscribe(data => {
+          let index = data.products.findIndex(p => p.id === product.id); 
+          this.qty = (index == -1 ? 0 : data.products[index].quantity);
+          // this.qty = data.quantity; 
           this.spinnerService.hide();
           this.Helper.showMiniCart(1);
         }, error => {
           this.spinnerService.hide();
         });
-    } else {
-      if (userData) {
-        action =  Action.PRIVATE + Action.CUSTOMERS + '/' + Action.CARTS;
-      } else {
-        action = Action.CART
-      }
-  
-      let param = { "product": product.id, "quantity": 1 }     
-     
+      
+    } else if (userData) {
+      action =  Action.PRIVATE + Action.CUSTOMER + Action.CARTS;
+    
+      let param = { "product": product.id, "quantity": quantity }     
+    
       this.appService.postMethod(action, param)
-        .subscribe(data => {      
+        .subscribe(data => { 
+          let index = data.products.findIndex(p => p.id === product.id); 
+          this.qty = (index == -1 ? 0 : data.products[index].quantity);
+          // this.qty = data.quantity;  
           this.cookieService.set('shopizer-cart-id', data.code);
           this.spinnerService.hide();
           this.Helper.showMiniCart(1);
         }, error => {
           this.spinnerService.hide();
         });
+    } else {
+      this.spinnerService.hide();
     }
   }
   qtyUpdate(status) {
     if (status == 1) {
-      this.qty = this.qty + 1;
+      // this.qty = this.qty + 1;
+      this.addToCart(this.productDetail, 1);
     } else {
       if (this.qty > 0) {
-        this.qty = this.qty - 1;
+        // this.qty = this.qty - 1;
+        this.addToCart(this.productDetail, -1);
       }
     }
   }

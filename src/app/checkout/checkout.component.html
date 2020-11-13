@@ -5,11 +5,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="checkout-heading" *ngIf="!userDataFlag">
-                    <a href="/account">Returning customer? Click here to login</a>
+                    <a href="/account">{{ 'Sign In' | translate}}</a>
                 </div>
-                <div class="checkout-heading">
+                <!-- <div class="checkout-heading">
                     <a href="#">Have a coupon? Click here to enter your code</a>
-                </div>
+                </div> -->
             </div>
             <div class="col-md-6" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
                 <div class="au-form-body p-b-0">
@@ -27,6 +27,17 @@
                                 </input-field>
                             </div>
                             <div class="col-sm-6">
+                                <input-field type="text" label="Phone" labelAfter="true" [(ngModel)]="billing.phone"
+                                    name="phone" placeHolder="" bottom="24" (onInputChange)="onPhoneChange()" minLength="10"
+                                    maxLength="10" #phone="ngModel" required>
+                                    <err-required message="Enter a 10-digit number" [isValid]="phone.valid || (phone.pristine)"></err-required>
+                                    <span *ngIf="isSubmitted">
+                                        <err-required [isValid]="phone.value" message="
+                                               Phone number  is required"></err-required>
+                                    </span>
+                                </input-field>
+                            </div>
+                            <!-- <div class="col-sm-6">
                                 <input-field type="txt" label="Last Name" labelAfter="true" [(ngModel)]="billing.lastName"
                                     name="lastName" placeHolder="" bottom="24" required #lastname="ngModel">
                                     <span *ngIf="isSubmitted">
@@ -34,7 +45,7 @@
                                             Last name is required"></err-required>
                                     </span>
                                 </input-field>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- <input-field type="text" label="Company Name" [(ngModel)]="billing.company" name="company"
                             placeHolder="" bottom="24">
@@ -58,7 +69,7 @@
                                 text" label="" [(ngModel)]="checkout.address1" name="address1" placeHolder="Apartment, suite, unit etc. (optional)"
                                 bottom="24"> -->
                         <!-- </input-field> -->
-                        <input-field type="text" label="Town/City" [(ngModel)]="billing.city" name="city" placeHolder=""
+                        <!-- <input-field type="text" label="Town/City" [(ngModel)]="billing.city" name="city" placeHolder=""
                             labelAfter="true" bottom="24" required #city="ngModel">
                             <span *ngIf="isSubmitted">
                                 <err-required [isValid]="city.value" message="
@@ -72,10 +83,10 @@
                                 <err-required [isValid]="country.value" message="
                                        Country field is required"></err-required>
                             </span>
-                        </custom-select>
+                        </custom-select> -->
 
-                        <div class="row">
-                            <div class="col-sm-6" *ngIf="stateData.length > 0">
+                        <!-- <div class="row"> -->
+                            <!-- <div class="col-sm-6" *ngIf="stateData.length > 0">
                                 <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="billing.stateProvince"
                                     name="stateProvince" [options]="stateData" [config]="selectConfig" (change)="onBillingStateSelect($event)"
                                     required #state="ngModel">
@@ -84,8 +95,8 @@
                                                State is required"></err-required>
                                     </span>
                                 </custom-select>
-                            </div>
-                            <div class="col-sm-6" *ngIf="stateData.length == 0">
+                            </div> -->
+                            <!-- <div class="col-sm-6" *ngIf="stateData.length == 0">
                                 <input-field type="text" label="State" labelAfter="true" placeHolder="Enter State"
                                     [(ngModel)]="billing.stateProvince" name="stateProvince" required #state="ngModel">
                                     <span *ngIf="isSubmitted">
@@ -103,9 +114,9 @@
                                                Postal code  is required"></err-required>
                                     </span>
                                 </input-field>
-                            </div>
-                        </div>
-                        <div class="row">
+                            </div> -->
+                        <!-- </div> -->
+                        <!-- <div class="row">
                             <div class="col-sm-6">
                                 <input-field type="text" label="Phone" labelAfter="true" [(ngModel)]="billing.phone"
                                     name="phone" placeHolder="" bottom="24" (onInputChange)="onPhoneChange()" minLength="10"
@@ -128,33 +139,29 @@
                                     </span>
                                 </input-field>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="account-create" *ngIf="!userDataFlag">
                             <custom-checkbox [label]="'Create an account'" (onChange)="onCreateAccount()"></custom-checkbox>
                         </div>
                         <div *ngIf="isAccount">
-                            <a class="pass-info">Create an account by entering the information below. If you
-                                are a
-                                returning customer
-                                please login using the link at the top of the page.</a>
-                            <input-field type="password" label="Account password" labelAfter="true" [(ngModel)]="password"
+                            <input-field type="text" label="Password" labelAfter="true" [(ngModel)]="password"
                                 name="password" placeHolder="" bottom="30" required>
                                 <!-- <err-required message="Valid email required " [isValid]="phone.valid || (phone.pristine)"></err-required> -->
                             </input-field>
                         </div>
                     </form>
                 </div>
-                <div class="is-shipping">
+                <!-- <div class="is-shipping">
                     <custom-checkbox [label]="'SHIP TO A DIFFERENT ADDRESS?'" (onChange)="onShipDiffrent($event)">
                     </custom-checkbox>
                 </div>
-                <div [ngClass]="isShipping ? 'au-form-body p-b-0 open' : 'au-form-body p-b-0' " *ngIf="isShipping">
+                <div [ngClass]="isShipping ? 'au-form-body p-b-0 open' : 'au-form-body p-b-0' " *ngIf="isShipping"> -->
                     <!-- <custom-label [label]="'Shipping Details'" [className]="'cart-border'"></custom-label> -->
                     <!-- <div class="account-create">
                         <custom-checkbox [label]="'Same as Billing Details'" (onChange)="onSameBillingAddress($event)">
                         </custom-checkbox>
                     </div> -->
-                    <form #checkoutForm="ngForm" role="form">
+                    <!-- <form #checkoutForm="ngForm" role="form">
                         <div class="row">
                             <div class="col-sm-6">
                                 <input-field type="text" label="Shipping First Name" labelAfter="true" [(ngModel)]="shipping.firstName"
@@ -166,19 +173,18 @@
                                 </input-field>
                             </div>
                             <div class="col-sm-6">
-                                <input-field type="txt" label="Shipping Last Name" labelAfter="true" [(ngModel)]="shipping.lastName"
-                                    name="lastName" placeHolder="" bottom="24" required #shippingLastName="ngModel">
-                                    <span *ngIf="isShippingSubmitted">
-                                        <err-required [isValid]="shippingLastName.value" message="
-                                            Shipping Last name is required"></err-required>
-                                    </span>
+                                <input-field type="text" label="Shipping Phone" labelAfter="true" [(ngModel)]="shipping.phone"
+                                    name="phone" placeHolder="" bottom="24" #phone="ngModel" pattern="[0-9]+" minlength="10"
+                                    maxlength="10" required>
+                                    <err-required message="Enter a 10-digit number" [isValid]="phone.valid || (phone.pristine)"></err-required>
+
                                 </input-field>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- <input-field type="text" label="Shipping Company Name" [(ngModel)]="shipping.company" name="company"
                             placeHolder="" bottom="24">
                         </input-field> -->
-                        <div class="form-group custom-input m-b-24">
+                        <!-- <div class="form-group custom-input m-b-24">
                             <label class="label-after">{{'Address' | translate}}</label>
                             <input type="text" placeholder="{{'Street address' | translate}}" #search [(ngModel)]="shipping.address"
                                 name="address" class="form-control" required #shippingAddress="ngModel">
@@ -186,7 +192,7 @@
                                 <err-required [isValid]="shippingAddress.value" message="
                                         Shipping Address is required"></err-required>
                             </span>
-                        </div>
+                        </div> -->
                         <!-- <div class='address-class'>
                             <input-field type="text" label="Shipping Address" labelAfter="true" [(ngModel)]="shipping.address"
                                 name="address" placeHolder="Shipping Street address" required>
@@ -196,23 +202,23 @@
                         <!-- <input-field type="text" label="" [(ngModel)]="shipping.address1" name="address1" placeHolder="Apartment, suite, unit etc. (optional)"
                             bottom="24"> -->
                         <!-- </input-field> -->
-                        <input-field type="text" label="Shipping Town/City" [(ngModel)]="shipping.city" name="city"
+                        <!-- <input-field type="text" label="Shipping Town/City" [(ngModel)]="shipping.city" name="city"
                             placeHolder="" labelAfter="true" bottom="24" required #shippingCity="ngModel">
                             <span *ngIf="isShippingSubmitted">
                                 <err-required [isValid]="shippingCity.value" message="
                                     Shipping City is required"></err-required>
                             </span>
-                        </input-field>
-                        <custom-select label="Shipping Country" labelAfter="true" bottom="24" [(ngModel)]="shipping.country"
+                        </input-field> -->
+                        <!-- <custom-select label="Shipping Country" labelAfter="true" bottom="24" [(ngModel)]="shipping.country"
                             name="country" [options]="shippingCountryData" [config]="selectConfig" required (change)="onShippingCountrySelect($event)"
                             #shippingCountry="ngModel">
                             <span *ngIf="isShippingSubmitted">
                                 <err-required [isValid]="shippingCountry.value" message="
                                     Shipping Country is required"></err-required>
                             </span>
-                        </custom-select>
+                        </custom-select> -->
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-sm-6" *ngIf="shippingStateData.length > 0">
                                 <custom-select label="Shipping State" labelAfter="true" bottom="24" [(ngModel)]="shipping.stateProvince"
                                     name="stateProvince" [options]="shippingStateData" [config]="selectConfig" (change)="onShippingStateSelect($event)"
@@ -231,14 +237,14 @@
                                             Shipping State is required"></err-required>
                                     </span>
                                 </input-field>
-                            </div>
+                            </div> -->
                             <!-- <div class="col-sm-6">
                                 <custom-select label="Shipping State" labelAfter="true" bottom="24" [(ngModel)]="shipping.stateProvince"
                                     name="stateProvince" [options]="shippingStateData" [config]="selectConfig" (change)="onShippingStateSelect($event)"
                                     required>
                                 </custom-select>
                             </div> -->
-                            <div class="col-sm-6">
+                            <!-- <div class="col-sm-6">
                                 <input-field type="text" label="Shipping Postcode / Zip" [(ngModel)]="shipping.postalCode"
                                     name="postalCode" placeHolder="" labelAfter="true" (onInputChange)="onShippingChange()"
                                     bottom="24" required #shippingPostalCode="ngModel">
@@ -248,7 +254,7 @@
                                     </span>
                                 </input-field>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- <div class="row">
                             <div class="col-sm-6">
                                 <input-field type="text" label="Shipping Phone" labelAfter="true" [(ngModel)]="shipping.phone"
@@ -268,12 +274,12 @@
                         </div> -->
 
 
-                    </form>
-                </div>
+                    <!-- </form>
+                </div> -->
 
                 <div class="au-form-body">
                     <custom-label [label]="'Additional Information'" [className]="'cart-border'"></custom-label>
-                    <custom-textarea label="Order notes" [(ngModel)]="note" name="note" placeHolder="">
+                    <custom-textarea label="Order notes" [(ngModel)]="comments" name="comments" placeHolder="">
                     </custom-textarea>
                 </div>
 
@@ -291,13 +297,13 @@
                             <tr *ngFor="let result of cartData.products">
                                 <td class="summery-item">{{result.description.name}} <b>*
                                         {{result.quantity}}</b></td>
-                                <td>${{result.price * result.quantity}}</td>
+                                <td>{{result.price * result.quantity}} đ</td>
                             </tr>
-                            <tr *ngFor="let total of summeryOrder.totals" [ngClass]="total.title != 'Total' ? '' : 'total-show'">
+                            <!-- <tr *ngFor="let total of summeryOrder.totals" [ngClass]="total.title != 'Total' ? '' : 'total-show'">
                                 <td *ngIf="total.title != 'Total'">{{total.title}}</td>
                                 <td *ngIf="total.title != 'Total'">{{total.total}}</td>
-                            </tr>
-                            <tr *ngIf="shippingData && config && config.displayShipping" class="shipping-data">
+                            </tr> -->
+                            <!-- <tr *ngIf="shippingData && config && config.displayShipping" class="shipping-data">
                                 <td class="shipping-key">{{'Shipping Fees' | translate}}</td>
                                 <td class="shipping">
                                     <div class="shipping-note">
@@ -319,7 +325,7 @@
 
 
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr *ngIf="!shippingData && config && config.displayShipping" class="shipping-data">
                                 <td class="shipping-key">{{'Shipping Fees' | translate}}</td>
                                 <td class="shipping">
@@ -335,9 +341,14 @@
                                 <td>{{summeryOrder.total}}</td>
                             </tr>
                         </tbody>
-
                     </table>
-                    <fieldset class="m-t-40" class="account-box">
+                    <div class="is-shipping">
+                        <err-required [isValid]="isCondition" message="{{errMessage}}"></err-required>
+                        <custom-checkbox [label]="'I agree with the terms and conditions'" (onChange)="termCondition()"></custom-checkbox>
+                         <btn [text]="'Submit Order'" class="process-button float-right" (onClick)="onPayment()"></btn>
+                     </div>
+
+                    <!-- <fieldset class="m-t-40" class="account-box"> -->
                         <!-- <form>
                             <stripe (onNumberChange)="onChangeNumber($event)"></stripe>
                             <div class="card_number">
@@ -371,13 +382,8 @@
 
 
                         </form> -->
-                    </fieldset>
-                    <div class="m-t-40 is-shipping">
-                        <custom-checkbox [label]="'I agree with the terms and conditions'" (onChange)="termCondition()"></custom-checkbox>
-                    </div>
-                    <err-required [isValid]="isCondition" message="{{errMessage}}"></err-required>
-
-                    <btn [text]="'Submit Order'" class="process-button m-t-50 float-right" (onClick)="onPayment()"></btn>
+                    <!-- </fieldset> -->
+ 
                 </div>
 
             </div>

@@ -4,39 +4,38 @@
   <div class="row">
     <div class="col-md-12 col-sm-12">
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Order Details</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'Your order' | translate }}</h4>
         <button type="button" class="close" aria-label="Close" (click)="passBack()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="au-form-body p-r-lg-15 p-r-xl-15">
-
+      <div *ngIf="data" class="au-form-body p-r-lg-15 p-r-xl-15">
+        
         <table class="table-shop">
           <tbody>
             <tr class="add-summary">
-              <div class="summary">
-                <custom-label [label]="'Summary'" [className]="'cart-border'"></custom-label>
-                <div class="orderid">Order Id: <span class="id">{{data.id}}</span></div>
-                <div class="orderdate">Order Date: <span class="date">{{dateFormat(data.datePurchased)}}</span></div>
-                <div class="orderdate">Order Status: <span class="status">{{data.orderStatus}}</span></div>
+              <div class="address">
+                <custom-label [label]="'View Details'" [className]="'cart-border'"></custom-label>
+                <div class="orderid">{{'Order Id' | translate}}: <span class="id"><b>{{data.id}}</b></span></div>
+                <div class="orderdate">{{'Ordered On' | translate}}: <span class="date">{{dateFormat(data.datePurchased)}}</span></div>
+                <div class="orderdate">{{'Status' | translate}}: <span class="status">{{data.orderStatus}}</span></div>
                 <!-- <div class="ordertotal">Order Status: <span class="total">${{data.total.value}}</span></div> -->
               </div>
-              <div class="address">
-                <custom-label [label]="'Billing Address'" [className]="'cart-border'"></custom-label>
+              <div class="summary" *ngIf="data.billing">
+                <custom-label [label]="'Contact'" [className]="'cart-border'"></custom-label>
                 <span class="fulladdress">
-                  <span><b>{{data.billing.firstName}} {{data.billing.lastName}}</b></span>
-                  <span>{{data.billing.address}},</span>
-                  <span>{{data.billing.city}}, {{data.billing.zone}}</span>
+                  <span>{{'First Name' | translate}}: <b>{{data.billing.firstName}}</b></span><br>
+                  <span>{{'Your Phone' | translate}}: <b>{{data.billing.phone}}</b></span><br>
+                  <span>{{'Address' | translate}}: {{data.billing.address}}</span>
+                  <!-- <span>{{data.billing.city}}, {{data.billing.zone}}</span>
                   <span>
                     {{data.billing.country}},
                     {{data.billing.postalCode}}
-                  </span>
-                  <span>
-                    <b>{{data.billing.phone}}</b>
-                  </span>
+                  </span> -->
+                  
                 </span>
               </div>
-              <div class="address">
+              <!-- <div *ngIf="data.delivery" class="address">
                 <custom-label [label]="'Delivery Address'" [className]="'cart-border'"></custom-label>
                 <span class="fulladdress">
                   <span><b>{{data.delivery.firstName}} {{data.delivery.lastName}}</b></span>
@@ -50,40 +49,40 @@
                     <b>{{data.delivery.phone}}</b>
                   </span>
                 </span>
-              </div>
+              </div> -->
             </tr>
             <tr class="product" *ngFor="let product of data.products">
               <td class="width30">
                 <div class="table-shop-product">
-                  <div class="image">
-                    <custom-img [src]="product.product.image.imageUrl" [alt]="'Product 1'">
-                    </custom-img>
+                  <div *ngIf="product.product" class="image"> 
+                    <img class="image" src="{{api_url}}{{product.product.image.imageUrl}}" alt="{{product.sku}}">
                   </div>
                   <div class="name">
                     {{product.product.description.title}}
                     <span class="skuid">SKU: {{product.sku}}</span>
-                    <a class="reorder" (click)="reorder(product)">Buy it again</a>
+                    <a class="reorder" (click)="reorder(product)">{{'Buy it again' | translate }}</a>
                   </div>
 
                 </div>
               </td>
               <td class="width15">
                 <span class="quantity">{{product.orderedQuantity}} x</span>
-                <span class="price">{{product.subTotal}}</span>
+                <span class="price">{{product.price}}</span>
 
               </td>
               <td class="width25">
-                <span class="price">{{product.price}}</span>
+                <span class="price">{{product.subTotal}}</span>
               </td>
             </tr>
-            <tr class="pricedetail bor-top" *ngIf="data">
+            <!-- <tr class="pricedetail bor-top" *ngIf="data">
               <div *ngFor="let totals of data.totals" [ngClass]="totals.module != 'total' ? 'detail' : 'hide'">
-                {{totals.module}} <span class="price">${{totals.value}}</span></div>
+                {{totals.module}} <span class="price">{{totals.value}}  {{data.currency}}</span></div> -->
               <!-- <div class="detail">Discount: <span class="price">0</span></div>
               <div class="detail">Tax Total: <span class="price">0</span></div> -->
-            </tr>
+            <!-- </tr> -->
             <tr class="pricedetail">
-              <div class="final">Total: <span class="totalprice">${{data.total.value}}</span></div>
+              <div class="final">{{'Order Total' | translate}}: <span class="totalprice">{{getCurrency(data.total.value)}} {{data.currency}}</span></div>
+              <p class="final"><b>{{'Order notes' | translate}}:</b> {{data.comments}}</p>
             </tr>
           </tbody>
         </table>

@@ -30,9 +30,13 @@ export class ShoppingCartComponent implements OnInit {
     this.getCart()
   }
   getCart() {
+    
+    let cartCode = this.cookieService.get('shopizer-cart-id');
+    if(!cartCode) return;
+
     this.spinnerService.show();
     let action = Action.CART;
-    this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
+    this.appService.getMethod(action + cartCode)
       .subscribe(data => {
         this.spinnerService.hide();
         this.cartData = data.products;
@@ -100,10 +104,14 @@ export class ShoppingCartComponent implements OnInit {
 
   }
   removeCartData(result) {
+    
+    let cartCode = this.cookieService.get('shopizer-cart-id');
+    if(!cartCode) return;
+
     this.spinnerService.show();
     let action = Action.CART;
     let param = { "product": result.id, "quantity": 0 }
-    this.appService.putMethod(action, this.cookieService.get('shopizer-cart-id'), param)
+    this.appService.putMethod(action, cartCode, param)
       .subscribe(data => {
         this.getCart();
         this.spinnerService.hide();
@@ -124,29 +132,42 @@ export class ShoppingCartComponent implements OnInit {
   }
   clearShoppingCard() {
     this.spinnerService.show();
-    let start = 0;
-    let me = this;
-    let doThing = function (start) {
-      for (let i = start; i < me.cartData.length; i++) {
-        let action = Action.CART;
-        let param = { "product": me.cartData[i].id, "quantity": 0 }
-        me.appService.putMethod(action, me.cookieService.get('shopizer-cart-id'), param)
-          .subscribe(data => {
-
-            if (me.cartData.length - 2 == i) {
-              me.getCart();
-              me.spinnerService.hide();
-            }
-            doThing(i + 1)
-          }, error => {
-            me.getCart();
-            me.spinnerService.hide();
-          });
-        break;
-      }
-    }
-    doThing(start)
+    let action = Action.CART;
+    this.appService.deleteMethod(action, this.cookieService.get('shopizer-cart-id')).subscribe(data => {
+        this.cartData = [];
+        this.cookieService.delete('shopizer-cart-id');
+        this.spinnerService.hide();
+    }, error => { 
+      this.cartData = [];
+      this.cookieService.delete('shopizer-cart-id');
+      this.spinnerService.hide();
+    });
   }
+  // clearShoppingCard() {
+  //   this.spinnerService.show();
+  //   let start = 0;
+  //   let me = this;
+  //   let doThing = function (start) {
+  //     for (let i = start; i < me.cartData.length; i++) {
+  //       let action = Action.CART;
+  //       let param = { "product": me.cartData[i].id, "quantity": 0 }
+  //       me.appService.putMethod(action, me.cookieService.get('shopizer-cart-id'), param)
+  //         .subscribe(data => {
+
+  //           if (me.cartData.length - 2 == i) {
+  //             me.getCart();
+  //             me.spinnerService.hide();
+  //           }
+  //           doThing(i + 1)
+  //         }, error => {
+  //           me.getCart();
+  //           me.spinnerService.hide();
+  //         });
+  //       break;
+  //     }
+  //   }
+  //   doThing(start)
+  // }
   onClickContinueButton() {
     this.router.navigate(['/']);
   }

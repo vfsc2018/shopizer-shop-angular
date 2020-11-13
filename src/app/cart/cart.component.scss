@@ -128,7 +128,7 @@
 
 .shop-cart .checkout p {
     font-size: 18px;
-    line-height: 24px;
+    line-height: 20px;
     color: #333;
     font-weight: 600;
     margin-bottom: 9px;
@@ -150,6 +150,15 @@
     font-weight: normal;
 }
 
+.qrcode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(3px 3px 3px #222222);
+    opacity: .9;
+    flex: auto;
+}
+
 .shop-cart .checkout p .total {
     font-size: 16px;
     color: #ff6666;
@@ -157,13 +166,11 @@
 }
 
 .shop-cart .checkout btn {
-    margin-top: 24px;
+    margin-top: 4px;
     display: block;
     height: 40px;
     line-height: 40px;
     text-align: center;
-
-
     button {
         width: 100px
     }

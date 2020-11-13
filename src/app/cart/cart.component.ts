@@ -32,6 +32,10 @@ import { environment } from 'src/environments/environment';
   ]
 })
 export class CartComponent {
+  title = 'app';
+  elementType = 'url';
+  value = 'Techiediaries';
+
   api_url=environment.baseUrl;
   private merchant = null;
   @Input() isOpen: boolean;
@@ -47,20 +51,24 @@ export class CartComponent {
   }
 
   cartData: any;
+  cartCode: string;
 
   goShopingCart() {
     this.router.navigate(['/shoppingcart']);
     this.dataSharingService.modelRef.getValue().close()
   }
   getCart() {
-    let cardCode = this.cookieService.get('shopizer-cart-id');
     this.spinnerService.show();
     let userData = JSON.parse(localStorage.getItem('userData'));
+    this.cartCode = this.cookieService.get('shopizer-cart-id');
     let action;
-    if (userData) {
-      action =  Action.PRIVATE + Action.CUSTOMERS + '/' + Action.CARTS;
+
+    if (this.cartCode) {
+      action = Action.CART + this.cartCode;
+    } else if(userData) {
+      action =  Action.PRIVATE + Action.CUSTOMER + Action.CARTS;
     } else {
-      action = Action.CART + cardCode;
+      return;
     }
     
     this.appService.getMethod(action)

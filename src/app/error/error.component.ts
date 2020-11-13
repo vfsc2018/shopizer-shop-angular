@@ -14,10 +14,10 @@ export class ErrorComponent implements OnInit {
 
   ngOnInit() {
     this.merchant = JSON.parse(this.cookieService.get('store-data'));
-    if(this.merchant.logo)
-                {
-                    this.merchant.logo.path=this.api_url+this.merchant.logo.path;
-                }
+    if(this.merchant.logo && this.merchant.logo.path.indexOf('http')!=0)
+    {
+        this.merchant.logo.path=this.api_url+this.merchant.logo.path;
+    }
   }
 
 }

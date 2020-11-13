@@ -34,7 +34,6 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
   }
   onEnterLogin(event) {
-    console.log('ffdfdsfsdfsd');
     if (event.keyCode == 13) {
       this.onLogin();
     }
@@ -43,8 +42,8 @@ export class AccountComponent implements OnInit {
     this.spinnerService.show();
     let action = Action.CUSTOMER + Action.LOGIN;
     let username = this.user.username;
-    if(username && !username.indexOf('@')){
-        username += "@vfsc.vn"
+    if(username && username.indexOf('@')<0){
+        username += "@vfsc.vn";
     }
     let param = { "username": username, "password": this.user.password }
     this.appService.postMethod(action, param)
@@ -67,18 +66,20 @@ export class AccountComponent implements OnInit {
     if (cardCode) {
       // let userData = JSON.parse(localStorage.getItem('userData'));
       let data = JSON.parse(this.cookieService.get('localCart'));
-      let action = Action.CUSTOMERS + cardCode + '/' + Action.CARTS;
-      data.map((value) => {
-        console.log(value);
-        let param = { "product": value.id, "quantity": value.quantity }
-        this.appService.postMethod(action, param)
-          .subscribe(data => {
+      let action = Action.PRIVATE + Action.CUSTOMER + Action.CARTS;
+      if(data){
+        data.map((value) => {
+          let param = { "product": value.id, "quantity": value.quantity }
+          this.appService.postMethod(action, param)
+            .subscribe(x => {
 
-          }, error => {
-          });
-      });
+            }, error => {
+            });
+        });
+      
+        this.Helper.showMiniCart(1);
+      }
     }
-    this.Helper.showMiniCart(1);
   }
   // onRegister() {
   //   // console.log('-----------')

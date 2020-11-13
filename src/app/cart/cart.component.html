@@ -6,6 +6,7 @@
 </li> -->
 <div [ngClass]="isOpen ? 'shop-cart open' : 'shop-cart'">
     <div *ngIf="cartData">
+        
         <ul class="shop-cart__list">
             <li @item class="item" *ngFor="let result of cartData.products; let i = index">
                 <div class="item-image">
@@ -13,7 +14,7 @@
                 </div>
                 <div class="item-detail">
                     <p class="name">{{result.description.name}}</p>
-                    <p class="price">${{result.price}}</p>
+                    <p class="price">{{result.finalPrice}}</p>
                     <p class="amount">x{{result.quantity}}</p>
                 </div>
                 <span class="icon-close" (click)="removecartData(result)"></span>
@@ -25,6 +26,9 @@
             </p> -->
             <p>{{ 'total' | translate}}
                 <span class="total">{{cartData.displayTotal}}</span>
+            </p>
+            <p>
+            <ngx-qrcode [elementType]="elementType" class="qrcode" [value]="cartCode" errorCorrectionLevel="L"></ngx-qrcode>
             </p>
             <btn [text]="'Checkout'" (onClick)="goShopingCart()"></btn>
         </div>

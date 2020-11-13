@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-lg-6 ">
         <div class="au-form-body p-r-lg-15 p-r-xl-15">
-          <custom-label [label]="'billing address'" [className]="'cart-border'"></custom-label>
+          <custom-label [label]="'Billing & shipping Information'" [className]="'cart-border'"></custom-label>
           <fieldset class="m-t-40" class="account-box">
             <form #billingForm="ngForm" role="form">
               <div class="row">
@@ -15,17 +15,22 @@
                   </input-field>
                 </div>
                 <div class="col-md-6">
+                  <input-field type="text" labelAfter="true" placeHolder="" label="Phone" [(ngModel)]="billing.phone"
+                    name="phone" required #phone="ngModel" minlength=10 maxlength=13>
+                  </input-field>
+                </div>
+                <!-- <div class="col-md-6">
                   <input-field type="name" labelAfter="true" placeHolder="" label="Last Name" [(ngModel)]="billing.lastName"
                     name="lastName" required #lastName="ngModel">
                   </input-field>
-                </div>
+                </div> -->
               </div>
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-md-12">
                   <input-field type="name" placeHolder="" label="Company Name" [(ngModel)]="billing.company" name="company">
                   </input-field>
                 </div>
-              </div>
+              </div> -->
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group custom-input m-b-24">
@@ -37,58 +42,58 @@
                     required #address="ngModel"></custom-textarea> -->
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-6">
+              <!-- <div class="row"> -->
+                <!-- <div class="col-md-6">
                   <custom-select label="Country" labelAfter="true" bottom="24" [(ngModel)]="billing.country" name="country"
                     [options]="countryData" [config]="config" required (change)="onBillingCountrySelect($event)">
                   </custom-select>
 
-                  <!-- <input-field type="name" placeHolder="" label="Town / City" [(ngModel)]="billing.city" name="city"
+                  <input-field type="name" placeHolder="" label="Town / City" [(ngModel)]="billing.city" name="city"
                     required #city="ngModel">
-                  </input-field> -->
-                </div>
-                <div class="col-md-6" *ngIf="stateData.length > 0">
+                  </input-field>
+                </div> -->
+                <!-- <div class="col-md-6" *ngIf="stateData.length > 0">
                   <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="billing.stateProvince" name="stateProvince"
                     [options]="stateData" [config]="config" required (change)="onBillingStateSelect($event)">
                   </custom-select>
 
-                  <!-- <input-field type="name" placeHolder="" label="State" [(ngModel)]="billing.stateProvince" name="stateProvince"
+                  <input-field type="name" placeHolder="" label="State" [(ngModel)]="billing.stateProvince" name="stateProvince"
                     required #stateProvince="ngModel">
-                  </input-field> -->
-                </div>
-                <div class="col-md-6" *ngIf="stateData.length == 0">
+                  </input-field>
+                </div> -->
+                <!-- <div class="col-md-6" *ngIf="stateData.length == 0">
                   <input-field type="text" labelAfter="true" bottom="24" placeHolder="Enter State" label="State"
                     [(ngModel)]="billing.stateProvince" required name="stateProvince">
                   </input-field>
-                </div>
-              </div>
-              <div class="row">
+                </div> -->
+              <!-- </div> -->
+              <!-- <div class="row">
                 <div class="col-md-6">
                   <input-field type="name" labelAfter="true" placeHolder="" label="Town / City" [(ngModel)]="billing.city"
                     name="city" required #city="ngModel">
                   </input-field>
-                  <!-- <input-field type="name" placeHolder="" label="Country" [(ngModel)]="billing.country" name="country"
+                  <input-field type="name" placeHolder="" label="Country" [(ngModel)]="billing.country" name="country"
                     required #country="ngModel">
-                  </input-field> -->
+                  </input-field>
                 </div>
                 <div class="col-md-6">
                   <input-field type="name" labelAfter="true" placeHolder="" label="Postal Code" [(ngModel)]="billing.postalCode"
                     name="postalCode" required #postalCode="ngModel">
                   </input-field>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <input-field type="text" labelAfter="true" placeHolder="" label="Phone Number (Optional)" [(ngModel)]="billing.phone"
+              </div> -->
+              <!-- <div class="row"> -->
+                <!-- <div class="col-md-6">
+                  <input-field type="text" labelAfter="true" placeHolder="" label="Phone" [(ngModel)]="billing.phone"
                     name="phone" required #phone="ngModel" minlength=10 maxlength=13>
                   </input-field>
-                </div>
+                </div> -->
                 <!-- <div class="col-md-6">
                   <input-field type="email" placeHolder="" label="Email (Optional)" [(ngModel)]="billing.email" name="email"
                     required #email="ngModel">
                   </input-field>
                 </div> -->
-              </div>
+              <!-- </div> -->
               <!-- <div class="form-group au-form">
                 <btn [text]="'Update Address'"></btn>
               </div> -->
@@ -99,7 +104,7 @@
 
       </div>
       <div class="col-lg-6">
-        <div class="au-form-body p-r-lg-15 p-r-xl-15">
+        <!-- <div class="au-form-body p-r-lg-15 p-r-xl-15">
           <custom-label [label]="'Delivery Address'" [className]="'cart-border'"></custom-label>
           <fieldset class="m-t-40" class="account-box">
             <form #deliveryForm="ngForm" role="form">
@@ -128,8 +133,8 @@
                     <input type="text" placeholder="" #searchShipping [(ngModel)]="shipping.address" name="address"
                       class="form-control" />
                   </div>
-                  <!-- <custom-textarea label="Address" name="note" placeHolder="" [(ngModel)]="shipping.address" name="address"
-                    #address></custom-textarea> -->
+                  <custom-textarea label="Address" name="note" placeHolder="" [(ngModel)]="shipping.address" name="address"
+                    #address></custom-textarea>
                 </div>
               </div>
               <div class="row">
@@ -138,17 +143,17 @@
                     [options]="shippingCountryData" (change)="onShippingCountrySelect($event)" [config]="config">
                   </custom-select>
 
-                  <!-- <input-field type="name" placeHolder="" label="Town / City" [(ngModel)]="shipping.city" name="city"
+                  <input-field type="name" placeHolder="" label="Town / City" [(ngModel)]="shipping.city" name="city"
                     #city="ngModel">
-                  </input-field> -->
+                  </input-field>
                 </div>
                 <div class="col-md-6" *ngIf="shippingStateData.length > 0">
                   <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="shipping.stateProvince" name="stateProvince"
                     [options]="shippingStateData" [config]="config" (change)="onShippingStateSelect($event)">
                   </custom-select>
-                  <!-- <input-field type="name" placeHolder="" label="State" [(ngModel)]="shipping.stateProvince" name="stateProvince"
+                  <input-field type="name" placeHolder="" label="State" [(ngModel)]="shipping.stateProvince" name="stateProvince"
                     #stateProvince="ngModel">
-                  </input-field> -->
+                  </input-field>
                 </div>
                 <div class="col-md-6" *ngIf="shippingStateData.length == 0">
                   <input-field type="name" labelAfter="true" bottom="24" placeHolder="Enter State" label="State"
@@ -175,17 +180,17 @@
                     name="phone" #phone="ngModel" minlength=10 maxlength=10>
                   </input-field>
                 </div>
-                <!-- <div class="col-md-6">
+                <div class="col-md-6">
                   <input-field type="email" placeHolder="" label="Email (Optional)" [(ngModel)]="shipping.email" name="email"
                     #email="ngModel">
                   </input-field>
-                </div> -->
+                </div>
               </div>
 
 
             </form>
           </fieldset>
-        </div>
+        </div> -->
       </div>
       <div class="form-group au-form">
         <btn [text]="'Update Address'" [isDisabled]="!billingForm.form.valid" (onClick)="onUpdateAddress()"></btn>

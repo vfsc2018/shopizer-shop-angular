@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-md-12 col-sm-12">
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Order Completed</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'Order Completed' | translate}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="passBack()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -16,13 +16,11 @@
             <tr class="add-summary">
               <div class="summary">
                 <!-- <custom-label [label]="'Summary'" [className]="'cart-border'"></custom-label> -->
-                <div class="first-row">Thank you for ordering from <b>importa</b></div>
-                <div class="second-row"><b>Your
-                    order id is {{orderID}}</b></div>
-                <div class="third-row">An email with you order details has been sent to test@test.com</div>
+                <div class="first-row">{{'Thank you for ordering' | translate}}</div>
+                <div class="second-row"><b>{{'Your order id is' | translate }} {{orderID}}</b></div>
+                <div class="third-row">{{'We are going to call you soon' | translate }}</div>
                 <div></div>
-                <div class="orderid">If you have any comments or suggestions for us. please send us an email with your
-                  order id. We value your feedback </div>
+                <div class="orderid">{{'If you have any comments or suggestions for us. please call our contact with your order id. We value your feedback' | translate }}</div>
 
               </div>
 

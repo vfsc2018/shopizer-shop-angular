@@ -27,7 +27,7 @@ export class ChangePasswordComponent implements OnInit {
   }
   onChangePassword() {
     this.spinnerService.show();
-    let action = Action.CUSTOMER + Action.PASSWORD;
+    let action = Action.PRIVATE + Action.CUSTOMER + Action.PASSWORD;
     let param = {
       "password": this.password.newpassword,
       "repeatPassword": this.password.confirmPassword,

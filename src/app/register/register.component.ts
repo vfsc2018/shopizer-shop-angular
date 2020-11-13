@@ -35,13 +35,13 @@ export class RegisterComponent implements OnInit {
   };
   billing = {
     firstName: '',
-    lastName: '',
+    lastName: 'Mr/Ms',
     company: '',
     address: '',
-    city: '',
+    city: 'Hà Nội',
     stateProvince: 'Hà Nội',
     country: 'Việt Nam',
-    postalCode: '100000',
+    postalCode: '10000',
     phone: '',
     countryCode: 'VN',
     zone: ''
@@ -88,10 +88,12 @@ export class RegisterComponent implements OnInit {
     let language = localStorage.getItem('langulage');
     this.spinnerService.show();
     let action = Action.CUSTOMER + Action.REGISTER;
+    // let phone = this.register.username;
+    this.register.phone = this.register.username;
     let param = {
       "userName": this.register.username,
       "password": this.register.password,
-      "emailAddress": this.register.username,
+      "emailAddress": this.register.phone + "@vfsc.vn",
       "gender": "F",
       "language": language,
       "billing": {
@@ -100,6 +102,8 @@ export class RegisterComponent implements OnInit {
         "stateProvince": this.billing.stateProvince,
         "firstName": this.billing.firstName,
         "lastName": this.billing.lastName,
+        "phone": this.register.phone,
+        "address": this.billing.address
       }
     }
     this.appService.postMethod(action, param)
