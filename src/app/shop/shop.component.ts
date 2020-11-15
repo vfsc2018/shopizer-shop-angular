@@ -156,7 +156,7 @@ export class ShopComponent implements OnInit {
       let index = cartData.findIndex(order => order.id === result.id);
       let param = { "product": result.id, "quantity": index == -1 ? 1 : cartData[index].quantity + 1 }
       let id = this.cookieService.get('shopizer-cart-id');
-      this.appService.putMethod(action, id, param)
+      this.appService.put(action, id, param)
         .subscribe(data => {
           this.showMiniCart();
         }, error => {

@@ -204,7 +204,7 @@ export class ProductDetailComponent implements OnInit {
       let realQuantity =  quantity + (index == -1 ? 0 : cartData[index].quantity);
       let param = { "product": product.id, "quantity": realQuantity };
       let id = this.cookieService.get('shopizer-cart-id'); 
-      this.appService.putMethod(action, id, param)
+      this.appService.put(action, id, param)
         .subscribe(data => {
           let index = data.products.findIndex(p => p.id === product.id); 
           this.qty = (index == -1 ? 0 : data.products[index].quantity);

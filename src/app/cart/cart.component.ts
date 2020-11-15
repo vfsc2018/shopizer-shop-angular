@@ -114,7 +114,7 @@ export class CartComponent {
     this.spinnerService.show();
     let action = Action.CART;
     let param = { "product": result.id, "quantity": 0 }
-    this.appService.putMethod(action, this.cookieService.get('shopizer-cart-id'), param)
+    this.appService.put(action, this.cookieService.get('shopizer-cart-id'), param)
       .subscribe(data => {
         let cartData = JSON.parse(this.cookieService.get('localCart'));
         let index = cartData.findIndex(order => order.id === result.id);

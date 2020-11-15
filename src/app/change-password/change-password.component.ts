@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 
 import { ToastrService } from 'ngx-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit {
+  @ViewChild("passwordForm") passwordForm: NgForm;
   password = {
     current: '',
     newpassword: '',
@@ -27,26 +29,33 @@ export class ChangePasswordComponent implements OnInit {
   }
   onChangePassword() {
     this.spinnerService.show();
-    let action = Action.PRIVATE + Action.CUSTOMER + Action.PASSWORD;
+    let username = this.password.username;
+    if(username && username.indexOf('@')<0){
+      username += '@vfsc.vn';
+    }
+    let action = Action.CUSTOMER + Action.PASSWORD;
     let param = {
       "password": this.password.newpassword,
       "repeatPassword": this.password.confirmPassword,
       "current": this.password.current,
-      "username": this.password.username,
+      "username": username,
     }
-    this.appService.postMethod(action, param)
-      .subscribe(data => {
+    this.appService.putMethod(action, param).subscribe(data => { console.log(data);
         this.spinnerService.hide();
-        this.password = {
-          current: '',
-          newpassword: '',
-          confirmPassword: '',
-          username: ''
-        }
+        // this.password = {
+        //   current: '',
+        //   newpassword: '',
+        //   confirmPassword: '',
+        //   username: ''
+        // }
+        this.passwordForm.resetForm();
+        // for (let control in this.form.controls) {
+        //   this.form.controls[control].setErrors(null);
+        // }
         this.toastr.success('You password has been successful changed.', 'Well done!');
-      }, error => {
+      }, error => { console.log("EEEE", error);
         this.spinnerService.hide();
-        // this.toastr.error('Incorrect username or password');
+        this.toastr.error('Incorrect username or password','Wrong information');
       });
   }
 

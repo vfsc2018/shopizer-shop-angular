@@ -43,12 +43,19 @@ export class AppService {
                 catchError(this.handleErrorObservable)
             );
     }
-    putMethod(action, id, requestJSON) {
+    put(action, id, requestJSON) {
         return this.http.put(this.url + action + id, requestJSON)
             .pipe(
                 map(this.extractData),
                 catchError(this.handleErrorObservable)
             );
+    }
+    putMethod(action, requestJSON) {
+        let headers = new Headers();
+        this.createAuthorizationHeader(headers);
+        return this.http.put(this.url + action, requestJSON, {
+            headers: headers
+        });
     }
     patchMethod(action, requestJSON) {
         let headers = new Headers();

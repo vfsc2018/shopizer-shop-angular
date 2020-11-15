@@ -342,6 +342,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <span><strong>{{'Bank Account' | translate}}</strong></span>: <span>{{info.storebank}}</span>
                     <div class="is-shipping">
                         <err-required [isValid]="isCondition" message="{{errMessage}}"></err-required>
                         <custom-checkbox [label]="'I agree with the terms and conditions'" (onChange)="termCondition()"></custom-checkbox>

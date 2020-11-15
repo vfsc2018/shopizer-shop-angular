@@ -49,6 +49,8 @@
                         <span>{{total}}</span>
                     </div>
                     <btn [text]="'Proceed to Checkout'" (onClick)="onCheckOut()"></btn>
+                    <div class="shop-bank"><span><strong>{{'Bank Account' | translate}}</strong></span>
+                        : <span>{{info.storebank}}</span></div>
                 </div>
             </div>
         </div>

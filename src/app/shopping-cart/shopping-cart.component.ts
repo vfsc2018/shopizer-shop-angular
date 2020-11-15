@@ -19,6 +19,7 @@ export class ShoppingCartComponent implements OnInit {
   cartData: Array<any> = [];
   subtotal: any;
   total: any;
+  info: any = {};
 
   constructor(
     private cookieService: CookieService,
@@ -27,10 +28,13 @@ export class ShoppingCartComponent implements OnInit {
     private spinnerService: Ng4LoadingSpinnerService
   ) { }
   ngOnInit() {
+    this.appService.getMethod("information").subscribe(data => {       
+      this.info = data;
+    }, error => { });
     this.getCart()
   }
+
   getCart() {
-    
     let cartCode = this.cookieService.get('shopizer-cart-id');
     if(!cartCode) return;
 
@@ -77,7 +81,7 @@ export class ShoppingCartComponent implements OnInit {
     }
     let action = Action.CART;
     let param = { "product": product, "quantity": quantity }
-    this.appService.putMethod(action, this.cookieService.get('shopizer-cart-id'), param)
+    this.appService.put(action, this.cookieService.get('shopizer-cart-id'), param)
       .subscribe(data => {
         // console.log(data)
         this.cartData = data.products;
@@ -111,7 +115,7 @@ export class ShoppingCartComponent implements OnInit {
     this.spinnerService.show();
     let action = Action.CART;
     let param = { "product": result.id, "quantity": 0 }
-    this.appService.putMethod(action, cartCode, param)
+    this.appService.put(action, cartCode, param)
       .subscribe(data => {
         this.getCart();
         this.spinnerService.hide();
@@ -151,7 +155,7 @@ export class ShoppingCartComponent implements OnInit {
   //     for (let i = start; i < me.cartData.length; i++) {
   //       let action = Action.CART;
   //       let param = { "product": me.cartData[i].id, "quantity": 0 }
-  //       me.appService.putMethod(action, me.cookieService.get('shopizer-cart-id'), param)
+  //       me.appService.put(action, me.cookieService.get('shopizer-cart-id'), param)
   //         .subscribe(data => {
 
   //           if (me.cartData.length - 2 == i) {

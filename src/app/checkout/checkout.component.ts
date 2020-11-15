@@ -83,6 +83,7 @@ export class CheckoutComponent implements OnInit {
     email: '',
     note: ''
   };
+  info: any = {};
   cartData: any;
   config: any;
   shippingData: any;
@@ -323,6 +324,9 @@ export class CheckoutComponent implements OnInit {
       });
   }
   ngOnInit() {
+    this.appService.getMethod("information").subscribe(data => {       
+        this.info = data;
+    }, error => { });
     // this.stripe = Stripe(environment.stripeKey);
     // const elements = this.stripe.elements();
 

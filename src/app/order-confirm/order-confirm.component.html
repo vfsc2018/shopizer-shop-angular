@@ -17,7 +17,9 @@
               <div class="summary">
                 <!-- <custom-label [label]="'Summary'" [className]="'cart-border'"></custom-label> -->
                 <div class="first-row">{{'Thank you for ordering' | translate}}</div>
-                <div class="second-row"><b>{{'Your order id is' | translate }} {{orderID}}</b></div>
+                <div class="first-row">{{'Bank Account' | translate}}: {{info.storebank}}</div>
+                <div class="second-row">{{'Bank Message' | translate }}: <b>{{'Your order id is' | translate }} {{orderID}}</b></div>
+              
                 <div class="third-row">{{'We are going to call you soon' | translate }}</div>
                 <div></div>
                 <div class="orderid">{{'If you have any comments or suggestions for us. please call our contact with your order id. We value your feedback' | translate }}</div>
