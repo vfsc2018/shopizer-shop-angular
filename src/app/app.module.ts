@@ -286,7 +286,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

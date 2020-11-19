@@ -31,19 +31,24 @@ export class HomeComponent implements OnInit {
   //sliderItems: Array<any> = [];
   sliderItems: Array<any> = [
        {
-       title: "title1",
-       description: "lorem ipsum",
-       img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/slider2.jpg"
+       title: "Shopping",
+       description: "VfSC shop banner 1",
+       img: "http://14.160.32.79:8081/static/files/DEFAULT/IMAGE/banner1.jpg"
      },
      {
-       title: "title2",
-       description: "lorem ipsum",
-       img: "https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/slider3.jpg"
-     }
+       title: "Buying",
+       description: "VfSC shop banner 2",
+       img: "http://14.160.32.79:8081/static/files/DEFAULT/IMAGE/banner2.jpg"
+     },
+     {
+      title: "Happy",
+      description: "VfSC shop banner 3",
+      img: "http://14.160.32.79:8081/static/files/DEFAULT/IMAGE/banner3.jpg"
+    }
    ];
   ngOnInit() {
     this.getProductList()
-    //this.ContentImage()
+    this.ContentImage()
     this.titleService.setTitle('VFSC food shop');
   }
   getProductList() {
@@ -81,17 +86,21 @@ export class HomeComponent implements OnInit {
   }
   ContentImage() {
     let action = Action.CONTENT + Action.IMAGES;
-    // let action = Action.DEFAULT + Action.CONTENT + Action.IMAGES;
-    this.appService.getMethod(action)
-      .subscribe(data => {
-        this.sliderItems = data.content;
-      }, error => {
-      });
+    this.appService.getMethod(action).subscribe(data => { 
+          this.sliderItems = [];
+          data.content.map(e=>{
+            if(e.name.indexOf("banner")==0)
+            {
+              let title = 'VfSC food shop';
+              let description = 'Shooping online';
+              let img = this.api_url+ e.path + e.name;
+              this.sliderItems.push({title, description, img})
+            }     
+          });
+      }, error => { });
   }
   addCart(result) {
     this.spinnerService.show();
-
-
     let action;
 
     if (this.cookieService.get('shopizer-cart-id')) {

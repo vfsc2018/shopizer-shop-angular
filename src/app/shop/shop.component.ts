@@ -34,12 +34,12 @@ export class ShopComponent implements OnInit {
   manufactureData: any;
   sizeData: Array<any> = [];
   colorData: Array<any> = [];
-  minValue: number = 22;
-  maxValue: number = 77;
+  minValue: number = 100;
+  maxValue: number = 300;
   options: Options = {
-    floor: 0,
-    ceil: 100,
-    step: 1
+    floor: 50,
+    ceil: 1000,
+    step: 100
 
   };
   categoryID: any = '';
@@ -79,7 +79,7 @@ export class ShopComponent implements OnInit {
     this.appService.getMethod(action)
       .subscribe(data => {
         // console.log(data);
-        if (this.categoryID != '') {
+        if (this.categoryID && this.categoryID != '') {
           let index = data.categories.findIndex((value => value.id === this.categoryID))
           this.categoriesData = data.categories[index];
         } else {
@@ -91,10 +91,12 @@ export class ShopComponent implements OnInit {
     this.getManufacturers();
   }
   getManufacturers() {
-    let action = Action.MANUFACTURERS + this.categoryID
+    let action = Action.MANUFACTURERS;
+    if (this.categoryID && this.categoryID != '') {
+      action =  Action.CATEGORY + this.categoryID + "/" + Action.MANUFACTURERS;
+    }
     this.appService.getMethod(action)
       .subscribe(data => {
-        console.log(data)
         this.manufactureData = data.manufacturers;
       }, error => {
         this.manufactureData = null;

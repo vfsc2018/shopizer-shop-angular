@@ -50,10 +50,10 @@
           <div class="custom-slider">
             <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
             <div class="filter-range-value">
-              <span>Filter:</span>
-              <span id="filter-price-value-lower"> ${{minValue}}</span>
+              <span>{{'Filter' | translate }}:</span>
+              <span id="filter-price-value-lower">{{minValue}}K</span>
               <span> - </span>
-              <span id="filter-price-value-upper">${{maxValue}}</span>
+              <span id="filter-price-value-upper">{{maxValue}}K</span>
               <!-- <btn [text]="'filter'"></btn> -->
             </div>
           </div>
