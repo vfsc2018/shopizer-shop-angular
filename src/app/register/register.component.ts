@@ -90,21 +90,23 @@ export class RegisterComponent implements OnInit {
     let action = Action.CUSTOMER + Action.REGISTER;
     // let phone = this.register.username;
     this.register.phone = this.register.username;
+    let info = {
+      "country": this.billing.countryCode,
+      "zone": this.billing.zone,
+      "city": this.billing.stateProvince,
+      "firstName": this.billing.firstName,
+      "lastName": this.billing.lastName,
+      "phone": this.register.phone,
+      "address": this.billing.address
+    };
     let param = {
       "userName": this.register.username,
       "password": this.register.password,
       "emailAddress": this.register.phone + "@vfsc.vn",
       "gender": "F",
       "language": language,
-      "billing": {
-        "country": this.billing.countryCode,
-        "zone": this.billing.zone,
-        "stateProvince": this.billing.stateProvince,
-        "firstName": this.billing.firstName,
-        "lastName": this.billing.lastName,
-        "phone": this.register.phone,
-        "address": this.billing.address
-      }
+      "billing": info,
+      "delivery": info
     }
     this.appService.postMethod(action, param)
       .subscribe(data => {

@@ -115,12 +115,13 @@ export class ProductDetailComponent implements OnInit {
     this.spinnerService.show();
     let action = Action.PRODUCTS;
 
-    this.appService.getMethod(action + this.productId + '?lang=vi')
-      .subscribe(data => { 
+    this.appService.getMethod(action + this.productId).subscribe(data => { 
         this.productDetail = data;
-        data.images.map((image) => {
-          this.galleryImages.push({ 'small': this.api_url+ image.imageUrl, 'medium': this.api_url+image.imageUrl, 'big': this.api_url+ image.imageUrl })
-        })
+        if(data.images){
+          data.images.map((image) => {
+            this.galleryImages.push({ 'small': this.api_url+ image.imageUrl, 'medium': this.api_url+image.imageUrl, 'big': this.api_url+ image.imageUrl })
+          })
+        }
         if(data.options)
         {
           data.options.map((value) => {
@@ -162,7 +163,7 @@ export class ProductDetailComponent implements OnInit {
       .subscribe(data => {
         // console.log(data);
         data.map(e=>{ 
-            e.image.imageUrl=this.api_url+ e.image.imageUrl;   
+            if(e.image) e.image.imageUrl=this.api_url+ e.image.imageUrl;   
         });
         this.reletedProduct = data;
         this.spinnerService.hide();

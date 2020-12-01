@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://14.160.32.79:8081',
-  //baseUrl: 'http://localhost:8080',
+  // baseUrl: 'http://14.160.32.79:8081',
+  baseUrl: 'http://localhost:8080',
   apiVersion: '/api/v1/',
   merchant: 'DEFAULT',
   stripeKey: 'pk_test_tVMeg9oyMknGF1ZH6R35vMVc'

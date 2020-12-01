@@ -42,20 +42,6 @@
                       </input-field>
                     </div>
                   </div>
-                  <!-- <div class="row">
-                    <div class="col-md-12">
-                      <input-field type="name" placeHolder="" labelAfter="true" label="Last Name" [(ngModel)]="billing.lastName"
-                        name="lastName" #lastName="ngModel">
-                      </input-field>
-                    </div>
-                  </div> -->
-                  <!-- <div class="row">
-                    <div class="col-md-12">
-                      <input-field type="name" placeHolder="" label="Company Name" [(ngModel)]="billing.company"
-                        name="company">
-                      </input-field>
-                    </div>
-                  </div> -->
                   <div class="row">
                     <div class="col-md-12">
                       <custom-textarea label="Address" labelAfter="true" row="9" name="note" placeHolder=""
@@ -64,20 +50,8 @@
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <custom-select label="Country" labelAfter="true" bottom="24" [(ngModel)]="billing.country" name="billing.country"
-                        [options]="countryData" required [config]="config" (change)="onCountrySelect($event)">
-                      </custom-select>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12" *ngIf="stateData.length > 0">
-                      <custom-select label="State" labelAfter="true" bottom="24" [(ngModel)]="billing.stateProvince"
-                        name="billing.stateProvince" [config]="config" [options]="stateData" required (change)="onStateSelect($event)">
-                      </custom-select>
-                    </div>
-                    <div class="col-md-12" *ngIf="stateData.length == 0">
-                      <input-field type="text" labelAfter="true" bottom="24" placeHolder="Enter State" label="State"
-                        [(ngModel)]="billing.stateProvince" name="stateProvince" required>
+                      <input-field type="text" labelAfter="true" bottom="24" placeHolder="City Name" label="State"
+                        [(ngModel)]="billing.city" name="city" required>
                       </input-field>
                     </div>
                   </div>

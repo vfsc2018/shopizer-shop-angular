@@ -45,7 +45,7 @@
                 <btn [text]="'Sold out'"></btn>
               </div>
               <div class="cart-btn" *ngIf="productDetail.quantity">
-                <btn [text]="'Add to cart'" (onClick)="addToCart(productDetail)"></btn>
+                <btn [text]="'Add to cart'" (click)="addToCart(productDetail)"></btn>
               </div>
               <div class="product-favourite">
                 <input type="checkbox" class="red-heart-checkbox">
