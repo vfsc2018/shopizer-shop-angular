@@ -431,8 +431,8 @@ export class CheckoutComponent implements OnInit {
   isShippingSubmitted: boolean = false;
   async onPayment() {
     let language = localStorage.getItem('langulage');
-    let bill = this.billing;
-    let shippingBill = this.shipping;
+    // let bill = this.billing;
+    // let shippingBill = this.shipping;
     
     this.isSubmitted = false;
     this.isShippingSubmitted = false;
@@ -481,9 +481,7 @@ export class CheckoutComponent implements OnInit {
             
           } else {
             action = Action.CART + this.cartData.code + '/' + Action.CHECKOUT
-            let customer = {};
-            if (this.isShipping) {
-              customer = {
+            let customer = {
                 "emailAddress":  this.billing.phone + "@vfsc.vn",
                 "language": language,
                 "password": this.password,
@@ -501,26 +499,6 @@ export class CheckoutComponent implements OnInit {
                   "phone": this.billing.phone
                 }
               }
-            } else {
-              customer = {
-                "emailAddress": this.billing.phone + "@vfsc.vn",
-                "language": language,
-                "password": this.password,
-                "userName":  this.billing.phone,
-                "billing": {
-                  "address": this.billing.address,
-                  "company": this.billing.company,
-                  "city": this.billing.city,
-                  "postalCode": this.billing.postalCode,
-                  "country": this.billing.countryCode,
-                  "stateProvince": this.billing.stateProvince,
-                  "zone": this.billing.zone,
-                  "firstName": this.billing.firstName,
-                  "lastName": this.billing.lastName,
-                  "phone": this.billing.phone
-                }
-              }
-            }
             
             param = {
               "currency": "VND",
