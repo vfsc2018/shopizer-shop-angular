@@ -59,7 +59,7 @@ export class OrdersComponent implements OnInit {
       });
   }
   dateFormat(value) {
-    return moment(value).format('DD/MM/YYYY');
+    return value?moment(value).format('DD/MM/YYYY'):"";
   }
 
   onShowOrderDetails(order) {

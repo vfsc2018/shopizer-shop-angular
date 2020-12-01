@@ -121,42 +121,12 @@
             <div class="footer-item-content">
               <div class="footer-gallery m-b-36">
                 <div class="gallery">
-                  <div class="gallery-item">
-                    <a href="images/lightbox_01.jpg">
-                      <custom-img [src]="'../../../assets/images/gallery_01.jpg'" [alt]="'Image'">
-                      </custom-img>
+                  <div class="gallery-item" *ngFor="let link of links">
+                    <a href="{{link.a}}">
+                      <custom-img [src]="link.img" [alt]="'Image'"></custom-img>
                     </a>
                   </div>
-                  <div class="gallery-item">
-                    <a href="images/lightbox_01.jpg">
-                      <custom-img [src]="'../../../assets/images/gallery_01.jpg'" [alt]="'Image'">
-                      </custom-img>
-                    </a>
-                  </div>
-                  <div class="gallery-item">
-                    <a href="images/lightbox_01.jpg">
-                      <custom-img [src]="'../../../assets/images/gallery_01.jpg'" [alt]="'Image'">
-                      </custom-img>
-                    </a>
-                  </div>
-                  <div class="gallery-item">
-                    <a href="images/lightbox_01.jpg">
-                      <custom-img [src]="'../../../assets/images/gallery_01.jpg'" [alt]="'Image'">
-                      </custom-img>
-                    </a>
-                  </div>
-                  <div class="gallery-item">
-                    <a href="images/lightbox_01.jpg">
-                      <custom-img [src]="'../../../assets/images/gallery_01.jpg'" [alt]="'Image'">
-                      </custom-img>
-                    </a>
-                  </div>
-                  <div class="gallery-item">
-                    <a href="images/lightbox_01.jpg">
-                      <custom-img [src]="'../../../assets/images/gallery_01.jpg'" [alt]="'Image'">
-                      </custom-img>
-                    </a>
-                  </div>
+                
                 </div>
               </div>
             </div>

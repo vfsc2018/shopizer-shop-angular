@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
-
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { environment } from 'src/environments/environment';
@@ -25,7 +25,8 @@ export class ShoppingCartComponent implements OnInit {
     private cookieService: CookieService,
     private appService: AppService,
     public router: Router,
-    private spinnerService: Ng4LoadingSpinnerService
+    private spinnerService: Ng4LoadingSpinnerService,
+    private toastr: ToastrService
   ) { }
   ngOnInit() {
     this.appService.getMethod("information").subscribe(data => {       
@@ -80,8 +81,9 @@ export class ShoppingCartComponent implements OnInit {
       quantity = result.value
     }
     let action = Action.CART;
-    let param = { "product": product, "quantity": quantity }
-    this.appService.put(action, this.cookieService.get('shopizer-cart-id'), param)
+    let param = { "product": product, "quantity": quantity };
+    let id = this.cookieService.get('shopizer-cart-id');
+    this.appService.put(action, id, param)
       .subscribe(data => {
         // console.log(data)
         this.cartData = data.products;
@@ -104,24 +106,25 @@ export class ShoppingCartComponent implements OnInit {
         this.spinnerService.hide();
       }, error => {
         this.spinnerService.hide();
+        this.toastr.error('Can not action this product','Product not avaiable');
       });
 
   }
   removeCartData(result) {
     
-    let cartCode = this.cookieService.get('shopizer-cart-id');
-    if(!cartCode) return;
+    let id = this.cookieService.get('shopizer-cart-id');
+    if(!id) return;
 
     this.spinnerService.show();
     let action = Action.CART;
     let param = { "product": result.id, "quantity": 0 }
-    this.appService.put(action, cartCode, param)
+    this.appService.put(action, id, param)
       .subscribe(data => {
         this.getCart();
         this.spinnerService.hide();
       }, error => {
-        this.getCart();
         this.spinnerService.hide();
+        this.toastr.error('Can not action this product','Product not avaiable');
       });
   }
   amount(item) {

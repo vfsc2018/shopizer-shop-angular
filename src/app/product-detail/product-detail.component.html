@@ -44,7 +44,10 @@
               <div class="cart-btn" *ngIf="!productDetail.quantity">
                 <btn [text]="'Sold out'"></btn>
               </div>
-              <div class="cart-btn" *ngIf="productDetail.quantity">
+              <div class="cart-btn" *ngIf="productDetail.quantity && !productDetail.available">
+                <btn [text]="'Not in stock'"></btn>
+              </div>
+              <div class="cart-btn" *ngIf="productDetail.quantity && productDetail.available">
                 <btn [text]="'Add to cart'" (onClick)="addToCart(productDetail)"></btn>
               </div>
               <div class="product-favourite">
@@ -62,7 +65,7 @@
             </div>
             <div class="product-categories">
               <span class="text-black">{{'Categories' | translate}}: </span>
-              <a *ngFor="let result of productDetail.categories ; let i = index">{{result.description.description}}</a>
+              <a *ngFor="let result of productDetail.categories ; let i = index">{{result.description.name}}</a>
             </div>
             <div class="product-share">
               <span class="text-black">{{'Share' | translate}}: </span>

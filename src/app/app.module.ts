@@ -7,10 +7,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-
 import { RouterModule, Routes } from "@angular/router";
-
-// import { AgmCoreModule } from '@agm/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from './directive/app.service';
 import { EqualValidator } from './directive/validator';

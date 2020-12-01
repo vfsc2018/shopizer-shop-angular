@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment';
 export class SitefooterComponent implements OnInit {
   api_url=environment.baseUrl;
   configuration: any;
+  links: any;
   merchant: any;
   category: any;
   content: any;
@@ -29,6 +30,14 @@ export class SitefooterComponent implements OnInit {
     public router: Router,
     private dataSharingService: DataSharingService,
   ) {
+    this.links = [];
+    let ls = ["http://www.vifotec.com","http://www.vinacert.vn","http://www.nfsi.vn","http://fb.me/vfscfood","http://youtube.com/channel/UCYs0KCLskkBbY2eK6ynTcsA","http://zalo.me/3925854800876442887" ];
+    for(let i=1;i<=ls.length;i++){
+      this.links.push({
+        a: ls[i-1],
+        img: this.api_url + "/static/files/DEFAULT/IMAGE/" + i + ".png"
+      })
+    }
     this.getStore();
     this.lan = localStorage.getItem('langulage');
   }

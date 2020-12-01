@@ -7,6 +7,8 @@ import { Helper } from '../directive/helper';
 import { Title } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -21,7 +23,8 @@ export class HomeComponent implements OnInit {
     private cookieService: CookieService,
     private spinnerService: Ng4LoadingSpinnerService,
     private Helper: Helper,
-    public router: Router
+    public router: Router,
+    private toastr: ToastrService
   ) { }
   productData: Array<any> = [];
   filterData: Array<any> = [];
@@ -30,21 +33,21 @@ export class HomeComponent implements OnInit {
   isOpen: boolean;
   //sliderItems: Array<any> = [];
   sliderItems: Array<any> = [
-       {
-       title: "Shopping",
-       description: "VfSC shop banner 1",
-       img: "http://14.160.32.79:8081/static/files/DEFAULT/IMAGE/banner1.jpg"
-     },
-     {
-       title: "Buying",
-       description: "VfSC shop banner 2",
-       img: "http://14.160.32.79:8081/static/files/DEFAULT/IMAGE/banner2.jpg"
-     },
-     {
-      title: "Happy",
-      description: "VfSC shop banner 3",
-      img: "http://14.160.32.79:8081/static/files/DEFAULT/IMAGE/banner3.jpg"
-    }
+    //    {
+    //    title: "Shopping",
+    //    description: "VfSC shop banner 1",
+    //    img: "http://14.160.32.79:8081/static/files/DEFAULT/IMAGE/banner1.jpg"
+    //  },
+    //  {
+    //    title: "Buying",
+    //    description: "VfSC shop banner 2",
+    //    img: "http://14.160.32.79:8081/static/files/DEFAULT/IMAGE/banner2.jpg"
+    //  },
+    //  {
+    //   title: "Happy",
+    //   description: "VfSC shop banner 3",
+    //   img: "http://14.160.32.79:8081/static/files/DEFAULT/IMAGE/banner3.jpg"
+    // }
    ];
   ngOnInit() {
     this.getProductList()
@@ -111,11 +114,11 @@ export class HomeComponent implements OnInit {
       let id = this.cookieService.get('shopizer-cart-id');
       this.appService.put(action, id, param)
         .subscribe(data => {
-          this.spinnerService.hide();
           this.showMiniCart();
+          this.spinnerService.hide();
         }, error => {
           this.spinnerService.hide();
-          this.showMiniCart();
+          this.toastr.error('Can not action this product','Product not avaiable');
         });
 
     } else {

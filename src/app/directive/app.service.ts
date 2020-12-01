@@ -46,8 +46,9 @@ export class AppService {
     put(action, id, requestJSON) {
         return this.http.put(this.url + action + id, requestJSON)
             .pipe(
-                map(this.extractData),
-                catchError(this.handleErrorObservable)
+                map(this.extractData)
+                // ,
+                // catchError(this.handleErrorObservable)
             );
     }
     putMethod(action, requestJSON) {

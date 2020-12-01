@@ -12,6 +12,7 @@ import { Helper } from '../directive/helper';
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'product-detail',
   templateUrl: './product-detail.component.html',
@@ -213,6 +214,7 @@ export class ProductDetailComponent implements OnInit {
           this.Helper.showMiniCart(1);
         }, error => {
           this.spinnerService.hide();
+          this.toastr.error('Can not action this product','Product not avaiable');
         });
       
     } else if (userData) {

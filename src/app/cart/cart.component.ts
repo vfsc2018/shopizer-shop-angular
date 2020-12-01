@@ -2,9 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 
 import { CookieService } from 'ngx-cookie-service';
-import { Merchant } from '../services/configuration/merchant'
-import { ConfigurationService } from '../services/configuration/configuration.service'
-import { IfStmt } from '@angular/compiler';
+import { ToastrService } from 'ngx-toastr';
 import { trigger, style, animate, transition, } from '@angular/animations';
 
 import { DataSharingService } from '../directive/data-sharing.service';
@@ -37,10 +35,9 @@ export class CartComponent {
   value = 'Techiediaries';
 
   api_url=environment.baseUrl;
-  private merchant = null;
   @Input() isOpen: boolean;
   constructor(
-    private configurationService: ConfigurationService,
+    private toastr: ToastrService,
     private cookieService: CookieService,
     private appService: AppService,
     public router: Router,
@@ -114,7 +111,8 @@ export class CartComponent {
     this.spinnerService.show();
     let action = Action.CART;
     let param = { "product": result.id, "quantity": 0 }
-    this.appService.put(action, this.cookieService.get('shopizer-cart-id'), param)
+    let id = this.cookieService.get('shopizer-cart-id');
+    this.appService.put(action, id, param)
       .subscribe(data => {
         let cartData = JSON.parse(this.cookieService.get('localCart'));
         let index = cartData.findIndex(order => order.id === result.id);
@@ -123,8 +121,9 @@ export class CartComponent {
         this.getCart();
         this.spinnerService.hide();
       }, error => {
-        this.getCart();
+        // this.getCart();
         this.spinnerService.hide();
+        this.toastr.error('Can not action this product','Product not avaiable');
       });
   }
   // toggleSearch() {

@@ -55,7 +55,7 @@ export class OrderDetailComponent implements OnInit {
       });
   }
   dateFormat(value) {
-    return moment(value).format('DD/MM/YYYY');
+    return value?moment(value).format('DD/MM/YYYY'):"";
   }
   passBack() {
     this.passEntry.emit();

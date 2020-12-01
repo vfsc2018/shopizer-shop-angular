@@ -18,6 +18,7 @@
                 <custom-label [label]="'View Details'" [className]="'cart-border'"></custom-label>
                 <div class="orderid">{{'Order Id' | translate}}: <span class="id"><b>{{data.id}}</b></span></div>
                 <div class="orderdate">{{'Ordered On' | translate}}: <span class="date">{{dateFormat(data.datePurchased)}}</span></div>
+                <div class="orderdate">{{'Payment On' | translate}}: <span class="date">{{dateFormat(data.paymentTime)}}</span></div>
                 <div class="orderdate">{{'Status' | translate}}: <span class="status">{{data.orderStatus}}</span></div>
                 <!-- <div class="ordertotal">Order Status: <span class="total">${{data.total.value}}</span></div> -->
               </div>

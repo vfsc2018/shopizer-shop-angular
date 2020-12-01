@@ -3,12 +3,14 @@ import { Options } from 'ng5-slider';
 
 import { AppService } from '../directive/app.service';
 import { Helper } from '../directive/helper';
-import { Action, AppConstants } from '../directive/app.constants';
+import { Action } from '../directive/app.constants';
 import { CookieService } from 'ngx-cookie-service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { DataSharingService } from '../directive/data-sharing.service';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'shop',
   templateUrl: './shop.component.html',
@@ -48,7 +50,7 @@ export class ShopComponent implements OnInit {
     private appService: AppService,
     private cookieService: CookieService,
     public router: Router,
-    private route: ActivatedRoute,
+    private toastr: ToastrService,
     private spinnerService: Ng4LoadingSpinnerService,
     private dataSharingService: DataSharingService,
     private Helper: Helper
@@ -94,13 +96,15 @@ export class ShopComponent implements OnInit {
     let action = Action.MANUFACTURERS;
     if (this.categoryID && this.categoryID != '') {
       action =  Action.CATEGORY + this.categoryID + "/" + Action.MANUFACTURERS;
+    }else{
+      // console.log("--->",action);
+      this.appService.getMethod(action)
+        .subscribe(data => {
+          this.manufactureData = data.manufacturers;
+        }, error => {
+          this.manufactureData = null;
+        });
     }
-    this.appService.getMethod(action)
-      .subscribe(data => {
-        this.manufactureData = data.manufacturers;
-      }, error => {
-        this.manufactureData = null;
-      });
   }
   getProductList() {
     let language = localStorage.getItem('langulage');
@@ -143,10 +147,10 @@ export class ShopComponent implements OnInit {
     }
     this.productData = [];
     this.dataSharingService.categoryData.next(result);
-    // localStorage.setItem('category_id', JSON.stringify(result))
-    // this.router.navigate(['/category/' + result.description.friendlyUrl]);
-    // this.getProductList();
-    // this.getCategory();
+    localStorage.setItem('category_id', JSON.stringify(result))
+    this.router.navigate(['/category/' + result.description.friendlyUrl]);
+    this.getProductList();
+    this.getCategory();
   }
   addToCart(result) {
     this.spinnerService.show();
@@ -161,9 +165,11 @@ export class ShopComponent implements OnInit {
       this.appService.put(action, id, param)
         .subscribe(data => {
           this.showMiniCart();
+          this.spinnerService.hide();
         }, error => {
+          this.spinnerService.hide();
+          this.toastr.error('Can not action this product','Product not avaiable');
         });
-      this.spinnerService.hide();
     } else {
       let userData = JSON.parse(localStorage.getItem('userData'));
       if (userData) {

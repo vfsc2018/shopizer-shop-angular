@@ -25,7 +25,7 @@
           </div>
         </div>
         <p class="description" [innerHTML]="result.description.description">{{result.description.description}}</p>
-        <div *ngIf="result.quantity" class="product-button">
+        <div *ngIf="result.quantity && result.available" class="product-button">
           <btn [text]="'Add to cart'" (onClick)="onClickAddCart(result)"></btn>
           <div class="product-favourite">
             <input type="checkbox" class="red-heart-checkbox">
@@ -34,6 +34,13 @@
         </div>
         <div *ngIf="!result.quantity" class="product-button">
           <btn [text]="'Sold out'"></btn>
+          <div class="product-favourite">
+            <input type="checkbox" class="red-heart-checkbox">
+            <div class="icon-heart"></div>
+          </div>
+        </div>
+        <div *ngIf="result.quantity && !result.available" class="product-button">
+          <btn [text]="'Not in stock'"></btn>
           <div class="product-favourite">
             <input type="checkbox" class="red-heart-checkbox">
             <div class="icon-heart"></div>
