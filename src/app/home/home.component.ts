@@ -71,7 +71,6 @@ export class HomeComponent implements OnInit {
             });
           }     
         });
-        console.log("--->Filter Featured");
         this.filterFeaturedItem(null);// this.filterData = this.productData;
       }, error => {
       });
@@ -148,8 +147,8 @@ export class HomeComponent implements OnInit {
             }
           })
         }else{
-          if(item.description.hightlights){
-            item.description.name = item.description.hightlights;
+          if(item.description.highlights){
+            item.description.name = item.description.highlights;
           }
           this.filterData.push(item)
         }

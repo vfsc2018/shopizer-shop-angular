@@ -483,7 +483,7 @@ export class CheckoutComponent implements OnInit {
                 "emailAddress":  this.billing.phone + "@vfsc.vn",
                 "language": language,
                 "password": this.password,
-                "userName":  this.billing.phone,
+                "userName":  this.billing.phone  + "@vfsc.vn",
                 "billing": {
                   "address": this.billing.address,
                   "company": this.billing.company,

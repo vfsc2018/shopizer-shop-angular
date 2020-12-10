@@ -124,7 +124,7 @@ export class CartComponent {
       });
   }
   toggleSearch() {
-    this.isOpen = !this.isOpen;
+    //this.isOpen = !this.isOpen;
   }
 
 }
