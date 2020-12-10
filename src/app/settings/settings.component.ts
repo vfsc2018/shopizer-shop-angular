@@ -68,16 +68,14 @@ export class SettingsComponent {
     this.getProfile();
   }
   getProfile() {
-    let userData = JSON.parse(localStorage.getItem('userData'));
-    if(userData){
-      //let action = Action.AUTH + Action.CUSTOMER + Action.PROFILE;
+    let userData = localStorage.getItem('userData');
+    if(!userData) return;
       let action = Action.PRIVATE + Action.CUSTOMER + Action.PROFILE;
       this.appService.getMethod(action)
         .subscribe(data => {
           this.userData = data;
         }, error => {
       });
-    }
   }
   onChangeLanguage(value) {
 
@@ -92,8 +90,9 @@ export class SettingsComponent {
     this.userDataFlag = false;
     this.router.navigate(['/account']);
     localStorage.removeItem('userData');
-    this.cookieService.delete('shopizer-cart-id');
-    this.cookieService.delete('localCart');
+    this.helper.resetCart();
+    // this.cookieService.delete('vfscfood-cart-id');
+    // this.cookieService.delete('localCart');
     this.menuHide();
   }
   menuHide() {

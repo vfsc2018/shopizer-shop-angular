@@ -5,6 +5,9 @@ import { DataSharingService } from '../directive/data-sharing.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MapsAPILoader } from '@agm/core';
 import { HttpClient } from '@angular/common/http';
+
+import { CookieService } from 'ngx-cookie-service';
+
 declare let google: any;
 
 @Injectable()
@@ -12,6 +15,7 @@ export class Helper {
     loading: any;
     constructor(
         private dataSharingService: DataSharingService,
+        private cookieService: CookieService,
         private modalService: NgbModal,
         private translate: TranslateService,
         private mapsAPILoader: MapsAPILoader,
@@ -118,5 +122,13 @@ export class Helper {
                 // console.log('th data', data);
                 callback(data)
             })
+    }
+    resetCart(){ console.log("delete all");
+        this.cookieService.deleteAll();
+        localStorage.setItem('itemCount', JSON.stringify(0));
+        // let localCart = []; 
+        // this.cookieService.set('localCart', JSON.stringify(localCart));
+     
+        // localStorage.setItem('itemCount', JSON.stringify(value));
     }
 }

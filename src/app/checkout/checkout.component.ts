@@ -5,9 +5,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Action } from '../directive/app.constants';
 import { Helper } from '../directive/helper';
-import { error } from '@angular/compiler/src/util';
-import { parsePhoneNumberFromString, format, AsYouType } from 'libphonenumber-js';
-import { environment } from '../../environments/environment';
 declare let google: any;
 declare var Stripe;
 import { MapsAPILoader } from '@agm/core';
@@ -111,7 +108,7 @@ export class CheckoutComponent implements OnInit {
     private toastr: ToastrService,
     public router: Router
   ) {
-    this.getCountry();
+    // this.getCountry();
     this.getCart();
     this.userDataFlag = localStorage.getItem('userData') ? true : false;
 
@@ -222,9 +219,10 @@ export class CheckoutComponent implements OnInit {
   //     });
   // }
   getProfile() {
+    let userData = localStorage.getItem('userData');
+    if(!userData) return;
     let action = Action.PRIVATE + Action.CUSTOMER + Action.PROFILE;
-    this.appService.getMethod(action)
-      .subscribe(data => {
+    this.appService.getMethod(action).subscribe(data => {
 
         this.billing = data.billing;
         this.billing.email = data.emailAddress;
@@ -278,7 +276,7 @@ export class CheckoutComponent implements OnInit {
   }
   getCart() {
 
-    let cartCode = this.cookieService.get('shopizer-cart-id');
+    let cartCode = this.cookieService.get('vfscfood-cart-id');
     if(!cartCode) return;
     
     this.spinnerService.show();
@@ -421,7 +419,7 @@ export class CheckoutComponent implements OnInit {
     this.isAccount = !this.isAccount;
   }
   onPhoneChange() {
-    this.billing.phone = new AsYouType('US').input(this.billing.phone);
+    // this.billing.phone = new AsYouType('US').input(this.billing.phone);
   }
   termCondition() {
     this.isCondition = !this.isCondition;

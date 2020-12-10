@@ -5,12 +5,12 @@
     </button>
 </li> -->
 <div [ngClass]="isOpen ? 'shop-cart open' : 'shop-cart'">
-    <div *ngIf="cartData">
+    <div *ngIf="cartData" (mouseout)="toggleSearch()">
         
         <ul class="shop-cart__list">
             <li @item class="item" *ngFor="let result of cartData.products; let i = index">
-                <div class="item-image">
-                    <custom-img [src]="result.images[0].imageUrl" [alt]="'Item 1'"></custom-img>
+                <div *ngIf="result.images" class="item-image">
+                    <custom-img [src]="result.images[0].imageUrl" [alt]="'Product'" *ngIf="result.images"></custom-img>
                 </div>
                 <div class="item-detail">
                     <p class="name">{{result.description.name}}</p>

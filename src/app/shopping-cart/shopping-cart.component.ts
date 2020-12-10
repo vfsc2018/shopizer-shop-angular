@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { environment } from 'src/environments/environment';
+import { Helper } from '../directive/helper';
 
 @Component({
   selector: 'shopping-cart',
@@ -26,7 +27,8 @@ export class ShoppingCartComponent implements OnInit {
     private appService: AppService,
     public router: Router,
     private spinnerService: Ng4LoadingSpinnerService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private helper: Helper
   ) { }
   ngOnInit() {
     this.appService.getMethod("information").subscribe(data => {       
@@ -36,15 +38,14 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   getCart() {
-    let cartCode = this.cookieService.get('shopizer-cart-id');
+    let cartCode = this.cookieService.get('vfscfood-cart-id');
     if(!cartCode) return;
 
     this.spinnerService.show();
     let action = Action.CART;
-    this.appService.getMethod(action + cartCode)
-      .subscribe(data => {
+    this.appService.getMethod(action + cartCode).subscribe(data => {
         this.spinnerService.hide();
-        this.cartData = data.products;
+        this.cartData = data.products? data.products: [];
         this.cartData.map(e=>{
           if(e.image && e.image.imageUrl.indexOf("http")<0)
           {
@@ -61,8 +62,8 @@ export class ShoppingCartComponent implements OnInit {
         this.total = data.displayTotal;
       }, error => {
         this.cartData = [];
-        // this.router.navigate(['/']);
-        this.cookieService.delete('shopizer-cart-id')
+        this.helper.resetCart();
+        // this.cookieService.delete('vfscfood-cart-id');
         this.spinnerService.hide();
       });
   }
@@ -82,11 +83,10 @@ export class ShoppingCartComponent implements OnInit {
     }
     let action = Action.CART;
     let param = { "product": product, "quantity": quantity };
-    let id = this.cookieService.get('shopizer-cart-id');
-    this.appService.put(action, id, param)
-      .subscribe(data => {
+    let id = this.cookieService.get('vfscfood-cart-id');
+    this.appService.put(action, id, param).subscribe(data => {
         // console.log(data)
-        this.cartData = data.products;
+        this.cartData = data.products? data.products: [];
         
         this.cartData.map(e=>{
           if(e.image && e.image.imageUrl.indexOf("http")<0)
@@ -112,14 +112,13 @@ export class ShoppingCartComponent implements OnInit {
   }
   removeCartData(result) {
     
-    let id = this.cookieService.get('shopizer-cart-id');
+    let id = this.cookieService.get('vfscfood-cart-id');
     if(!id) return;
 
     this.spinnerService.show();
     let action = Action.CART;
     let param = { "product": result.id, "quantity": 0 }
-    this.appService.put(action, id, param)
-      .subscribe(data => {
+    this.appService.put(action, id, param).subscribe(data => {
         this.getCart();
         this.spinnerService.hide();
       }, error => {
@@ -140,15 +139,18 @@ export class ShoppingCartComponent implements OnInit {
   clearShoppingCard() {
     this.spinnerService.show();
     let action = Action.CART;
-    this.appService.deleteMethod(action, this.cookieService.get('shopizer-cart-id')).subscribe(data => {
+    let id = this.cookieService.get('vfscfood-cart-id');
+    this.appService.deleteMethod(action, id).subscribe(data => { 
         this.cartData = [];
-        this.cookieService.delete('shopizer-cart-id');
+        // this.cookieService.delete('vfscfood-cart-id');
         this.spinnerService.hide();
     }, error => { 
       this.cartData = [];
-      this.cookieService.delete('shopizer-cart-id');
+      // this.cookieService.delete('vfscfood-cart-id');
       this.spinnerService.hide();
     });
+    
+    this.helper.resetCart();
   }
   // clearShoppingCard() {
   //   this.spinnerService.show();
@@ -158,7 +160,7 @@ export class ShoppingCartComponent implements OnInit {
   //     for (let i = start; i < me.cartData.length; i++) {
   //       let action = Action.CART;
   //       let param = { "product": me.cartData[i].id, "quantity": 0 }
-  //       me.appService.put(action, me.cookieService.get('shopizer-cart-id'), param)
+  //       me.appService.put(action, me.cookieService.get('vfscfood-cart-id'), param)
   //         .subscribe(data => {
 
   //           if (me.cartData.length - 2 == i) {

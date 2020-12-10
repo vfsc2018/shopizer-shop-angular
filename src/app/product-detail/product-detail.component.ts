@@ -185,57 +185,105 @@ export class ProductDetailComponent implements OnInit {
       }, error => {
       });
   }
-  addToCart(product: any, quantity: number = 1) {
-    this.spinnerService.show();
-    let userData = JSON.parse(localStorage.getItem('userData')); 
-    if(!quantity) quantity = 1;
-    let action = Action.CART;
-    // let param = {
-    //   "product": product.id,
-    //   "quantity": this.qty,
-    //   "attributes": [
-    //     { "id": this.selectedColor },
-    //     { "id": this.selectedSizeID }
-    //   ],
+  // addToCart(product: any, quantity: number = 1) {
+  //   this.spinnerService.show();
+  //   let userData = JSON.parse(localStorage.getItem('userData')); 
+  //   if(!quantity) quantity = 1;
+  //   let action = Action.CART;
+  //   // let param = {
+  //   //   "product": product.id,
+  //   //   "quantity": this.qty,
+  //   //   "attributes": [
+  //   //     { "id": this.selectedColor },
+  //   //     { "id": this.selectedSizeID }
+  //   //   ],
 
-    // }
-    if (this.cookieService.get('shopizer-cart-id')) {
+  //   // }
+  //   if (this.cookieService.get('vfscfood-cart-id')) {
       
-      let cartData = JSON.parse(this.cookieService.get('localCart'));      
-      let index = cartData.findIndex(order => order.id === product.id); 
+  //     let cartData = JSON.parse(this.cookieService.get('localCart'));      
+  //     let index = cartData.findIndex(order => order.id === product.id); 
+  //     let realQuantity =  quantity + (index == -1 ? 0 : cartData[index].quantity);
+  //     let param = { "product": product.id, "quantity": realQuantity };
+  //     let id = this.cookieService.get('vfscfood-cart-id'); 
+  //     this.appService.put(action, id, param)
+  //       .subscribe(data => {
+  //         let index = data.products.findIndex(p => p.id === product.id); 
+  //         this.qty = (index == -1 ? 0 : data.products[index].quantity);
+  //         // this.qty = data.quantity; 
+  //         this.spinnerService.hide();
+  //         this.Helper.showMiniCart(1);
+  //       }, error => {
+  //         this.spinnerService.hide();
+  //         this.toastr.error('Can not action this product','Product not avaiable');
+  //       });
+      
+  //   } else if (userData) {
+  //     action =  Action.PRIVATE + Action.CUSTOMER + Action.CARTS;
+    
+  //     let param = { "product": product.id, "quantity": quantity }     
+    
+  //     this.appService.postMethod(action, param)
+  //       .subscribe(data => { 
+  //         let index = data.products.findIndex(p => p.id === product.id); 
+  //         this.qty = (index == -1 ? 0 : data.products[index].quantity);
+  //         // this.qty = data.quantity;  
+  //         this.cookieService.set('vfscfood-cart-id', data.code);
+  //         this.spinnerService.hide();
+  //         this.Helper.showMiniCart(1);
+  //       }, error => {
+  //         this.spinnerService.hide();
+  //       });
+  //   } else {
+  //     this.spinnerService.hide();
+  //   }
+  // }
+  showMiniCart() {
+    this.Helper.showMiniCart(1);
+  }
+  addToCart(result: any, quantity: number = 1) {
+    this.spinnerService.show();
+    let action;
+    let id = this.cookieService.get('vfscfood-cart-id');  console.log("cart code product:", id);
+    if (id) {
+      action = Action.CART
+      let cartData = JSON.parse(this.cookieService.get('localCart'));
+      let index = cartData.findIndex(order => order.id === result.id);
       let realQuantity =  quantity + (index == -1 ? 0 : cartData[index].quantity);
-      let param = { "product": product.id, "quantity": realQuantity };
-      let id = this.cookieService.get('shopizer-cart-id'); 
-      this.appService.put(action, id, param)
-        .subscribe(data => {
-          let index = data.products.findIndex(p => p.id === product.id); 
-          this.qty = (index == -1 ? 0 : data.products[index].quantity);
-          // this.qty = data.quantity; 
+      let param = { "product": result.id, "quantity": realQuantity }
+      
+      this.appService.put(action, id, param).subscribe(data => {
+          if(data && data.products){
+            let index = data.products.findIndex(p => p.id === result.id); 
+            this.qty = (index == -1 ? 0 : data.products[index].quantity);
+          }else{
+            this.Helper.resetCart();
+            // this.cookieService.delete('vfscfood-cart-id')
+          }
+          this.showMiniCart();
           this.spinnerService.hide();
-          this.Helper.showMiniCart(1);
         }, error => {
           this.spinnerService.hide();
           this.toastr.error('Can not action this product','Product not avaiable');
         });
-      
-    } else if (userData) {
-      action =  Action.PRIVATE + Action.CUSTOMER + Action.CARTS;
-    
-      let param = { "product": product.id, "quantity": quantity }     
-    
-      this.appService.postMethod(action, param)
-        .subscribe(data => { 
-          let index = data.products.findIndex(p => p.id === product.id); 
+
+    } else if(quantity>0){
+      let userData = JSON.parse(localStorage.getItem('userData'));
+      if (userData) {
+        action =  Action.PRIVATE + Action.CUSTOMER + Action.CARTS;
+      } else {
+        action = Action.CART
+      }
+      let param = { "product": result.id, "quantity": quantity }
+      this.appService.postMethod(action, param).subscribe(data => {
+          let index = data.products.findIndex(p => p.id === result.id); 
           this.qty = (index == -1 ? 0 : data.products[index].quantity);
-          // this.qty = data.quantity;  
-          this.cookieService.set('shopizer-cart-id', data.code);
+          this.cookieService.set('vfscfood-cart-id', data.code);
           this.spinnerService.hide();
-          this.Helper.showMiniCart(1);
+          this.showMiniCart();
         }, error => {
           this.spinnerService.hide();
         });
-    } else {
-      this.spinnerService.hide();
     }
   }
   qtyUpdate(status) {

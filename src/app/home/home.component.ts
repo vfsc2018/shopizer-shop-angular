@@ -106,12 +106,12 @@ export class HomeComponent implements OnInit {
     this.spinnerService.show();
     let action;
 
-    if (this.cookieService.get('shopizer-cart-id')) {
+    if (this.cookieService.get('vfscfood-cart-id')) {
       action = Action.CART
       let cartData = JSON.parse(this.cookieService.get('localCart'));
       let index = cartData.findIndex(order => order.id === result.id);
       let param = { "product": result.id, "quantity": index == -1 ? 1 : cartData[index].quantity + 1 }
-      let id = this.cookieService.get('shopizer-cart-id');
+      let id = this.cookieService.get('vfscfood-cart-id');
       this.appService.put(action, id, param)
         .subscribe(data => {
           this.showMiniCart();
@@ -129,10 +129,9 @@ export class HomeComponent implements OnInit {
         action = Action.CART
       }
       let param = { "product": result.id, "quantity": 1 }
-      this.appService.postMethod(action, param)
-        .subscribe(data => {
+      this.appService.postMethod(action, param).subscribe(data => {
           // console.log(data);
-          this.cookieService.set('shopizer-cart-id', data.code);
+          this.cookieService.set('vfscfood-cart-id', data.code);
           this.spinnerService.hide();
           this.showMiniCart();
         }, error => {

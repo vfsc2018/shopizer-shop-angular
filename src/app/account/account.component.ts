@@ -53,15 +53,15 @@ export class AccountComponent implements OnInit {
         localStorage.setItem('userData', JSON.stringify(data));
         this.dataSharingService.isLogin.next(0);
         this.toastr.success('You have successfully logged in to this website', 'Well done!');
-        this.addtoCart();
+        this.addToCart();
       }, error => {
         this.spinnerService.hide();
         this.toastr.error('Incorrect username or password');
         console.log('user')
       });
   }
-  addtoCart() {
-    let cardCode = this.cookieService.get('shopizer-cart-id');
+  addToCart() {
+    let cardCode = this.cookieService.get('vfscfood-cart-id');
     
     if (cardCode) {
       // let userData = JSON.parse(localStorage.getItem('userData'));

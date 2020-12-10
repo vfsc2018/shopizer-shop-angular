@@ -2,7 +2,7 @@
 
 export const environment = {
   production: true,
-  baseUrl: 'http://14.160.32.79:8081',
+  baseUrl: 'http://api.vfscfood.com:5008',
   apiVersion: '/api/v1/',
   merchant: 'DEFAULT'
 };

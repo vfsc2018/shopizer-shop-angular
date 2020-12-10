@@ -8,6 +8,7 @@
           <div class="slide100-01" id="slide100-01" *ngIf="galleryImages.length > 0">
             <img-slider [galleryImages]="galleryImages"></img-slider>
           </div>
+
           <div class="product-body">
             <div class="first" *ngIf="productDetail && productDetail.description">
               <h3 class="name">{{productDetail.description.name}}</h3>
@@ -35,7 +36,7 @@
                   <i class="icon-down" (click)="qtyUpdate(0)"></i>
                 </span>
                 <div class="quantity-input">
-                  <input type="number" value="{{qty}}">
+                  <input readonly type="number" value="{{qty}}">
                 </div>
                 <span class="add">
                   <i class="icon-up" (click)="qtyUpdate(1)"></i>
@@ -87,6 +88,7 @@
             <div class="product-rating" data-star="5">
               <ngb-rating [rate]="productDetail.rating"></ngb-rating>
             </div>
+           
           </div>
 
         </div>

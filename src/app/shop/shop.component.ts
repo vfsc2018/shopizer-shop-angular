@@ -156,12 +156,13 @@ export class ShopComponent implements OnInit {
     this.spinnerService.show();
 
     let action;
-    if (this.cookieService.get('shopizer-cart-id')) {
+    let id = this.cookieService.get('vfscfood-cart-id'); console.log("cart code:", id);
+    if (id) {
       action = Action.CART
       let cartData = JSON.parse(this.cookieService.get('localCart'));
       let index = cartData.findIndex(order => order.id === result.id);
       let param = { "product": result.id, "quantity": index == -1 ? 1 : cartData[index].quantity + 1 }
-      let id = this.cookieService.get('shopizer-cart-id');
+     
       this.appService.put(action, id, param)
         .subscribe(data => {
           this.showMiniCart();
@@ -171,16 +172,15 @@ export class ShopComponent implements OnInit {
           this.toastr.error('Can not action this product','Product not avaiable');
         });
     } else {
-      let userData = JSON.parse(localStorage.getItem('userData'));
+      let userData = JSON.parse(localStorage.getItem('userData')); console.log("user:",userData);
       if (userData) {
         action =  Action.PRIVATE + Action.CUSTOMER + Action.CARTS;
       } else {
         action = Action.CART
       }
         let param = { "product": result.id, "quantity": 1 }
-      this.appService.postMethod(action, param)
-        .subscribe(data => {
-          this.cookieService.set('shopizer-cart-id', data.code);
+      this.appService.postMethod(action, param).subscribe(data => {
+          this.cookieService.set('vfscfood-cart-id', data.code);
           this.showMiniCart();
         }, error => {
         });

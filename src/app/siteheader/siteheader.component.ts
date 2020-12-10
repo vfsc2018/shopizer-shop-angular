@@ -107,7 +107,10 @@ export class SiteheaderComponent implements OnInit {
     toggleSearch() {
         this.Helper.showMiniCart(0);
         this.settingShow = false;
+        let x = localStorage.getItem('itemCount');
+        this.count = x? JSON.parse(x):0;
     }
+    
     onSetting() {
         // this.Helper.showMiniCart(1);
         if (this.dataSharingService.modelRef.getValue()) {

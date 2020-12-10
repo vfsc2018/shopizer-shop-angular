@@ -4,8 +4,7 @@
       <td>
         <div class="table-shop-product">
           <div class="image">
-            <custom-img [src]="result.images[0].imageUrl" [alt]="'Product 1'" *ngIf="result.images"></custom-img>
-            <!-- <custom-img [src]="result.images[0].imageUrl" [alt]="'Product 1'" *ngIf="!result.images"></custom-img> -->
+            <custom-img [src]="result.images[0].imageUrl" [alt]="'Product'" *ngIf="result.images"></custom-img>
           </div>
           <div class="name">{{result.description.name}}</div>
         </div>
@@ -15,14 +14,14 @@
       </td>
       <td *ngIf="showGrid == '1'">
         <div class="quantity">
-          <span class="sub">
-            <i class="icon-down" (click)="decreaseQuntity(result)"></i>
+          <span class="sub "(click)="decreaseQuntity(result)">
+            <i class="icon-down"></i>
           </span>
           <div class="quantity-input">
             <input type="number" value="{{result.quantity}}" (keyup)="onQuantityChange(result,$event.target.value)">
           </div>
-          <span class="add">
-            <i class="icon-up" (click)="increaseQuntity(result)"></i>
+          <span class="add" (click)="increaseQuntity(result)">
+            <i class="icon-up"></i>
           </span>
         </div>
       </td>

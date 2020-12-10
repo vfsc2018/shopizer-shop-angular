@@ -16,7 +16,7 @@ export class WishListComponent implements OnInit {
 
   getWishList() {
     // let action = Action.CART;
-    // this.appService.getMethod(action + this.cookieService.get('shopizer-cart-id'))
+    // this.appService.getMethod(action + this.cookieService.get('vfscfood-cart-id'))
     //   .subscribe(data => {
     //     // this.cartData = data.products;
     //     // this.subtotal = data.subtotal;

@@ -51,13 +51,13 @@
               </li>
               <li class="header-shop-cart">
                 <button class="shop-cart-button" (click)="toggleSearch()">
-                  <img src="assets/images/icon/header-cart.png" alt="Search">
+                  <img src="assets/images/icon/header-cart.png" alt="Cart">
                   <span *ngIf="count > 0" class="amount">{{count}}</span>
                 </button>
               </li>
               <li>
                 <button class="shop-cart-button" (click)="onSetting()">
-                  <img src="assets/images/icon/header-bar.png" alt="Search">
+                  <img src="assets/images/icon/header-bar.png" alt="Setting">
                 </button>
                 <settings [isOpen]="settingShow" [languageData]="merchant.supportedLanguages"></settings>
               </li>

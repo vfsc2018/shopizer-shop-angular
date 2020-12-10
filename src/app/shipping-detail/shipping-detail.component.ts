@@ -187,9 +187,10 @@ export class ShippingDetailComponent implements OnInit {
   //     });
   // }
   getProfile() {
+    let userData = localStorage.getItem('userData');
+    if(!userData) return;
     let action = Action.PRIVATE + Action.CUSTOMER + Action.PROFILE;
-    this.appService.getMethod(action)
-      .subscribe(data => {
+    this.appService.getMethod(action).subscribe(data => {
         // console.log(data);
         this.billing.firstName = data.billing.firstName; 
         this.billing.address = data.billing.address; 
