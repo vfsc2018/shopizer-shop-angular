@@ -49,24 +49,24 @@ export class SiteheaderComponent implements OnInit {
     }
     getStore() {
         let action = Action.STORE + Action.DEFAULT;
-        this.appService.getMethod(action)
-            .subscribe(data => {
-                this.merchant = data;
-                if(this.merchant.logo)
-                {
-                    this.merchant.logo.path=this.api_url+this.merchant.logo.path;
-                }
-                if (localStorage.getItem('langulage')) {
-                    this.translate.setDefaultLang(localStorage.getItem('langulage'));
-                } else {
-                    localStorage.setItem('langulage', data.defaultLanguage);
-                    this.translate.setDefaultLang(data.defaultLanguage);
-                }
+        this.appService.getMethod(action).subscribe(data => {
+            this.cookieService.set('store-data', JSON.stringify(data))
+            this.merchant = data;
+            if(this.merchant.logo)
+            {
+                this.merchant.logo.path=this.api_url+this.merchant.logo.path;
+            }
+            if (localStorage.getItem('langulage')) {
+                this.translate.setDefaultLang(localStorage.getItem('langulage'));
+            } else {
+                localStorage.setItem('langulage', data.defaultLanguage);
+                this.translate.setDefaultLang(data.defaultLanguage);
+            }
 
-                this.cookieService.set('store-data', JSON.stringify(data))
-            }, error => {
-                this.router.navigate(['/error']);
-            });
+            
+        }, error => {
+            this.router.navigate(['/error']);
+        });
     }
     getCategoryHierarchy() {
 

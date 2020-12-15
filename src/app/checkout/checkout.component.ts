@@ -12,6 +12,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { OrderConfirmComponent } from '../order-confirm/order-confirm.component';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { DataSharingService } from '../directive/data-sharing.service';
 
 @Component({
   selector: 'checkout',
@@ -42,7 +43,6 @@ export class CheckoutComponent implements OnInit {
 
   summeryOrder: any;
 
-
   isShipping: Boolean = false;
   isAccount: Boolean = false;
   public scrollbarOptions = { axis: 'y', theme: 'light' };
@@ -62,24 +62,11 @@ export class CheckoutComponent implements OnInit {
     zone: '',
     email: '',
   };
+  shipping = this.billing;
   comments: string = '';
   note: string = '';
   password: string = '';
-  shipping = {
-    firstName: '',
-    lastName: 'Mr/Ms',
-    company: '',
-    address: '',
-    city: 'Hà Nội',
-    stateProvince: 'Hà Nội',
-    country: 'Việt Nam',
-    postalCode: '10000',
-    phone: '',
-    countryCode: 'VN',
-    zone: '',
-    email: '',
-    note: ''
-  };
+ 
   info: any = {};
   cartData: any;
   config: any;
@@ -106,11 +93,13 @@ export class CheckoutComponent implements OnInit {
     private ngZone: NgZone,
     private modalService: NgbModal,
     private toastr: ToastrService,
-    public router: Router
+    public router: Router,
+    private dataSharingService: DataSharingService
   ) {
     // this.getCountry();
     this.getCart();
     this.userDataFlag = localStorage.getItem('userData') ? true : false;
+    this.getProfile();
 
     // let me = this;
     // this.mapsAPILoader.load().then(() => {
@@ -177,7 +166,7 @@ export class CheckoutComponent implements OnInit {
         if (this.userDataFlag) {
           this.getProfile();
         } else {
-          this.getCurrentLocation();
+          // this.getCurrentLocation();
         }
 
       }, error => {
@@ -219,8 +208,8 @@ export class CheckoutComponent implements OnInit {
   //     });
   // }
   getProfile() {
-    let userData = localStorage.getItem('userData');
-    if(!userData) return;
+    //let userData = localStorage.getItem('userData'); console.log("profile:---->", userData);
+    if(!this.userDataFlag) return;
     let action = Action.PRIVATE + Action.CUSTOMER + Action.PROFILE;
     this.appService.getMethod(action).subscribe(data => {
 
@@ -353,29 +342,36 @@ export class CheckoutComponent implements OnInit {
   }
 
   onShippingChange() {
-    console.log('shippingChange')
+    
     this.spinnerService.show();
     let action = Action.CART + this.cartData.code + '/' + Action.SHIPPING;
-    console.log(action)
+    
     let param = {}
     if (this.isShipping) {
       param = { 'postalCode': this.shipping.postalCode, 'countryCode': this.shipping.countryCode }
     } else {
       param = { 'postalCode': this.billing.postalCode, 'countryCode': this.billing.countryCode }
     }
-     console.log(param)
+     
     this.appService.postMethod(action, param)
       .subscribe(data => {
-        console.log(data)
         this.shippingData = data;
         this.spinnerService.hide();
       }, error => {
-
         this.spinnerService.hide();
       });
   }
   shippingQuoteChange(value) {
     this.getOrderTotal(value.shippingQuoteOptionId)
+  }
+  login(username:string, password:string){
+    let action = Action.CUSTOMER + Action.LOGIN;
+    let param = { "username": username, "password": password }
+    this.appService.postMethod(action, param).subscribe(data => {
+      localStorage.setItem('userData', JSON.stringify(data));
+      this.userDataFlag = true;
+      this.dataSharingService.isLogin.next(0);
+    }, error => {console.log(error)});
   }
   // onShipDiffrent(event) {
   //   this.isShipping = !this.isShipping;
@@ -424,6 +420,21 @@ export class CheckoutComponent implements OnInit {
   termCondition() {
     this.isCondition = !this.isCondition;
   }
+  clearShoppingCard() {
+    this.spinnerService.show();
+    let action = Action.CART;
+    let id = this.cookieService.get('vfscfood-cart-id');
+    this.appService.deleteMethod(action, id).subscribe(data => { 
+        this.cartData = [];
+        this.spinnerService.hide();
+    }, error => { 
+      this.cartData = [];
+      this.spinnerService.hide();
+    });
+    
+    this.helper.resetCart();
+  }
+
   errMessage: string;
   isSubmitted: boolean = false;
   isShippingSubmitted: boolean = false;
@@ -434,9 +445,8 @@ export class CheckoutComponent implements OnInit {
     
     this.isSubmitted = false;
     this.isShippingSubmitted = false;
-     console.log(this.isShipping);
+     
     if (!this.isCondition) {
-      console.log('if')
       this.errMessage = 'Please agree to our terms and conditions'
     } else 
     {
@@ -478,24 +488,27 @@ export class CheckoutComponent implements OnInit {
             }
             
           } else {
-            action = Action.CART + this.cartData.code + '/' + Action.CHECKOUT
+            action = Action.CART + this.cartData.code + '/' + Action.CHECKOUT;
+            let info = {
+              "address": this.billing.address,
+              "company": this.billing.company,
+              "city": this.billing.city,
+              "postalCode": this.billing.postalCode,
+              "country": this.billing.countryCode,
+              "stateProvince": this.billing.stateProvince,
+              "zone": this.billing.zone,
+              "firstName": this.billing.firstName,
+              "lastName": this.billing.lastName,
+              "phone": this.billing.phone
+            };
+
             let customer = {
                 "emailAddress":  this.billing.phone + "@vfsc.vn",
                 "language": language,
                 "password": this.password,
                 "userName":  this.billing.phone  + "@vfsc.vn",
-                "billing": {
-                  "address": this.billing.address,
-                  "company": this.billing.company,
-                  "city": this.billing.city,
-                  "postalCode": this.billing.postalCode,
-                  "country": this.billing.countryCode,
-                  "stateProvince": this.billing.stateProvince,
-                  "zone": this.billing.zone,
-                  "firstName": this.billing.firstName,
-                  "lastName": this.billing.lastName,
-                  "phone": this.billing.phone
-                }
+                "billing": info,
+                "delivery": info
               }
             
             param = {
@@ -512,32 +525,28 @@ export class CheckoutComponent implements OnInit {
               "customer": customer
             }
           }
-          this.appService.postMethod(action, param)
-            .subscribe(data => {
-              console.log(data)
+          this.appService.postMethod(action, param).subscribe(data => {
+              if(!this.userDataFlag) this.login(this.billing.phone  + "@vfsc.vn", this.password);
               let modalRef = this.modalService.open(OrderConfirmComponent, {
                 windowClass: 'order-detail'
               });
               modalRef.componentInstance.orderID = data.id;
               modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
-                console.log(receivedEntry);
                 modalRef.close()
-  
               });
               this.toastr.success('Your order has been submitted', 'Well done!');
               this.router.navigate(['/']);
               this.spinnerService.hide();
-            }, error => {
-              this.spinnerService.hide();
-              this.toastr.error('Your order submission has been failed', 'Error');
-            });
+              this.clearShoppingCard();
+              }, error => {
+                console.log(error);
+                this.spinnerService.hide();
+                this.toastr.error('Your order submission has been failed', 'Error');
+              });
   
   
        // }
       // }
     }
-    
-   
-
   }
 }       

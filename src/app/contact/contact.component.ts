@@ -12,7 +12,7 @@ declare let google: any;
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-  texto: string = 'Wenceslau Braz - Cuidado com as cargas';
+  text: string = 'Welcome';
   lat: number;
   lng: number;
   zoom: number = 15;
@@ -30,7 +30,7 @@ export class ContactComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.contactData = JSON.parse(this.cookieService.get('store-data'));
-    // console.log(this.contactData);
+    console.log(this.contactData);
     this.getGeoLocation()
   }
 

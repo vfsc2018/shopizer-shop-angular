@@ -17,6 +17,7 @@ export class OrderDetailComponent implements OnInit {
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   data: any;
+  ordered: boolean = false;
   api_url=environment.baseUrl;
   constructor(
     private modalService: NgbModal,
@@ -44,15 +45,24 @@ export class OrderDetailComponent implements OnInit {
     return this.formatMoney(money);
   }
   ngOnInit() {
-    // consaole.log(this.data)
-    this.getOrderDetails()
+    this.getOrderDetail()
   }
-  getOrderDetails() {
-    let action = Action.PRIVATE + Action.CUSTOMER + Action.ORDERS + this.orderID;
-    this.appService.getMethod(action).subscribe(data => {
-        this.data = data;
+  cancelOrder() {
+    if(!this.ordered) return;
+    let action = Action.PRIVATE + Action.CUSTOMER + Action.ORDER + this.orderID + Action.CANCELED;
+    this.appService.patch(action).subscribe(data => {
+        console.log(data);
+        this.passBack();
       }, error => {
       });
+  }
+  getOrderDetail(){
+      let action = Action.PRIVATE + Action.CUSTOMER + Action.ORDERS + this.orderID;
+      this.appService.getMethod(action).subscribe(data => { console.log(data);
+          this.data = data;
+          this.ordered = (data.orderStatus == "ORDERED");
+        }, error => {
+        });
   }
   dateFormat(value) {
     return value?moment(value).format('DD/MM/YYYY'):"";

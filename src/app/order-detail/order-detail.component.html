@@ -54,8 +54,8 @@
             </tr>
             <tr class="product" *ngFor="let product of data.products">
               <td class="width30">
-                <div class="table-shop-product">
-                  <div *ngIf="product.product" class="image"> 
+                <div *ngIf="product.product" class="table-shop-product">
+                  <div class="image"> 
                     <img class="image" src="{{api_url}}{{product.product.image.imageUrl}}" alt="{{product.sku}}">
                   </div>
                   <div class="name">
@@ -84,7 +84,11 @@
             <tr class="pricedetail">
               <div class="final">{{'Order Total' | translate}}: <span class="totalprice">{{getCurrency(data.total.value)}} {{data.currency}}</span></div>
               <p class="final"><b>{{'Order notes' | translate}}:</b> {{data.comments}}</p>
+              <div *ngIf="ordered" class="au-form-body">
+                <button class="process-button float-right" (click)="cancelOrder()">{{'Cancel Order' | translate}}</button>
+              </div>
             </tr>
+           
           </tbody>
         </table>
       </div>

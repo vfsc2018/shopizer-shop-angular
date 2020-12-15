@@ -58,6 +58,17 @@ export class AppService {
             headers: headers
         });
     }
+    patch(action) {
+        let headers = new Headers();
+        this.createAuthorizationHeader(headers);
+        return this.http.patch(this.url + action, {
+            headers: headers
+        })
+            .pipe(
+                map(this.extractData),
+                catchError(this.handleErrorObservable)
+            );
+    }
     patchMethod(action, requestJSON) {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);

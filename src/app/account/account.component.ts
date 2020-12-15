@@ -46,8 +46,7 @@ export class AccountComponent implements OnInit {
         username += "@vfsc.vn";
     }
     let param = { "username": username, "password": this.user.password }
-    this.appService.postMethod(action, param)
-      .subscribe(data => {
+    this.appService.postMethod(action, param).subscribe(data => {
         this.spinnerService.hide();
         this.router.navigate(['/orders']);
         localStorage.setItem('userData', JSON.stringify(data));
