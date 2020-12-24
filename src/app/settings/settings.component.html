@@ -18,7 +18,7 @@
         </span>
     </div>
     <li class="border-line"></li>
-    <div class="m_nav_item" *ngIf="!userDataFlag">
+    <div class="m_nav_item" *ngIf="!userDataFlag || !userData">
         <div class="m-nav__link">
             <a routerLink="/account" (click)="menuHide()">{{ 'Sign In' | translate}}</a>
         </div>
@@ -26,7 +26,7 @@
             <a routerLink="/register" (click)="menuHide()">{{ 'Register' | translate}}</a>
         </div>
     </div>
-    <div class="m_nav_item" *ngIf="userDataFlag">
+    <div class="m_nav_item" *ngIf="userDataFlag && userData">
         <div class="m-nav__link">
             <a routerLink="/shipping-detail" (click)="menuHide()">{{ 'Billing & shipping Information' | translate}}</a>
         </div>
@@ -34,15 +34,15 @@
             <a routerLink="/orders" (click)="menuHide()">{{ 'Recent Orders' | translate}} </a>
         </div>
     </div>
-    <li class="border-line"  *ngIf="userDataFlag">
+    <li class="border-line"  *ngIf="userDataFlag && userData">
 
     </li>
-    <div class="m_nav_item" *ngIf="userDataFlag">
+    <div class="m_nav_item" *ngIf="userDataFlag && userData">
         <div class="m-nav__link">
             <a routerLink="/password" (click)="menuHide()">{{ 'Change Password' | translate}}</a>
         </div>
     </div>
-    <div class="m_nav_item1" *ngIf="userDataFlag">
+    <div class="m_nav_item1" *ngIf="userDataFlag && userData">
         <div class="m-nav__link">
             <a herf="javascript::void()" (click)="logout()">{{ 'Logout' | translate}}</a>
         </div>
