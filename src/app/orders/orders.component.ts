@@ -68,7 +68,8 @@ export class OrdersComponent implements OnInit {
     });
     modalRef.componentInstance.orderID = order.id;
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
-      modalRef.close()
+      this.getOrders();
+      modalRef.close();
     })
   }
 

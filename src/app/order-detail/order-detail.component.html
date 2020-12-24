@@ -56,7 +56,7 @@
               <td class="width30">
                 <div *ngIf="product.product" class="table-shop-product">
                   <div class="image"> 
-                    <img class="image" src="{{api_url}}{{product.product.image.imageUrl}}" alt="{{product.sku}}">
+                    <img *ngIf="product.product.image" class="image" src="{{api_url}}{{product.product.image.imageUrl}}" alt="{{product.sku}}">
                   </div>
                   <div class="name">
                     {{product.product.description.title}}

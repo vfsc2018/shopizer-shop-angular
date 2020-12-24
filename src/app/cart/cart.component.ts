@@ -31,6 +31,7 @@ export class CartComponent {
   title = 'app';
   elementType = 'url';
   value = 'Techiediaries';
+  payment = false;
 
   api_url=environment.baseUrl;
   @Input() isOpen: boolean;
@@ -56,6 +57,7 @@ export class CartComponent {
     let userData = JSON.parse(localStorage.getItem('userData'));
     this.cartCode = this.cookieService.get('vfscfood-cart-id');
     let action;
+    this.payment = false;
 
     if (this.cartCode) {
       action = Action.CART + this.cartCode;
@@ -67,7 +69,9 @@ export class CartComponent {
     
     this.appService.getMethod(action).subscribe(data => {
         this.cartData = data;
+        let showPayment = true;
         this.cartData.products.map(e=>{
+          showPayment = e.available && showPayment;
           if(e.image && e.image.imageUrl.indexOf("http")<0)
           {
             e.image.imageUrl=this.api_url+ e.image.imageUrl;
@@ -79,10 +83,14 @@ export class CartComponent {
             });
           }     
         });
+        this.payment = showPayment;
         this.cookieService.set('vfscfood-cart-id', data.code);
         this.refreshCount(data.quantity);
         this.addCartLocal(data.products);
         this.spinnerService.hide();
+        setTimeout(function(){
+          this.isOpen = false;
+        }.bind(this),8000);
       }, error => {
         this.cartData = '';
         this.refreshCount(0);
@@ -110,7 +118,7 @@ export class CartComponent {
     let param = { "product": result.id, "quantity": 0 }
     let id = this.cookieService.get('vfscfood-cart-id');
     this.appService.put(action, id, param).subscribe(data => {
-      console.log(data);
+      //console.log(data);
         let cartData = JSON.parse(this.cookieService.get('localCart'));
         let index = cartData.findIndex(order => order.id === result.id);
         cartData.splice(index, 1);

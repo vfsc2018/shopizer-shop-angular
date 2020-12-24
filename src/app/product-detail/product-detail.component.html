@@ -31,7 +31,7 @@
             <p class="description"  *ngIf="productDetail.description" [innerHTML]="productDetail.description.description">
               {{productDetail.description.description}}</p>
             <div class="product-button">
-              <div class="quantity">
+              <div class="quantity" *ngIf="productDetail.quantity && productDetail.available">
                 <span class="sub">
                   <i class="icon-down" (click)="qtyUpdate(0)"></i>
                 </span>

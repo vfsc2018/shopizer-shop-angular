@@ -212,7 +212,6 @@ export class CheckoutComponent implements OnInit {
     if(!this.userDataFlag) return;
     let action = Action.PRIVATE + Action.CUSTOMER + Action.PROFILE;
     this.appService.getMethod(action).subscribe(data => {
-
         this.billing = data.billing;
         this.billing.email = data.emailAddress;
         // if (data.delivery) {
@@ -244,6 +243,7 @@ export class CheckoutComponent implements OnInit {
         // this.onShippingChange();
         // ////console.log(index, '***********');
       }, error => {
+        this.helper.checkProfile(error);
       });
   }
   getCurrentLocation() {

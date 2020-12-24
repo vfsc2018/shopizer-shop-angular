@@ -30,8 +30,8 @@
                   <span class="price">{{product.price}}</span>
                 </td>
                 <td class="width10">
-                  <span class="delivered">{{order.orderStatus}}</span>
-                  <!-- <span class="arriving">{{order.orderStatus}}</span> -->
+                  <span *ngIf="order.orderStatus!='CANCELED'" class="delivered">{{order.orderStatus}}</span>
+                  <span *ngIf="order.orderStatus=='CANCELED'"class="arriving">{{order.orderStatus}}</span>
                 </td>
               </tr>
 

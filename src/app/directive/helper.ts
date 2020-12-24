@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { CartComponent } from '../cart/cart.component';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataSharingService } from '../directive/data-sharing.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MapsAPILoader } from '@agm/core';
 import { HttpClient } from '@angular/common/http';
-
+import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
+import { Action } from '../directive/app.constants';
 
 declare let google: any;
 
 @Injectable()
 export class Helper {
     loading: any;
+    url = environment.baseUrl + environment.apiVersion;
     constructor(
         private dataSharingService: DataSharingService,
         private cookieService: CookieService,
@@ -45,6 +47,13 @@ export class Helper {
             });
             modalRef.componentInstance.isOpen = true;
             this.dataSharingService.modelRef.next(modalRef);
+        }
+    }
+
+    checkProfile(e: any) { console.log("check profile ---> " + e);
+        if(e.status==401 && e.error && e.error =='Unauthorized'){
+            localStorage.removeItem('userData');
+            this.resetCart();
         }
     }
 
@@ -117,13 +126,12 @@ export class Helper {
         };
     }
     getIPAddress(callback) {
-        this.http.get<{ ip: string }>('https://jsonip.com')
-            .subscribe(data => {
+        this.http.get<{ ip: string }>('https://jsonip.com').subscribe(data => {
                 // console.log('th data', data);
                 callback(data)
-            })
+        })
     }
-    resetCart(){ console.log("delete all");
+    resetCart(){ 
         this.cookieService.deleteAll();
         localStorage.setItem('itemCount', JSON.stringify(0));
         // let localCart = []; 

@@ -99,7 +99,6 @@ export class ShippingDetailComponent implements OnInit {
     //   });
     // });
 
-
   }
   config = {
     displayKey: "name", //if objects array passed which key to be displayed defaults to description
@@ -242,6 +241,7 @@ export class ShippingDetailComponent implements OnInit {
 
         // console.log(index, '***********');
       }, error => {
+        
       });
   }
   onUpdateAddress() {

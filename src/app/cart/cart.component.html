@@ -15,12 +15,13 @@
                 <div class="item-detail">
                     <p class="name">{{result.description.name}}</p>
                     <p class="price">{{result.finalPrice}}</p>
-                    <p class="amount">x{{result.quantity}}</p>
+                    <p *ngIf="result.available" class="amount">x{{result.quantity}}</p>
+                    <p *ngIf="!result.available" class="amount">{{'Not in stock' | translate}}</p>
                 </div>
                 <span class="icon-close" (click)="removecartData(result)"></span>
             </li>
         </ul>
-        <div class="checkout m-t-26">
+        <div *ngIf="cartData.total && payment" class="checkout m-t-26">
             <!-- <p> {{ 'subtotal' | translate}}
                 <span class="sub-total">${{cartData.subtotal}}</span>
             </p> -->

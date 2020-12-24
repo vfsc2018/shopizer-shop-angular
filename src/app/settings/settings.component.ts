@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 
+
 import { DataSharingService } from '../directive/data-sharing.service';
 @Component({
   selector: 'settings',
@@ -62,7 +63,7 @@ export class SettingsComponent {
       } else {
         this.language = 'Language'
       }
-      this.getProfile();
+      // this.getProfile();
     });
     //console.log('*********************')
     this.getProfile();
@@ -71,10 +72,10 @@ export class SettingsComponent {
     let userData = localStorage.getItem('userData');
     if(!userData) return;
       let action = Action.PRIVATE + Action.CUSTOMER + Action.PROFILE;
-      this.appService.getMethod(action)
-        .subscribe(data => {
+      this.appService.getMethod(action).subscribe(data => {
           this.userData = data;
         }, error => {
+          this.helper.checkProfile(error);
       });
   }
   onChangeLanguage(value) {

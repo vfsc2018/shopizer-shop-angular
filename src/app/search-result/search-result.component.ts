@@ -3,6 +3,8 @@ import { AppService } from '../directive/app.service';
 import { Action, AppConstants } from '../directive/app.constants';
 import { DataSharingService } from '../directive/data-sharing.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'search-result',
   templateUrl: './search-result.component.html',
@@ -14,6 +16,7 @@ export class SearchResultComponent implements OnInit {
   totalRecord: Number = 0;
   searchResult: Array<any> = [];
   categoryFactes: Array<any> = [];
+  api_url=environment.baseUrl;
 
   constructor(
     private appService: AppService,
@@ -40,7 +43,22 @@ export class SearchResultComponent implements OnInit {
       .subscribe(data => {
         console.log(data)
         this.totalRecord = data.productCount;
-        this.searchResult = data.products;
+        let products = data.products;
+        if(products){
+          products.map(e=>{
+            if(e.image && e.image.imageUrl.indexOf("http")<0)
+            {
+              e.image.imageUrl=this.api_url+ e.image.imageUrl;
+              e.images.map(ex=>{
+                if(ex.imageUrl.indexOf("http")<0)
+                {
+                  ex.imageUrl=this.api_url+ ex.imageUrl;
+                }     
+              });
+            }     
+          });
+        }
+        this.searchResult = products;
         this.categoryFactes = data.categoryFacets
       }, error => {
       });

@@ -50,15 +50,15 @@ export class OrderDetailComponent implements OnInit {
   cancelOrder() {
     if(!this.ordered) return;
     let action = Action.PRIVATE + Action.CUSTOMER + Action.ORDER + this.orderID + Action.CANCELED;
-    this.appService.patch(action).subscribe(data => {
-        console.log(data);
+    let param = {};
+    this.appService.patchMethod(action,param).subscribe(data => {
         this.passBack();
       }, error => {
       });
   }
   getOrderDetail(){
       let action = Action.PRIVATE + Action.CUSTOMER + Action.ORDERS + this.orderID;
-      this.appService.getMethod(action).subscribe(data => { console.log(data);
+      this.appService.getMethod(action).subscribe(data => {
           this.data = data;
           this.ordered = (data.orderStatus == "ORDERED");
         }, error => {
