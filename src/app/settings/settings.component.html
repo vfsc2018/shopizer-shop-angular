@@ -7,7 +7,7 @@
             {{ 'Please resignin' | translate}}
         </div>
     </div>
-    <li class="border-line" *ngIf="userDataFlag"></li>
+    <li class="border-line"></li>
     <div [ngClass]="userDataFlag ? 'm_nav_item' : 'witout_login'">
         <span ngbDropdown class="submenu">
             <span id="dropdownBasic1" ngbDropdownToggle>{{language | translate}}</span>
