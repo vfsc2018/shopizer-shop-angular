@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
-
+import { Helper } from '../directive/helper';
 import { AppService } from '../directive/app.service';
 import { Action } from '../directive/app.constants';
 import { Router } from '@angular/router';
@@ -21,6 +21,7 @@ export class ShippingDetailComponent implements OnInit {
     private toastr: ToastrService,
     public router: Router,
     private mapsAPILoader: MapsAPILoader,
+    private helper: Helper,
     private ngZone: NgZone
   ) {
 
@@ -241,7 +242,7 @@ export class ShippingDetailComponent implements OnInit {
 
         // console.log(index, '***********');
       }, error => {
-        
+        this.helper.checkProfile(error);
       });
   }
   onUpdateAddress() {
