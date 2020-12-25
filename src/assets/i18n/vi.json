@@ -27,7 +27,7 @@
     "Address": "Địa chỉ",
     "FOLLOW US": "Liên kết",
     "Showing": "Hiển thị",
-    "results": "Các kết quả",
+    "results": "kết quả",
     "Show": "Hiển thị",
     "search": "tìm kiếm",
     "Filter by price": "Lọc theo giá",
@@ -148,6 +148,7 @@
     "Start typing here":"Nhập nội dung tìm kiếm",
     "Leave your comment":"Nhập nội dung",
     "Sold out":"Đã bán hết",
+    "Can buy on next day": "Sản phẩm sắp ra",
     "Welcome":"Xin chào",
     "Please resignin":"Xin đăng nhập hệ thống !"
 }

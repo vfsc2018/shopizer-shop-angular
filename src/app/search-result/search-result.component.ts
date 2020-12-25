@@ -4,6 +4,7 @@ import { Action, AppConstants } from '../directive/app.constants';
 import { DataSharingService } from '../directive/data-sharing.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { Helper } from '../directive/helper';
 
 @Component({
   selector: 'search-result',
@@ -20,6 +21,7 @@ export class SearchResultComponent implements OnInit {
 
   constructor(
     private appService: AppService,
+    private helper: Helper,
     private dataSharingService: DataSharingService,
     public router: Router,
     public ActivatedRoute: ActivatedRoute
@@ -46,6 +48,7 @@ export class SearchResultComponent implements OnInit {
         let products = data.products;
         if(products){
           products.map(e=>{
+            e.showDateAvailable = this.helper.checkDateAvailable(e.dateAvailable);
             if(e.image && e.image.imageUrl.indexOf("http")<0)
             {
               e.image.imageUrl=this.api_url+ e.image.imageUrl;

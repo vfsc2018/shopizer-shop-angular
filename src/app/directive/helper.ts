@@ -50,6 +50,17 @@ export class Helper {
         }
     }
 
+    checkDateAvailable(dateAvailable: string){
+        let result = false;
+        if(dateAvailable){
+            let [d,m,y] = dateAvailable.split('/');
+            let date = new Date(parseInt(y),parseInt(m)-1,parseInt(d));
+            let now = new Date();
+            result = date.getTime()>now.getTime();
+        }
+        return result;
+    }
+
     checkProfile(e: any) { console.log("check profile ---> " + e);
         if(e.status==401 && e.error && e.error =='Unauthorized'){
             localStorage.removeItem('userData');

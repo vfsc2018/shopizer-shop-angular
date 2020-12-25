@@ -52,6 +52,16 @@ export class CartComponent {
     this.router.navigate(['/shoppingcart']);
     this.dataSharingService.modelRef.getValue().close()
   }
+  checkDateAvailable(dateAvailable: string){
+    let result = false;
+    if(dateAvailable){
+        let [d,m,y] = dateAvailable.split('/');
+        let date = new Date(parseInt(y),parseInt(m)-1,parseInt(d));
+        let now = new Date();
+        result = date.getTime()>now.getTime();
+    }
+    return result;
+  }
   getCart() {
     this.spinnerService.show();
     let userData = JSON.parse(localStorage.getItem('userData'));
@@ -71,6 +81,7 @@ export class CartComponent {
         this.cartData = data;
         let showPayment = true;
         this.cartData.products.map(e=>{
+          e.available = this.checkDateAvailable(e.dateAvailable);
           showPayment = e.available && showPayment;
           if(e.image && e.image.imageUrl.indexOf("http")<0)
           {

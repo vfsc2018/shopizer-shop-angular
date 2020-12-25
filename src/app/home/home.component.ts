@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     private appService: AppService,
     private cookieService: CookieService,
     private spinnerService: Ng4LoadingSpinnerService,
-    private Helper: Helper,
+    private helper: Helper,
     public router: Router,
     private toastr: ToastrService
   ) { }
@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit {
       .subscribe(data => {
         this.productData = data.products;
         this.productData.map(e=>{
+          e.showDateAvailable = this.helper.checkDateAvailable(e.dateAvailable);
           if(e.image && e.image.imageUrl.indexOf("http")<0)
           {
             e.image.imageUrl=this.api_url+ e.image.imageUrl;
@@ -130,7 +131,7 @@ export class HomeComponent implements OnInit {
 
   }
   showMiniCart() {
-    this.Helper.showMiniCart(1);
+    this.helper.showMiniCart(1);
   }
   goToDetailsPage(result) {
     this.router.navigate(['/product-detail'], { queryParams: { productId: result.id } });

@@ -31,7 +31,7 @@
             <p class="description"  *ngIf="productDetail.description" [innerHTML]="productDetail.description.description">
               {{productDetail.description.description}}</p>
             <div class="product-button">
-              <div class="quantity" *ngIf="productDetail.quantity && productDetail.available">
+              <div class="quantity" *ngIf="productDetail.quantity && productDetail.available && !productDetail.showDateAvailable">
                 <span class="sub">
                   <i class="icon-down" (click)="qtyUpdate(0)"></i>
                 </span>
@@ -42,13 +42,16 @@
                   <i class="icon-up" (click)="qtyUpdate(1)"></i>
                 </span>
               </div>
-              <div class="cart-btn" *ngIf="!productDetail.quantity">
+              <div class="cart-btn" *ngIf="productDetail.showDateAvailable">
+                <btn [text]="'Can buy on next day'"></btn>
+              </div>
+              <div class="cart-btn" *ngIf="!productDetail.quantity && !productDetail.showDateAvailable">
                 <btn [text]="'Sold out'"></btn>
               </div>
-              <div class="cart-btn" *ngIf="productDetail.quantity && !productDetail.available">
+              <div class="cart-btn" *ngIf="productDetail.quantity && !productDetail.available && !productDetail.showDateAvailable">
                 <btn [text]="'Not in stock'"></btn>
               </div>
-              <div class="cart-btn" *ngIf="productDetail.quantity && productDetail.available">
+              <div class="cart-btn" *ngIf="productDetail.quantity && productDetail.available && !productDetail.showDateAvailable">
                 <btn [text]="'Add to cart'" (onClick)="addToCart(productDetail)"></btn>
               </div>
               <div class="product-favourite">

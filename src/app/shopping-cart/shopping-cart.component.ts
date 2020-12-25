@@ -47,6 +47,7 @@ export class ShoppingCartComponent implements OnInit {
         this.spinnerService.hide();
         this.cartData = data.products? data.products: [];
         this.cartData.map(e=>{
+          e.available = this.helper.checkDateAvailable(e.dateAvailable);
           if(e.image && e.image.imageUrl.indexOf("http")<0)
           {
             e.image.imageUrl=this.api_url+ e.image.imageUrl;

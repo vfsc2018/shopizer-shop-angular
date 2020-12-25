@@ -20,7 +20,7 @@ export class AccountComponent implements OnInit {
     private toastr: ToastrService,
     public router: Router,
     private cookieService: CookieService,
-    private Helper: Helper,
+    private helper: Helper,
     private dataSharingService: DataSharingService
   ) { }
   user = {
@@ -76,7 +76,7 @@ export class AccountComponent implements OnInit {
             });
         });
       
-        this.Helper.showMiniCart(1);
+        this.helper.showMiniCart(1);
       }
     }
   }

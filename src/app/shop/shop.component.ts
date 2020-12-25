@@ -53,7 +53,7 @@ export class ShopComponent implements OnInit {
     private toastr: ToastrService,
     private spinnerService: Ng4LoadingSpinnerService,
     private dataSharingService: DataSharingService,
-    private Helper: Helper
+    private helper: Helper
   ) {
     this.dataSharingService.categoryData.subscribe(value => {
       // console.log(value, '123456789');
@@ -117,6 +117,7 @@ export class ShopComponent implements OnInit {
         this.totalRecord = data.totalCount;
         this.productData = this.productData.concat(data.products);
         this.productData.map(e=>{
+          e.showDateAvailable = this.helper.checkDateAvailable(e.dateAvailable);
           if(e.image && e.image.imageUrl.indexOf("http")<0)
           {
             e.image.imageUrl=this.api_url+ e.image.imageUrl;
@@ -188,7 +189,7 @@ export class ShopComponent implements OnInit {
     }
   }
   showMiniCart() {
-    this.Helper.showMiniCart(1);
+    this.helper.showMiniCart(1);
   }
   goToDetailsPage(result) {
     this.router.navigate(['/product-detail'], { queryParams: { productId: result.id } });

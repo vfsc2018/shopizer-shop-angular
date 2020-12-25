@@ -83,7 +83,7 @@ export class ProductDetailComponent implements OnInit {
     private appService: AppService,
     private cookieService: CookieService,
     private spinnerService: Ng4LoadingSpinnerService,
-    private Helper: Helper,
+    private helper: Helper,
     private toastr: ToastrService,
   ) {
     config.max = 5;
@@ -117,6 +117,7 @@ export class ProductDetailComponent implements OnInit {
     let action = Action.PRODUCTS;
 
     this.appService.getMethod(action + this.productId).subscribe(data => { 
+        data.showDateAvailable = this.helper.checkDateAvailable(data.dateAvailable);
         this.productDetail = data;
         if(data.images){
           data.images.map((image) => {
@@ -239,7 +240,7 @@ export class ProductDetailComponent implements OnInit {
   //   }
   // }
   showMiniCart() {
-    this.Helper.showMiniCart(1);
+    this.helper.showMiniCart(1);
   }
   addToCart(result: any, quantity: number = 1) {
     this.spinnerService.show();
@@ -257,7 +258,7 @@ export class ProductDetailComponent implements OnInit {
             let index = data.products.findIndex(p => p.id === result.id); 
             this.qty = (index == -1 ? 0 : data.products[index].quantity);
           }else{
-            this.Helper.resetCart();
+            this.helper.resetCart();
             // this.cookieService.delete('vfscfood-cart-id')
           }
           this.showMiniCart();

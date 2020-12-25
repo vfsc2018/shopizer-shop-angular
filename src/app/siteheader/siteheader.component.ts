@@ -30,7 +30,7 @@ export class SiteheaderComponent implements OnInit {
         private appService: AppService,
         private cookieService: CookieService,
         public router: Router,
-        private Helper: Helper,
+        private helper: Helper,
         private dataSharingService: DataSharingService,
         private translate: TranslateService
     ) {
@@ -105,7 +105,7 @@ export class SiteheaderComponent implements OnInit {
         this.active = this.active == '' ? 'active' : ''
     }
     toggleSearch() {
-        this.Helper.showMiniCart(0);
+        this.helper.showMiniCart(0);
         this.settingShow = false;
         let x = localStorage.getItem('itemCount');
         this.count = x? JSON.parse(x):0;

@@ -25,22 +25,31 @@
           </div>
         </div>
         <p class="description" [innerHTML]="result.description.description">{{result.description.description}}</p>
-        <div *ngIf="result.quantity && result.available" class="product-button">
-          <btn [text]="'Add to cart'" (onClick)="onClickAddCart(result)"></btn>
-          <div class="product-favourite">
-            <input type="checkbox" class="red-heart-checkbox">
-            <div class="icon-heart"></div>
+          <div *ngIf="!result.showDateAvailable">
+          <div *ngIf="result.quantity && result.available" class="product-button">
+            <btn [text]="'Add to cart'" (onClick)="onClickAddCart(result)"></btn>
+            <div class="product-favourite">
+              <input type="checkbox" class="red-heart-checkbox">
+              <div class="icon-heart"></div>
+            </div>
+          </div>
+          <div *ngIf="!result.quantity && !result.showDateAvailable" class="product-button">
+            <btn [text]="'Sold out'"></btn>
+            <div class="product-favourite">
+              <input type="checkbox" class="red-heart-checkbox">
+              <div class="icon-heart"></div>
+            </div>
+          </div>
+          <div *ngIf="result.quantity && !result.available && !result.showDateAvailable" class="product-button">
+            <btn [text]="'Not in stock'"></btn>
+            <div class="product-favourite">
+              <input type="checkbox" class="red-heart-checkbox">
+              <div class="icon-heart"></div>
+            </div>
           </div>
         </div>
-        <div *ngIf="!result.quantity" class="product-button">
-          <btn [text]="'Sold out'"></btn>
-          <div class="product-favourite">
-            <input type="checkbox" class="red-heart-checkbox">
-            <div class="icon-heart"></div>
-          </div>
-        </div>
-        <div *ngIf="result.quantity && !result.available" class="product-button">
-          <btn [text]="'Not in stock'"></btn>
+        <div *ngIf="result.showDateAvailable" class="product-button">
+          <btn [text]="'Can buy on next day'"></btn>
           <div class="product-favourite">
             <input type="checkbox" class="red-heart-checkbox">
             <div class="icon-heart"></div>
