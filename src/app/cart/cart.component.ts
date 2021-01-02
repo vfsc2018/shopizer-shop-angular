@@ -81,7 +81,8 @@ export class CartComponent {
         this.cartData = data;
         let showPayment = true;
         this.cartData.products.map(e=>{
-          e.available = this.checkDateAvailable(e.dateAvailable);
+          e.showDateAvailable = this.checkDateAvailable(e.dateAvailable);
+          e.available = e.available && !e.showDateAvailable;
           showPayment = e.available && showPayment;
           if(e.image && e.image.imageUrl.indexOf("http")<0)
           {
