@@ -47,9 +47,11 @@ export class AccountComponent implements OnInit {
     }
     let param = { "username": username, "password": this.user.password }
     this.appService.postMethod(action, param).subscribe(data => {
+        
+        localStorage.setItem('userData', JSON.stringify(data));
+       
         this.spinnerService.hide();
         this.router.navigate(['/orders']);
-        localStorage.setItem('userData', JSON.stringify(data));
         this.dataSharingService.isLogin.next(0);
         this.toastr.success('You have successfully logged in to this website', 'Well done!');
         this.addToCart();

@@ -112,6 +112,11 @@ export class ShoppingCartComponent implements OnInit {
       });
 
   }
+
+  sendPromoCode(){
+    this.toastr.info('Hãy thực hiện cài đặt ứng dụng trên điện thoại để sử dụng mã khuyến mại','Khuyến mại');
+  }
+
   removeCartData(result) {
     
     let id = this.cookieService.get('vfscfood-cart-id');

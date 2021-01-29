@@ -9,7 +9,7 @@
           <ul *ngFor="let child of result.children; let i = index">
             <li>
               <a (click)="onCategoryClick(child)">{{child.description ? child.description.name : ''}}</a>
-              <span class="number">{{result.quantity}}</span>
+              <!-- <span class="number">{{result.quantity}}</span> -->
             </li>
           </ul>
         </div>
@@ -27,7 +27,7 @@
     <ul *ngFor="let child of data.children; let i = index">
       <li>
         <a (click)="onCategoryClick(child)">{{child.description ? child.description.name : ''}}</a>
-        <span class="number">{{data.productCount}}</span>
+        <!-- <span class="number">{{data.productCount}}</span> -->
       </li>
     </ul>
   </div>

@@ -13,7 +13,7 @@ import { Helper } from '../directive/helper';
 })
 export class SearchResultComponent implements OnInit {
   showGrid: Boolean = false;
-  show_product: any = 10;
+  show_product: any = 12;
   totalRecord: Number = 0;
   searchResult: Array<any> = [];
   categoryFactes: Array<any> = [];
@@ -44,8 +44,9 @@ export class SearchResultComponent implements OnInit {
     this.appService.postMethod(action, param)
       .subscribe(data => {
         console.log(data)
-        this.totalRecord = data.productCount;
+        this.totalRecord = data.recordsTotal;
         let products = data.products;
+        this.show_product = products.length;
         if(products){
           products.map(e=>{
             e.showDateAvailable = this.helper.checkDateAvailable(e.dateAvailable);

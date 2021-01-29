@@ -22,7 +22,8 @@
                 <ng-container *ngIf="category.visible">
                   <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
                     <a (click)="onClickCategory(category)" [routerLink]="'/category/' + category.description.friendlyUrl">
-                      {{category.description.name | translate}}</a>
+                      {{category.description.name | translate}}
+                    </a>
                     <ul class="
                           sub-menu" *ngIf="category.children && category.children.length > 0">
                       <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>

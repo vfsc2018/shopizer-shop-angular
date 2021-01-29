@@ -31,10 +31,9 @@
         <div class="row">
             <div class="col-md-6 p-r-lg--30  m-t-30 m-b-30">
                 <div class="shop-total">
-                    <custom-label [label]="'Coupon code'" [className]="'cart-border'"></custom-label>
-                    <input-field type="text" placeHolder="Coupon code" label="Enter your coupon code if you have one"
-                        bottom="40"></input-field>
-                    <btn [text]="'Apply Coupon'"></btn>
+                    <custom-label [label]="'Promotion'" [className]="'cart-border'"></custom-label>
+                    <input-field type="text" placeHolder="Coupon code" label="Enter your coupon code if you have one" bottom="40"></input-field>
+                    <btn [text]="'Apply Coupon'" (onClick)="sendPromoCode()"></btn>
                 </div>
             </div>
             <div class="col-md-6 p-r-lg--30 m-t-30 m-b-30">

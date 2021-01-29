@@ -41,30 +41,30 @@ export class SettingsComponent {
     } else {
       this.language = 'Language'
     }
-    this.dataSharingService.isLogin.subscribe(value => {
-      // console.log(value)
-      this.userDataFlag = localStorage.getItem('userData') ? true : false;
-      // if (localStorage.getItem('langulage')) {
-      //   this.language = localStorage.getItem('langulage') == 'en' ? 'English' : 'Vietnamese';
-      // } else {
-      //   this.language = 'Language'
-      // }
-      if (localStorage.getItem('langulage')) {
-        switch(localStorage.getItem('langulage'))
-        {
-          case 'en':
-            this.language =  'English';
-            break;
-          case 'vi':
-            this.language =  'Vietnamese';
-            break;
-        }
+    // this.dataSharingService.isLogin.subscribe(value => {
+    //   // console.log(value)
+    //   this.userDataFlag = localStorage.getItem('userData') ? true : false;
+    //   // if (localStorage.getItem('langulage')) {
+    //   //   this.language = localStorage.getItem('langulage') == 'en' ? 'English' : 'Vietnamese';
+    //   // } else {
+    //   //   this.language = 'Language'
+    //   // }
+    //   if (localStorage.getItem('langulage')) {
+    //     switch(localStorage.getItem('langulage'))
+    //     {
+    //       case 'en':
+    //         this.language =  'English';
+    //         break;
+    //       case 'vi':
+    //         this.language =  'Vietnamese';
+    //         break;
+    //     }
        
-      } else {
-        this.language = 'Language'
-      }
-      // this.getProfile();
-    });
+    //   } else {
+    //     this.language = 'Language'
+    //   }
+    //   // this.getProfile();
+    // });
     //console.log('*********************')
     this.getProfile();
   }
@@ -74,6 +74,7 @@ export class SettingsComponent {
       let action = Action.PRIVATE + Action.CUSTOMER + Action.PROFILE;
       this.appService.getMethod(action).subscribe(data => {
           this.userData = data;
+          this.userDataFlag = true;
         }, error => {
           this.helper.checkProfile(error);
       });

@@ -163,10 +163,11 @@ export class ProductDetailComponent implements OnInit {
     let action = Action.PRODUCTS;
     this.appService.getMethod(action + this.productId + '/related')
       .subscribe(data => {
-        // console.log(data);
-        data.map(e=>{ 
-            if(e.image) e.image.imageUrl=this.api_url+ e.image.imageUrl;   
-        });
+        if(data){
+          data.map(e=>{ 
+              if(e.image) e.image.imageUrl=this.api_url+ e.image.imageUrl;   
+          });
+        }
         this.reletedProduct = data;
         this.spinnerService.hide();
       }, error => {

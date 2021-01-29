@@ -9,7 +9,7 @@ import { filter, map } from 'rxjs/operators';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    title = 'shopizer';
+    title = 'vfscfood';
     constructor(private router: Router, private titleService: Title, public activatedRoute: ActivatedRoute, ) {
         // translate.setDefaultLang('en');
         // this.router.navigate(['/home']);

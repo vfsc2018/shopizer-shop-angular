@@ -61,7 +61,7 @@ export class Helper {
         return result;
     }
 
-    checkProfile(e: any) { console.log("check profile ---> " + e);
+    checkProfile(e: any) {
         if(e.status==401 && e.error && e.error =='Unauthorized'){
             localStorage.removeItem('userData');
             this.resetCart();

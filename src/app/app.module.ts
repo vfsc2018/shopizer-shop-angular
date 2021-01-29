@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { HttpClientModule, HttpClient, } from "@angular/common/http";
-import { HttpModule } from '@angular/http';
+// import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -299,7 +299,7 @@ export function createTranslateLoader(http: HttpClient) {
     ToastrModule.forRoot({
       progressBar: true
     }),
-    HttpModule,
+    // HttpModule,
     Ng5SliderModule,
     NgxPaginationModule,
     NgxGalleryModule,

@@ -61,18 +61,17 @@ export class SitefooterComponent implements OnInit {
       });
   }
   getCategoryHierarchy() {
-
     let action = Action.CATEGORY + '?count=20&page=0';
     // let action = Action.CATEGORY + '?' + Action.FILTER + '=' + Action.VISIBLE;
-    this.appService.getMethod(action)
-      .subscribe(data => {
-        // console.log(data);
+    this.appService.getMethod(action).subscribe(data => {
         this.category = data.categories;
-      }, error => {
-      });
+        if(data.categories && data.categories.length==1 && data.categories[0].children){
+          this.category[0].children.sort((a,b)=>(a.sortOrder>b.sortOrder)?1:-1);
+        }
+    }, error => {
+    });
   }
   getContent() {
-
     let action = Action.CONTENT + Action.PAGES + '?' + Action.STORE + '=' + Action.DEFAULT;
     this.appService.getMethod(action)
       .subscribe(data => {
@@ -98,7 +97,6 @@ export class SitefooterComponent implements OnInit {
     this.dataSharingService.categoryData.next(category);
     localStorage.setItem('category_id', JSON.stringify(category))
     this.router.navigate(['/category/' + category.description.friendlyUrl]);
-
   }
   changeLang() {
     console.log(this.lan);

@@ -12,9 +12,9 @@ export class CategoriesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
   onCategoryClick(value) {
-    console.log(value)
     this.onClick.emit(value);
   }
   isArray(obj: any) {

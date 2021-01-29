@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
-
+// import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 
 import { map, catchError } from "rxjs/operators";
 // import 'rxjs/add/operator/map';
@@ -12,31 +12,48 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class AppService {
     url = '';
-    constructor(private http: Http) { 
+    constructor(private http: HttpClient) { 
         this.url = environment.baseUrl + environment.apiVersion;
     }
+    // constructor(private http: Http) { 
+    //     this.url = environment.baseUrl + environment.apiVersion;
+    // }
+    // post(action, body, headers){
+    //     return this.http.post<any>(action, body, { headers }).pipe(map(this.))
+    //     });
+    // }
+    
+
     postMethod(action, requestJSON) {
-        let headers = new Headers();
-        this.createAuthorizationHeader(headers);
+        let headers = this.authorizationHeader();
         return this.http.post(this.url + action, requestJSON, {
-            headers: headers
+            headers
         }).pipe(
             map(this.extractData),
             catchError(this.handleErrorObservable)
         );
     }
-    createAuthorizationHeader(headers: Headers) {
-        let userData = JSON.parse(localStorage.getItem('userData'))
-        if (userData) {
-            headers.append('Authorization', 'Bearer ' + userData.token);
+    // createAuthorizationHeader(headers: HttpHeaders) {
+    //     let userData = JSON.parse(localStorage.getItem('userData'))
+    //     if (userData) {
+    //         headers.append('Authorization', 'Bearer ' + userData.token);
+    //     }
+    //     headers.append('Content-Type', 'application/json');
+    // }
+    authorizationHeader() {
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        let userData = JSON.parse(localStorage.getItem('userData')); 
+        
+        if (userData) { 
+            headers = headers.set('Authorization', 'Bearer ' + userData.token);
         }
-        headers.append('Content-Type', 'application/json');
+        
+        return headers;
     }
     getMethod(action) {
-        let headers = new Headers();
-        this.createAuthorizationHeader(headers);
+        let headers = this.authorizationHeader();
         return this.http.get(this.url + action, {
-            headers: headers
+            headers
         })
             .pipe(
                 map(this.extractData),
@@ -52,15 +69,13 @@ export class AppService {
             );
     }
     putMethod(action, requestJSON) {
-        let headers = new Headers();
-        this.createAuthorizationHeader(headers);
+        let headers = this.authorizationHeader();
         return this.http.put(this.url + action, requestJSON, {
             headers: headers
         });
     }
     patch(action) {
-        let headers = new Headers();
-        this.createAuthorizationHeader(headers);
+        let headers = this.authorizationHeader();
         return this.http.patch(this.url + action, {
             headers: headers
         })
@@ -70,8 +85,7 @@ export class AppService {
             );
     }
     patchMethod(action, requestJSON) {
-        let headers = new Headers();
-        this.createAuthorizationHeader(headers);
+        let headers = this.authorizationHeader();
         return this.http.patch(this.url + action, requestJSON, {
             headers: headers
         })
@@ -88,15 +102,16 @@ export class AppService {
             );
     }
 
-    private extractData(res: Response) {
-        let body = res.json();
-        return body
+    private extractData(res: any) {
+        return res;
+        // let body = res.json();
+        // return body
     }
-    private handleErrorObservable(error: Response | any) {
-
-        return Observable.throw(error.message || error);
+    private handleErrorObservable(error: any) {
+        return throwError(error.message || error);
+        // return Observable.throw(error.message || error);
     }
-    private handleErrorPromise(error: Response | any) {
+    private handleErrorPromise(error: any) {
         console.error(error);
         return Promise.reject(error.message || error);
     }

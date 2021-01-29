@@ -18,7 +18,8 @@
             <i class="icon-down"></i>
           </span>
           <div class="quantity-input">
-            <input type="number" value="{{result.quantity}}" (keyup)="onQuantityChange(result,$event.target.value)">
+            <input readonly type="number" value="{{result.quantity}}">
+            <!---- (keyup)="onQuantityChange(result,$event.target.value)"-->
           </div>
           <span class="add" (click)="increaseQuntity(result)">
             <i class="icon-up"></i>

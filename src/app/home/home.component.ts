@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   ) { }
   productData: Array<any> = [];
   filterData: Array<any> = [];
-  categoryData: Array<any> = [];
+  // categoryData: Array<any> = [];
   public loading = false;
   isOpen: boolean;
   //sliderItems: Array<any> = [];

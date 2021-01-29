@@ -9,8 +9,8 @@
         <div class="shop-list-heading">
           <div class="number-product" *ngIf="productData.length > 0">
             {{ 'Showing' | translate }}
-            <span>{{show_product}}</span> -
-            <span>{{page}}</span>
+            <span>{{show_product}}</span> /
+            <!-- <span>{{page}}</span> -->
             <span>{{totalRecord}}</span> {{ 'results' | translate }}
           </div>
           <div class="shop-view-layout">
@@ -21,13 +21,13 @@
             </span>
           </div>
         </div>
-        <div class="grid" *ngIf="showGrid == false">
+        <div class="grid" *ngIf="!showGrid">
           <product-grid [Large]="'4'" [productData]="productData | paginate: { itemsPerPage: show_product, currentPage: page }"
             (onClickCart)="addToCart($event)" (onClickDetail)="goToDetailsPage($event)" (onPagination)="onRefresh($event)">
           </product-grid>
         </div>
 
-        <div class="shop-list" *ngIf="showGrid == true">
+        <div class="shop-list" *ngIf="showGrid">
           <product-list [productData]="productData | paginate: { itemsPerPage: show_product, currentPage: page }"
             (onClickCart)="addToCart($event)" (onClickDetail)="goToDetailsPage($event)" (onPagination)="onRefresh($event)">
           </product-list>
@@ -35,7 +35,7 @@
         <div *ngIf="loadmore" class="no-more-data">Loading...</div>
         <!-- <div class="no-more-data" *ngIf="totalRecord == productData.length && productData.length > 0">{{ 'No More Data'
           | translate}}</div> -->
-        <no-data *ngIf="productData.length == 0" [message]="'No Product Found'"></no-data>
+        <no-data *ngIf="!productData.length" [message]="'No Product Found'"></no-data>
 
       </div>
       <div class="col-md-3">
@@ -48,7 +48,7 @@
         <div class="filter">
           <custom-label [label]="'Filter by price'" [className]="'cart-border'"></custom-label>
           <div class="custom-slider">
-            <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+            <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (valueChange)="onPriceFilter()"></ng5-slider>
             <div class="filter-range-value">
               <span>{{'Filter' | translate }}:</span>
               <span id="filter-price-value-lower">{{minValue}}K</span>

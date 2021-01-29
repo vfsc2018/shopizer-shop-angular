@@ -19,31 +19,29 @@ import { ToastrService } from 'ngx-toastr';
 export class ShopComponent implements OnInit {
 
   api_url=environment.baseUrl;
+  products: Array<any> = [];
   productData: Array<any> = [];
   showGrid: Boolean = false;
-  show_product: any = 10;
+  show_product: any = 12;
   skip: any = 0;
   limit: any = 12;
-  page: any = 1;
+  page: any = 0;
   totalRecord: Number = 0;
-  sellerData: Array<any> = [
-    { 'name': 'Crackle Plates', 'price': 22.99 },
-    { 'name': 'floor lamp', 'price': 48.05 },
-    { 'name': 'wooden fan', 'price': 25.54 }
-  ];
 
   categoriesData: any;
   manufactureData: any;
   sizeData: Array<any> = [];
   colorData: Array<any> = [];
-  minValue: number = 100;
-  maxValue: number = 300;
+  minValue: number = 0;
+  maxValue: number = 500;
   options: Options = {
-    floor: 50,
+    floor: 0,
     ceil: 1000,
-    step: 100
-
+    step: 50
   };
+  min: number = this.minValue;
+  max: number = this.maxValue;
+
   categoryID: any = '';
   loadmore: boolean = false;
   constructor(
@@ -55,22 +53,35 @@ export class ShopComponent implements OnInit {
     private dataSharingService: DataSharingService,
     private helper: Helper
   ) {
-    this.dataSharingService.categoryData.subscribe(value => {
-      // console.log(value, '123456789');
-      this.productData = [];
-      if (value == '') {
-        if (localStorage.getItem('category_id') == '') {
-          this.categoryID = '';
-        } else {
-          this.categoryID = JSON.parse(localStorage.getItem('category_id')).id;
-        }
-      } else {
-        this.categoryID = value.id;
+    let init = true;
+    this.dataSharingService.category.subscribe(value => {
+      if(init){
+        init = false; 
+        this.categoryID = value;
+        this.getProductList();
+        this.getCategory();
       }
-      this.getProductList();
-      this.getCategory();
     });
-
+    // if (localStorage.getItem('category_id')!='') {
+    //   this.categoryID = JSON.parse(localStorage.getItem('category_id')).id;
+    //   console.log("---1.0---", this.categoryID);
+    //     this.getProductList();
+    //     this.getCategory();
+    // }else{
+    //   console.log("---2.0---", this.categoryID);
+    //     this.getProductList();
+    //     this.getCategory();
+    // }
+    // this.dataSharingService.categoryData.subscribe(value => {
+      // console.log(value, '<--->', this.categoryID);
+      // this.productData = [];
+      // if (value && value.id) {
+      //   this.categoryID = value.id;
+      
+      
+      // }
+      
+    // });
   }
 
   ngOnInit() {
@@ -78,18 +89,16 @@ export class ShopComponent implements OnInit {
   }
   getCategory() {
     let action = Action.CATEGORY + '?count=20&page=0'
-    this.appService.getMethod(action)
-      .subscribe(data => {
-        // console.log(data);
-        if (this.categoryID && this.categoryID != '') {
-          let index = data.categories.findIndex((value => value.id === this.categoryID))
-          this.categoriesData = data.categories[index];
-        } else {
-          this.categoriesData = data.categories;
-        }
-
-      }, error => {
-      });
+    this.appService.getMethod(action).subscribe(data => {
+      if (this.categoryID && this.categoryID != '') {
+        let i = data.categories.findIndex((value => value.id === this.categoryID));
+        this.categoriesData = data.categories[i];
+      } else {
+        this.categoriesData = data.categories;
+      }
+    }, error => {
+    });
+    
     this.getManufacturers();
   }
   getManufacturers() {
@@ -97,25 +106,27 @@ export class ShopComponent implements OnInit {
     if (this.categoryID && this.categoryID != '') {
       action =  Action.CATEGORY + this.categoryID + "/" + Action.MANUFACTURERS;
     }else{
-      // console.log("--->",action);
-      this.appService.getMethod(action)
-        .subscribe(data => {
-          this.manufactureData = data.manufacturers;
-        }, error => {
-          this.manufactureData = null;
-        });
+      this.appService.getMethod(action).subscribe(data => {
+        this.manufactureData = data.manufacturers;
+      }, error => {
+        this.manufactureData = null;
+      });
     }
   }
-  getProductList() {
+  getProductList(reset: boolean = true) {
+    this.products = [];
+    if(reset) this.productData = [];
     let language = localStorage.getItem('langulage');
     this.spinnerService.show();
     let action = Action.PRODUCTS;
     let filter = '&category=' + this.categoryID;
     // let manufacture = '&manufacturers=' + 500;
     this.appService.getMethod(action + '?lang=' + language + '&start=' + this.skip + '&count=' + this.limit + '' + filter)
-      .subscribe(data => {
-        this.totalRecord = data.totalCount;
-        this.productData = this.productData.concat(data.products);
+      .subscribe(data => { 
+        this.totalRecord = data.recordsTotal;
+        this.productData = this.productData.concat(data.products); 
+        this.show_product = this.productData.length;
+
         this.productData.map(e=>{
           e.showDateAvailable = this.helper.checkDateAvailable(e.dateAvailable);
           if(e.image && e.image.imageUrl.indexOf("http")<0)
@@ -145,19 +156,29 @@ export class ShopComponent implements OnInit {
   onFilter(result, status) {
     if (status == 0) {
       this.categoryID = result.id;
+      if(result.id && result.id>0){
+        this.dataSharingService.category.next(result.id);
+      }
+      this.dataSharingService.categoryData.next(result);
+      localStorage.setItem('category_id', JSON.stringify(result))
+      this.router.navigate(['/category/' + result.description.friendlyUrl]);
+      this.getCategory();
+      this.getProductList();
     }
-    this.productData = [];
-    this.dataSharingService.categoryData.next(result);
-    localStorage.setItem('category_id', JSON.stringify(result))
-    this.router.navigate(['/category/' + result.description.friendlyUrl]);
-    this.getProductList();
-    this.getCategory();
+  }
+  onPriceFilter() {
+      if(!this.products.length){
+        this.products = this.productData;
+      }
+      this.productData = this.products.filter((data) => {
+        return data.price>=this.minValue*1000 && data.price<=this.maxValue*1000;
+      });
   }
   addToCart(result) {
     this.spinnerService.show();
 
     let action;
-    let id = this.cookieService.get('vfscfood-cart-id'); console.log("cart code:", id);
+    let id = this.cookieService.get('vfscfood-cart-id'); 
     if (id) {
       action = Action.CART
       let cartData = JSON.parse(this.cookieService.get('localCart'));
@@ -173,7 +194,7 @@ export class ShopComponent implements OnInit {
           this.toastr.error('Can not action this product','Product not avaiable');
         });
     } else {
-      let userData = JSON.parse(localStorage.getItem('userData')); console.log("user:",userData);
+      let userData = JSON.parse(localStorage.getItem('userData'));
       if (userData) {
         action =  Action.PRIVATE + Action.CUSTOMER + Action.CARTS;
       } else {
@@ -203,7 +224,7 @@ export class ShopComponent implements OnInit {
     if (this.productData.length != this.totalRecord) {
       this.loadmore = true;
       this.skip = value;
-      this.getProductList();
+      this.getProductList(false);
     }
   }
   getVariants() {

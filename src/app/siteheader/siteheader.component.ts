@@ -50,6 +50,7 @@ export class SiteheaderComponent implements OnInit {
     getStore() {
         let action = Action.STORE + Action.DEFAULT;
         this.appService.getMethod(action).subscribe(data => {
+           
             this.cookieService.set('store-data', JSON.stringify(data))
             this.merchant = data;
             if(this.merchant.logo)
@@ -62,9 +63,8 @@ export class SiteheaderComponent implements OnInit {
                 localStorage.setItem('langulage', data.defaultLanguage);
                 this.translate.setDefaultLang(data.defaultLanguage);
             }
-
-            
         }, error => {
+            console.log(error);
             this.router.navigate(['/error']);
         });
     }
@@ -73,11 +73,13 @@ export class SiteheaderComponent implements OnInit {
         let action = Action.CATEGORY + '?count=20&page=0'
         // let action = Action.CATEGORY + '?' + Action.FILTER + '=' + Action.VISIBLE;
         //console.log(action);
-        this.appService.getMethod(action)
-            .subscribe(data => {
-                this.category = data.categories;
-            }, error => {
-            });
+        this.appService.getMethod(action).subscribe(data => {
+            this.category = data.categories;
+            if(data.categories && data.categories.length==1 && data.categories[0].children){
+                this.category[0].children.sort((a,b)=>(a.sortOrder>b.sortOrder)?1:-1);
+            }
+        }, error => {
+        });
     }
     getContent() {
         let action = Action.CONTENT + Action.PAGES + '?' + Action.STORE + '=' + Action.DEFAULT;
@@ -88,9 +90,11 @@ export class SiteheaderComponent implements OnInit {
             });
     }
     onClickCategory(category) {
-        // console.log(category)
+        if(category && category.id){
+            this.dataSharingService.category.next(category.id);
+        }
         this.dataSharingService.categoryData.next(category);
-        localStorage.setItem('category_id', JSON.stringify(category))
+        localStorage.setItem('category_id', JSON.stringify(category)); 
         this.router.navigate(['/category/' + category.description.friendlyUrl]);
 
         this.subclick = this.subclick == '' ? 'active' : ''
