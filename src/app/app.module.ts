@@ -17,7 +17,7 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-
+import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -269,7 +269,6 @@ export function createTranslateLoader(http: HttpClient) {
     LimitToPipe,
     OrderConfirmComponent,
     StripeComponent
-    
   ],
   entryComponents: [
     CartComponent,
@@ -283,6 +282,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    JwSocialButtonsModule,
     RouterModule.forRoot(routes, { useHash: true }),
     TranslateModule.forRoot({
       loader: {

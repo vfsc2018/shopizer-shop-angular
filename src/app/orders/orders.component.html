@@ -10,12 +10,11 @@
           <table class="table-shop m-b-30" *ngFor="let order of OrdersData.orders">
             <tbody>
               <tr class="tab-header">
-                <td class="order-id"><span>{{ 'Order Id' | translate}} : {{order.id}}</span></td>
-                <td></td>
+                <td class="order-id" colspan="2"><span>{{ 'Order Id' | translate}} : {{order.id}}</span></td>
                 <td class="width20"><span (click)="onShowOrderDetails(order)" class="floatR">{{ 'View Details' | translate}}</span></td>
               </tr>
               <tr *ngFor="let product of order.products">
-                <td class="width40">
+                <td>
                   <div *ngIf="product.product" class="table-shop-product">
                     <!-- <div class="image"> -->
                       <img *ngIf="product.product.image" class="image" src="{{api_url}}{{product.product.image.imageUrl}}" alt="{{product.sku}}">

@@ -75,12 +75,14 @@
                 <span class="price">{{product.subTotal}}</span>
               </td>
             </tr>
-            <!-- <tr class="pricedetail bor-top" *ngIf="data">
-              <div *ngFor="let totals of data.totals" [ngClass]="totals.module != 'total' ? 'detail' : 'hide'">
-                {{totals.module}} <span class="price">{{totals.value}}  {{data.currency}}</span></div> -->
+            <tr class="pricedetail bor-top" *ngIf="data.totals">
+              <p class="final"><b>{{'Promotion' | translate}}:</b></p>
+              <div *ngFor="let total of data.totals" [ngClass]="total.module == 'promotion' ? 'detail' : 'hide'">
+                {{total.text}} <span class="price"> - {{total.value}} {{data.currency}}</span>
+              </div>
               <!-- <div class="detail">Discount: <span class="price">0</span></div>
               <div class="detail">Tax Total: <span class="price">0</span></div> -->
-            <!-- </tr> -->
+            </tr>
             <tr class="pricedetail">
               <div class="final">{{'Order Total' | translate}}: <span class="totalprice">{{getCurrency(data.total.value)}} {{data.currency}}</span></div>
               <p class="final"><b>{{'Order notes' | translate}}:</b> {{data.comments}}</p>

@@ -31,6 +31,7 @@
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "express": "^4.16.4",
+    "jw-angular-social-buttons": "^1.0.0",
     "moment": "^2.24.0",
     "ng4-loading-spinner": "^1.2.3",
     "ng5-slider": "^1.2.1",

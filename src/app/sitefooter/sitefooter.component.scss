@@ -29,7 +29,7 @@
                 max-width: 270px;
 
                 .footer-item-heading {
-                    padding-top: 15px;
+                    padding-top: 10px;
                     height: 80px;
                     display: -webkit-box;
                     display: -webkit-flex;
@@ -90,14 +90,24 @@
                 }
 
                 .footer-item-content {
-                    padding-top: 20px;
+                    padding-top: 0px;
                     padding-bottom: 50px;
 
                     p {
                         font-size: 15px;
                         line-height: 1.6;
                     }
+                    .logo {
+                        -webkit-align-self: center;
+                        -ms-flex-item-align: center;
+                        align-self: center;
 
+                        /deep/ custom-img {
+                            img {
+                                width: 50%;
+                            }
+                        }
+                    }
                     .footer-open-time {
                         li {
                             font-size: 15px;

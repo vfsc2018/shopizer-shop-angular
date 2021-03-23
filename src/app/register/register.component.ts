@@ -104,6 +104,7 @@ export class RegisterComponent implements OnInit {
       "password": this.register.password,
       "emailAddress": this.register.phone + "@vfsc.vn",
       "gender": "F",
+      "firstName": this.billing.firstName,
       "language": language,
       "billing": info,
       "delivery": info
