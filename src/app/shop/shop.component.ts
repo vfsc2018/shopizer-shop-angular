@@ -53,15 +53,15 @@ export class ShopComponent implements OnInit {
     private dataSharingService: DataSharingService,
     private helper: Helper
   ) {
-    let init = true;
-    this.dataSharingService.category.subscribe(value => {
-      if(init){
-        init = false; 
-        this.categoryID = value;
-        this.getProductList();
-        this.getCategory();
+    
+    if(!this.categoryID && window.location.hash){
+      let path = window.location.hash.split('/'); 
+      if(path.length==3 && path[1]=='category'){
+          this.getCategoryByPath(path[2]);
       }
-    });
+    }else{
+      this.getDefaultProducts();
+    }
     // if (localStorage.getItem('category_id')!='') {
     //   this.categoryID = JSON.parse(localStorage.getItem('category_id')).id;
     //   console.log("---1.0---", this.categoryID);
@@ -83,9 +83,32 @@ export class ShopComponent implements OnInit {
       
     // });
   }
-
+  getDefaultProducts(){
+    this.dataSharingService.category.subscribe(value => { 
+      this.categoryID = value; 
+      this.getProductList();
+      this.getCategory();
+    });
+  }
   ngOnInit() {
 
+  }
+  getCategoryByPath(friendlyUrl: string) {
+    let action = Action.CATEGORY + '?count=20&page=0'
+    this.appService.getMethod(action).subscribe(data => {
+        if(data.categories && data.categories[0] && data.categories[0].children){
+          let i = data.categories[0].children.findIndex((value => value.description.friendlyUrl === friendlyUrl));
+          if(i>=0){
+            this.categoryID = data.categories[0].children[i].id;
+            this.getProductList();
+            this.getCategory();
+          }else{
+            this.getDefaultProducts();
+          }
+        }
+    }, error => {
+    });
+    this.getManufacturers();
   }
   getCategory() {
     let action = Action.CATEGORY + '?count=20&page=0'

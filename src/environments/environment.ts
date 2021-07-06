@@ -9,7 +9,7 @@ export const environment = {
   // baseUrl: 'http://localhost:8080',
   apiVersion: '/api/v1/',
   merchant: 'DEFAULT',
-  stripeKey: 'pk_test_tVMeg9oyMknGF1ZH6R35vMVc'
+  // stripeKey: 'pk_test_tVMeg9oyMknGF1ZH6R35vMVc'
 };
 
 /*
