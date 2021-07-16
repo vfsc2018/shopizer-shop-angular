@@ -54,11 +54,9 @@ export class ShopComponent implements OnInit {
     private helper: Helper
   ) {
     
-    if(!this.categoryID && window.location.hash){
-      let path = window.location.hash.split('/'); 
-      if(path.length==3 && path[1]=='category'){
+    let path = window.location.hash.split('/');
+    if(!this.categoryID && path.length==3 && path[1]=='category'){
           this.getCategoryByPath(path[2]);
-      }
     }else{
       this.getDefaultProducts();
     }

@@ -43,7 +43,7 @@ export class SettingsComponent {
     //   this.language = 'Language'
     // }
     this.dataSharingService.isLogin.subscribe(value => {
-      console.log("Login",value);
+      // console.log("Login",value);
       this.userData = localStorage.getItem('userData');
       this.userDataFlag = this.userData ? true : false;
       // if (localStorage.getItem('langulage')) {
